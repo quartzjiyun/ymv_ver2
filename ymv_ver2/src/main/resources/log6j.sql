@@ -46,6 +46,7 @@ create table recruit(
 	age varchar2(100) not null,
 	start_date date not null,
 	end_date date not null,
+	content clob not null,
 	name varchar2(50) constraint fk_member_name references member(name),
 	time_posted date not null,
 	hit number default 0
