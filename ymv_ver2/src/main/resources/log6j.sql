@@ -11,8 +11,8 @@ create table member(
 )
 
 drop table member
--- board
 drop table board
+--JJH-time_posted,hit 추가
 create table board(
 	board_no number primary key,
 	board_type varchar2(50) not null,
@@ -20,7 +20,10 @@ create table board(
 	writer varchar2(50) not null,
 	content clob not null,
 	member_no number not null
-	constraint fk_member_no_4 references member(member_no)
+	constraint fk_member_no_4 references member(member_no),
+	time_posted date not null,
+	hit number default 0
+	
 )
 select * from board
 drop table board
@@ -34,7 +37,7 @@ create table statistics(
 select * from STATISTICS
 drop table statistics
 
---recruit
+--JJH-recruit ver2 name(fk),time_posted,hit 추가
 create table recruit(
 	recruit_no number primary key,
 	title varchar2(50) not null,
@@ -42,7 +45,10 @@ create table recruit(
 	location varchar2(100) not null,
 	age varchar2(100) not null,
 	start_date date not null,
-	end_date date not null
+	end_date date not null,
+	name varchar2(50) constraint fk_member_name references member(name),
+	time_posted date not null,
+	hit number default 0
 	)
 	
 drop table recruit
@@ -68,7 +74,7 @@ primary key(recruit_no,member_no)
 )
 
 select * from QnA_board;
-
+--JJH-time_posted,hit 추가
 create table QnA_board(
 qna_no number primary key,
 title varchar2(50) not null,
@@ -79,6 +85,8 @@ restep varchar2(50) not null,
 relevel varchar2(50) not null,
 member_no number not null
 constraint fk_member_no_3 references member(member_no)
+time_posted date not null,
+hit number default 0
 )
 --comment
 drop table ymv_comment
@@ -117,16 +125,7 @@ create table voluntary_applicant(
 )
 
 select * from board
-create table board(
-	board_no number primary key,
-	board_type varchar2(50) not null,
-	title varchar2(50) not null,
-	writer varchar2(50) not null,
-	content clob not null,
-	member_no number not null
-	constraint fk_member_no_4 references member(member_no)
-)
-
+--JJH table 수정하고 insert중 해당 부분 재수정
 create sequence ymv_seq;
  drop sequence ymv_seq;
 select * from MEMBER;
@@ -135,18 +134,18 @@ insert into member values(1,'java','1234','임영학','판교','890716','qhackp@
 insert into member values(2,'java1','1234','백지영','판교','960102','qorwldud@naver.com','normal');
 insert into member values(3,'qwerty','1234','장지윤','수원','931004','quartzjiyun@naver.com','company');
 insert into member values(4,'kosta','1234','박병준','서울','900227','byungjunpark@naver.com','company');
-insert into BOARD(board_no,board_type,title,writer,content,member_no) values(ymv_seq.nextval,'review','테스트','임영학','가나다라','1');
-insert into BOARD(board_no,board_type,title,writer,content,member_no) values(ymv_seq.nextval,'review','테스트','임영학','가나다라','1');
+insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) values(ymv_seq.nextval,'review','테스트','임영학','가나다라','1',sysdate);
+insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) values(ymv_seq.nextval,'review','테스트','임영학','가나다라','1',sysdate);
 insert into statistics(age, field, applicate_count) values(20,'환경',1);
 insert into statistics(age, field, applicate_count) values(30,'환경',2);
-insert into RECRUIT(recruit_no, title, field, location, age, start_date, end_date) values(1,'봉사글?','환경','판교',20,to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'));
-insert into RECRUIT(recruit_no, title, field, location, age, start_date, end_date) values(2,'봉사글?','환경','판교',20,to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'));
+insert into RECRUIT(recruit_no, title, field, location, age, start_date, end_date,name,time_posted) values(1,'봉사글?','환경','판교',20,to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'),'삼송',sysdate);
+insert into RECRUIT(recruit_no, title, field, location, age, start_date, end_date,name,time_posted) values(2,'봉사글?','환경','판교',20,to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'),'햔대',sysdate);
 insert into SCHEDULER(member_no, field, location, start_date, end_date) values(1, '환경', '판교', to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'));
 insert into SCHEDULER(member_no, field, location, start_date, end_date) values(2, '환경', '판교', to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'));
 insert into VOLUNTARY_SERVICE_APPLICATE(recruit_no, member_no) values(1, 1);
 insert into VOLUNTARY_SERVICE_APPLICATE(recruit_no, member_no) values(2, 2);
-insert into QNA_BOARD(qna_no, title, writer, content, ref, restep, relevel, member_no) values(1, 'qna게시판?', '임영학', '내용어쩌구저쩌구1', 1, 0, 1, 1);
-insert into QNA_BOARD(qna_no, title, writer, content, ref, restep, relevel, member_no) values(2, 'qna게시판?', '임영학', '내용어쩌구저쩌구2', 2, 0, 1, 1);
+insert into QNA_BOARD(qna_no, title, writer, content, ref, restep, relevel, member_no,time_posted) values(1, 'qna게시판?', '임영학', '내용어쩌구저쩌구1', 1, 0, 1, 1,sysdate);
+insert into QNA_BOARD(qna_no, title, writer, content, ref, restep, relevel, member_no,time_posted) values(2, 'qna게시판?', '임영학', '내용어쩌구저쩌구2', 2, 0, 1, 1,sysdate);
 insert into YMV_COMMENT(comment_no, writer, content, time_posted, board_no) values(ymv_seq.nextval,'임영학','하고있습니다1',sysdate,1);
 insert into YMV_COMMENT(comment_no, writer, content, time_posted, board_no) values(ymv_seq.nextval,'임영학','하고있습니다2',sysdate,2);
 select * from PICTURE;
@@ -158,6 +157,39 @@ insert into VOLUNTARY_APPLICANT_OK(recruit_no, member_no) values(1,2);
 insert into VOLUNTARY_APPLICANT(recruit_no, member_no) values(1,1);
 insert into VOLUNTARY_APPLICANT(recruit_no, member_no) values(1,2);
 
+--지영이가 한거 
+--field
+drop table field
+create table field(
+   field varchar2(100) not null
+)
+
+delete from field
+select * from field
+insert into field values('노인');
+insert into field values('아동');
+insert into field values('장애');
+insert into field values('동물');
+insert into field values('환경');
+
+
+--location
+drop table location
+create table location(
+   location varchar2(100) not null
+)
+
+
+delete from location
+select * from location
+insert into location values('강원도');
+insert into location values('경기도');
+insert into location values('충청도');
+insert into location values('경상도');
+insert into location values('전라도');
+insert into location values('제주도');
+insert into location values('서울');
+insert into location values('부산');
 
 
 
