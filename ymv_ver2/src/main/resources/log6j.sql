@@ -52,6 +52,9 @@ create table recruit(
 	hit number default 0
 	)
 	
+drop sequence recruit_no_seq;
+create sequence recruit_no_seq;
+	
 drop table recruit
 
 drop table scheduler
