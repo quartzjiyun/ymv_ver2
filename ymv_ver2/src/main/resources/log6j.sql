@@ -46,7 +46,8 @@ create table recruit(
 	age varchar2(100) not null,
 	start_date date not null,
 	end_date date not null,
-	name varchar2(50) constraint fk_member_name references member(name),
+	content clob not null,
+	member_no number constraint fk_member_no_7 references member(member_no),
 	time_posted date not null,
 	hit number default 0
 	)
@@ -84,7 +85,7 @@ ref varchar2(50) not null,
 restep varchar2(50) not null,
 relevel varchar2(50) not null,
 member_no number not null
-constraint fk_member_no_3 references member(member_no)
+constraint fk_member_no_3 references member(member_no),
 time_posted date not null,
 hit number default 0
 )
@@ -137,8 +138,8 @@ insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) values(ymv_seq.nextval,'review','테스트','임영학','가나다라','1',sysdate);
 insert into statistics(age, field, applicate_count) values(20,'환경',1);
 insert into statistics(age, field, applicate_count) values(30,'환경',2);
-insert into RECRUIT(recruit_no, title, field, location, age, start_date, end_date,name,time_posted) values(1,'봉사글?','환경','판교',20,to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'),'삼송',sysdate);
-insert into RECRUIT(recruit_no, title, field, location, age, start_date, end_date,name,time_posted) values(2,'봉사글?','환경','판교',20,to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'),'햔대',sysdate);
+insert into RECRUIT(recruit_no, title, field, location, age, start_date, end_date,content,member_no,time_posted) values(1,'봉사글?','환경','판교',20,to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'),'내용입니다',1,sysdate);
+insert into RECRUIT(recruit_no, title, field, location, age, start_date, end_date,content,member_no,time_posted) values(2,'봉사글?','환경','판교',20,to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'),'내용씁니다',2,sysdate);
 insert into SCHEDULER(member_no, field, location, start_date, end_date) values(1, '환경', '판교', to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'));
 insert into SCHEDULER(member_no, field, location, start_date, end_date) values(2, '환경', '판교', to_date('2015-06-09 12:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-09 15:00','YYYY-MM-DD HH24:MI'));
 insert into VOLUNTARY_SERVICE_APPLICATE(recruit_no, member_no) values(1, 1);
@@ -194,3 +195,6 @@ insert into location values('부산');
 
 
 select * from board where board_no=1
+
+
+
