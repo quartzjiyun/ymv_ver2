@@ -118,13 +118,12 @@ select * from voluntary_applicant
 -- voluntary_applicant 
 create table voluntary_applicant(
 	recruit_no number not null,
-	member_no number not null
-	constraint fk_recruit_no_2 references recruit(recruit_no)
-	constraint fk_member_no_2 references member(member_no),
+	member_no number not null constraint fk_recruit_no_2 references recruit(recruit_no)	constraint fk_member_no_2 references member(member_no),
+	motivate varchar(3000),
 	primary key(recruit_no,member_no)
 )
-
-select * from board
+drop table voluntary_applicant
+select * from voluntary_applicant
 --JJH table 수정하고 insert중 해당 부분 재수정
 create sequence ymv_seq;
  drop sequence ymv_seq;
