@@ -4,14 +4,16 @@ public class VoluntaryApplicantVO {
 
 	private int recruitNo;
 	private int memberNo;
+	private String motivate;
 	public VoluntaryApplicantVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public VoluntaryApplicantVO(int recruitNo, int memberNo) {
+	public VoluntaryApplicantVO(int recruitNo, int memberNo, String motivate) {
 		super();
 		this.recruitNo = recruitNo;
 		this.memberNo = memberNo;
+		this.motivate = motivate;
 	}
 	public int getRecruitNo() {
 		return recruitNo;
@@ -25,10 +27,16 @@ public class VoluntaryApplicantVO {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
+	public String getMotivate() {
+		return motivate;
+	}
+	public void setMotivate(String motivate) {
+		this.motivate = motivate;
+	}
 	@Override
 	public String toString() {
 		return "VoluntaryApplicantVO [recruitNo=" + recruitNo + ", memberNo="
-				+ memberNo + "]";
+				+ memberNo + ", motivate=" + motivate + "]";
 	}
 	
 }
