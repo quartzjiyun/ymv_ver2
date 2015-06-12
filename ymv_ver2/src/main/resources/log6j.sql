@@ -70,11 +70,12 @@ end_date date not null
 drop table QnA_board
 
 create table voluntary_service_applicate(
-recruit_no number not null,
-member_no number not null
-constraint fk_recruit_no references recruit(recruit_no)
-constraint fk_member_no_6 references member(member_no),
-primary key(recruit_no,member_no)
+	recruit_no number not null,
+	member_no number not null, 
+	constraint fk_recruit_no foreign key(recruit_no) references recruit,
+	constraint fk_member_no_6 foreign key(member_no) references member,
+	motivate varchar(3000),
+	constraint pk_voluntary_service_applicate primary key(recruit_no,member_no)
 )
 
 select * from QnA_board;
