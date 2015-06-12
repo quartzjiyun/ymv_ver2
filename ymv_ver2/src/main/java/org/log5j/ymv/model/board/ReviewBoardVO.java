@@ -1,11 +1,27 @@
 package org.log5j.ymv.model.board;
 
+import java.sql.Date;
+
 public class ReviewBoardVO implements BoardVO{
 	private int boardNo;
 	private String title;
 	private String writer;
 	private String content;
 	private int memberNo;
+	private Date timePosted;
+	private int hit;
+	public Date getTimePosted() {
+		return timePosted;
+	}
+	public void setTimePosted(Date timePosted) {
+		this.timePosted = timePosted;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 	public ReviewBoardVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -53,7 +69,9 @@ public class ReviewBoardVO implements BoardVO{
 	public String toString() {
 		return "ReviewBoardVO [boardNo=" + boardNo + ", title=" + title
 				+ ", writer=" + writer + ", content=" + content + ", memberNo="
-				+ memberNo + "]";
+				+ memberNo + ", timePosted=" + timePosted + ", hit=" + hit
+				+ "]";
 	}
+
 	
 }

@@ -3,26 +3,20 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
-<!-- MyBatis  DataSource에 대한 설정 및  SQL 정의 xml 에 대한 매핑
-		spring과 연동시에는 spring 설정에서 DataSource(dbcp) 를 정의한다. 
--->
-<configuration>	
-	<!-- 사용할 클래스에 대한 별칭을 명시한다.  -->
+<!-- MyBatis DataSource에 대한 설정 및 SQL 정의 xml 에 대한 매핑 spring과 연동시에는 spring 
+	설정에서 DataSource(dbcp) 를 정의한다. -->
+<configuration>
+	<!-- 사용할 클래스에 대한 별칭을 명시한다. -->
 	<typeAliases>
-		
+		<typeAlias type="org.log5j.ymv.model.board.RecruitBoardVO" alias="recruitbvo" />
+		<typeAlias type="org.log5j.ymv.model.board.FieldVO" alias="fieldvo" />
+		<typeAlias type="org.log5j.ymv.model.board.LocationVO" alias="locationvo" />
+		<typeAlias type="org.log5j.ymv.model.board.ReviewBoardVO"
+			alias="rbvo" />
+		<typeAlias type="org.log5j.ymv.model.board.CommentVO" alias="cmvo" />
 	</typeAliases>
-	
 	<mappers>
-		<mapper resource="mybatis/config/mapper.xml"/>
+		<mapper resource="mybatis/config/board.xml" />
+		<mapper resource="mybatis/config/reviewBoard.xml" />
 	</mappers>
 </configuration>
-
-
-
-
-
-
-
-
-
-

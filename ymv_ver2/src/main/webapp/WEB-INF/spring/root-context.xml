@@ -19,7 +19,7 @@
 	 <!-- AOP 설정 -->
 	 <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	 <!-- MyBatis -->	 
-	 <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	<property name="driverClassName">
 		<value>oracle.jdbc.driver.OracleDriver</value>
 	</property>
@@ -43,5 +43,5 @@
 </bean>
 <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 	<constructor-arg ref="sqlSessionFactory"></constructor-arg>
-</bean>	 -->
+</bean>	
 </beans>

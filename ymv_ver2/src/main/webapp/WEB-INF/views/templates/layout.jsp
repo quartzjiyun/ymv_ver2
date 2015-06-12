@@ -8,6 +8,7 @@
 <title>Tiles Layout</title>
 <script type="text/javascript" src="${initParam.root}resources/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root}/css/home.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root}/css/board.css" />
 </head>
 <body>
 <div id="container">

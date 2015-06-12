@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+타일즈 설정파일
+-->
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+       
+<tiles-definitions>
+<!-- 
+		ModelAndView의 view name이 shop_ 로 시작 되면 아래 타일즈 설정으로 응답화면을 제공한다.
+		shop_*
+				{1}
+		첫번째 * 에 해당하는 문자열이 {1} 로 매칭된다.
+		ex) shop_register 라는 view name을 반환하면 /shop/register_view.jsp 가 메인으로 적용되어 응답한다.
+ -->
+	<definition name = "voluntary_*" extends="home">
+		<put-attribute name="main" value="/WEB-INF/views/voluntary_{1}.jsp"/>
+	</definition>
+	<!-- 관리자 모드 tiles
+			관리자 모드일 경우 header 부분도 변경
+			definition name = "admin_*_*"
+			value="/member/admin/{1}/{2}.jsp"
+			첫번째 * : {1} 
+			두번째 * : {2}
+			ex) shop 관리자 로그인 화면의 view name 은
+				admin_shopmgr_login
+	 --><!-- 
+		<definition name = "admin_*_*" extends="home">
+		<put-attribute name="header" value="/WEB-INF/views/templates/{1}/header.jsp"></put-attribute>
+		<put-attribute name="main" value="/WEB-INF/views/member/admin/{1}/{2}.jsp"/>
+	</definition> -->
+</tiles-definitions>
+
+
+
+
+
+
+

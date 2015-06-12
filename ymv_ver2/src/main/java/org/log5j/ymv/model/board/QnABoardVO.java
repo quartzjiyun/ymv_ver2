@@ -9,15 +9,12 @@ public class QnABoardVO implements BoardVO{
 	private int restep;
 	private int relevel;
 	private int memberNo;
-	private int timePosted;
-	private int hit;
 	public QnABoardVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public QnABoardVO(int qnaNo, String title, String writer, String content,
-			int ref, int restep, int relevel, int memberNo, int timePosted,
-			int hit) {
+			int ref, int restep, int relevel, int memberNo) {
 		super();
 		this.qnaNo = qnaNo;
 		this.title = title;
@@ -27,8 +24,6 @@ public class QnABoardVO implements BoardVO{
 		this.restep = restep;
 		this.relevel = relevel;
 		this.memberNo = memberNo;
-		this.timePosted = timePosted;
-		this.hit = hit;
 	}
 	public int getQnaNo() {
 		return qnaNo;
@@ -78,25 +73,12 @@ public class QnABoardVO implements BoardVO{
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	public int getTimePosted() {
-		return timePosted;
-	}
-	public void setTimePosted(int timePosted) {
-		this.timePosted = timePosted;
-	}
-	public int getHit() {
-		return hit;
-	}
-	public void setHit(int hit) {
-		this.hit = hit;
-	}
 	@Override
 	public String toString() {
 		return "QnABoardVO [qnaNo=" + qnaNo + ", title=" + title + ", writer="
 				+ writer + ", content=" + content + ", ref=" + ref
 				+ ", restep=" + restep + ", relevel=" + relevel + ", memberNo="
-				+ memberNo + ", timePosted=" + timePosted + ", hit=" + hit
-				+ "]";
+				+ memberNo + "]";
 	}
 
 }

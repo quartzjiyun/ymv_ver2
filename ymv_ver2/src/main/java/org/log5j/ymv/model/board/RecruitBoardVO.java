@@ -6,7 +6,7 @@ public class RecruitBoardVO implements BoardVO{
 	private String title;
 	private String field;
 	private String location;
-	private int age;
+	private String age;
 	private String startDate;
 	private String endDate;
 	private String content;
@@ -15,8 +15,20 @@ public class RecruitBoardVO implements BoardVO{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public RecruitBoardVO(String title, String field, String location, String age,
+			String startDate, String endDate, String content) {
+		super();
+		this.title = title;
+		this.field = field;
+		this.location = location;
+		this.age = age;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.content = content;
+	}
+
 	public RecruitBoardVO(int recruitNo, String title, String field,
-			String location, int age, String startDate, String endDate,
+			String location, String age, String startDate, String endDate,
 			String content) {
 		super();
 		this.recruitNo = recruitNo;
@@ -61,10 +73,10 @@ public class RecruitBoardVO implements BoardVO{
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public String getStartDate() {
@@ -87,5 +99,6 @@ public class RecruitBoardVO implements BoardVO{
 				+ age + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", content=" + content + "]";
 	}
-	
+
+
 }
