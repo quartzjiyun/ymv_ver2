@@ -15,7 +15,7 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 	@Override
 	public void registerVolunteerApplicant(VoluntaryServiceApplicateVO vsavo) {
 		System.out.println("registerVolunteerApplicant    vsavo    " + vsavo);
-		sqlSessionTemplate.insert("board.RegisterVoluntaryApplicant",vsavo);
+		sqlSessionTemplate.insert("member.RegisterVoluntaryApplicant",vsavo);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 		vsvo.setMemberNo(memberNo);
 		System.out.println(vsvo);*/
 		System.out.println("map   "+map);
-		return sqlSessionTemplate.selectOne("board.checkVolunteerApplicant",map);
+		return sqlSessionTemplate.selectOne("member.checkVolunteerApplicant",map);
 	}
 
 }
