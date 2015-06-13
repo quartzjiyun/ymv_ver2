@@ -1,7 +1,10 @@
 package org.log5j.ymv.model.voluntary;
 
 public class VoluntaryApplicantVO {
-
+	/**
+	 * 봉사신청게시판과 봉사활동 신청인원 게시판이 같은거 같아서
+	 * 봉사활동신청인원 게시판을 사용하지 않기로함
+	 */
 	private int recruitNo;
 	private int memberNo;
 	private String motivate;
