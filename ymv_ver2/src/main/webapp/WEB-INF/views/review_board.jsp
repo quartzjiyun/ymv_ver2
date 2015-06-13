@@ -33,7 +33,7 @@
          </tr>         
          </c:forEach>
    </table><br>
-   <a href="${initParam.root }voluntary_register_view.ymv">글쓰기 추가해야 함</a>
+   <a href="${initParam.root }review_register_view.ymv">글쓰기</a>
    <br></br>   
    <!-- 페이징 처리 -->      
    <br></br>   
