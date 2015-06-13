@@ -39,14 +39,14 @@
                </td></tr><tr>   <td>
                   <font size="2">분야 :
                    <select id="field" name="field"><!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
-           <option value="">-분야-</option>
+           <option value="${requestScope.rvo.field }">${requestScope.rvo.field }</option>
             <c:forEach items="${requestScope.fieldlist }" var="field">
                <option value="${field.field }">${field.field }</option>
             </c:forEach>
          </select>
          | 지역 :  
          <select id="location" name="location"> <!-- 지역(*도 별로) DB에서 받아오기 -->
-            <option value="">-지역-</option>
+            <option value="${requestScope.rvo.location }">${requestScope.rvo.location }</option>
             <c:forEach items="${requestScope.locationlist }" var="location">
                <option value="${location.location }">${location.location }</option>
             </c:forEach>
@@ -57,6 +57,7 @@
                </td>
             </tr>
             <tr><td>
+            
             
             <font size="2">시작시간: 
             <select id="startDate" name="startDate"><!-- 한시간 단위로 하기 -->
@@ -79,7 +80,7 @@
             <option value="21:00">21:00</option>
             <option value="22:00">22:00</option>
             <option value="23:00">23:00</option>
-            <option value="24:00">24:00</option>
+            <option value="00:00">00:00</option>
          </select>
          | 
                   끝시간: <select id="endDate" name="endDate"><!-- 한시간 단위로 하기 -->
@@ -102,7 +103,7 @@
             <option value="21:00">21:00</option>
             <option value="22:00">22:00</option>
             <option value="23:00">23:00</option>
-            <option value="24:00">24:00</option>
+            <option value="00:00">00:00</option>
          </select>
                   </font>
             </td></tr>

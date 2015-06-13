@@ -93,7 +93,7 @@
 				<option value="21:00">21:00</option>
 				<option value="22:00">22:00</option>
 				<option value="23:00">23:00</option>
-				<option value="24:00">24:00</option>
+            	<option value="00:00">00:00</option>
 			</select>
 		</td>
 	</tr>
@@ -120,7 +120,7 @@
 				<option value="21:00">21:00</option>
 				<option value="22:00">22:00</option>
 				<option value="23:00">23:00</option>
-				<option value="24:00">24:00</option>
+           		<option value="00:00">00:00</option>
 			</select>
 		</td>
 	</tr>
