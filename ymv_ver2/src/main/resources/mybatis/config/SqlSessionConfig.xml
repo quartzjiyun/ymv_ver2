@@ -11,12 +11,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.board.RecruitBoardVO" alias="recruitbvo" />
 		<typeAlias type="org.log5j.ymv.model.board.FieldVO" alias="fieldvo" />
 		<typeAlias type="org.log5j.ymv.model.board.LocationVO" alias="locationvo" />
-		<typeAlias type="org.log5j.ymv.model.board.ReviewBoardVO"
-			alias="rbvo" />
+		<typeAlias type="org.log5j.ymv.model.board.ReviewBoardVO" alias="rbvo" />
 		<typeAlias type="org.log5j.ymv.model.board.CommentVO" alias="cmvo" />
+		<typeAlias type="org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO" alias="vsavo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/board.xml" />
 		<mapper resource="mybatis/config/reviewBoard.xml" />
+		<mapper resource="mybatis/config/member.xml" />
 	</mappers>
 </configuration>
