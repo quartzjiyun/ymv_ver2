@@ -46,7 +46,7 @@
     --%>
     <c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
     <a href=
-    "list.do?pageNo=${requestScope.lvo.pagingBean.
+    "voluntary_board.ymv?pageNo=${requestScope.lvo.pagingBean.
     startPageOfPageGroup-1}"><img src="${initParam.root }/img/left_arrow_btn.gif"></a>
     </c:if>
     &nbsp;&nbsp;
@@ -60,7 +60,7 @@
     end="${requestScope.lvo.pagingBean.endPageOfPageGroup}">
     <c:choose>
     <c:when test="${requestScope.lvo.pagingBean.nowPage!=i}">
-    <a href="list.do?pageNo=${i}">${i}</a>
+    <a href="voluntary_board.ymv?pageNo=${i}">${i}</a>
     </c:when>
     <c:otherwise>
    ${i}
@@ -75,7 +75,7 @@
     --%>
     <c:if test="${requestScope.lvo.pagingBean.nextPageGroup}">
     <a href=
-    "list.do?pageNo=${requestScope.lvo.pagingBean.
+    "voluntary_board.ymv?pageNo=${requestScope.lvo.pagingBean.
     endPageOfPageGroup+1}">
     <img src="${initParam.root }/img/right_arrow_btn.gif">
     </a>

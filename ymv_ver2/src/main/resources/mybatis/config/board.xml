@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <select id="getBoardList" resultMap="boardRM" resultType="recruitbvo">   
    select recruit_no, title, field, location, age, start_date, end_date 
-   from(select recruit_no, title, field, location, age, CEIL(rownum/5) AS page,start_date, end_date from recruit) 
-   where page=#{value} order by recruit_no desc
+   from(select recruit_no, title, field, location, age, start_date, end_date, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, start_date, end_date from recruit order by recruit_no desc) ) 
+   where page=#{value} 
    </select>
 
    <select id="getRecruitBoardByRecruitNo" resultMap="boardRM" resultType="recruitbvo">   
