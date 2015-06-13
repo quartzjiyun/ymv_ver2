@@ -61,7 +61,7 @@
             
             <font size="2">시작시간: 
             <select id="startDate" name="startDate"><!-- 한시간 단위로 하기 -->
-            <option value="">-시작시간-</option>
+            <option value="${requestScope.rvo.startDate }">${requestScope.rvo.startDate }</option>
             <option value="06:00">06:00</option>
             <option value="07:00">07:00</option>
             <option value="08:00">08:00</option>
@@ -84,7 +84,7 @@
          </select>
          | 
                   끝시간: <select id="endDate" name="endDate"><!-- 한시간 단위로 하기 -->
-            <option value="">-끝시간-</option>
+            <option value="${requestScope.rvo.endDate }">${requestScope.rvo.endDate }</option>
             <option value="06:00">06:00</option>
             <option value="07:00">07:00</option>
             <option value="08:00">08:00</option>
