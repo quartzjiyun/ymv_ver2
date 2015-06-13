@@ -20,4 +20,6 @@ public interface RecruitBoardService {
 	public RecruitBoardVO findRecruitBoardByrecruitNo(int recruitNo);
 
 	public void deleteRecruitVolunteer(int recruitNo);
+
+	public void deleteVoluntaryServiceApplicateNo(int recruitNo);
 }

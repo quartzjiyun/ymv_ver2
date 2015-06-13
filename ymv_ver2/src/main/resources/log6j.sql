@@ -11,7 +11,7 @@ create table member(
 )
 
 drop table member
-drop table board
+delete from member
 --JJH-time_posted,hit 추가
 create table board(
 	board_no number primary key,
@@ -23,7 +23,6 @@ create table board(
 	constraint fk_member_no_4 references member(member_no),
 	time_posted date not null,
 	hit number default 0
-	
 )
 select * from board
 drop table board
@@ -51,10 +50,10 @@ create table recruit(
 	time_posted date not null,
 	hit number default 0
 	)
-	
+	drop table member
 drop sequence recruit_no_seq;
 create sequence recruit_no_seq;
-	
+	delete from member
 drop table recruit
 
 drop table scheduler
@@ -77,8 +76,8 @@ create table voluntary_service_applicate(
 	motivate varchar(3000),
 	constraint pk_voluntary_service_applicate primary key(recruit_no,member_no)
 )
-
-select * from QnA_board;
+delete from voluntary_service_applicate
+select * from voluntary_service_applicate;
 --JJH-time_posted,hit 추가
 create table QnA_board(
 qna_no number primary key,
@@ -93,6 +92,7 @@ constraint fk_member_no_3 references member(member_no),
 time_posted date not null,
 hit number default 0
 )
+delete from QNA_BOARD
 --comment
 drop table ymv_comment
 create table ymv_comment(
@@ -110,7 +110,7 @@ create table picture(
 	picture_name varchar2(50) not null,
 	board_no number not null
 )
-
+drop table picture 
 -- voluntary_applicant_ok
 create table voluntary_applicant_ok(
 	recruit_no number not null,
@@ -119,7 +119,7 @@ create table voluntary_applicant_ok(
 	constraint fk_member_no_1 references member(member_no),
 	primary key(recruit_no,member_no)
 )
-select * from voluntary_applicant
+select * from voluntary_applicant_ok
 -- voluntary_applicant 
 create table voluntary_applicant(
 	recruit_no number not null,
@@ -127,7 +127,7 @@ create table voluntary_applicant(
 	motivate varchar(3000),
 	primary key(recruit_no,member_no)
 )
-drop table voluntary_applicant
+drop table voluntary_applicant_ok
 select * from voluntary_applicant
 --JJH table 수정하고 insert중 해당 부분 재수정
 create sequence ymv_seq;
@@ -153,7 +153,7 @@ insert into QNA_BOARD(qna_no, title, writer, content, ref, restep, relevel, memb
 insert into YMV_COMMENT(comment_no, writer, content, time_posted, board_no) values(ymv_seq.nextval,'임영학','하고있습니다1',sysdate,1);
 insert into YMV_COMMENT(comment_no, writer, content, time_posted, board_no) values(ymv_seq.nextval,'임영학','하고있습니다2',sysdate,2);
 select * from PICTURE;
-
+--여기까지했음
 insert into PICTURE(picture_no, picture_name, board_no) values(ymv_seq.nextval,'봉사사진1',1);
 insert into PICTURE(picture_no, picture_name, board_no) values(ymv_seq.nextval,'봉사사진2',2);
 insert into VOLUNTARY_APPLICANT_OK(recruit_no, member_no) values(1,1);

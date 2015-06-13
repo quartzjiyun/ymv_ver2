@@ -77,8 +77,8 @@ public class RecruitBoardController {
 		System.out.println("rbvo  " + rbvo);
 		System.out.println("register sql 실행전");
 		recruitBoardService.registerVolunteer(rbvo);
-		System.out.println("register sql실행");
-		System.out.println("title  " + rbvo.getTitle());
+		System.out.println("register sql실행후");
+		System.out.println("rbvo  " + rbvo);
 		//return "redirect:RegisterVolunteer_detail.ymv?title=" + rbvo.getTitle();
 		return "redirect:voluntary_showContentRecruitVol.ymv?recruitNo=" + rbvo.getRecruitNo();
 	}
@@ -87,6 +87,7 @@ public class RecruitBoardController {
 	   public ModelAndView DeleteRecruitVol(HttpServletRequest request){
 	         int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	         System.out.println("delete recruitNo:"+recruitNo);
+	         recruitBoardService.deleteVoluntaryServiceApplicateNo(recruitNo);
 	         recruitBoardService.deleteRecruitVolunteer(recruitNo);
 	         System.out.println("delete 성공");
 	      return new ModelAndView("redirect:/voluntary_board.ymv?pageNo=1");

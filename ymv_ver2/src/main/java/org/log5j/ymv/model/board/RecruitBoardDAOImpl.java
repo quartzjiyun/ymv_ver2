@@ -70,4 +70,9 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 		sqlSessionTemplate.delete("board.deleteRecruitVolunteer",recruitNo);
 	}
 
+	@Override
+	public void deleteVoluntaryServiceApplicateNo(int recruitNo) {
+		sqlSessionTemplate.delete("member.deleteVoluntaryServiceApplicateNo",recruitNo);		
+	}
+
 }

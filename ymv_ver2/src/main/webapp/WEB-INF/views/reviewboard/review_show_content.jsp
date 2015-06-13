@@ -28,7 +28,7 @@
 	</tr>
 	<tr>
 		<td valign="middle" align="center" colspan="3"><a
-			href="${initParam.root}voluntary_board.ymv"> <img class="action"
+			href="${initParam.root}review_board.ymv"> <img class="action"
 				src="${initParam.root}img/list_btn.jpg" onclick="sendList()"></a>
 			<c:choose>
 				<c:when test="${sessionScope.result.id==requestScope.bvo.id}">

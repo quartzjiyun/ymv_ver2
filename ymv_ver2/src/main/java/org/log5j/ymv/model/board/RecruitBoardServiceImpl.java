@@ -61,4 +61,8 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 	public void deleteRecruitVolunteer(int recruitNo) {
 		recruitBoardDAO.deleteRecruitVolunteer(recruitNo);
 	}
+	@Override
+	public void deleteVoluntaryServiceApplicateNo(int recruitNo) {
+		recruitBoardDAO.deleteVoluntaryServiceApplicateNo(recruitNo);
+	}
 }

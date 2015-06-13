@@ -1,23 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  
 <script type="text/javascript">
-    function checkDelete(){
-       if(!confirm("글을 삭제하시겠습니까?")){
-          return false;
-       }else{
-          location.href="voluntary_delete.ymv?recruitNo=${requestScope.rvo.recruitNo}";
-       }
-    }
+$(document).ready(function(){
+	$("#delete").click(function(){
+		  if(!confirm("글을 삭제하시겠습니까?")){
+	          return false;
+	       }else{
+	          location.href="voluntary_delete.ymv?recruitNo=${requestScope.rvo.recruitNo}";
+	       }
+	});
+	
+	$("#applicant").click(function(){
+		var motivate = "";
+		motivate +="<hr><h2>봉사 신청 이유</h2>";
+		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate'>봉사신청시 이 글을 지우고 써주세요.</textarea>";
+		motivate += "<input type='button' value='신청하기' id='VolunteerApplicant'>";
+		$("#motivateForm").html(motivate);
+		
+		$("#VolunteerApplicant").click(function(){
+			//alert("버튼 클릭");
+			/* location.href="voluntary_register_applicant.ymv?recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(); */ 
+			/* memberNo=${sessinScope.session.memberNo}우선 숫자 하나 넣어놓고 나중에 세션에서 받아온 memberNO로 바꾸기 */
+			$.ajax({
+				type:"get",
+				url:"voluntary_register_applicant.ymv",				
+				data:"recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(),
+				dataType:"json", 
+				success:function(data){
+					//alert(data);
+					if(data==true){
+						alert("이미 신청하셨습니다.");
+					}else{
+						alert("신청이 완료되었습니다.");
+					}
+				}
+			});
+		});
+	});//click
+	
+	
+	
+});
 </script>
    <table class="content">
       <tr>
-         <td >NO : ${requestScope.rvo.recruitNo } </td>
-         <td colspan="2" >${requestScope.rvo.title} </td>
+         <td width="150">NO : ${requestScope.rvo.recruitNo } </td>
+         <td colspan="2" >제목 : ${requestScope.rvo.title} </td>
       </tr>
       <tr>
          <td>기업명 :  <%-- ${sessionScope.result.name } --%></td>
-         <td> 시간:<%-- ${requestScope.rvo.time} --%></td>
+         <td width="180"> 시간:<%-- ${requestScope.rvo.time} --%></td>
          <td>조회수 :<%--  ${requestScope.rvo.hits } --%></td>
       </tr>
       <tr>
@@ -26,9 +60,9 @@
          <td>지역 : ${requestScope.rvo.location}</td>
       </tr>   
       <tr>
-         <td>시작시간: ${requestScope.rvo.startDate} </td>
-         <td>&nbsp&nbsp&nbsp&nbsp~</td>
-         <td>종료시간: ${requestScope.rvo.endDate}</td>
+         <td colspan="3" align="center" height="30">시작시간: ${requestScope.rvo.startDate} &nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp 종료시간: ${requestScope.rvo.endDate}</td>
+    <%--      <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp~</td>
+         <td>종료시간: ${requestScope.rvo.endDate}</td> --%>
       </tr>   
 
       <tr>
@@ -41,14 +75,17 @@
       <a href = "${initParam.root}voluntary_board.ymv"> <img class="action" src="${initParam.root}img/list_btn.jpg" onclick="sendList()" ></a>
       <c:choose>
       <c:when test="${sessionScope.result.id==requestScope.bvo.id}">
-         
-<a href = "${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }"> 
- <img class="action"  onclick="openForm('update')"  src="${initParam.root}img/modify_btn.jpg" ></a>
-     
-       
-            <img class="action"  onclick="checkDelete()"    src="${initParam.root}img/delete_btn.jpg" > 
+		<a href = "${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }"> 
+		<img class="action" src="${initParam.root}img/modify_btn.jpg" id="update"></a>
+        <img class="action" src="${initParam.root}img/delete_btn.jpg" id="delete"> 
+      <input type="button" value="신청하기" id="applicant">
       </c:when>
       </c:choose>
       </td>
             </tr>
          </table>
+         
+ <br><br>
+
+
+ <span id="motivateForm"></span>

@@ -10,6 +10,11 @@ public class RecruitBoardVO implements BoardVO{
 	private String startDate;
 	private String endDate;
 	private String content;
+	private int memberNo;
+	private String postDate;
+	private int hit;
+	
+	
 	public RecruitBoardVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -27,6 +32,22 @@ public class RecruitBoardVO implements BoardVO{
 		this.content = content;
 	}
 
+	public RecruitBoardVO(String title, String field, String location,
+			String age, String startDate, String endDate, String content,
+			int memberNo, String postDate, int hit) {
+		super();
+		this.title = title;
+		this.field = field;
+		this.location = location;
+		this.age = age;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.content = content;
+		this.memberNo = memberNo;
+		this.postDate = postDate;
+		this.hit = hit;
+	}
+
 	public RecruitBoardVO(int recruitNo, String title, String field,
 			String location, String age, String startDate, String endDate,
 			String content) {
@@ -39,6 +60,23 @@ public class RecruitBoardVO implements BoardVO{
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.content = content;
+	}
+
+	public RecruitBoardVO(int recruitNo, String title, String field,
+			String location, String age, String startDate, String endDate,
+			String content, int memberNo, String postDate, int hit) {
+		super();
+		this.recruitNo = recruitNo;
+		this.title = title;
+		this.field = field;
+		this.location = location;
+		this.age = age;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.content = content;
+		this.memberNo = memberNo;
+		this.postDate = postDate;
+		this.hit = hit;
 	}
 
 	public String getContent() {
@@ -92,12 +130,37 @@ public class RecruitBoardVO implements BoardVO{
 		this.endDate = endDate;
 	}
 
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
+	public String getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
+	}
+
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
 	@Override
 	public String toString() {
 		return "RecruitBoardVO [recruitNo=" + recruitNo + ", title=" + title
 				+ ", field=" + field + ", location=" + location + ", age="
 				+ age + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", content=" + content + "]";
+				+ ", content=" + content + ", memberNo=" + memberNo
+				+ ", postDate=" + postDate + ", hit=" + hit + "]";
 	}
 
 

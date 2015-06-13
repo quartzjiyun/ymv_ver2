@@ -13,4 +13,5 @@ public interface RecruitBoardDAO {
 	public RecruitBoardVO findRecruitBoardByrecruitNo(int recruitNo);
 	public void updateBoard(BoardVO bvo);
 	public void deleteRecruitVolunteer(int recruitNo);
+	public void deleteVoluntaryServiceApplicateNo(int recruitNo);
 }
