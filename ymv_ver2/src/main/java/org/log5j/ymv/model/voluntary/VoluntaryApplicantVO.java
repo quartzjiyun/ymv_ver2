@@ -1,10 +1,17 @@
 package org.log5j.ymv.model.voluntary;
 
 public class VoluntaryApplicantVO {
+<<<<<<< HEAD
 /**
  * 봉사신청게시판과 봉사활동 신청인원 게시판이 같은거 같아서
  * 봉사활동신청인원 게시판을 사용하지 않기로함
  */
+=======
+	/**
+	 * 봉사신청게시판과 봉사활동 신청인원 게시판이 같은거 같아서
+	 * 봉사활동신청인원 게시판을 사용하지 않기로함
+	 */
+>>>>>>> branch 'master' of https://github.com/quartzjiyun/ymv_ver2.git
 	private int recruitNo;
 	private int memberNo;
 	private String motivate;

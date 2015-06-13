@@ -32,6 +32,7 @@ $(document).ready(function(){
 					//alert(data);
 					if(data==true){
 						alert("이미 신청하셨습니다.");
+<<<<<<< HEAD
 					}else{
 						alert("신청이 완료되었습니다.");
 					}
@@ -40,6 +41,17 @@ $(document).ready(function(){
 		});
 	});//click
 	
+=======
+						$("#motivate").val("");
+					}else{
+						alert("신청이 완료되었습니다.");
+						$("#motivate").val("");
+					}
+				}
+			});
+		});
+	});//click
+>>>>>>> branch 'master' of https://github.com/quartzjiyun/ymv_ver2.git
 	
 	
 });

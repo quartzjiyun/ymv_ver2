@@ -13,6 +13,13 @@ public class MemberController {
 	@Resource(name="voluntaryServiceApplicateServiceImpl")
 	private VoluntaryServiceApplicateService voluntaryServiceApplicateService;
 
+<<<<<<< HEAD
+=======
+	@Resource(name="voluntaryServiceApplicateServiceImpl")
+	private VoluntaryServiceApplicateService voluntaryServiceApplicateService;
+	
+	
+>>>>>>> branch 'master' of https://github.com/quartzjiyun/ymv_ver2.git
 	@RequestMapping("voluntary_register_applicant.ymv")
 	@ResponseBody
 	public boolean voluntary_register_applicant(VoluntaryServiceApplicateVO vsavo){
