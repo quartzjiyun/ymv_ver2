@@ -2,13 +2,48 @@
     pageEncoding="UTF-8"%>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <script type="text/javascript">
-    function checkDelete(){
-       if(!confirm("글을 삭제하시겠습니까?")){
-          return false;
-       }else{
-          location.href="voluntary_delete.ymv?recruitNo=${requestScope.rvo.recruitNo}";
-       }
-    }
+$(document).ready(function(){
+	$("#delete").click(function(){
+		  if(!confirm("글을 삭제하시겠습니까?")){
+	          return false;
+	       }else{
+	          location.href="voluntary_delete.ymv?recruitNo=${requestScope.rvo.recruitNo}";
+	       }
+	});
+	
+	$("#applicant").click(function(){
+		var motivate = "";
+		motivate +="<hr><h2>봉사 신청 이유</h2>";
+		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate'>봉사신청시 이 글을 지우고 써주세요.</textarea>";
+		motivate += "<input type='button' value='신청하기' id='VolunteerApplicant'>";
+		$("#motivateForm").html(motivate);
+		
+		$("#VolunteerApplicant").click(function(){
+			//alert("버튼 클릭");
+			/* location.href="voluntary_register_applicant.ymv?recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(); */ 
+			/* memberNo=${sessinScope.session.memberNo}우선 숫자 하나 넣어놓고 나중에 세션에서 받아온 memberNO로 바꾸기 */
+			$.ajax({
+				type:"get",
+				url:"voluntary_register_applicant.ymv",				
+				data:"recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(),
+				dataType:"json", 
+				success:function(data){
+					//alert(data);
+					if(data==true){
+						alert("이미 신청하셨습니다.");
+						$("#motivate").val("");
+					}else{
+						alert("신청이 완료되었습니다.");
+						$("#motivate").val("");
+					}
+				}
+			});
+		});
+	});//click
+	
+	
+	
+});
 </script>
    <table class="content">
       <tr>
