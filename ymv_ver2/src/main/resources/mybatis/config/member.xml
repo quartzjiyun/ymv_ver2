@@ -3,7 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="member"> 
-<<<<<<< HEAD
  	<insert id="RegisterVoluntaryApplicant" parameterType="vsavo">
 		insert into voluntary_service_applicate(recruit_no,member_no,motivate) values(#{recruitNo},#{memberNo},#{motivate})
 	</insert>
@@ -15,15 +14,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteVoluntaryServiceApplicateNo" parameterType="int">
 		delete from voluntary_service_applicate where recruit_no=#{recruitNo}
 	</delete>
-=======
- 
-	<insert id="RegisterVoluntaryApplicant" parameterType="vsavo">
-		insert into voluntary_service_applicate(recruit_no,member_no,motivate) values(#{recruitNo},#{memberNo},#{motivate})
-	</insert>
 	
-	<select id="checkVolunteerApplicant" resultType="int" parameterType="map">
-		select count(*) from voluntary_service_applicate where recruit_no=#{recruitNo} and member_no=#{memberNo}
-	</select> 
- 
->>>>>>> branch 'master' of https://github.com/quartzjiyun/ymv_ver2.git
  </mapper> 

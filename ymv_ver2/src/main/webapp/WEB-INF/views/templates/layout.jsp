@@ -6,13 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Tiles Layout</title>
-<<<<<<< HEAD
 <script type="text/javascript" src="${initParam.root}resources/jquery.min.js"></script>
-=======
-<script type="text/javascript" src="${initParam.root}resources/jquery-1.11.2.min.js"></script>
->>>>>>> branch 'master' of https://github.com/quartzjiyun/ymv_ver2.git
-<link rel="stylesheet" type="text/css" href="${initParam.root}/css/home.css" />
-<link rel="stylesheet" type="text/css" href="${initParam.root}/css/board.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root}css/home.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root}css/board.css" />
 </head>
 <body>
 <div id="container">
@@ -20,27 +16,7 @@
 	<div id="left"><tiles:insertAttribute name="left" /></div>
 	<div id="main"><tiles:insertAttribute name="main" /></div>
 </div>
-<%-- table layout 방식을 css 로 변경  --%>
-<%-- <table width="100%" border="1" cellpadding="5">
-<tr height="100">
- <td colspan="2">
- 	<tiles:insertAttribute name="header"></tiles:insertAttribute>
- </td> 
-</tr>
-<tr height="400">
- <td width="200" valign="top">
- <tiles:insertAttribute name="left"></tiles:insertAttribute>
- </td>
- <td valign="top">
- <tiles:insertAttribute name="main"></tiles:insertAttribute>
- </td>
-</tr>
-<tr height="70">
- <td colspan="2">
- <tiles:insertAttribute name="footer"></tiles:insertAttribute>
- </td>
-</tr>
-</table> --%>
+
 </body>
 </html>
 

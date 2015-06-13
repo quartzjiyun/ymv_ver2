@@ -13,19 +13,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.board.LocationVO" alias="locationvo" />
 		<typeAlias type="org.log5j.ymv.model.board.ReviewBoardVO" alias="rbvo" />
 		<typeAlias type="org.log5j.ymv.model.board.CommentVO" alias="cmvo" />
-<<<<<<< HEAD
 		<typeAlias type="org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO" alias="vsavo"/>	
-=======
-		<typeAlias type="org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO" alias="vsavo"/>
->>>>>>> branch 'master' of https://github.com/quartzjiyun/ymv_ver2.git
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/board.xml" />
 		<mapper resource="mybatis/config/reviewBoard.xml" />
-<<<<<<< HEAD
-		<mapper resource="mybatis/config/member.xml"/>
-=======
 		<mapper resource="mybatis/config/member.xml" />
->>>>>>> branch 'master' of https://github.com/quartzjiyun/ymv_ver2.git
 	</mappers>
 </configuration>
