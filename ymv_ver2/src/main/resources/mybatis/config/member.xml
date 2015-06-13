@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="member"> 
+ 	<insert id="RegisterVoluntaryApplicant" parameterType="vsavo">
+		insert into voluntary_service_applicate(recruit_no,member_no,motivate) values(#{recruitNo},#{memberNo},#{motivate})
+	</insert>
+	
+	<select id="checkVolunteerApplicant" resultType="int" parameterType="map">
+		select count(*) from voluntary_service_applicate where recruit_no=#{recruitNo} and member_no=#{memberNo}
+	</select>
+	
+	<delete id="deleteVoluntaryServiceApplicateNo" parameterType="int">
+		delete from voluntary_service_applicate where recruit_no=#{recruitNo}
+	</delete>
+ </mapper> 
