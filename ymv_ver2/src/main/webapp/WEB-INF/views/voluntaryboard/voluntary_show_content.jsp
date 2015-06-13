@@ -42,17 +42,16 @@ $(document).ready(function(){
 	});//click
 	
 	
-	
 });
 </script>
    <table class="content">
       <tr>
-         <td >NO : ${requestScope.rvo.recruitNo } </td>
-         <td colspan="2" >${requestScope.rvo.title} </td>
+         <td width="150">NO : ${requestScope.rvo.recruitNo } </td>
+         <td colspan="2" >제목 : ${requestScope.rvo.title} </td>
       </tr>
       <tr>
          <td>기업명 :  <%-- ${sessionScope.result.name } --%></td>
-         <td> 시간:<%-- ${requestScope.rvo.time} --%></td>
+         <td width="180"> 시간:<%-- ${requestScope.rvo.time} --%></td>
          <td>조회수 :<%--  ${requestScope.rvo.hits } --%></td>
       </tr>
       <tr>
@@ -61,9 +60,9 @@ $(document).ready(function(){
          <td>지역 : ${requestScope.rvo.location}</td>
       </tr>   
       <tr>
-         <td>시작시간: ${requestScope.rvo.startDate} </td>
-         <td>&nbsp&nbsp&nbsp&nbsp~</td>
-         <td>종료시간: ${requestScope.rvo.endDate}</td>
+         <td colspan="3" align="center" height="30">시작시간: ${requestScope.rvo.startDate} &nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp 종료시간: ${requestScope.rvo.endDate}</td>
+    <%--      <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp~</td>
+         <td>종료시간: ${requestScope.rvo.endDate}</td> --%>
       </tr>   
 
       <tr>
@@ -76,14 +75,17 @@ $(document).ready(function(){
       <a href = "${initParam.root}voluntary_board.ymv"> <img class="action" src="${initParam.root}img/list_btn.jpg" onclick="sendList()" ></a>
       <c:choose>
       <c:when test="${sessionScope.result.id==requestScope.bvo.id}">
-         
-<a href = "${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }"> 
- <img class="action"  onclick="openForm('update')"  src="${initParam.root}img/modify_btn.jpg" ></a>
-     
-       
-            <img class="action"  onclick="checkDelete()"    src="${initParam.root}img/delete_btn.jpg" > 
+		<a href = "${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }"> 
+		<img class="action" src="${initParam.root}img/modify_btn.jpg" id="update"></a>
+        <img class="action" src="${initParam.root}img/delete_btn.jpg" id="delete"> 
+      <input type="button" value="신청하기" id="applicant">
       </c:when>
       </c:choose>
       </td>
             </tr>
          </table>
+         
+ <br><br>
+
+
+ <span id="motivateForm"></span>
