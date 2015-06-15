@@ -126,7 +126,7 @@
       <ul>
       	<li><a href='review_board.ymv'>봉사후기</a></li>
          <li><a href='notice_board.ymv'>공지사항</a></li>
-         <li><a href='qna_board.ymv'>Q & A</a>
+         <li><a href='${initParam.root }qna_board.ymv'>Q & A</a>
          </li>
       </ul>
    </li>
