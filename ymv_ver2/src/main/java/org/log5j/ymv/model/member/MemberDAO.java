@@ -4,5 +4,9 @@ public interface MemberDAO {
 
 	public MemberVO login(MemberVO vo);
 
+	public String idCheck(String id);
+
+	public void registerMember(MemberVO memberVO);
+
 	
 }

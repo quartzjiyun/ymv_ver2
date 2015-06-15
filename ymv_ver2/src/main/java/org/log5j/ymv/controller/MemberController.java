@@ -3,13 +3,17 @@ package org.log5j.ymv.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.log5j.ymv.exception.DuplicateIdException;
 import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -61,5 +65,55 @@ public class MemberController {
 			voluntaryServiceApplicateService.registerVolunteerApplicant(vsavo);
 		}
 		return flag;
+	}
+	
+	//병준
+	
+	@RequestMapping(value="member_register_form.ymv",method=RequestMethod.GET)
+	public ModelAndView memberRegisterForm(){	
+		// Validation 을 위해 register_form.jsp 에서 사용할 수 있도록 객체를 생성해 전달한다. 
+		//<form:form action="register.do" commandName="memberVO">
+		return new ModelAndView("member_register_form","memberVO",new MemberVO());
+	}
+	@RequestMapping("member_register.ymv")
+	public ModelAndView memberRegister(String identityNo, String memberType){	
+		MemberVO memberVO = new MemberVO();
+		memberVO.setIdentityNo(identityNo);
+		memberVO.setMemberType(memberType);
+		return new ModelAndView("member_register_form_detail","memberVO",memberVO);
+	}
+	@RequestMapping("member_register_idcheck.ymv")
+	@ResponseBody
+	public boolean memberRegisterIdcheck(MemberVO memberVO) {	
+		boolean flag = true;
+		try {
+			memberService.idCheck(memberVO.getId());
+		} catch (DuplicateIdException e) {
+			flag = false;
+			return flag;
+		}
+		return flag;
+	}
+	@RequestMapping(value="member_register_validation.ymv",method=RequestMethod.POST)
+	public ModelAndView register(@Valid MemberVO memberVO,BindingResult result){
+		System.out.println(memberVO);
+		System.out.println(result);
+		ModelAndView mv = new ModelAndView();
+		try {
+			if(!memberVO.getId().equals(null)){
+			memberService.idCheck(memberVO.getId());
+			}
+		} catch (DuplicateIdException e) {
+		}
+		finally{
+			if(result.hasErrors()){
+				mv.setViewName("member_register_form_detail");
+				mv.addObject("memberVO", memberVO);
+				return mv;
+			}
+			memberService.registerMember(memberVO);
+			mv.setViewName("member_register_result");
+		}
+		return mv;// 문제 없으면 결과 페이지로 이동한다. 
 	}
 }

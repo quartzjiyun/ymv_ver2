@@ -27,4 +27,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from voluntary_service_applicate where recruit_no=#{recruitNo}
 	</delete>
 	
+	<select id="idcheck" resultType="int">
+		select count(*) from member where id=#{value}
+	</select>
+	
+	<insert id="registerMember" parameterType="membervo">
+		<selectKey keyProperty="memberNo" resultType="int" order="BEFORE">
+ 			select recruit_no_seq.nextval from dual
+ 		</selectKey>
+		insert into member(member_no,id,password,name,address,identity_no,mail_address,member_type)
+		values(#{memberNo},#{id},#{password},#{name},#{address},#{identityNo},#{mailAddress},#{memberType})
+	</insert>
+	
  </mapper> 

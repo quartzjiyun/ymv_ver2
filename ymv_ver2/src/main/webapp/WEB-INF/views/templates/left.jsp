@@ -43,7 +43,7 @@
 
 		</form>
 				<br><br>
-	<a href="${initParam.root}member_register_form.do">회원가입</a><br>
+	<a href="${initParam.root}member_register_form.ymv">회원가입</a><br>
 	</c:when>	
 	<c:otherwise>	
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
