@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.board.CommentVO" alias="cmvo" />
 		<typeAlias type="org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO" alias="vsavo"/>	
 		<typeAlias type="org.log5j.ymv.model.board.NoticeBoardVO" alias="nbvo" />
+		<typeAlias type="org.log5j.ymv.model.member.MemberVO" alias="membervo"/>	
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/board.xml" />

@@ -1,5 +1,14 @@
 package org.log5j.ymv.model.member;
 
-public class MemberServiceImpl implements MemberService {
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+@Service
+public class MemberServiceImpl implements MemberService {
+	@Resource(name="memberDAOImpl")
+	private MemberDAO memberDAO;
+	@Override
+	public MemberVO login(MemberVO vo){
+		return memberDAO.login(vo);
+	}
 }
