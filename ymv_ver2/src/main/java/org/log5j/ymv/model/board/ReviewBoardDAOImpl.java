@@ -52,5 +52,26 @@ public void deleteReviewComment(CommentVO cmvo) {
 	sqlSessionTemplate.delete("reviewBoard.deleteReviewComment",cmvo);
 }
 
+@Override
+public void reviewBoardUpdate(ReviewBoardVO vo) {
+	sqlSessionTemplate.update("reviewBoard.reviewBoardUpdate",vo);
+}
+
+@Override
+public void reviewBoardDelete(String boardNo) {
+	sqlSessionTemplate.delete("reviewBoard.reviewBoardDelete",Integer.parseInt(boardNo));
+}
+
+@Override
+public void deleteReviewBoardComment(String boardNo) {
+	sqlSessionTemplate.delete("reviewBoard.deleteReviewBoardComment",Integer.parseInt(boardNo));
+}
+
+@Override
+public void registerReviewBoard(ReviewBoardVO vo) {
+	System.out.println("DAO"+vo);
+	sqlSessionTemplate.insert("reviewBoard.registerReviewBoard",vo);
+}
+
 
 }

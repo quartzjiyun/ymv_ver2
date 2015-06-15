@@ -48,4 +48,24 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 		reviewBoardDAO.deleteReviewComment(cmvo);
 	}
 
+	@Override
+	public void reviewBoardUpdate(ReviewBoardVO vo) {
+		reviewBoardDAO.reviewBoardUpdate(vo);
+	}
+
+	@Override
+	public void reviewBoardDelete(String boardNo) {
+		reviewBoardDAO.reviewBoardDelete(boardNo);
+	}
+
+	@Override
+	public void deleteReviewBoardComment(String boardNo) {
+		reviewBoardDAO.deleteReviewBoardComment(boardNo);
+	}
+
+	@Override
+	public void registerReviewBoard(ReviewBoardVO vo) {
+		reviewBoardDAO.registerReviewBoard(vo);
+	}
+
 }

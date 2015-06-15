@@ -36,6 +36,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteReviewComment" parameterType="cmvo">
 		delete from ymv_comment where board_no=#{boardNo} and comment_no=#{commentNo}
 	</delete>
+	<update id="reviewBoardUpdate" parameterType="rbvo">
+		update board set title=#{title}, content=#{content} where board_no=#{boardNo}
+	</update>
+	<delete id="reviewBoardDelete" parameterType="int">
+		delete from board where board_no=#{value}
+	</delete>
+	<delete id="deleteReviewBoardComment" parameterType="int">
+		delete from ymv_comment where board_no=#{boardNo}
+	</delete>
+	<insert id="registerReviewBoard" parameterType="rbvo">
+		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
+			select ymv_seq.nextval from dual
+		</selectKey>  
+  		insert into board(board_no, board_type, title, writer, content, member_no, time_posted)  values(#{boardNo}, 'review', #{title}, #{writer}, #{content}, 2, sysdate)
+	</insert>
  </mapper>
  
  

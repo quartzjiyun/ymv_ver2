@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-  
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#delete").click(function(){
@@ -45,48 +45,55 @@ $(document).ready(function(){
 	
 });
 </script>
-   <table class="content">
-      <tr>
-         <td width="150">NO : ${requestScope.rvo.recruitNo } </td>
-         <td colspan="2" >제목 : ${requestScope.rvo.title} </td>
-      </tr>
-      <tr>
-         <td>기업명 :  <%-- ${sessionScope.result.name } --%></td>
-         <td width="180"> 시간:<%-- ${requestScope.rvo.time} --%></td>
-         <td>조회수 :<%--  ${requestScope.rvo.hits } --%></td>
-      </tr>
-      <tr>
-         <td>분야: ${requestScope.rvo.field} </td>
-         <td>나이제한 : ${requestScope.rvo.age}</td>
-         <td>지역 : ${requestScope.rvo.location}</td>
-      </tr>   
-      <tr>
-         <td colspan="3" align="center" height="30">시작시간: ${requestScope.rvo.startDate} &nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp 종료시간: ${requestScope.rvo.endDate}</td>
-    <%--      <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp~</td>
+<div class="col-md-12">
+	<div class="col-md-12">
+		<table class="content">
+		<tbody>
+			<tr>
+				<td width="150">NO : ${requestScope.rvo.recruitNo }</td>
+				<td colspan="2">제목 : ${requestScope.rvo.title}</td>
+			</tr>
+			<tr>
+				<td>기업명 : <%-- ${sessionScope.result.name } --%></td>
+				<td width="180">시간:<%-- ${requestScope.rvo.time} --%></td>
+				<td>조회수 :<%--  ${requestScope.rvo.hits } --%></td>
+			</tr>
+			<tr>
+				<td>분야: ${requestScope.rvo.field}</td>
+				<td>나이제한 : ${requestScope.rvo.age}</td>
+				<td>지역 : ${requestScope.rvo.location}</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center" height="30">시작시간:
+					${requestScope.rvo.startDate} &nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp 종료시간:
+					${requestScope.rvo.endDate}</td>
+				<%--      <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp~</td>
          <td>종료시간: ${requestScope.rvo.endDate}</td> --%>
-      </tr>   
+			</tr>
 
-      <tr>
-         <td colspan="15">
-         <pre>${requestScope.rvo.content}</pre>
-         </td>
-      </tr>
-      <tr>
-      <td valign="middle" align="center" colspan="3">
-      <a href = "${initParam.root}voluntary_board.ymv"> <img class="action" src="${initParam.root}img/list_btn.jpg" onclick="sendList()" ></a>
-      <c:choose>
-      <c:when test="${sessionScope.result.id==requestScope.bvo.id}">
-		<a href = "${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }"> 
-		<img class="action" src="${initParam.root}img/modify_btn.jpg" id="update"></a>
-        <img class="action" src="${initParam.root}img/delete_btn.jpg" id="delete"> 
-      <input type="button" value="신청하기" id="applicant">
-      </c:when>
-      </c:choose>
-      </td>
-            </tr>
-         </table>
-         
- <br><br>
-
-
- <span id="motivateForm"></span>
+			<tr>
+				<td colspan="15"><pre>${requestScope.rvo.content}</pre></td>
+			</tr>
+			<tr>
+				<td valign="middle" align="center" colspan="3"><a
+					href="${initParam.root}voluntary_board.ymv"> <img
+						class="action" src="${initParam.root}img/list_btn.jpg"
+						onclick="sendList()"></a> <c:choose>
+						<c:when test="${sessionScope.result.id==requestScope.bvo.id}">
+							<a
+								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }">
+								<img class="action" src="${initParam.root}img/modify_btn.jpg"
+								id="update">
+							</a>
+							<img class="action" src="${initParam.root}img/delete_btn.jpg"
+								id="delete">
+							<input type="button" value="신청하기" id="applicant">
+						</c:when>
+					</c:choose></td>
+			</tr>
+			</tbody>
+		</table>
+		<br>
+		<br> <span id="motivateForm"></span>
+	</div>
+</div>

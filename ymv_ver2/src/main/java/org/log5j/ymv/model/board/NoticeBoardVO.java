@@ -1,24 +1,15 @@
 package org.log5j.ymv.model.board;
 
+import java.sql.Date;
+
 public class NoticeBoardVO implements BoardVO{
 	private int boardNo;
 	private String title;
 	private String writer;
 	private String content;
 	private int memberNo;
-	public NoticeBoardVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public NoticeBoardVO(int boardNo, String title, String writer,
-			String content, int memberNo) {
-		super();
-		this.boardNo = boardNo;
-		this.title = title;
-		this.writer = writer;
-		this.content = content;
-		this.memberNo = memberNo;
-	}
+	private Date timePosted;
+	private int hit;
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -49,11 +40,25 @@ public class NoticeBoardVO implements BoardVO{
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
+	public Date getTimePosted() {
+		return timePosted;
+	}
+	public void setTimePosted(Date timePosted) {
+		this.timePosted = timePosted;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 	@Override
 	public String toString() {
 		return "NoticeBoardVO [boardNo=" + boardNo + ", title=" + title
 				+ ", writer=" + writer + ", content=" + content + ", memberNo="
-				+ memberNo + "]";
+				+ memberNo + ", timePosted=" + timePosted + ", hit=" + hit
+				+ "]";
 	}
+
 
 }
