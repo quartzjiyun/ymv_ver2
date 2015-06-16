@@ -47,4 +47,16 @@ public class NoticeBoardDAOImpl implements NoticeBoardDAO {
 		// TODO Auto-generated method stub
 		sqlSessionTemplate.delete("noticeBoard.noticeBoardDelete",boardNo);
 	}
+
+	@Override
+	public void registerPicture(PictureVO pvo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.insert("noticeBoard.registerPicture",pvo);
+	}
+
+	@Override
+	public PictureVO getPicture(int pictureNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("noticeBoard.getPicture",pictureNo);
+	}
 }

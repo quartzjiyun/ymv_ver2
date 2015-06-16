@@ -73,5 +73,17 @@ public void registerReviewBoard(ReviewBoardVO vo) {
 	sqlSessionTemplate.insert("reviewBoard.registerReviewBoard",vo);
 }
 
+@Override
+public void registerPicture(PictureVO pvo) {
+	// TODO Auto-generated method stub
+	sqlSessionTemplate.insert("reviewBoard.registerPicture",pvo);
+}
+
+@Override
+public PictureVO getPicture(int pictureNo) {
+	// TODO Auto-generated method stub
+	return sqlSessionTemplate.selectOne("reviewBoard.getPicture",pictureNo);
+}
+
 
 }

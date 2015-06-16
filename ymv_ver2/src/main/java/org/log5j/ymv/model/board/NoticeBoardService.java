@@ -12,4 +12,8 @@ public interface NoticeBoardService {
 
 	void noticeBoardDelete(String boardNo);
 
+	void registerPicture(PictureVO pvo);
+
+	PictureVO getPicture(int pictureNo);
+
 }

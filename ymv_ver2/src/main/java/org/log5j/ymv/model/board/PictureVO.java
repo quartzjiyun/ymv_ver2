@@ -1,18 +1,21 @@
 package org.log5j.ymv.model.board;
 
+import org.springframework.web.multipart.MultipartFile;
+
+
 public class PictureVO {
 	private int pictureNo;
-	private String pictureName;
-	private int boardNo;
+	private MultipartFile fileName;
+	private String filePath;
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
 	public PictureVO() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	public PictureVO(int pictureNo, String pictureName, int boardNo) {
-		super();
-		this.pictureNo = pictureNo;
-		this.pictureName = pictureName;
-		this.boardNo = boardNo;
 	}
 	public int getPictureNo() {
 		return pictureNo;
@@ -20,22 +23,18 @@ public class PictureVO {
 	public void setPictureNo(int pictureNo) {
 		this.pictureNo = pictureNo;
 	}
-	public String getPictureName() {
-		return pictureName;
+
+	public MultipartFile getFileName() {
+		return fileName;
 	}
-	public void setPictureName(String pictureName) {
-		this.pictureName = pictureName;
-	}
-	public int getBoardNo() {
-		return boardNo;
-	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
+	public void setFileName(MultipartFile fileName) {
+		this.fileName = fileName;
 	}
 	@Override
 	public String toString() {
-		return "PictureVO [pictureNo=" + pictureNo + ", pictureName="
-				+ pictureName + ", boardNo=" + boardNo + "]";
+		return "PictureVO [pictureNo=" + pictureNo + ", fileName=" + fileName
+				+ ", filePath=" + filePath + "]";
 	}
 
+	
 }

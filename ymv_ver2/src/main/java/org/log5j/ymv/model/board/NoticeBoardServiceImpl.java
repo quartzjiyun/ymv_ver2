@@ -50,4 +50,16 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		noticeBoardDAO.noticeBoardDelete(boardNo);
 	}
 
+	@Override
+	public void registerPicture(PictureVO pvo) {
+		// TODO Auto-generated method stub
+		noticeBoardDAO.registerPicture(pvo);
+	}
+
+	@Override
+	public PictureVO getPicture(int pictureNo) {
+		// TODO Auto-generated method stub
+		return noticeBoardDAO.getPicture(pictureNo);
+	}
+
 }

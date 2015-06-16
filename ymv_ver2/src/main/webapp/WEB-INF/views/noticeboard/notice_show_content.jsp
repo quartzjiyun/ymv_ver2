@@ -29,7 +29,11 @@
 				<td>조회수 : ${requestScope.rvo.hit }</td>
 			</tr>
 			<tr>
-				<td colspan="15"><pre>${requestScope.rvo.content}</pre></td>
+				<td colspan="15">
+					<c:if test="${requestScope.pvo!=null }">
+						<img src="${initParam.root }${requestScope.pvo.filePath}">
+					</c:if>
+				<pre>${requestScope.rvo.content}</pre></td>
 			</tr>
 			<tr>
 				<td valign="middle" align="center" colspan="3"><a

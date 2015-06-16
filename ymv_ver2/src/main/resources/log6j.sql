@@ -9,7 +9,7 @@ create table member(
 	mail_address varchar2(50) not null,
 	member_type varchar2(10) not null
 )
-select * from member
+
 drop table member
 delete from member
 --JJH-time_posted,hit 추가
@@ -107,8 +107,7 @@ select * from ymv_comment
 --picture
 create table picture(
 	picture_no number primary key,
-	picture_name varchar2(50) not null,
-	board_no number not null
+	file_path varchar(200) not null
 )
 drop table picture 
 -- voluntary_applicant_ok
@@ -154,8 +153,8 @@ insert into YMV_COMMENT(comment_no, writer, content, time_posted, board_no) valu
 insert into YMV_COMMENT(comment_no, writer, content, time_posted, board_no) values(ymv_seq.nextval,'임영학','하고있습니다2',sysdate,2);
 select * from PICTURE;
 --여기까지했음
-insert into PICTURE(picture_no, picture_name, board_no) values(ymv_seq.nextval,'봉사사진1',1);
-insert into PICTURE(picture_no, picture_name, board_no) values(ymv_seq.nextval,'봉사사진2',2);
+insert into PICTURE(picture_no, file_name) values(144,'[144]20140819081945_496821_478_269.png');
+insert into PICTURE(picture_no, file_name) values(ymv_seq.nextval,'봉사사진2',2);
 insert into VOLUNTARY_APPLICANT_OK(recruit_no, member_no) values(1,1);
 insert into VOLUNTARY_APPLICANT_OK(recruit_no, member_no) values(1,2);
 insert into VOLUNTARY_APPLICANT(recruit_no, member_no) values(1,1);
@@ -200,5 +199,9 @@ insert into location values('부산');
 
 select * from board where board_no=1
 
+select * from PICTURE
 
+select boardNo, title, writer, content, memberNo, timePosted, hit from(select boardNo, title, writer, content, memberNo, timePosted, hit, CEIL(rownum/5) AS page from(select board_no as boardNo, title, writer, content, member_no as memberNo, time_posted as timePosted, hit from board where board_type='review' order by boardNo desc)) where page=1
+select boardNo, title, writer, content, memberNo, timePosted, hit from(select board_no as boardNo, title, writer, content, member_no as memberNo, time_posted as timePosted, hit, CEIL(rownum/5) AS page from board where board_type='notice' order by board_no desc) where page=#{value}
 
+select boardNo, title, writer, content, memberNo, timePosted, hit from(select boardNo, title, writer, content, memberNo, timePosted, hit, CEIL(rownum/5) AS page from(select board_no as boardNo, title, writer, content, member_no as memberNo, time_posted as timePosted, hit from board where board_type='notice' order by boardNo desc)) where page=1
