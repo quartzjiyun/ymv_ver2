@@ -18,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.member.MemberVO" alias="membervo"/>	
 		<typeAlias type="org.log5j.ymv.model.board.QnABoardVO" alias="qnabvo"/>		
 		<typeAlias type="org.log5j.ymv.model.board.PictureVO" alias="pvo"/>
+		<typeAlias type="org.log5j.ymv.model.board.CompanyVO" alias="cpvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/board.xml" />
