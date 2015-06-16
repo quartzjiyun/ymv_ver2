@@ -16,4 +16,16 @@ public interface ReviewBoardService {
 
 	void deleteReviewComment(CommentVO cmvo);
 
+	void reviewBoardUpdate(ReviewBoardVO vo);
+
+	void deleteReviewBoardComment(String boardNo);
+
+	void reviewBoardDelete(String boardNo);
+
+	void registerReviewBoard(ReviewBoardVO vo);
+
+	void registerPicture(PictureVO pvo);
+
+	PictureVO getPicture(int pictureNo);
+
 }

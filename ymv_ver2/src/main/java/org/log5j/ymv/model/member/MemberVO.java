@@ -1,17 +1,29 @@
 package org.log5j.ymv.model.member;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class MemberVO {
 	private int memberNo;
+	@Size(min=4,max=10)
 	private String id;
+	@Size(min=4,max=10)
 	private String password;
+	@NotEmpty
 	private String name;
+	@NotEmpty
 	private String address;
 	private String identityNo;
+	@Email
+	@NotEmpty
 	private String mailAddress;
 	private String memberType;
+	
+
 	public MemberVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public int getMemberNo() {

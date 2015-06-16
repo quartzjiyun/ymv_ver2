@@ -29,7 +29,9 @@ public class RecruitBoardController {
 	   public ModelAndView showContentRecruitVol(HttpServletRequest request){
 	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	      System.out.println("recruitNo:"+recruitNo);
+	      System.out.println("memberNo:"+request.getParameter("memberNo"));
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
+	      System.out.println("rvo: "+ rvo);
 	      return new ModelAndView("voluntary_show_content","rvo",rvo);
 	   }
 	
@@ -80,6 +82,7 @@ public class RecruitBoardController {
 		System.out.println("register sql실행후");
 		System.out.println("rbvo  " + rbvo);
 		//return "redirect:RegisterVolunteer_detail.ymv?title=" + rbvo.getTitle();
+		//세션넘버도 보내야하나?
 		return "redirect:voluntary_showContentRecruitVol.ymv?recruitNo=" + rbvo.getRecruitNo();
 	}
 	

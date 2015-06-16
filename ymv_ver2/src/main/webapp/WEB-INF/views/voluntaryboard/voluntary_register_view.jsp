@@ -29,9 +29,10 @@
 		});
 	});
 </script>
-
+<div class="col-md-12">
+	<div class="col-md-12">
 <h2>봉사 등록</h2>
-<form id="recruitForm" action="Volunteer_register.ymv" method="get">
+<form id="recruitForm" action="Volunteer_register.ymv?memberNo=${sessionScope.mvo.memberNo }" method="post">
 <table border="1">
 	<tr>
 		<td>제목</td><td><input type="text" name="title" id="title"></td>
@@ -131,3 +132,5 @@
 <br>
  <input type="submit" value="글 등록" > 
 </form>
+</div>
+</div>

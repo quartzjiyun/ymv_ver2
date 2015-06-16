@@ -10,4 +10,10 @@ public interface ReviewBoardDAO {
 	void registerReviewComment(CommentVO cmvo);
 	List<CommentVO> findByCommentNo(String boardNo);
 	void deleteReviewComment(CommentVO cmvo);
+	void reviewBoardUpdate(ReviewBoardVO vo);
+	void reviewBoardDelete(String boardNo);
+	void deleteReviewBoardComment(String boardNo);
+	void registerReviewBoard(ReviewBoardVO vo);
+	void registerPicture(PictureVO pvo);
+	PictureVO getPicture(int pictureNo);
 }
