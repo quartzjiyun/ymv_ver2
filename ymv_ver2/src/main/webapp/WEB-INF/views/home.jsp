@@ -17,19 +17,19 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="${initParam.root}img/test1.jpg" alt="Chania">
+        <img src="${initParam.root}img/test1.jpg" style="width:300px; height:400px;">
       </div>
 
       <div class="item">
-        <img src="${initParam.root}img/test2.jpg" alt="Chania" width="200" height="200" ">
+        <img src="${initParam.root}img/test2.jpg" style="width:300px; height:400px;">
       </div>
     
       <div class="item">
-        <img src="${initParam.root}img/test3.jpg" alt="Flower" width="200" height="200"">
+        <img src="${initParam.root}img/test3.jpg" style="width:300px; height:400px;">
       </div>
 
       <div class="item">
-        <img src="${initParam.root}img/test4.jpg" alt="Flower" width="200" height="200" ">
+        <img src="${initParam.root}img/test4.jpg" style="width:300px; height:400px;">
       </div>
     </div>
 
