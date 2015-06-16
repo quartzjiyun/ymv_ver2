@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.log5j.ymv.model.board.CompanyVO;
 import org.log5j.ymv.model.board.FieldVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.LocationVO;
 import org.log5j.ymv.model.board.RecruitBoardService;
 import org.log5j.ymv.model.board.RecruitBoardVO;
+import org.log5j.ymv.model.member.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +31,9 @@ public class RecruitBoardController {
 	   public ModelAndView showContentRecruitVol(HttpServletRequest request){
 	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	      System.out.println("recruitNo:"+recruitNo);
+	      System.out.println("memberNo:"+request.getParameter("memberNo"));
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
+	      System.out.println("rvo: "+ rvo);
 	      return new ModelAndView("voluntary_show_content","rvo",rvo);
 	   }
 	
@@ -86,10 +90,28 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_delete.ymv")
 	   public ModelAndView DeleteRecruitVol(HttpServletRequest request){
 	         int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
+	         int pictureNo=recruitNo;
 	         System.out.println("delete recruitNo:"+recruitNo);
 	         recruitBoardService.deleteVoluntaryServiceApplicateNo(recruitNo);
 	         recruitBoardService.deleteRecruitVolunteer(recruitNo);
 	         System.out.println("delete 성공");
+	         recruitBoardService.deletePicture(pictureNo);
 	      return new ModelAndView("redirect:/voluntary_board.ymv?pageNo=1");
 	   }
+	@RequestMapping("voluntary_board_company.ymv")
+	public ModelAndView voluntaryBoardCompany(HttpServletRequest request,CompanyVO cpvo){
+		//세션에 들어있는 멤버넘버로 등록된 글 조회 
+		try{
+		MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
+		System.out.println("session mvo.getMemberNo(): "+mvo.getMemberNo());
+		cpvo.setMemberNo(mvo.getMemberNo());
+		System.out.println("session cpvo : "+ cpvo);
+		ListVO lvo = recruitBoardService.getCompanyBoardList(cpvo);
+		System.out.println(lvo+"컨틀롤러");
+		return new ModelAndView("voluntary_board_company","lvo",lvo);
+		}catch(NullPointerException ne){
+					
+			return new ModelAndView("error","warn","기업회원만 이용하실 수 있습니다.");
+		}
+	}
 }

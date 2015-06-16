@@ -7,7 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <resultMap type="recruitbvo" id="boardRM">      
       <result property="recruitNo" column="recruit_no"/>         
       <result property="startDate" column="start_date" />       
-      <result property="endDate" column="end_date" />       
+      <result property="endDate" column="end_date" />     
+      <result property="postDate" column="time_posted"/>  
+      <result property="memberNo" column="member_no"/>
    </resultMap>
    
    <select id="getFieldList" resultType="fieldvo">
@@ -21,11 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="getBoardList" resultMap="boardRM" resultType="recruitbvo">   
    select recruit_no, title, field, location, age, start_date, end_date 
    from(select recruit_no, title, field, location, age, start_date, end_date, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, start_date, end_date from recruit order by recruit_no desc) ) 
-   where page=#{value} 
+   where page=#{pageNo}
    </select>
 
    <select id="getRecruitBoardByRecruitNo" resultMap="boardRM" resultType="recruitbvo">   
-   select recruit_no, title, field, location, age, start_date, end_date,content from recruit where recruit_no=#{value}
+   select recruit_no, title, field, location, age, start_date, end_date,content, member_no from recruit where recruit_no=#{value}
    </select>
 
    <select id="showContent"  resultMap="boardRM" resultType="recruitbvo">
@@ -38,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        <selectKey keyProperty="recruitNo" resultType="int" order="BEFORE">
           select recruit_no_seq.nextval from dual
        </selectKey>
-       insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) values(#{recruitNo},#{title},#{field},#{location},#{age},to_date(#{startDate},'HH24:MI'),to_date(#{endDate},'HH24:MI'),#{content},1, sysdate ,0)
+       insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) values(#{recruitNo},#{title},#{field},#{location},#{age},to_date(#{startDate},'HH24:MI'),to_date(#{endDate},'HH24:MI'),#{content},#{memberNo}, sysdate ,0)
        <!-- member_no값에 현재 1이 들어가 있음 나중에 할 때 session에서 받아와서 집어넣기 -->
     </insert>
 
@@ -58,5 +60,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    update recruit set title=#{title},content=#{content},start_date=to_date(#{startDate},'HH24:MI'),end_date=to_date(#{endDate},'HH24:MI'),field=#{field} ,location=#{location} ,age=#{age} 
    where recruit_no=#{recruitNo}
    </update>
-	
+	<select id="getCompanyBoardList" resultMap="boardRM" parameterType="cpvo" resultType="recruitbvo">
+		select recruit_no, title, field, location, age, start_date, end_date 
+   	from(select recruit_no, title, field, location, age, start_date, end_date, CEIL(rownum/5) AS page from(select recruit_no, title, field, location, age, start_date, end_date from recruit where member_no=#{memberNo} order by recruit_no desc) ) 
+   	where page=#{pageNo}
+	</select>
+	<select id="totalCompanyContent" parameterType="int" resultType="int">
+		select count(*) from recruit where member_no=#{value}
+	</select>	
+	<delete id="deletePicture" parameterType="int">
+		delete from picture where picture_no=#{value}
+	</delete>
  </mapper> 

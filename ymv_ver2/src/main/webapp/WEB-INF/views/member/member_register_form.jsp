@@ -19,6 +19,10 @@ $(document).ready(function() {
 		$("#inputType").html(normalBtn);
 	}); // normal click
 	$("#inputType").on("click",":button[name=checkBtn]",function(){ 
+		if($("#identityNo").val()==""){
+			alert("값을 입력해주세요");
+			return ;
+		}
 		if(isNaN($("#identityNo").val())){
 			alert("숫자입력해주세요");
 			return ;
@@ -26,6 +30,10 @@ $(document).ready(function() {
 		if(confirm("중복처리되었다고 칩시다")==false){
 			$("#inputType").html("");
 			return;
+		}
+		if(type=='company'){
+			location.href = "${initParam.root}member_register.ymv?identityNo="+$("#identityNo").val()+"&memberType="+type;
+			
 		}
 		location.href = "${initParam.root}member_register.ymv?identityNo="+$("#identityNo").val()+"&memberType="+type;
 		}

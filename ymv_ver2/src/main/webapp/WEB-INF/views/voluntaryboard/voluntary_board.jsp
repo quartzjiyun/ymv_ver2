@@ -28,7 +28,7 @@
 					<tr>
 						<td>${bvo.recruitNo }</td>
 						<td><a
-							href="${initParam.root}voluntary_showContentRecruitVol.ymv?recruitNo=${bvo.recruitNo}">
+							href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}">
 								${bvo.title }</a></td>
 						<td>${bvo.field }</td>
 						<td>${bvo.location }</td>
@@ -39,8 +39,9 @@
 			</tbody>
 		</table>
 
-<br>
-<a href="${initParam.root }voluntary_register_view.ymv">기업일 경우 글쓰기	버튼이 생김</a>
+<br><c:if test="${sessionScope.mvo.memberType=='company' }">
+		<a href="${initParam.root }voluntary_register_view.ymv">글쓰기	</a>
+</c:if>
 <br></br>
 <c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
 	<a

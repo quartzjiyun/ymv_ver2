@@ -4,24 +4,27 @@
 <div class="col-md-12">
 	<div class="col-md-12">
 		<h2>봉사 등록</h2>
-		<form action="review_register.ymv">
+		<form action="review_register.ymv" enctype="multipart/form-data" method="post">
+		
 			<table border="1">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title"></td>
+					<td colspan="2"><input type="text" name="title"><input type="hidden" name = "memberNo" value="${sessionScope.mvo.memberNo }"></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
 					<td><input type="text" name="writer"
-						value="임영학<%-- ${requestScope.rvo.writer } --%>"
-						readonly="readonly"></td>
+						value="${sessionScope.mvo.name } "
+						readonly="readonly"></td><td><br>
+				<input type="file" name="fileName"><br></td>
 				</tr>
 				<tr>
 					<td>상세정보</td>
-					<td><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
+					<td colspan="2"><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="글 등록">
-		</form>
+			<br> <input type="submit" value="글 등록">  <br><br>
+			</form>
+
 	</div>
 </div>

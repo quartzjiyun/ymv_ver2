@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="scheduler"> 
+<resultMap type="recruitbvo" id="boardRM">      
+      <result property="recruitNo" column="recruit_no"/>         
+      <result property="startDate" column="start_date" />       
+      <result property="endDate" column="end_date" />       
+   </resultMap>
+   <select id="getBoardList" resultMap="boardRM" parameterType="scvo">   
+   select recruit_no, title, field, location, age, start_date, end_date 
+   from(select recruit_no, title, field, location, age, start_date, end_date, 
+   ceil(rownum/5) as page from(select recruit_no, title, field, location, age, 
+   start_date, end_date from recruit 
+    <where>
+    <if test="field != ''">
+    AND field=#{field}
+  </if>
+  <if test="location != ''">
+    AND location=#{location}
+  </if>
+  <if test="startDate != ''">
+  <![CDATA[
+    AND start_date>=#{startDate} AND end_date<=#{endDate}
+     ]]>
+  </if>
+  </where>
+   order by recruit_no desc) ) 
+   where page=#{pageNo} 
+   </select>
+   <select id="totalContent" parameterType="scvo" resultType="int">
+   	select count(*) from recruit
+   	<where>
+   	 <if test="field != ''">
+    AND field=#{field}
+  </if>
+  <if test="location != ''">
+    AND location=#{location}
+  </if>
+   	</where>
+   </select>
+ </mapper> 

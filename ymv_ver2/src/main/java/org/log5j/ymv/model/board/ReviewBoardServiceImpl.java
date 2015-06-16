@@ -68,4 +68,22 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 		reviewBoardDAO.registerReviewBoard(vo);
 	}
 
+	@Override
+	public void registerPicture(PictureVO pvo) {
+		// TODO Auto-generated method stub
+		reviewBoardDAO.registerPicture(pvo);
+	}
+
+	@Override
+	public PictureVO getPicture(int pictureNo) {
+		// TODO Auto-generated method stub
+		return reviewBoardDAO.getPicture(pictureNo);
+	}
+
+	@Override
+	public void deletePicture(int pictureNo) {
+		// TODO Auto-generated method stub
+		reviewBoardDAO.deletePicture(pictureNo);
+	}
+
 }

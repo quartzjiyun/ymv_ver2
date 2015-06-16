@@ -15,7 +15,7 @@ $(document).ready(function(){
 	$("#applicant").click(function(){
 		var motivate = "";
 		motivate +="<hr><h2>봉사 신청 이유</h2>";
-		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate'>봉사신청시 이 글을 지우고 써주세요.</textarea>";
+		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate' placeholder='봉사신청 동기를 입력해주세요.'></textarea>";
 		motivate += "<input type='button' value='신청하기' id='VolunteerApplicant'>";
 		$("#motivateForm").html(motivate);
 		
@@ -26,7 +26,7 @@ $(document).ready(function(){
 			$.ajax({
 				type:"get",
 				url:"voluntary_register_applicant.ymv",				
-				data:"recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(),
+				data:"recruitNo=${requestScope.rvo.recruitNo }&motivate="+$("#motivate").val()+"&memberNo=${sessionScope.mvo.memberNo}",
 				dataType:"json", 
 				success:function(data){
 					//alert(data);
@@ -79,7 +79,7 @@ $(document).ready(function(){
 					href="${initParam.root}voluntary_board.ymv"> <img
 						class="action" src="${initParam.root}img/list_btn.jpg"
 						onclick="sendList()"></a> <c:choose>
-						<c:when test="${sessionScope.result.id==requestScope.bvo.id}">
+						<c:when test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo}">
 							<a
 								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }">
 								<img class="action" src="${initParam.root}img/modify_btn.jpg"
@@ -87,9 +87,12 @@ $(document).ready(function(){
 							</a>
 							<img class="action" src="${initParam.root}img/delete_btn.jpg"
 								id="delete">
-							<input type="button" value="신청하기" id="applicant">
 						</c:when>
-					</c:choose></td>
+						
+					</c:choose>
+					<c:if test="${sessionScope.mvo.memberType=='normal'}">
+							<input type="button" value="신청하기" id="applicant">
+					</c:if></td>
 			</tr>
 			</tbody>
 		</table>

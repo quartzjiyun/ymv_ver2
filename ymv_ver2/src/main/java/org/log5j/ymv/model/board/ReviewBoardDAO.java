@@ -14,4 +14,7 @@ public interface ReviewBoardDAO {
 	void reviewBoardDelete(String boardNo);
 	void deleteReviewBoardComment(String boardNo);
 	void registerReviewBoard(ReviewBoardVO vo);
+	void registerPicture(PictureVO pvo);
+	PictureVO getPicture(int pictureNo);
+	void deletePicture(int pictureNo);
 }

@@ -57,6 +57,7 @@ public class MemberController {
 	@RequestMapping("voluntary_register_applicant.ymv")
 	@ResponseBody
 	public boolean voluntary_register_applicant(VoluntaryServiceApplicateVO vsavo){
+		System.out.println(vsavo);
 		boolean flag =  voluntaryServiceApplicateService.checkVolunteerApplicant(vsavo.getRecruitNo(), vsavo.getMemberNo());
 		System.out.println("111111111"+flag);
 		if(flag==false){
@@ -79,6 +80,9 @@ public class MemberController {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setIdentityNo(identityNo);
 		memberVO.setMemberType(memberType);
+		if(memberType.equals("company")){
+			return new ModelAndView("member_register_form_company_detail","memberVO",memberVO);
+		}
 		return new ModelAndView("member_register_form_detail","memberVO",memberVO);
 	}
 
