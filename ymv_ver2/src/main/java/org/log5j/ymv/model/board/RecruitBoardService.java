@@ -22,4 +22,6 @@ public interface RecruitBoardService {
 	public void deleteRecruitVolunteer(int recruitNo);
 
 	public void deleteVoluntaryServiceApplicateNo(int recruitNo);
+
+	public ListVO getCompanyBoardList(CompanyVO cpvo);
 }

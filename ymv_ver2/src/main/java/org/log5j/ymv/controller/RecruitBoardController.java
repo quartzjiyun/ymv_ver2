@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.log5j.ymv.model.board.CompanyVO;
 import org.log5j.ymv.model.board.FieldVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.LocationVO;
 import org.log5j.ymv.model.board.RecruitBoardService;
 import org.log5j.ymv.model.board.RecruitBoardVO;
+import org.log5j.ymv.model.member.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -82,7 +84,6 @@ public class RecruitBoardController {
 		System.out.println("register sql실행후");
 		System.out.println("rbvo  " + rbvo);
 		//return "redirect:RegisterVolunteer_detail.ymv?title=" + rbvo.getTitle();
-		//세션넘버도 보내야하나?
 		return "redirect:voluntary_showContentRecruitVol.ymv?recruitNo=" + rbvo.getRecruitNo();
 	}
 	
@@ -95,4 +96,16 @@ public class RecruitBoardController {
 	         System.out.println("delete 성공");
 	      return new ModelAndView("redirect:/voluntary_board.ymv?pageNo=1");
 	   }
+	@RequestMapping("voluntary_board_company.ymv")
+	public ModelAndView voluntaryBoardCompany(HttpServletRequest request,CompanyVO cpvo){
+		//세션에 들어있는 멤버넘버로 등록된 글 조회 
+		MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
+		System.out.println("session mvo.getMemberNo(): "+mvo.getMemberNo());
+		cpvo.setMemberNo(mvo.getMemberNo());
+
+		System.out.println("session cpvo : "+ cpvo);
+		ListVO lvo = recruitBoardService.getCompanyBoardList(cpvo);
+		System.out.println(lvo+"컨틀롤러");
+		return new ModelAndView("voluntary_board_company","lvo",lvo);
+	}
 }
