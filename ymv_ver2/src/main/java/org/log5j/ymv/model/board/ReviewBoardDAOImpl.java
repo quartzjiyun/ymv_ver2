@@ -85,5 +85,11 @@ public PictureVO getPicture(int pictureNo) {
 	return sqlSessionTemplate.selectOne("reviewBoard.getPicture",pictureNo);
 }
 
+@Override
+public void deletePicture(int pictureNo) {
+	// TODO Auto-generated method stub
+	sqlSessionTemplate.delete("reviewBoard.deletePicture",pictureNo);
+}
+
 
 }

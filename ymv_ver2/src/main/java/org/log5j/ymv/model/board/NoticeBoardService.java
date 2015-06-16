@@ -16,4 +16,6 @@ public interface NoticeBoardService {
 
 	PictureVO getPicture(int pictureNo);
 
+	void deletePicture(int pictureNo);
+
 }

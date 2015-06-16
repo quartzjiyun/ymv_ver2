@@ -88,6 +88,8 @@ public class ReviewBoardController {
 	public ModelAndView reviewBoardDelete(String boardNo){
 		reviewBoardService.deleteReviewBoardComment(boardNo);
 		reviewBoardService.reviewBoardDelete(boardNo);
+		int pictureNo=Integer.parseInt(boardNo);
+		reviewBoardService.deletePicture(pictureNo);
 		return new ModelAndView("redirect:review_board.ymv");
 	}
 	

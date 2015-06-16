@@ -28,4 +28,6 @@ public interface ReviewBoardService {
 
 	PictureVO getPicture(int pictureNo);
 
+	void deletePicture(int pictureNo);
+
 }

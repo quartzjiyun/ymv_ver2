@@ -62,4 +62,10 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		return noticeBoardDAO.getPicture(pictureNo);
 	}
 
+	@Override
+	public void deletePicture(int pictureNo) {
+		// TODO Auto-generated method stub
+		noticeBoardDAO.deletePicture(pictureNo);
+	}
+
 }

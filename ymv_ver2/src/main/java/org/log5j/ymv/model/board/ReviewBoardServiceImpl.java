@@ -80,4 +80,10 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 		return reviewBoardDAO.getPicture(pictureNo);
 	}
 
+	@Override
+	public void deletePicture(int pictureNo) {
+		// TODO Auto-generated method stub
+		reviewBoardDAO.deletePicture(pictureNo);
+	}
+
 }

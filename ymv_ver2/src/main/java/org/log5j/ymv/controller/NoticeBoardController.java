@@ -101,6 +101,8 @@ public class NoticeBoardController {
    @RequestMapping("notice_board_delete.ymv")
 	public ModelAndView noticeBoardDelete(String boardNo){
 		noticeBoardService.noticeBoardDelete(boardNo);
+		int pictureNo=Integer.parseInt(boardNo);
+		noticeBoardService.deletePicture(pictureNo);
 		return new ModelAndView("redirect:notice_board.ymv");
 	}
 }

@@ -57,6 +57,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getPicture" parameterType="int" resultType="pvo">
 		select picture_no as pictureNo, file_path as filePath from picture where picture_no=#{value}
 	</select>
+	<delete id="deletePicture" parameterType="int">
+		delete from picture where picture_no=#{value}
+	</delete>
  </mapper>
  
  
