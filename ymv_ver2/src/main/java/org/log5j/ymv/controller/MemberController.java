@@ -80,6 +80,9 @@ public class MemberController {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setIdentityNo(identityNo);
 		memberVO.setMemberType(memberType);
+		if(memberType.equals("company")){
+			return new ModelAndView("member_register_form_company_detail","memberVO",memberVO);
+		}
 		return new ModelAndView("member_register_form_detail","memberVO",memberVO);
 	}
 
