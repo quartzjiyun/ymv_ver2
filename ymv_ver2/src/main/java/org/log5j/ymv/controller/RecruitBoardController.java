@@ -101,13 +101,17 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_board_company.ymv")
 	public ModelAndView voluntaryBoardCompany(HttpServletRequest request,CompanyVO cpvo){
 		//세션에 들어있는 멤버넘버로 등록된 글 조회 
+		try{
 		MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
 		System.out.println("session mvo.getMemberNo(): "+mvo.getMemberNo());
 		cpvo.setMemberNo(mvo.getMemberNo());
-
 		System.out.println("session cpvo : "+ cpvo);
 		ListVO lvo = recruitBoardService.getCompanyBoardList(cpvo);
 		System.out.println(lvo+"컨틀롤러");
 		return new ModelAndView("voluntary_board_company","lvo",lvo);
+		}catch(NullPointerException ne){
+					
+			return new ModelAndView("error","warn","기업회원만 이용하실 수 있습니다.");
+		}
 	}
 }
