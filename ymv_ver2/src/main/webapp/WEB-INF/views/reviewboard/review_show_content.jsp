@@ -38,10 +38,15 @@
 				<td valign="middle" align="center" colspan="3"><a
 					href="${initParam.root}review_board.ymv"> <img class="action"
 						src="${initParam.root}img/list_btn.jpg" onclick="sendList()"></a>
+						<c:choose>
+						<c:when test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo }">
 						<a	href="${initParam.root}review_board_update_view.ymv?boardNo=${requestScope.rvo.boardNo }">
 						<img class="action" onclick="openForm('update')"
 						src="${initParam.root}img/modify_btn.jpg">
 				</a> <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
+				
+				</c:when>
+				</c:choose>
 				</td>
 			</tr>
 			<c:forEach items="${requestScope.commentList}" var="comment">

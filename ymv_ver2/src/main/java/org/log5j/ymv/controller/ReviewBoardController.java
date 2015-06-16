@@ -98,8 +98,8 @@ public class ReviewBoardController {
 	}
 	@RequestMapping("review_register.ymv")
 	public ModelAndView reviewRegister(ReviewBoardVO vo,PictureVO pvo){
+		System.out.println("ReviewBoardVO: "+vo);
 		reviewBoardService.registerReviewBoard(vo);
-		
 		System.out.println("userInfo:"+vo.getBoardNo());
 		MultipartFile file=pvo.getFileName();
 		/*
