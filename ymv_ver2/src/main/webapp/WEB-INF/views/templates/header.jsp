@@ -117,7 +117,7 @@
    </li> 
  <li class='active'><a href='#'>기업</a>
       <ul>
-         <li><a href='#'>봉사등록</a></li>
+         <li><a href='voluntary_register_view.ymv'>봉사등록</a></li>
          <li><a href='voluntary_board_company.ymv'>봉사등록확인</a>
          </li>
       </ul>
