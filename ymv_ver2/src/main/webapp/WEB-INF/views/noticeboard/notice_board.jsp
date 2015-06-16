@@ -26,7 +26,10 @@
 				</c:forEach>
 				</tbody>
 		</table>
-		<br> <a href="${initParam.root}notice_register_view.ymv">글쓰기</a>
+		<br>
+		<c:if test="${sessionScope.mvo.memberType=='admin' }">
+		 <a href="${initParam.root}notice_register_view.ymv">글쓰기</a>
+		</c:if>
 		<br></br>
 		<c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
 			<a
