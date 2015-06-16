@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.log5j.ymv.exception.DuplicateIdException;
 import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
@@ -82,38 +81,31 @@ public class MemberController {
 		memberVO.setMemberType(memberType);
 		return new ModelAndView("member_register_form_detail","memberVO",memberVO);
 	}
+
 	@RequestMapping("member_register_idcheck.ymv")
 	@ResponseBody
-	public boolean memberRegisterIdcheck(MemberVO memberVO) {	
+	public boolean memberRegisterIdcheck(MemberVO memberVO) {
 		boolean flag = true;
-		try {
-			memberService.idCheck(memberVO.getId());
-		} catch (DuplicateIdException e) {
-			flag = false;
+
+		String idcheck = memberService.idCheck(memberVO.getId());
+		if(idcheck.equals("ok")){
 			return flag;
+		}else{
+			flag = false;
 		}
 		return flag;
 	}
-	@RequestMapping(value="member_register_validation.ymv",method=RequestMethod.POST)
-	public ModelAndView register(@Valid MemberVO memberVO,BindingResult result){
-		System.out.println(memberVO);
-		System.out.println(result);
+
+	@RequestMapping(value = "member_register_validation.ymv", method = RequestMethod.POST)
+	public ModelAndView register(@Valid MemberVO memberVO, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
-		try {
-			if(!memberVO.getId().equals(null)){
-			memberService.idCheck(memberVO.getId());
-			}
-		} catch (DuplicateIdException e) {
+		if (result.hasErrors()) {
+			mv.setViewName("member_register_form_detail");
+			mv.addObject("memberVO", memberVO);
+			return mv;
 		}
-		finally{
-			if(result.hasErrors()){
-				mv.setViewName("member_register_form_detail");
-				mv.addObject("memberVO", memberVO);
-				return mv;
-			}
-			memberService.registerMember(memberVO);
-			mv.setViewName("member_register_result");
-		}
-		return mv;// 문제 없으면 결과 페이지로 이동한다. 
+		memberService.registerMember(memberVO);
+		mv.setViewName("member_register_result");
+		return mv;// 문제 없으면 결과 페이지로 이동한다.
 	}
 }
