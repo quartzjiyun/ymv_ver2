@@ -10,6 +10,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	@Override
 	public MemberVO login(MemberVO vo){
 		return sqlSessionTemplate.selectOne("member.login",vo);
 	}

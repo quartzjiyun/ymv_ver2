@@ -9,7 +9,7 @@ create table member(
 	mail_address varchar2(50) not null,
 	member_type varchar2(10) not null
 )
-
+select * from member
 drop table member
 delete from member
 --JJH-time_posted,hit 추가
