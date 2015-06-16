@@ -116,6 +116,13 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>  
+		<!-- spring junit  -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework-version}</version>            
+        </dependency> 
+		
 		  <!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
