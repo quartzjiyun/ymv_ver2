@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="memberNo" column="member_no"/>         
       <result property="identityNo" column="identity_no" />       
       <result property="mailAddress" column="mail_address" />       
-      <result property="memberType" column="member_type " />       
+      <result property="memberType" column="member_type" />       
    </resultMap>
  
  	<select id="login" resultMap="memberRM" resultType="membervo">
