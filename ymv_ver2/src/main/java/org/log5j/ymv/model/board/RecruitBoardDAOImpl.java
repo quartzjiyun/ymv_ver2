@@ -90,4 +90,10 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 		return sqlSessionTemplate.selectOne("board.totalCompanyContent",memberNo);
 	}
 
+	@Override
+	public void deletePicture(int pictureNo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.delete("board.deletePicture",pictureNo);
+	}
+
 }

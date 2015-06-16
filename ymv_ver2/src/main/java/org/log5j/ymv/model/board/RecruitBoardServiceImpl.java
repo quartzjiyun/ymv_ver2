@@ -83,4 +83,9 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		System.out.println("lvo: "+lvo);
 		return lvo;
 	}
+	@Override
+	public void deletePicture(int pictureNo) {
+		// TODO Auto-generated method stub
+		recruitBoardDAO.deletePicture(pictureNo);
+	}
 }

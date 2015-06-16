@@ -90,10 +90,12 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_delete.ymv")
 	   public ModelAndView DeleteRecruitVol(HttpServletRequest request){
 	         int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
+	         int pictureNo=recruitNo;
 	         System.out.println("delete recruitNo:"+recruitNo);
 	         recruitBoardService.deleteVoluntaryServiceApplicateNo(recruitNo);
 	         recruitBoardService.deleteRecruitVolunteer(recruitNo);
 	         System.out.println("delete 성공");
+	         recruitBoardService.deletePicture(pictureNo);
 	      return new ModelAndView("redirect:/voluntary_board.ymv?pageNo=1");
 	   }
 	@RequestMapping("voluntary_board_company.ymv")

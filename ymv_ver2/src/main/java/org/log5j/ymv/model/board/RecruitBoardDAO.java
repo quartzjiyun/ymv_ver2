@@ -16,4 +16,5 @@ public interface RecruitBoardDAO {
 	public void deleteVoluntaryServiceApplicateNo(int recruitNo);
 	public List<BoardVO> getCompanyBoardList(CompanyVO cpvo);
 	public int totalCompanyContent(int memberNo);
+	public void deletePicture(int pictureNo);
 }

@@ -68,4 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="totalCompanyContent" parameterType="int" resultType="int">
 		select count(*) from recruit where member_no=#{value}
 	</select>	
+	<delete id="deletePicture" parameterType="int">
+		delete from picture where picture_no=#{value}
+	</delete>
  </mapper> 
