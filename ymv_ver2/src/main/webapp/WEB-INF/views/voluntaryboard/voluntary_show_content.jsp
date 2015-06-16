@@ -15,7 +15,7 @@ $(document).ready(function(){
 	$("#applicant").click(function(){
 		var motivate = "";
 		motivate +="<hr><h2>봉사 신청 이유</h2>";
-		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate'>봉사신청시 이 글을 지우고 써주세요.</textarea>";
+		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate' placeholder='봉사신청 동기를 입력해주세요.'></textarea>";
 		motivate += "<input type='button' value='신청하기' id='VolunteerApplicant'>";
 		$("#motivateForm").html(motivate);
 		
