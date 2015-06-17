@@ -95,5 +95,19 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 		// TODO Auto-generated method stub
 		sqlSessionTemplate.delete("board.deletePicture",pictureNo);
 	}
+	
+	@Override
+	public List<BoardVO> getNormalBoardList(CompanyVO cpvo) {
+		System.out.println("DAOImpl : "+cpvo);
+		List<BoardVO> list = sqlSessionTemplate.selectList("board.getNormalBoardList",cpvo);
+		System.out.println("RecruitBoardDAOImpl db 들어가서 list 넣은거"+list);
+		return list;
+	}
+
+	@Override
+	public int totalNormalContent(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("board.totalNormalContent",memberNo);
+	}
 
 }

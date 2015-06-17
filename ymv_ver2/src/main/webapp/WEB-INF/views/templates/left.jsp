@@ -30,7 +30,7 @@
 		<br>
 		<input type="submit" value="로그인" >
 		<br><br></form>
-	<a href="${initParam.root}member_register_form.do">회원가입</a><br>
+	<a href="${initParam.root}member_register_form.ymv">회원가입</a><br>
 	</c:when>
 	<c:when test="${sessionScope.mvo==null}">
 		<form  class="loginform cf" method="post" action="login.ymv" id="loginForm" >
