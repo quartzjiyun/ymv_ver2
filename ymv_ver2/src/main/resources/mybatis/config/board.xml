@@ -40,10 +40,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        <selectKey keyProperty="recruitNo" resultType="int" order="BEFORE">
           select recruit_no_seq.nextval from dual
        </selectKey>
-       insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) values(#{recruitNo},#{title},#{field},#{location},#{age},to_date(#{startDate},'HH24:MI'),to_date(#{endDate},'HH24:MI'),#{content},#{memberNo}, sysdate ,0)
-       <!-- member_no값에 현재 1이 들어가 있음 나중에 할 때 session에서 받아와서 집어넣기 -->
+       insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) values(#{recruitNo},#{title},#{field},#{location},#{age},to_date(#{startDate},'YYYY-MM-DD HH24:MI'),to_date(#{endDate},'YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0)
     </insert>
-
 	<select id="totalContent" resultType="int">
 		select count(*) from recruit
 	</select>	
@@ -71,14 +69,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deletePicture" parameterType="int">
 		delete from picture where picture_no=#{value}
 	</delete>
-	<select id="getNormalBoardList" resultMap="boardRM" parameterType="cpvo" resultType="recruitbvo">
-		select recruit_no, title, field, location, age, start_date, end_date 
-   	from(select recruit_no, title, field, location, age, start_date, end_date, CEIL(rownum/5) AS page from(select r.recruit_no, r.title, r.field, r.location, r.age, r.start_date, r.end_date
-   	from recruit r , voluntary_service_applicate vsa
-   	where r.recruit_no=vsa.recruit_no and vsa.member_no=#{memberNo} order by recruit_no desc) ) 
-   	where page=#{pageNo}
-	</select>
-	<select id="totalNormalContent" parameterType="int" resultType="int">
-		select count(*) from recruit r , voluntary_service_applicate vsa where r.recruit_no=vsa.recruit_no and vsa.member_no=#{value}
-	</select>	
  </mapper> 
