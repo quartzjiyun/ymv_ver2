@@ -135,10 +135,12 @@ public class MemberController {
 			//System.out.println(list.get(i).getOriginalFilename().equals(""));
 			String fileName="[memberNo"+memberVO.getMemberNo()+"]"+file.getOriginalFilename();			
 			String filePath="profileupload\\"+fileName;
-			memberVO.setFilePath(filePath);
-			pvo.setPictureNo(memberVO.getMemberNo());
-			if(!fileName.equals("")){
+/*			memberVO.setFilePath(filePath);
+			pvo.setPictureNo(memberVO.getMemberNo());*/
+			if(!fileName.equals("")/*&&(fileName.contains(".jpg")||fileName.contains(".png") )*/){
 				try {
+					memberVO.setFilePath(filePath);
+					pvo.setPictureNo(memberVO.getMemberNo());
 					file.transferTo(new File(path+fileName));
 					// 픽쳐 디비에 파일정보 저장
 					System.out.println("PictureNo: "+pvo.getPictureNo()+" fileName: "+pvo.getFileName());

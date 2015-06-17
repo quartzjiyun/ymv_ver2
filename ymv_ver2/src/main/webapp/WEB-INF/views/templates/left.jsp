@@ -15,7 +15,7 @@
 			}
 		});
 		$("#profile").click(function(){
-			$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><br><input type='file' name='fileName'><br><input type='submit' value='프로필사진등록'>");
+			$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><br><input type='file' name='fileName' accept='.gif, .jpg, .png'><br><input type='submit' value='프로필사진등록'>");
 		});
 	});
 </script>
