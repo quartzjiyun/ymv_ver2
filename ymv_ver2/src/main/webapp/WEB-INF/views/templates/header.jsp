@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <h2><a href="${initParam.root}home.do">로고</a>     메뉴 메뉴 메뉴 메뉴 </h2> --%>
 
    <meta charset='utf-8'>
@@ -107,13 +108,19 @@
       	 <li><a href='#'>봉사신청내역확인</a></li>
       </ul>
    </li> 
- <li class='active'><a href='#'>기업</a>
+   <c:choose>
+   <c:when test="${sessionScope.mvo.memberType=='company' }">
+   <li class='active'><a href='#'>기업</a>
       <ul>
          <li><a href='voluntary_register_view.ymv'>봉사등록</a></li>
          <li><a href='voluntary_board_company.ymv'>봉사등록확인</a>
          </li>
       </ul>
    </li>
+   </c:when>
+   <c:otherwise>
+   </c:otherwise>
+   </c:choose>
  <li class='active'><a href='#'>커뮤니티</a>
       <ul>
       	<li><a href='review_board.ymv'>봉사후기</a></li>
