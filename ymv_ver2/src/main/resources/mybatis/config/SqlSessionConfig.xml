@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.board.PictureVO" alias="pvo"/>
 		<typeAlias type="org.log5j.ymv.model.board.CompanyVO" alias="cpvo"/>
 		<typeAlias type="org.log5j.ymv.model.scheduler.SearchVO" alias="scvo" />
+		<typeAlias type="org.log5j.ymv.model.statistics.StatisticsVO" alias="stvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/board.xml" />
@@ -28,5 +29,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/noticeBoard.xml" />
 		<mapper resource="mybatis/config/qnaBoard.xml" />
 		<mapper resource="mybatis/config/scheduler.xml" />
+		<mapper resource="mybatis/config/statistics.xml" />
 	</mappers>
 </configuration>
