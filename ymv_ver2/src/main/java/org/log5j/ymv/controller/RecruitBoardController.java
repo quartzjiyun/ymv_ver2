@@ -24,51 +24,40 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_board.ymv")
 	public ModelAndView list(String pageNo) {	
 		ListVO lvo = recruitBoardService.getBoardList(pageNo);
-		System.out.println(lvo+"컨틀롤러");
 		return new ModelAndView("voluntary_board","lvo",lvo);
 	}
 	@RequestMapping("voluntary_showContentRecruitVol.ymv")
 	   public ModelAndView showContentRecruitVol(HttpServletRequest request){
 	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
-	      System.out.println("recruitNo:"+recruitNo);
-	      System.out.println("memberNo:"+request.getParameter("memberNo"));
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
-	      System.out.println("rvo: "+ rvo);
 	      return new ModelAndView("voluntary_show_content","rvo",rvo);
 	   }
-	
+
 	@RequestMapping("voluntary_board_update_view.ymv")
-	   public ModelAndView updateView(int recruitNo) {
-	      System.out.println("recruitNo 는 "+recruitNo);
-	      RecruitBoardVO recruitbvo = (RecruitBoardVO) recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
-	      System.out.println("recruitbvo 는 " + recruitbvo);
-	       List<FieldVO> Flist = recruitBoardService.getFieldList(); 
-	         System.out.println("getFieldList 입니다."+Flist);
-	         List<LocationVO> Llist = recruitBoardService.getLocationList();
-	         System.out.println("getLocationList 입니다."+Llist);
-	         ModelAndView mv = new ModelAndView();
-	         mv.setViewName("voluntary_board_update_view");
-	         mv.addObject("fieldlist", Flist);
-	         mv.addObject("locationlist", Llist);
-	      mv.addObject("rvo",recruitbvo);
-	      return mv;
-	   }
-	
+	public ModelAndView updateView(int recruitNo) {
+		RecruitBoardVO recruitbvo = (RecruitBoardVO) recruitBoardService
+				.getRecruitBoardByRecruitNo(recruitNo);
+		List<FieldVO> Flist = recruitBoardService.getFieldList();
+		List<LocationVO> Llist = recruitBoardService.getLocationList();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("voluntary_board_update_view");
+		mv.addObject("fieldlist", Flist);
+		mv.addObject("locationlist", Llist);
+		mv.addObject("rvo", recruitbvo);
+		return mv;
+	}
+
 	@RequestMapping("voluntary_board_update.ymv")
 	   public ModelAndView voluntary_board_update(HttpServletRequest request, int recruitNo, String title, String field, String location, String age, String startDate, String endDate, String content) {
 	      RecruitBoardVO recruitbvo = new RecruitBoardVO(recruitNo, title, field, location, age, startDate, endDate, content);
-	      System.out.println("수정받은 recruitbvo "+recruitbvo);
 	      recruitBoardService.updateBoard(recruitbvo);
 	      return new ModelAndView("voluntary_show_content","rvo",recruitBoardService.getRecruitBoardByRecruitNo(recruitbvo.getRecruitNo()));
 	   }
 	
 	@RequestMapping("voluntary_register_view.ymv")
 	   public ModelAndView RegisterVolunteer_form(){
-	      System.out.println("컨트롤러 실행");
 	      List<FieldVO> Flist = recruitBoardService.getFieldList(); 
-	      System.out.println("getFieldList 입니다."+Flist);
 	      List<LocationVO> Llist = recruitBoardService.getLocationList();
-	      System.out.println("getLocationList 입니다."+Llist);
 	      ModelAndView mv = new ModelAndView();
 	      mv.setViewName("voluntary_register_view");
 	      mv.addObject("fieldlist", Flist);
@@ -78,11 +67,7 @@ public class RecruitBoardController {
 	
 	@RequestMapping("Volunteer_register.ymv")
 	public String RegisterVolunteer_result(HttpServletRequest request,RecruitBoardVO rbvo){
-		System.out.println("rbvo  " + rbvo);
-		System.out.println("register sql 실행전");
 		recruitBoardService.registerVolunteer(rbvo);
-		System.out.println("register sql실행후");
-		System.out.println("rbvo  " + rbvo);
 		//return "redirect:RegisterVolunteer_detail.ymv?title=" + rbvo.getTitle();
 		return "redirect:voluntary_showContentRecruitVol.ymv?recruitNo=" + rbvo.getRecruitNo();
 	}
@@ -91,27 +76,17 @@ public class RecruitBoardController {
 	   public ModelAndView DeleteRecruitVol(HttpServletRequest request){
 	         int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	         int pictureNo=recruitNo;
-	         System.out.println("delete recruitNo:"+recruitNo);
 	         recruitBoardService.deleteVoluntaryServiceApplicateNo(recruitNo);
 	         recruitBoardService.deleteRecruitVolunteer(recruitNo);
-	         System.out.println("delete 성공");
 	         recruitBoardService.deletePicture(pictureNo);
 	      return new ModelAndView("redirect:/voluntary_board.ymv?pageNo=1");
 	   }
 	@RequestMapping("voluntary_board_company.ymv")
 	public ModelAndView voluntaryBoardCompany(HttpServletRequest request,CompanyVO cpvo){
 		//세션에 들어있는 멤버넘버로 등록된 글 조회 
-		try{
 		MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
-		System.out.println("session mvo.getMemberNo(): "+mvo.getMemberNo());
 		cpvo.setMemberNo(mvo.getMemberNo());
-		System.out.println("session cpvo : "+ cpvo);
 		ListVO lvo = recruitBoardService.getCompanyBoardList(cpvo);
-		System.out.println(lvo+"컨틀롤러");
 		return new ModelAndView("voluntary_board_company","lvo",lvo);
-		}catch(NullPointerException ne){
-					
-			return new ModelAndView("error","warn","기업회원만 이용하실 수 있습니다.");
-		}
 	}
 }
