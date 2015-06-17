@@ -129,13 +129,15 @@
 	});//document
 </script>
 	
+<center>	
 <input type="button" value="10대" id="10Btn">&nbsp&nbsp
 <input type="button" value="20대" id="20Btn">&nbsp&nbsp
 <input type="button" value="30대" id="30Btn">&nbsp&nbsp
 <input type="button" value="40대" id="40Btn">&nbsp&nbsp
 <input type="button" value="50대" id="50Btn">&nbsp&nbsp
-		
-		
+</center>
+	
+<center>		
 <span id="statistics">
 <%-- <hr><br>
 <h2>전체 선호도</h2>
@@ -156,7 +158,7 @@
 				</tr>
 			</c:forEach>
 		</table> --%>
-</span>
+</span></center>
 		
 		
 		
