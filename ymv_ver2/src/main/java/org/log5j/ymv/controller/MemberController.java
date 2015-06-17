@@ -1,10 +1,13 @@
 package org.log5j.ymv.controller;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.log5j.ymv.model.board.PictureVO;
 import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
@@ -14,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -24,6 +28,8 @@ public class MemberController {
 	@Resource(name="memberServiceImpl")
 	private MemberService memberService;
 
+	@Resource(name="uploadProfilePath")
+	private String path;
 	/*
 	 * 로그인부분
 	 */
@@ -101,7 +107,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "member_register_validation.ymv", method = RequestMethod.POST)
-	public ModelAndView register(@Valid MemberVO memberVO, BindingResult result) {
+	public ModelAndView register(@Valid MemberVO memberVO, BindingResult result, PictureVO pvo) {
 		ModelAndView mv = new ModelAndView();
 		if (result.hasErrors()) {
 			mv.setViewName("member_register_form_detail");
@@ -109,25 +115,41 @@ public class MemberController {
 			return mv;
 		}
 		memberService.registerMember(memberVO);
+		
 		mv.setViewName("member_register_result");
 		return mv;// 문제 없으면 결과 페이지로 이동한다.
 	}
+	@RequestMapping("member_profileUpload.ymv")
+	public ModelAndView profileUpload(HttpServletRequest request, PictureVO pvo){
+		MemberVO memberVO=(MemberVO)request.getSession().getAttribute("mvo");
+		System.out.println("memberVO.getMemberNo : "+memberVO.getMemberNo());
+		MultipartFile file=pvo.getFileName();
+		/*
+		 *  파일 얻는 메서드  : list.get(i) 을 호출하면 File이 반환 
+		 *  실제 디렉토리로 전송(업로드) 메서드 : 파일.transferTo(파일객체)
+		 *  ModelAndView 에서 결과 페이지로 업로드한 파일 정보를 문자열배열로
+		 *  할당해 jsp에서 사용하도록 한다. 
+		*/ 
+		/*ArrayList<String> nameList=new ArrayList<String>();
+		for(int i=0;i<list.size();i++){*/
+			//System.out.println(list.get(i).getOriginalFilename().equals(""));
+			String fileName="[memberNo"+memberVO.getMemberNo()+"]"+file.getOriginalFilename();			
+			String filePath="profileupload\\"+fileName;
+			memberVO.setFilePath(filePath);
+			pvo.setPictureNo(memberVO.getMemberNo());
+			if(!fileName.equals("")){
+				try {
+					file.transferTo(new File(path+fileName));
+					// 픽쳐 디비에 파일정보 저장
+					System.out.println("PictureNo: "+pvo.getPictureNo()+" fileName: "+pvo.getFileName());
+					memberService.profileUpdate(memberVO);
+					/*nameList.add(fileName);*/
+					System.out.println("fileupload ok:"+fileName);
+				} catch (Exception e) {					
+					e.printStackTrace();
+				}
+			}
+		return new ModelAndView("home");
+	}
 	
-
-	@RequestMapping("member_update_form.ymv")
-	public ModelAndView memberUpdateForm(HttpServletRequest request){
-		return new ModelAndView("member_update_form");
-	}
-	@RequestMapping("member_update.ymv")
-	public ModelAndView memberUpdate(HttpServletRequest request, MemberVO mvo){
-		HttpSession session=request.getSession(false);
-		/*MemberVO smvo=(MemberVO)session.getAttribute("mvo");*/
-		memberService.updateMember(mvo);
-		System.out.println("mvo전:"+mvo);
-		System.out.println("mvo 멤버 memberNo:"+mvo.getMemberNo());
-		mvo=memberService.findMemberByMemberNo(mvo.getMemberNo());
-		System.out.println("mvo후:"+mvo);
-		session.setAttribute("mvo",mvo);
-		return new ModelAndView("member_update","mvo",mvo);
-	}
 }

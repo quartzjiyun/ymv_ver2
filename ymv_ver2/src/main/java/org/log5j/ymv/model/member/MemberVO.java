@@ -20,7 +20,15 @@ public class MemberVO {
 	@NotEmpty
 	private String mailAddress;
 	private String memberType;
-	
+	private String filePath;
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
 
 	public MemberVO() {
 		super();
@@ -83,12 +91,14 @@ public class MemberVO {
 		this.memberType = memberType;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "MemberVO [memberNo=" + memberNo + ", id=" + id + ", password="
 				+ password + ", name=" + name + ", address=" + address
 				+ ", identityNo=" + identityNo + ", mailAddress=" + mailAddress
-				+ ", memberType=" + memberType + "]";
+				+ ", memberType=" + memberType + ", filePath=" + filePath + "]";
 	}
 
 	public String getAddress() {

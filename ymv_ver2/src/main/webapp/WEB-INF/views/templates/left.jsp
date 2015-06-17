@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script type="text/javascript">
+<script>
 	$(document).ready(function(){
 		$("#loginForm").submit(function(){
 			if($(":input[name=id]").val()==""){
@@ -13,6 +13,9 @@
 				alert("패스워드를 입력하세요!");
 				return false;
 			}
+		});
+		$("#profile").click(function(){
+			$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><br><input type='file' name='fileName'><br><input type='submit' value='프로필사진등록'>");
 		});
 	});
 </script>
@@ -47,16 +50,22 @@
 	</c:when>	
 	<c:otherwise>	
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-			<br><br><br><br>	<br><br><br><br>
-			<img src="${initParam.root }/img/man.jpg"><br><br>
+		<c:choose>
+			<c:when test="${sessionScope.mvo.filePath!=null }">
+				<img src="${initParam.root }${sessionScope.mvo.filePath}" id="profile" style="width:80%; height:50%;">
+			</c:when>
+			<c:otherwise>
+				<img src="${initParam.root }/img/man.jpg" id="profile"><br><br>
+			</c:otherwise>
+		</c:choose>
+		
 		<br>${sessionScope.mvo.name}님<br>
-	<a href="${initParam.root}member_update_form.ymv">회원정보수정</a><br>
 	<a href="${initParam.root}logout.ymv">로그아웃</a>
+	<div id="profileView"></div>
 	</c:otherwise>
 </c:choose>
-<a href="${initParam.root}member_fileupload_form.do">파일업로드</a><br>
 
+</form>
 
 
 
