@@ -38,5 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into member(member_no,id,password,name,address,identity_no,mail_address,member_type)
 		values(#{memberNo},#{id},#{password},#{name},#{address},#{identityNo},#{mailAddress},#{memberType})
 	</insert>
+		<update id="updateMember" parameterType="membervo">
+	update member set password=#{password},address=#{address},name=#{name},
+	mail_address=#{mailAddress} where member_no=#{memberNo}
+	</update>
 	
+	<select id="findMemberByMemberNo" resultType="membervo" resultMap="memberRM">
+	 	select * from member where member_no=#{value}
+	</select>
  </mapper> 

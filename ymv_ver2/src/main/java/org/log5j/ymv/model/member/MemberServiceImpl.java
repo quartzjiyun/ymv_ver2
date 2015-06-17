@@ -22,5 +22,12 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.registerMember(memberVO);		
 		
 	}
-	
+	@Override
+	public void updateMember(MemberVO memberVO) {
+		memberDAO.updateMember(memberVO);
+	}
+	@Override
+	public MemberVO findMemberByMemberNo(int memberNo) {
+		return memberDAO.findMemberByMemberNo(memberNo);
+	}
 }

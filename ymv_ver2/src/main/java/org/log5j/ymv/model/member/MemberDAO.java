@@ -8,5 +8,7 @@ public interface MemberDAO {
 
 	public void registerMember(MemberVO memberVO);
 
+	public void updateMember(MemberVO memberVO);
 	
+	public MemberVO findMemberByMemberNo(int memberNo);
 }

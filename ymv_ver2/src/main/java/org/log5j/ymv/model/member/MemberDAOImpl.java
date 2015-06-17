@@ -25,4 +25,14 @@ public class MemberDAOImpl implements MemberDAO {
 	public void registerMember(MemberVO memberVO) {
 		sqlSessionTemplate.insert("member.registerMember",memberVO);
 	}
+	@Override
+	public void updateMember(MemberVO memberVO) {
+		sqlSessionTemplate.update("member.updateMember",memberVO);
+	}
+
+	@Override
+	public MemberVO findMemberByMemberNo(int memberNo) {
+		return sqlSessionTemplate.selectOne("member.findMemberByMemberNo",memberNo);
+	}
+
 }

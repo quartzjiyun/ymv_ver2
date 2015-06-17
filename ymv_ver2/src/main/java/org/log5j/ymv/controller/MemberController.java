@@ -112,4 +112,22 @@ public class MemberController {
 		mv.setViewName("member_register_result");
 		return mv;// 문제 없으면 결과 페이지로 이동한다.
 	}
+	
+
+	@RequestMapping("member_update_form.ymv")
+	public ModelAndView memberUpdateForm(HttpServletRequest request){
+		return new ModelAndView("member_update_form");
+	}
+	@RequestMapping("member_update.ymv")
+	public ModelAndView memberUpdate(HttpServletRequest request, MemberVO mvo){
+		HttpSession session=request.getSession(false);
+		/*MemberVO smvo=(MemberVO)session.getAttribute("mvo");*/
+		memberService.updateMember(mvo);
+		System.out.println("mvo전:"+mvo);
+		System.out.println("mvo 멤버 memberNo:"+mvo.getMemberNo());
+		mvo=memberService.findMemberByMemberNo(mvo.getMemberNo());
+		System.out.println("mvo후:"+mvo);
+		session.setAttribute("mvo",mvo);
+		return new ModelAndView("member_update","mvo",mvo);
+	}
 }
