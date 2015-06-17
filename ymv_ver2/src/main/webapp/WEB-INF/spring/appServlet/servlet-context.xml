@@ -55,12 +55,17 @@ class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
  -->
 <bean id="uploadPath" class="java.lang.String" >
 	<constructor-arg>
-		<value>C:\\java-kosta\\ymv-workspace\\ymv_ver2\\src\\main\\webapp\\upload\\</value>
+		<value>C:\\java-kosta\\ymv-workspace\\0617v2\\src\\main\\webapp\\upload\\</value>
 	</constructor-arg>
 </bean>
 <bean id="uploadNoticePath" class="java.lang.String" >
 	<constructor-arg>
-		<value>C:\\java-kosta\\ymv-workspace\\ymv_ver2\\src\\main\\webapp\\noticeupload\\</value>
+		<value>C:\\java-kosta\\ymv-workspace\\0617v2\\src\\main\\webapp\\noticeupload\\</value>
+	</constructor-arg>
+</bean>
+<bean id="uploadProfilePath" class="java.lang.String" >
+	<constructor-arg>
+		<value>C:\\java-kosta\\ymv-workspace\\0617v2\\src\\main\\webapp\\profileupload\\</value>
 	</constructor-arg>
 </bean>
 

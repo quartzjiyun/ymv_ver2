@@ -33,12 +33,12 @@
 	<div class="col-md-12">
 <h2>봉사 등록</h2>
 <form id="recruitForm" action="Volunteer_register.ymv?memberNo=${sessionScope.mvo.memberNo }" method="post">
-<table border="1">
+<table class="table" border="1">
 	<tr>
-		<td>제목</td><td><input type="text" name="title" id="title"></td>
+		<th class="info">제목</th><td><input type="text" name="title" id="title"></td>
 	</tr>
 	<tr>
-		<td>분야</td>
+		<th class="info">분야</th>
 		<td>
 			<select id="field" name="field"><!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
 				<option value="">-분야-</option>
@@ -49,7 +49,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>지역</td>
+		<th class="info">지역</th>
 		<td>
 			<select id="location" name="location"> <!-- 지역(*도 별로) DB에서 받아오기 -->
 				<option value="">-지역-</option>
@@ -60,7 +60,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>나이제한</td>
+		<th class="info">나이제한</th>
 		<td>
 			<!-- <input type="text" name="age" id="age"> -->
 			<!-- 숫자로 입력 안하면 submit 못하게
@@ -72,7 +72,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>시작시간</td>
+	<th class="info">시작시간</th>
 		<td>
 			<select id="startTime" name="startDate"><!-- 한시간 단위로 하기 -->
 				<option value="">-시작시간-</option>
@@ -99,7 +99,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>끝시간</td>
+		<th class="info">끝시간</th>
 		<td>
 			<select id="endTime" name="endDate"><!-- 한시간 단위로 하기 -->
 				<option value="">-끝시간-</option>
@@ -126,7 +126,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>상세정보</td><td><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
+		<th class="info">상세정보</th><td><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
 	</tr>
 </table>
 <br>
