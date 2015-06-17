@@ -14,5 +14,7 @@ public interface MemberDAO {
 
 	public void profileUpdate(MemberVO memberVO);
 
+	public void updateMember(MemberVO memberVO);
 	
+	public MemberVO findMemberByMemberNo(int memberNo);
 }

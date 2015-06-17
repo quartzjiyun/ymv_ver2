@@ -33,5 +33,13 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		memberDAO.profileUpdate(memberVO);
 	}
+	@Override
+	public void updateMember(MemberVO memberVO) {
+		memberDAO.updateMember(memberVO);
+	}
+	@Override
+	public MemberVO findMemberByMemberNo(int memberNo) {
+		return memberDAO.findMemberByMemberNo(memberNo);
+	}
 	
 }

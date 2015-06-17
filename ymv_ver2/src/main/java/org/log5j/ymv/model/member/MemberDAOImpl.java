@@ -38,4 +38,13 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 		sqlSessionTemplate.update("member.profileUpdate",memberVO);
 	}
+	@Override
+	public void updateMember(MemberVO memberVO) {
+		sqlSessionTemplate.update("member.updateMember",memberVO);
+	}
+
+	@Override
+	public MemberVO findMemberByMemberNo(int memberNo) {
+		return sqlSessionTemplate.selectOne("member.findMemberByMemberNo",memberNo);
+	}
 }

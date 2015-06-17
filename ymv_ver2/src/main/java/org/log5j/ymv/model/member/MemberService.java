@@ -14,4 +14,7 @@ public interface MemberService {
 
 	public void profileUpdate(MemberVO memberVO);
 	
+	public void updateMember(MemberVO memberVO);
+	
+	public MemberVO findMemberByMemberNo(int memberNo);
 }
