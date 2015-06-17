@@ -89,4 +89,11 @@ public class RecruitBoardController {
 		ListVO lvo = recruitBoardService.getCompanyBoardList(cpvo);
 		return new ModelAndView("voluntary_board_company","lvo",lvo);
 	}
+	@RequestMapping("voluntary_board_normal.ymv")
+	public ModelAndView voluntaryBoardNormal(HttpServletRequest request, CompanyVO cpvo){
+		MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
+		cpvo.setMemberNo(mvo.getMemberNo());
+		ListVO lvo = recruitBoardService.getNormalBoardList(cpvo);
+		return new ModelAndView("voluntary_board_normal","lvo",lvo);
+	}
 }

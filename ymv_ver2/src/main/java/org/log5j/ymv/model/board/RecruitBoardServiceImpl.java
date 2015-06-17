@@ -88,4 +88,20 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		// TODO Auto-generated method stub
 		recruitBoardDAO.deletePicture(pictureNo);
 	}
+	@Override
+	public ListVO getNormalBoardList(CompanyVO cpvo) {
+		if(cpvo.getPageNo()==0) {
+			cpvo.setPageNo(1);
+		}
+		List<BoardVO> list=recruitBoardDAO.getNormalBoardList(cpvo);
+		System.out.println("pageNo가 1인 상태에서 보드 리스트들을 받아오는 거"+list);
+		System.out.println("RecruitBoardServiceImpl getBoardList 완료");
+		int total=recruitBoardDAO.totalNormalContent(cpvo.getMemberNo());
+		System.out.println("RecruitBoardServiceImpl totalContent: "+total);
+		PagingBean paging=new PagingBean(total,cpvo.getPageNo());
+		System.out.println("paging 완료 그리고 listvo넣기전"+paging);
+		ListVO lvo=new ListVO(list,paging);
+		System.out.println("lvo: "+lvo);
+		return lvo;
+	}
 }
