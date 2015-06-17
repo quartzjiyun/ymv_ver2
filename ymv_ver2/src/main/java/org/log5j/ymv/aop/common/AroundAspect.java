@@ -29,7 +29,7 @@ public class AroundAspect {
 		log.info("aop 실행~~");
 	}*/
 	
-	@After("execution(public * org.log5j..VoluntaryServiceApplicateServiceImpl.reg*(..))")
+	@After("execution(public * org.log5j..VoluntaryServiceApplicateService.reg*(..))")
 	public void afterLog(JoinPoint point) throws SQLException{
 		Object param[]=point.getArgs();// 메서드 인자값 - 매개변수
 		VoluntaryServiceApplicateVO vvo = (VoluntaryServiceApplicateVO) param[0];
