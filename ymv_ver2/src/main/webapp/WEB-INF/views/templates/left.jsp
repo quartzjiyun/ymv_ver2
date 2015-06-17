@@ -60,6 +60,7 @@
 		</c:choose>
 		
 		<br>${sessionScope.mvo.name}님<br>
+			<a href="${initParam.root}member_update_form.ymv">회원정보수정</a><br>
 	<a href="${initParam.root}logout.ymv">로그아웃</a>
 	<div id="profileView"></div>
 	</c:otherwise>
