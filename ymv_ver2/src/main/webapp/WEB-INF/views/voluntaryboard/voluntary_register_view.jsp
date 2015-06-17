@@ -101,7 +101,7 @@
 					<th class="info">시작시간</th>
 					<td><input type="text" id="datepicker1" name="startDate"
 						placeholder="시작날짜"> <select id="startTime"
-						name="startDate">
+						name="startTime">
 							<!-- 한시간 단위로 하기 -->
 							<option value="">-시작시간-</option>
 							<option value="06:00">06:00</option>
@@ -128,7 +128,7 @@
 				<tr>
 					<th class="info">끝시간</th>
 					<td><input type="text" id="datepicker2" name="endDate" placeholder="종료날짜">
-						<select id="endTime" name="endDate">
+						<select id="endTime" name="endTime">
 							<!-- 한시간 단위로 하기 -->
 							<option value="">-끝시간-</option>
 							<option value="06:00">06:00</option>
