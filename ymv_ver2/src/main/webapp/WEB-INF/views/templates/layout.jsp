@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Tiles Layout</title>
-<script type="text/javascript" src="${initParam.root}js/jquery.min.js"></script>
+<script type="text/javascript" src="${initParam.root}resources/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root}/css/home.css" />
 <link rel="stylesheet" type="text/css" href="${initParam.root}css/one.css" />
 <meta charset="utf-8">
