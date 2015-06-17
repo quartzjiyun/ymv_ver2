@@ -12,7 +12,7 @@
 	   Ajax Json : @ResponseBody 관련 설정 등 
  -->
 <mvc:annotation-driven />
-<context:component-scan base-package="org.log5j.ymv.controller" />
+<context:component-scan base-package="org.log5j.ymv" />
 <bean id="viewResolver" 
 class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/views/"  />
