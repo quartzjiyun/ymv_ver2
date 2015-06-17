@@ -9,7 +9,8 @@ create table member(
 	mail_address varchar2(50) not null,
 	member_type varchar2(10) not null
 )
-
+alter table member add(file_path varchar(200));
+alter table member drop(file_path);
 drop table member
 delete from member
 --JJH-time_posted,hit 추가
