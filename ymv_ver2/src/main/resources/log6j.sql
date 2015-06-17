@@ -9,7 +9,8 @@ create table member(
 	mail_address varchar2(50) not null,
 	member_type varchar2(10) not null
 )
-
+alter table member add(file_path varchar(200));
+alter table member drop(file_path);
 drop table member
 delete from member
 --JJH-time_posted,hit 추가
@@ -137,7 +138,8 @@ insert into member values(1,'java','1234','임영학','판교','890716','qhackp@
 insert into member values(2,'java1','1234','백지영','판교','960102','qorwldud@naver.com','normal');
 insert into member values(3,'qwerty','1234','장지윤','수원','931004','quartzjiyun@naver.com','company');
 insert into member values(4,'kosta','1234','박병준','서울','900227','byungjunpark@naver.com','company');
-insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) values(ymv_seq.nextval,'review','테스트','임영학','가나다라','1',sysdate);
+insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
+values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) values(ymv_seq.nextval,'review','테스트','임영학','가나다라','1',sysdate);
 insert into statistics(age, field, applicate_count) values(20,'환경',1);
 insert into statistics(age, field, applicate_count) values(30,'환경',2);

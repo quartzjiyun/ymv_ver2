@@ -8,7 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="memberNo" column="member_no"/>         
       <result property="identityNo" column="identity_no" />       
       <result property="mailAddress" column="mail_address" />       
-      <result property="memberType" column="member_type" />       
+      <result property="memberType" column="member_type" />     
+      <result property="filePath" column="file_path"/>  
    </resultMap>
  
  	<select id="login" resultMap="memberRM" resultType="membervo">
@@ -39,4 +40,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{memberNo},#{id},#{password},#{name},#{address},#{identityNo},#{mailAddress},#{memberType})
 	</insert>
 	
+	<update id="profileUpdate" parameterType="membervo">
+		update member set file_path=#{filePath} where member_no=#{memberNo}
+	</update>
+	
+	<update id="updateMember" parameterType="membervo">
+	update member set password=#{password},address=#{address},name=#{name},
+	mail_address=#{mailAddress} where member_no=#{memberNo}
+	</update>
+	
+	<select id="findMemberByMemberNo" resultType="membervo" resultMap="memberRM">
+	 	select * from member where member_no=#{value}
+	</select>
  </mapper> 

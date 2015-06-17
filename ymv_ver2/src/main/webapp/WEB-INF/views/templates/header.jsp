@@ -105,7 +105,7 @@
       <ul>
          <li><a href='search_view.ymv'>통합검색</a></li>
          <li><a href='voluntary_board.ymv'>전체목록</a></li>
-      	 <li><a href='#'>봉사신청내역확인</a></li>
+      	 <li><a href='voluntary_board_normal.ymv'>봉사신청내역확인</a></li>
       </ul>
    </li> 
    <c:choose>
@@ -131,8 +131,8 @@
    </li>
     <li class='active'><a href='#'>통계</a>
       <ul>
-      	<li><a href='review_board.ymv'>전체 통계</a></li>
-         <li><a href='notice_board.ymv'>나이별 선호 봉사활동</a></li>
+      <li><a href='voluntary_statistics.ymv'>전체 통계</a></li>
+         <li><a href='voluntary_statisticsByAge.ymv'>나이별 선호 봉사활동</a></li>
       </ul>
    </li>
 </ul>

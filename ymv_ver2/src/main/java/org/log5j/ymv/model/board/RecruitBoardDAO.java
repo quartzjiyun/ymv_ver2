@@ -17,4 +17,6 @@ public interface RecruitBoardDAO {
 	public List<BoardVO> getCompanyBoardList(CompanyVO cpvo);
 	public int totalCompanyContent(int memberNo);
 	public void deletePicture(int pictureNo);
+	public List<BoardVO> getNormalBoardList(CompanyVO cpvo);
+	public int totalNormalContent(int memberNo);
 }

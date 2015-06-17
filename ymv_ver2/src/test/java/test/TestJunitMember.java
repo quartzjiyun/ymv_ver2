@@ -16,7 +16,9 @@ public class TestJunitMember {
    
    @Test
    public void memberTest(){
-       s.registerVolunteerApplicant(new VoluntaryServiceApplicateVO(44, 1, "dfsdf대라좀"));
+       /*s.registerVolunteerApplicant(new VoluntaryServiceApplicateVO(44, 1, "dfsdf대라좀"));*/
+       
+       s.registerVolunteerApplicant(new VoluntaryServiceApplicateVO(102,1,"aaaaa"));
       System.out.println(1);
       //null이 아니면 정상실행, null이면 failures, AssertionError발생
       //아래와 같은 다수의 테스트용 메서드가 있다.

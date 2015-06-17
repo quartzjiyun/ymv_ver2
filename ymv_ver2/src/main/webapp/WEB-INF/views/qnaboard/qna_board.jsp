@@ -1,8 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-   <table class="list">
+<div class="col-md-12">
+	<div class="col-md-12">
+	  <h3 >Q & A 목록 </h3>
+   <table class="table">
+      			<colgroup>
+				<col style="width: 10%;" />
+				<col style="width: 20%;" />
+				<col style="width: 10%;" />
+				<col style="width: 20%;" />
+				<col style="width: 20%;" />
+				<col style="width: 20%;" />
+			</colgroup>
+ 
       <caption>목록</caption>
       <thead>
       <tr>
@@ -74,4 +85,6 @@
     <a href="qna_board.ymv?pageNo=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}">
     <img src="${initParam.root }/img/right_arrow_btn.gif">
     </a>
-    </c:if>       
+    </c:if>
+        </div>
+    </div>       

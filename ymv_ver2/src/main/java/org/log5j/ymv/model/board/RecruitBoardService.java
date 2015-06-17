@@ -26,4 +26,6 @@ public interface RecruitBoardService {
 	public ListVO getCompanyBoardList(CompanyVO cpvo);
 
 	public void deletePicture(int pictureNo);
+	
+	public ListVO getNormalBoardList(CompanyVO cpvo);
 }
