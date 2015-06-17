@@ -34,8 +34,15 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		 <a href="${initParam.root}review_register_view.ymv">글쓰기</a>
-		  <c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
+		<c:choose>
+		<c:when test="${sessionScope.mvo==null}">
+		
+		 </c:when>
+		 <c:otherwise>
+			 <a href="${initParam.root}review_register_view.ymv">글쓰기</a>
+			 </c:otherwise>
+			 </c:choose>
+		 <c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
     <a href=
     "review_board.ymv?pageNo=${requestScope.lvo.pagingBean.
     startPageOfPageGroup-1}"><img src="${initParam.root }/img/left_arrow_btn.gif"></a>

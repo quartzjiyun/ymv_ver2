@@ -88,6 +88,8 @@ public class ReviewBoardController {
 	public ModelAndView reviewBoardDelete(String boardNo){
 		reviewBoardService.deleteReviewBoardComment(boardNo);
 		reviewBoardService.reviewBoardDelete(boardNo);
+		int pictureNo=Integer.parseInt(boardNo);
+		reviewBoardService.deletePicture(pictureNo);
 		return new ModelAndView("redirect:review_board.ymv");
 	}
 	
@@ -98,8 +100,8 @@ public class ReviewBoardController {
 	}
 	@RequestMapping("review_register.ymv")
 	public ModelAndView reviewRegister(ReviewBoardVO vo,PictureVO pvo){
+		System.out.println("ReviewBoardVO: "+vo);
 		reviewBoardService.registerReviewBoard(vo);
-		
 		System.out.println("userInfo:"+vo.getBoardNo());
 		MultipartFile file=pvo.getFileName();
 		/*

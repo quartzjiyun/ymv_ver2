@@ -16,4 +16,5 @@ public interface ReviewBoardDAO {
 	void registerReviewBoard(ReviewBoardVO vo);
 	void registerPicture(PictureVO pvo);
 	PictureVO getPicture(int pictureNo);
+	void deletePicture(int pictureNo);
 }
