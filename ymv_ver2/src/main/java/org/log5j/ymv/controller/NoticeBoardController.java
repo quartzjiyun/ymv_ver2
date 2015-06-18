@@ -23,6 +23,7 @@ public class NoticeBoardController {
 	@Resource
 	private NoticeBoardService noticeBoardService;
 	@RequestMapping("notice_board.ymv")
+	@NoLoginCheck
 	public ModelAndView noticeBoard(String pageNo) {	
 		System.out.println("controller pageNo: "+pageNo);
 		ListVO lvo = noticeBoardService.getNoticeBoardList(pageNo);
@@ -69,6 +70,7 @@ public class NoticeBoardController {
 	   return new ModelAndView("redirect:notice_board.ymv");
    }
    @RequestMapping("notice_showContent.ymv")
+   @NoLoginCheck
    public String showContentReview(HttpServletRequest request,Model model){
       int boardNo=Integer.parseInt(request.getParameter("boardNo"));
       int pictureNo=boardNo;

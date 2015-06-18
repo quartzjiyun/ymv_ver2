@@ -34,6 +34,7 @@ public class MemberController {
 	 * 로그인부분
 	 */
 	@RequestMapping("login.ymv")
+	@NoLoginCheck
 	public ModelAndView login(HttpServletRequest request,MemberVO  vo) {	
 		System.out.println("memberVO:"+vo);
 		MemberVO mvo=memberService.login(vo);
@@ -49,6 +50,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("logout.ymv")
+	@NoLoginCheck
 	public ModelAndView logout(HttpServletRequest request){
 		HttpSession session=request.getSession(false);
 		if(session!=null){
@@ -76,12 +78,14 @@ public class MemberController {
 	//병준
 	
 	@RequestMapping(value="member_register_form.ymv",method=RequestMethod.GET)
+	@NoLoginCheck
 	public ModelAndView memberRegisterForm(){	
 		// Validation 을 위해 register_form.jsp 에서 사용할 수 있도록 객체를 생성해 전달한다. 
 		//<form:form action="register.do" commandName="memberVO">
 		return new ModelAndView("member_register_form","memberVO",new MemberVO());
 	}
 	@RequestMapping("member_register.ymv")
+	@NoLoginCheck
 	public ModelAndView memberRegister(String identityNo, String memberType){	
 		MemberVO memberVO = new MemberVO();
 		memberVO.setIdentityNo(identityNo);
@@ -93,6 +97,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("member_register_idcheck.ymv")
+	@NoLoginCheck
 	@ResponseBody
 	public boolean memberRegisterIdcheck(MemberVO memberVO) {
 		boolean flag = true;

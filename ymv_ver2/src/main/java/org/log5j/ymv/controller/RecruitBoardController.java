@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.log5j.ymv.model.board.CompanyVO;
 import org.log5j.ymv.model.board.FieldVO;
@@ -22,15 +23,30 @@ public class RecruitBoardController {
 	private RecruitBoardService recruitBoardService;
 	
 	@RequestMapping("voluntary_board.ymv")
+	@NoLoginCheck
 	public ModelAndView list(String pageNo) {	
 		ListVO lvo = recruitBoardService.getBoardList(pageNo);
 		return new ModelAndView("voluntary_board","lvo",lvo);
 	}
 	@RequestMapping("voluntary_showContentRecruitVol.ymv")
+	@NoLoginCheck
 	   public ModelAndView showContentRecruitVol(HttpServletRequest request){
 	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
 	      return new ModelAndView("voluntary_show_content","rvo",rvo);
+	   }
+    
+    @RequestMapping("voluntary_showContentRecruitVolType.ymv")
+	   public ModelAndView showContentRecruitVolType(HttpServletRequest request){
+    		HttpSession session=request.getSession();
+    		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
+    		String url="voluntary_show_content_company";
+    		if(mvo.getMemberType()=="normal"){
+    			url="voluntary_show_content_normal";
+    		}
+	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
+	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
+	      return new ModelAndView(url,"rvo",rvo);
 	   }
 
 	@RequestMapping("voluntary_board_update_view.ymv")
