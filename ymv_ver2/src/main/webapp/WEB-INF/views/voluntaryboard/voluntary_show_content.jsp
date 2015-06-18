@@ -88,11 +88,23 @@ $(document).ready(function(){
 							<img class="action" src="${initParam.root}img/delete_btn.jpg"
 								id="delete">
 						</c:when>
-						
+						<c:when test="${sessionScope.mvo.memberType=='admin'}">
+							<a
+								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }">
+								<img class="action" src="${initParam.root}img/modify_btn.jpg"
+								id="update">
+							</a>
+							<img class="action" src="${initParam.root}img/delete_btn.jpg"
+								id="delete">
+						</c:when>
 					</c:choose>
 					<c:if test="${sessionScope.mvo.memberType=='normal'}">
 							<input type="button" value="신청하기" id="applicant">
-					</c:if></td>
+					</c:if>
+					<c:if test="${sessionScope.mvo.memberType=='admin'}">
+							<input type="button" value="신청하기" id="applicant">
+					</c:if>
+					</td>
 			</tr>
 			</tbody>
 		</table>

@@ -42,6 +42,9 @@
 <br><c:if test="${sessionScope.mvo.memberType=='company' }">
 		<a href="${initParam.root }voluntary_register_view.ymv">글쓰기	</a>
 </c:if>
+<c:if test="${sessionScope.mvo.memberType=='admin' }">
+		<a href="${initParam.root }voluntary_register_view.ymv">글쓰기	</a>
+</c:if>
 <br></br>
 <c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
 	<a

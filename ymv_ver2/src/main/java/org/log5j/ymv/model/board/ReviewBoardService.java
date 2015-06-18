@@ -30,4 +30,6 @@ public interface ReviewBoardService {
 
 	void deletePicture(int pictureNo);
 
+	CommentVO getReviewBoardCommentByBoardNo(int boardNo);
+
 }

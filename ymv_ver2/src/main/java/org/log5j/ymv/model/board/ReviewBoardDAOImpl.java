@@ -91,5 +91,12 @@ public void deletePicture(int pictureNo) {
 	sqlSessionTemplate.delete("reviewBoard.deletePicture",pictureNo);
 }
 
+@Override
+public CommentVO getReviewBoardCommentByBoardNo(int boardNo) {
+	CommentVO comment = sqlSessionTemplate.selectOne("reviewBoard.getReviewBoardCommentByBoardNo", boardNo);
+	System.out.println(comment);
+	return comment;
+}
+
 
 }
