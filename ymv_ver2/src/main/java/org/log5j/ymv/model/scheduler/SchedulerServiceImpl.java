@@ -1,5 +1,6 @@
 package org.log5j.ymv.model.scheduler;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,10 +14,15 @@ public class SchedulerServiceImpl implements SchedulerService {
 	@Resource
 	private SchedulerDAO schedulerDAO;
 	@Override
-	public ListVO getBoardList(SearchVO scvo){
+	public List<BoardVO> getSchedulerList(SchedulerVO sdvo){
+		List<BoardVO> list=schedulerDAO.getSchedulerList(sdvo);
+		return list;
+	}
+	@Override
+	public ListVO getSearchList(SearchVO scvo){
 		if(scvo.getPageNo()==null||scvo.getPageNo()=="") 
 			scvo.setPageNo("1");
-		List<BoardVO> list=schedulerDAO.getBoardList(scvo);
+		List<BoardVO> list=schedulerDAO.getSearchList(scvo);
 		int total=schedulerDAO.totalContent(scvo);
 		System.out.println("RecruitBoardServiceImpl totalContent: "+total);
 		PagingBean paging=new PagingBean(total,Integer.parseInt(scvo.getPageNo()));
@@ -24,5 +30,9 @@ public class SchedulerServiceImpl implements SchedulerService {
 		ListVO lvo=new ListVO(list,paging);
 		System.out.println("lvo: "+lvo);
 		return lvo;
+	}
+	@Override
+	public List<HashMap> getDateList(SchedulerVO sdvo) {
+		return schedulerDAO.getDateList(sdvo);
 	}
 }

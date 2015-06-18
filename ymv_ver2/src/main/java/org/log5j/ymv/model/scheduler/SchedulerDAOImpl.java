@@ -1,5 +1,6 @@
 package org.log5j.ymv.model.scheduler;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,16 +14,25 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public List<BoardVO> getBoardList(SearchVO scvo) {
+	public List<BoardVO> getSchedulerList(SchedulerVO sdvo) {
+		System.out.println("DAO Scheduler"+sdvo);
+		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.getSchedulerList",sdvo);
+		return list;
+	}
+	@Override
+	public List<BoardVO> getSearchList(SearchVO scvo) {
 		System.out.println("DAO Search"+scvo);
-		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.getBoardList",scvo);
-		System.out.println("RecruitBoardDAOImpl db 들어가서 list 넣은거"+list);
+		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.getSearchList",scvo);
 		return list;
 	}
 
 	@Override
 	public int totalContent(SearchVO scvo) {
 		return sqlSessionTemplate.selectOne("scheduler.totalContent",scvo);
+	}
+	@Override
+	public List<HashMap> getDateList(SchedulerVO sdvo) {
+		return sqlSessionTemplate.selectList("scheduler.getDateList",sdvo);
 	}
 
 
