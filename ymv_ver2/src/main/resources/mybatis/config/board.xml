@@ -69,4 +69,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deletePicture" parameterType="int">
 		delete from picture where picture_no=#{value}
 	</delete>
+	<select id="getNormalBoardList" resultMap="boardRM" parameterType="cpvo" resultType="recruitbvo">
+		select recruit_no, title, field, location, age, start_date, end_date 
+   	from(select recruit_no, title, field, location, age, start_date, end_date, CEIL(rownum/5) AS page from(select r.recruit_no, r.title, r.field, r.location, r.age, r.start_date, r.end_date
+   	from recruit r , voluntary_service_applicate vsa
+   	where r.recruit_no=vsa.recruit_no and vsa.member_no=#{memberNo} order by recruit_no desc) ) 
+   	where page=#{pageNo}
+	</select>
+	<select id="totalNormalContent" parameterType="int" resultType="int">
+		select count(*) from recruit r , voluntary_service_applicate vsa where r.recruit_no=vsa.recruit_no and vsa.member_no=#{value}
+	</select>	
  </mapper> 
