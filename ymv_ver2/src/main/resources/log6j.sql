@@ -53,7 +53,8 @@ create table recruit(
 	)
 	drop table member
 drop sequence recruit_no_seq;
-create sequence recruit_no_seq;
+create sequence qna_no_seq;
+create sequence qna_no_seq
 	delete from member
 drop table recruit
 
