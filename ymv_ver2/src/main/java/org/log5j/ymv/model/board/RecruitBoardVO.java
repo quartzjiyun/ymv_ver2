@@ -13,7 +13,7 @@ public class RecruitBoardVO implements BoardVO{
 	private int memberNo;
 	private String postDate;
 	private int hit;
-	
+	private String checkDate;
 	
 	public RecruitBoardVO() {
 		super();
@@ -77,6 +77,33 @@ public class RecruitBoardVO implements BoardVO{
 		this.memberNo = memberNo;
 		this.postDate = postDate;
 		this.hit = hit;
+	}
+	
+	public RecruitBoardVO(int recruitNo, String title, String field,
+			String location, String age, String startDate, String endDate,
+			String content, int memberNo, String postDate, int hit,
+			String checkDate) {
+		super();
+		this.recruitNo = recruitNo;
+		this.title = title;
+		this.field = field;
+		this.location = location;
+		this.age = age;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.content = content;
+		this.memberNo = memberNo;
+		this.postDate = postDate;
+		this.hit = hit;
+		this.checkDate = checkDate;
+	}
+
+	public String getCheckDate() {
+		return checkDate;
+	}
+
+	public void setCheckDate(String checkDate) {
+		this.checkDate = checkDate;
 	}
 
 	public String getContent() {
@@ -160,8 +187,10 @@ public class RecruitBoardVO implements BoardVO{
 				+ ", field=" + field + ", location=" + location + ", age="
 				+ age + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", content=" + content + ", memberNo=" + memberNo
-				+ ", postDate=" + postDate + ", hit=" + hit + "]";
+				+ ", postDate=" + postDate + ", hit=" + hit + ", checkDate="
+				+ checkDate + "]";
 	}
 
+	
 
 }
