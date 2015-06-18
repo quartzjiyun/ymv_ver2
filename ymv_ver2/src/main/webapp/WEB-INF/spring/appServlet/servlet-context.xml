@@ -13,6 +13,10 @@
  -->
 <mvc:annotation-driven />
 <context:component-scan base-package="org.log5j.ymv.controller,org.log5j.ymv.aop.controller" />
+<!-- <context:component-scan base-package="org.log5j.ymv.controller" use-default-filters="false">
+	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+</context:component-scan> -->
+
 <bean id="viewResolver" 
 class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/views/"  />
@@ -33,7 +37,7 @@ class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	<property name="viewClass" 
 	value="org.springframework.web.servlet.view.tiles2.TilesView" />
-	<property name="order" value="0" />
+	<property name="order" value="1" />
 </bean>
 <!-- Spring Validation -->
 <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -72,9 +76,25 @@ class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
 <bean id="beanNameViewResolver" 
 class="org.springframework.web.servlet.view.BeanNameViewResolver">
-	<property name="order" value="1"></property>
+	<property name="order" value="2"></property>
 </bean>
 <!-- 파일다운로드를 위한 view를 설정 -->
 <bean name="downloadView" class="org.log5j.ymv.controller.DownloadView"></bean>
 
+<!-- 인터셉터 -->
+<!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	<property name="order" value="0"/>
+	<property name="interceptors">
+		<list>
+			<ref bean="LoginCheckInterceptor"/>
+		</list>
+	</property>
+</bean> -->
+ <mvc:interceptors>
+ <mvc:interceptor>
+    <mvc:mapping path="/**"/>
+    <bean class="org.log5j.ymv.controller.LoginInterceptor" />
+</mvc:interceptor>
+</mvc:interceptors>
+<mvc:annotation-driven />
 </beans>
