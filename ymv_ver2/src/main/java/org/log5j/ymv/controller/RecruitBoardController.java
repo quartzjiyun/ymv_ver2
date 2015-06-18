@@ -67,8 +67,9 @@ public class RecruitBoardController {
 	
 	@RequestMapping("Volunteer_register.ymv")
 	public String RegisterVolunteer_result(HttpServletRequest request,RecruitBoardVO rbvo){
+		rbvo.setStartDate(rbvo.getStartDate()+" "+request.getParameter("startTime"));
+		rbvo.setEndDate(rbvo.getEndDate()+" "+request.getParameter("endTime"));
 		recruitBoardService.registerVolunteer(rbvo);
-		//return "redirect:RegisterVolunteer_detail.ymv?title=" + rbvo.getTitle();
 		return "redirect:voluntary_showContentRecruitVol.ymv?recruitNo=" + rbvo.getRecruitNo();
 	}
 	

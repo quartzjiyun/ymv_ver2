@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.board.CompanyVO" alias="cpvo"/>
 		<typeAlias type="org.log5j.ymv.model.scheduler.SearchVO" alias="scvo" />
 		<typeAlias type="org.log5j.ymv.model.statistics.StatisticsVO" alias="stvo"/>
+		<typeAlias type="org.log5j.ymv.model.scheduler.SchedulerVO" alias="sdvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/board.xml" />
