@@ -28,7 +28,7 @@
 					<tr>
 						<td>${bvo.recruitNo }</td>
 						<td><a
-							href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}">
+							href="${initParam.root}voluntary_showContentRecruitVolType.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}">
 								${bvo.title }</a></td>
 						<td>${bvo.field }</td>
 						<td>${bvo.location }</td>
