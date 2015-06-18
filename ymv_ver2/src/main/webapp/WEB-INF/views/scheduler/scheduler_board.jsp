@@ -40,11 +40,10 @@
 		</table>
 
 <br>
-<a href="${initParam.root }voluntary_register_view.ymv">기업일 경우 글쓰기	버튼이 생김</a>
 <br></br>
 <c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
 	<a
-		href="scheduler_board.ymv?pageNo=${requestScope.lvo.pagingBean.
+		href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.
     startPageOfPageGroup-1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }"><img
 		src="${initParam.root }/img/left_arrow_btn.gif"></a>
 </c:if>
@@ -54,7 +53,7 @@
 	end="${requestScope.lvo.pagingBean.endPageOfPageGroup}">
 	<c:choose>
 		<c:when test="${requestScope.lvo.pagingBean.nowPage!=i}">
-			<a href="scheduler_board.ymv?pageNo=${i}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">${i}</a>
+			<a href="search_board.ymv?pageNo=${i}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">${i}</a>
 		</c:when>
 		<c:otherwise>
    ${i}
@@ -63,7 +62,7 @@
 </c:forEach>
 &nbsp;&nbsp;
 <c:if test="${requestScope.lvo.pagingBean.nextPageGroup}">
-	<a	href="scheduler_board.ymv?pageNo=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">
+	<a	href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">
 		<img src="${initParam.root }/img/right_arrow_btn.gif">
 	</a>
 </c:if>
