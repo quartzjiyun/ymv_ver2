@@ -33,6 +33,7 @@ public class SchedulerController {
 		return new ModelAndView("scheduler_test","list",list).addObject("dateList", dateList);
 	}
 	@RequestMapping("search_board.ymv")
+	@NoLoginCheck
 	public ModelAndView getSearchList(SearchVO scvo){
 		ListVO lvo = schedulerService.getSearchList(scvo);
 		return new ModelAndView("scheduler_board","lvo",lvo).addObject("scvo", scvo);
