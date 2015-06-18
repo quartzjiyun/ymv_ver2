@@ -18,6 +18,7 @@ public class QnABoardController {
 	private QnABoardService qnABoardService;
 	
 	@RequestMapping("qna_board.ymv")
+	@NoLoginCheck
 	public ModelAndView getQnABoardList(String pageNo) {	
 		ListVO lvo=qnABoardService.getQnABoardList(pageNo);
 		return new ModelAndView("qna_board","lvo",lvo);
@@ -38,6 +39,7 @@ public class QnABoardController {
 		return "redirect:qna_showContent.ymv?qnaNo=" + qvo.getQnaNo();
 	}
 	@RequestMapping("qna_showContent.ymv")
+	@NoLoginCheck
 	   public ModelAndView showContentQnAVol(HttpServletRequest request){
 	      int qnaNo=Integer.parseInt(request.getParameter("qnaNo"));
 	      QnABoardVO qvo=qnABoardService.getQnABoardByQnANo(qnaNo);

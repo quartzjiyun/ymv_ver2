@@ -26,20 +26,29 @@ public class ReviewBoardController {
 	private String path;
 	
 	@RequestMapping("home.ymv")
+	@NoLoginCheck
 	public String test(){
 		return "index";
 	}
+	@RequestMapping("loginCheck.ymv")
+	@NoLoginCheck
+	public String loginCheck(){
+		return "loginCheck";
+	}
 	@RequestMapping("testTiles.ymv")
+	@NoLoginCheck
 	public String testTiles(){
 		return "home";
 	}
 	@RequestMapping("review_board.ymv")
+	@NoLoginCheck
 	public ModelAndView reviewBoard(String pageNo) {	
 		ListVO lvo = reviewBoardService.getBoardList(pageNo);
 		System.out.println(lvo+"컨틀롤러");
 		return new ModelAndView("review_board","lvo",lvo);
 	}
 	@RequestMapping("review_showContent.ymv")
+	@NoLoginCheck
 	   public String showContentReview(HttpServletRequest request,Model model){
 	      int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 	      int pictureNo=boardNo;

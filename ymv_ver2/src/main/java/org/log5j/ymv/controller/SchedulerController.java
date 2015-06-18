@@ -38,6 +38,7 @@ public class SchedulerController {
 		return new ModelAndView("scheduler_board","lvo",lvo).addObject("scvo", scvo);
 	}
 	@RequestMapping("search_view.ymv")
+	@NoLoginCheck
 	public ModelAndView searchView(){
 	     List<FieldVO> Flist = recruitBoardService.getFieldList(); 
 	      List<LocationVO> Llist = recruitBoardService.getLocationList();

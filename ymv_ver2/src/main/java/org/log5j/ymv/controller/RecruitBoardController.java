@@ -22,11 +22,13 @@ public class RecruitBoardController {
 	private RecruitBoardService recruitBoardService;
 	
 	@RequestMapping("voluntary_board.ymv")
+	@NoLoginCheck
 	public ModelAndView list(String pageNo) {	
 		ListVO lvo = recruitBoardService.getBoardList(pageNo);
 		return new ModelAndView("voluntary_board","lvo",lvo);
 	}
 	@RequestMapping("voluntary_showContentRecruitVol.ymv")
+	@NoLoginCheck
 	   public ModelAndView showContentRecruitVol(HttpServletRequest request){
 	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);

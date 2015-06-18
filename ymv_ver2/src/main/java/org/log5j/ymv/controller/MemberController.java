@@ -34,6 +34,7 @@ public class MemberController {
 	 * 로그인부분
 	 */
 	@RequestMapping("login.ymv")
+	@NoLoginCheck
 	public ModelAndView login(HttpServletRequest request,MemberVO  vo) {	
 		System.out.println("memberVO:"+vo);
 		MemberVO mvo=memberService.login(vo);
@@ -49,6 +50,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("logout.ymv")
+	@NoLoginCheck
 	public ModelAndView logout(HttpServletRequest request){
 		HttpSession session=request.getSession(false);
 		if(session!=null){
