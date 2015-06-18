@@ -112,6 +112,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "member_register_validation.ymv", method = RequestMethod.POST)
+	@NoLoginCheck
 	public ModelAndView register(@Valid MemberVO memberVO, BindingResult result, PictureVO pvo) {
 		ModelAndView mv = new ModelAndView();
 		if (result.hasErrors()) {

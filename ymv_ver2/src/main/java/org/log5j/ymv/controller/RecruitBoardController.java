@@ -41,7 +41,7 @@ public class RecruitBoardController {
     		HttpSession session=request.getSession();
     		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
     		String url="voluntary_show_content_company";
-    		if(mvo.getMemberType()=="normal"){
+    		if(mvo.getMemberType().equals("normal")){
     			url="voluntary_show_content_normal";
     		}
 	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
