@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.CommentVO;
@@ -47,7 +49,7 @@ public class ReviewBoardController {
 		System.out.println(lvo+"컨틀롤러");
 		return new ModelAndView("review_board","lvo",lvo);
 	}
-	@RequestMapping("review_showContent.ymv")
+	/*@RequestMapping("review_showContent.ymv")
 	@NoLoginCheck
 	   public String showContentReview(HttpServletRequest request,Model model){
 	      int boardNo=Integer.parseInt(request.getParameter("boardNo"));
@@ -63,7 +65,56 @@ public class ReviewBoardController {
 	      System.out.println("pvo: " + pvo);
 	      model.addAttribute("rvo", rvo).addAttribute("commentList", commentList);
 	      return "review_show_content";
-	   }
+	   }*/
+	
+	@RequestMapping("review_showContent.ymv")
+	@NoLoginCheck
+	 public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
+	      int pictureNo=boardNo;
+		   ModelAndView model = new ModelAndView();
+			ReviewBoardVO rvo = null;
+			Cookie cookies[] = request.getCookies();
+			Cookie cookie = null;
+			String cookieValue = null;
+			String cookieName =null;
+					if (cookies == null || cookies.length == 0) {
+				//그냥 쿠키 자체 없음
+				cookieName = "hitcookie";
+		        cookieValue = "|"+boardNo+"|";
+				cookie = new Cookie(cookieName, cookieValue);
+				response.addCookie(cookie);
+			}else{
+				//쿠키는 있음
+				for(int i=0; i<cookies.length; i++){
+					cookieName = "hitcookie";
+					if(cookies[i].getName().equals(cookieName)){//쿠키있고 hitcookie있고
+						reviewBoardService.getReviewBoardByBoardNo(boardNo);
+						List<CommentVO> commentList=reviewBoardService.findByCommentNo(request.getParameter("boardNo"));
+						PictureVO pvo=reviewBoardService.getPicture(pictureNo);
+						if(pvo!=null){
+							model.addObject("pvo",pvo);
+					    }
+						 model.addObject("rvo", rvo).addObject("commentList", commentList);
+					}
+				}
+					String value = cookieValue;
+			        value += "|"+boardNo+"|";
+					cookie = new Cookie(cookieName, value);
+					response.addCookie(cookie);
+			}
+			rvo = reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);
+			List<CommentVO> commentList=reviewBoardService.findByCommentNo(request.getParameter("boardNo"));
+			PictureVO pvo=reviewBoardService.getPicture(pictureNo);
+			 if(pvo!=null){
+		    	  model.addObject("pvo", pvo);
+		      }
+			 model.addObject("rvo", rvo).addObject("commentList", commentList);
+			//조회수 올라가게
+			return new ModelAndView("review_show_content", "rvo", rvo);
+		}
+	
+	
 	@RequestMapping("register_review_comment.ymv")
 	public String registerReviewComment(HttpServletRequest request,CommentVO cmvo){
 		reviewBoardService.registerReviewComment(cmvo);
