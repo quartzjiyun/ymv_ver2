@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<h3>봉사 후기</h3>
 <div class="col-md-12">
 	<div class="col-md-12">
 		<table class="table">

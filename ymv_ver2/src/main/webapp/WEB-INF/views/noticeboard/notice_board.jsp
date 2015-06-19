@@ -1,10 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<h3>공지사항</h3>
 <div class="col-md-12">
 	<div class="col-md-12">
 		<table class="table" >
-			<caption>목록</caption>
+	<%-- 		<caption>목록</caption> --%>
 			<thead>
 				<tr>
 					<th class="boardNo">NO</th>

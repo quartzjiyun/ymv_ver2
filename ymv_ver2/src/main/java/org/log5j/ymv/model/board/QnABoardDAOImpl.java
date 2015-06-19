@@ -50,4 +50,16 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 	public void replyQnABoard(QnABoardVO qvo){
 		sqlSessionTemplate.insert("qnaBoard.replyQnABoard", qvo);		
 	}
+	
+	@Override
+	public void getPostingByQnaNoNotHit(int qnaNo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.selectOne("qnaBoard.showQnAContent",qnaNo);
+	}
+
+	@Override
+	public void updateHit(int qnaNo) {
+		sqlSessionTemplate.update("qnaBoard.updateHit",qnaNo);
+		
+	}
 }

@@ -13,5 +13,9 @@ public interface QnABoardService {
 	public void deleteQnABoard(int qnaNo);
 
 	public void replyQnABoard(QnABoardVO qvo);
+	
+	public void getPostingByQnaNoNotHit(int qnaNo);
+
+	public QnABoardVO getPostingByQnaNoUpdateHit(int qnaNo);
 
 }
