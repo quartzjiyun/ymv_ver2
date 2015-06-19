@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.log5j.ymv.model.voluntary.ApplicantListVO;
 import org.springframework.stereotype.Service;
 @Service
 public class RecruitBoardServiceImpl implements RecruitBoardService {
@@ -103,5 +104,15 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		ListVO lvo=new ListVO(list,paging);
 		System.out.println("lvo: "+lvo);
 		return lvo;
+	}
+	@Override
+	public void registerApplicantOK(ApplicantListVO alvo) {
+		// TODO Auto-generated method stub
+		recruitBoardDAO.registerApplicantOK(alvo);
+	}
+	@Override
+	public List<ApplicantListVO> getApplicantOkList(int recruitNo) {
+		// TODO Auto-generated method stub
+		return recruitBoardDAO.getApplicantOkList(recruitNo);
 	}
 }

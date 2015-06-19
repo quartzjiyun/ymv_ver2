@@ -1,5 +1,4 @@
 -- member
-drop table member cascade constraints
 create table member(
 	member_no number primary key,
 	id varchar2(50) unique,
@@ -10,8 +9,29 @@ create table member(
 	mail_address varchar2(50) not null,
 	member_type varchar2(10) not null
 )
-alter table member add(file_path varchar(200));
+alter ta
+alter table member add(id varchar(50));
+alter table member add(password varchar(50));
+alter table member add(name varchar(50));
+alter table member add(address varchar(50));
+alter table member add(identity_no varchar(50));
+alter table member add(mail_address varchar(50));
+alter table member add(member_type varchar(10))
+alter table member add(file_path varchar(200))
+
+
 alter table member drop(file_path);
+alter table member drop(name);
+alter table member drop(address);
+alter table member drop(identity_no);
+alter table member drop(mail_address);
+alter table member drop(member_type);
+
+
+
+
+
+select * from member
 drop table member
 delete from member
 --JJH-time_posted,hit 추가
@@ -79,7 +99,6 @@ create table voluntary_service_applicate(
 	motivate varchar(3000),
 	constraint pk_voluntary_service_applicate primary key(recruit_no,member_no)
 )
-create sequence qna_no_seq
 delete from voluntary_service_applicate
 select * from voluntary_service_applicate;
 --JJH-time_posted,hit 추가
@@ -117,11 +136,15 @@ drop table picture
 -- voluntary_applicant_ok
 create table voluntary_applicant_ok(
 	recruit_no number not null,
-	member_no number not null
-	constraint fk_recruit_no_1 references recruit(recruit_no)
-	constraint fk_member_no_1 references member(member_no),
+	member_no number not null,
+	constraint fk_recruit_no_8 foreign key(recruit_no) references recruit,
+	constraint fk_member_no_10 foreign key(member_no) references member,
 	primary key(recruit_no,member_no)
 )
+insert into voluntary_applicant_ok(recruit_no,member_no) values(126,123)
+insert into voluntary_applicant_ok(recruit_no,member_no) values(126,124)
+
+drop table voluntary_applicant_ok
 select * from voluntary_applicant_ok
 -- voluntary_applicant 
 create table voluntary_applicant(
@@ -210,3 +233,10 @@ select boardNo, title, writer, content, memberNo, timePosted, hit from(select bo
 select boardNo, title, writer, content, memberNo, timePosted, hit from(select board_no as boardNo, title, writer, content, member_no as memberNo, time_posted as timePosted, hit, CEIL(rownum/5) AS page from board where board_type='notice' order by board_no desc) where page=#{value}
 
 select boardNo, title, writer, content, memberNo, timePosted, hit from(select boardNo, title, writer, content, memberNo, timePosted, hit, CEIL(rownum/5) AS page from(select board_no as boardNo, title, writer, content, member_no as memberNo, time_posted as timePosted, hit from board where board_type='notice' order by boardNo desc)) where page=1
+
+
+select vsa.recruit_no, vsa.member_no, vsa.motivate, m.id, m.name, m.mail_address from voluntary_service_applicate vsa, member m where vsa.member_no=m.member_no and recruit_no=#{value}
+
+select vok.member_no from voluntary_applicant_ok vok, recruit r where vok.recruit_no=r.recruit_no and r.recruit_no=126
+
+insert into voluntary_applicant_ok(recruit_no,member_no) values(126,123)

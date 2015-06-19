@@ -2,6 +2,8 @@ package org.log5j.ymv.model.board;
 
 import java.util.List;
 
+import org.log5j.ymv.model.voluntary.ApplicantListVO;
+
 public interface RecruitBoardService {
 	public  ListVO getBoardList(String pageNo);
 
@@ -28,4 +30,8 @@ public interface RecruitBoardService {
 	public void deletePicture(int pictureNo);
 	
 	public ListVO getNormalBoardList(CompanyVO cpvo);
+
+	public void registerApplicantOK(ApplicantListVO alvo);
+
+	public List<ApplicantListVO> getApplicantOkList(int recruitNo);
 }

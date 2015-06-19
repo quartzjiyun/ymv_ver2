@@ -87,6 +87,7 @@ $(document).ready(function(){
 							</a>
 							<img class="action" src="${initParam.root}img/delete_btn.jpg"
 								id="delete">
+							<a href="getApplicantList.ymv?recruitNo=${requestScope.rvo.recruitNo }">신청자리스트보기</a>
 						</c:when>
 						
 					</c:choose>
