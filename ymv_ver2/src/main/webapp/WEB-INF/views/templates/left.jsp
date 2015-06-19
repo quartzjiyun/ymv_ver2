@@ -41,7 +41,8 @@ $("#profile").click(function(){
 				<img src="${initParam.root }${sessionScope.mvo.filePath}" id="profile" style="width:80%; height:50%;">
 			</c:when>
 			<c:otherwise>
-				<img src="${initParam.root }/img/man.jpg" id="profile"><br><br>
+			 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+            class="center-block img-circle img-responsive" id="profile"><br><br>
 			</c:otherwise>
 		</c:choose>
 		<div id="profileView"></div>
