@@ -78,6 +78,7 @@ create table voluntary_service_applicate(
 	motivate varchar(3000),
 	constraint pk_voluntary_service_applicate primary key(recruit_no,member_no)
 )
+create sequence qna_no_seq
 delete from voluntary_service_applicate
 select * from voluntary_service_applicate;
 --JJH-time_posted,hit 추가
