@@ -18,4 +18,7 @@ public interface NoticeBoardService {
 
 	void deletePicture(int pictureNo);
 
+	NoticeBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo);
+
+	void getPostingByNoticeBoardNoNotHit(int boardNo);
 }

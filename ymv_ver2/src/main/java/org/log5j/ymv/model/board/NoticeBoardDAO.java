@@ -12,4 +12,6 @@ public interface NoticeBoardDAO {
 	void registerPicture(PictureVO pvo);
 	PictureVO getPicture(int pictureNo);
 	void deletePicture(int pictureNo);
+	NoticeBoardVO getNoticeBoardByBoardNo(int boardNo);
+	void updateHit(int boardNo);
 }

@@ -67,5 +67,19 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		// TODO Auto-generated method stub
 		noticeBoardDAO.deletePicture(pictureNo);
 	}
+	
+	@Override
+	public void getPostingByNoticeBoardNoNotHit(int boardNo) {
+		noticeBoardDAO.getNoticeBoardByBoardNo(boardNo);
+		
+	}
+
+	@Override
+	public NoticeBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo) {
+		noticeBoardDAO.updateHit(boardNo);
+		NoticeBoardVO nvo = noticeBoardDAO.getNoticeBoardByBoardNo(boardNo);
+		System.out.println(nvo);
+		return nvo;
+	}
 
 }
