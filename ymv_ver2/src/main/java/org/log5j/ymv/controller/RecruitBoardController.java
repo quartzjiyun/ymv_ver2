@@ -18,7 +18,9 @@ import org.log5j.ymv.model.voluntary.ApplicantListVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -64,7 +66,8 @@ public class RecruitBoardController {
     
     //신청자리스트보기
     @RequestMapping("getApplicantList.ymv")
-    public ModelAndView getApplicantList(HttpServletRequest request){
+    @ResponseBody
+    public List getApplicantList(HttpServletRequest request){
     	HttpSession session=request.getSession();
 		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 		int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
@@ -73,7 +76,7 @@ public class RecruitBoardController {
     		list=voluntaryServiceApplicateService.getApplicantList(recruitNo);
     		System.out.println("getApplicantList list: "+list);
     	}
-    	return new ModelAndView("voluntary_getApplicantList","list",list);
+    	return list;
     }
 
     
@@ -150,7 +153,6 @@ public class RecruitBoardController {
 		String memberList=request.getParameter("memberList");
 		System.out.println("OK: "+ memberList);
 		String member[]=memberList.split(",");
-		
 		System.out.println("OK: "+ member[0]);
 		// recruitNo, memberNo 
 		for(int i=0;i<member.length;i++){

@@ -141,6 +141,8 @@ create table voluntary_applicant_ok(
 	constraint fk_member_no_10 foreign key(member_no) references member,
 	primary key(recruit_no,member_no)
 )
+
+drop table voluntary_applicant_ok
 insert into voluntary_applicant_ok(recruit_no,member_no) values(126,123)
 insert into voluntary_applicant_ok(recruit_no,member_no) values(126,124)
 
