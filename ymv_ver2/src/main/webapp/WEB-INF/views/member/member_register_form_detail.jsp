@@ -3,53 +3,25 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
     <%-- Spring Expression Language (SpEL) 선언부 --%>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-   <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-    rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-    rel="stylesheet" type="text/css">
+
    <script type="text/javascript">
    $(document).ready(function(){
-   $("#id").keyup(function(){
-		var id=$("#id").val().trim();
-		$.ajax({
-			type:"POST",
-			url:"${initParam.root}member_register_idcheck.ymv",
-			dataType:"json",  
-			data:"identityNo=${requestScope.memberVO.identityNo }&memberType=${requestScope.memberVO.memberType }&id="+$("#id").val(),
-			success:function(flag){		
-				$("#idCheck").show();
-				if($("#id").val()==""){
-					   $("#idCheck").hide();
-				}
-				if(!flag){
-					//$("#idCheck").show();
-					$("#idCheck").html(" 아이디 중복!").css("font","red");
-				}else{			
-					if(id.length<4 || id.length>10){
-						$("#idCheck").html(" 4자이상 10자 미만으로 입력해주세요!");
-					}else{
-						$("#idCheck").html(" 사용가능!");
-					}
-				}					
-			}//callback			
-		});//ajax
-	}); //keyup
+	   if("${requestScope.info}" != ""){
+		   alert("${requestScope.info}");
+	   }
    });
    </script>
-   <h3>회원가입</h3>
    <div class="section">
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
+
+			<div class="col-sm-6 col-sm-offset-3">
+   <h3>회원가입</h3>
             <form:form method = "post" action="${initParam.root}member_register_validation.ymv?identityNo=${requestScope.memberVO.identityNo }&memberType=${requestScope.memberVO.memberType }"
              commandName="memberVO"	class="form-horizontal" role="form">
               <div class="form-group">
                 <div class="col-sm-2">
-                  <label class="control-label">아이디</label>
+                  <label for="id" class="control-label">아이디</label>
                 </div>
                 <div class="col-sm-5">
                   <form:input type="text" class="form-control" placeholder="id" path="id" id="id"/>

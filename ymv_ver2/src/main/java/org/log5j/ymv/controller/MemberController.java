@@ -12,6 +12,7 @@ import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateVO;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,9 +91,7 @@ public class MemberController {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setIdentityNo(identityNo);
 		memberVO.setMemberType(memberType);
-		if(memberType.equals("company")){
-			return new ModelAndView("member_register_form_company_detail","memberVO",memberVO);
-		}
+
 		return new ModelAndView("member_register_form_detail","memberVO",memberVO);
 	}
 
@@ -120,8 +119,13 @@ public class MemberController {
 			mv.addObject("memberVO", memberVO);
 			return mv;
 		}
+		try{
 		memberService.registerMember(memberVO);
-		
+		}catch(DuplicateKeyException de){
+			mv.setViewName("member_register_form_detail");
+			mv.addObject("info","아이디 중복됩니다.");
+			return mv;
+		}
 		mv.setViewName("member_register_result");
 		return mv;// 문제 없으면 결과 페이지로 이동한다.
 	}
