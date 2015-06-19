@@ -57,7 +57,7 @@
 	});
 </script>
 <div class="col-md-12">
-	<div class="col-md-12">
+	<div class="col-md-5">
 		<h2>봉사 등록</h2>
 		<form id="recruitForm"
 			action="Volunteer_register.ymv?memberNo=${sessionScope.mvo.memberNo }"
