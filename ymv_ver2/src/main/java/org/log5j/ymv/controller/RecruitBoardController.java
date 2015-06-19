@@ -12,8 +12,12 @@ import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.LocationVO;
 import org.log5j.ymv.model.board.RecruitBoardService;
 import org.log5j.ymv.model.board.RecruitBoardVO;
+import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
+import org.log5j.ymv.model.voluntary.ApplicantListVO;
+import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class RecruitBoardController {
 	@Resource(name="recruitBoardServiceImpl")
 	private RecruitBoardService recruitBoardService;
+	@Resource(name="voluntaryServiceApplicateServiceImpl")
+	private VoluntaryServiceApplicateService voluntaryServiceApplicateService;
+	@Resource
+	private MemberService memberService;
 	
 	@RequestMapping("voluntary_board.ymv")
 	@NoLoginCheck
@@ -41,14 +49,35 @@ public class RecruitBoardController {
     		HttpSession session=request.getSession();
     		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
     		String url="voluntary_show_content_company";
-    		if(mvo.getMemberType()=="normal"){
-    			url="voluntary_show_content_normal";
+    		//List<VoluntaryServiceApplicateVO> list=null;
+    		int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
+    		if(mvo.getMemberType().equals("normal")){
+    			//url="voluntary_show_content_normal";
+    			//list=voluntaryServiceApplicateService.getApplicantList(recruitNo);
+                //System.out.println("list:"+list);
+
     		}
-	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
+	      
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
 	      return new ModelAndView(url,"rvo",rvo);
 	   }
+    
+    //신청자리스트보기
+    @RequestMapping("getApplicantList.ymv")
+    public ModelAndView getApplicantList(HttpServletRequest request){
+    	HttpSession session=request.getSession();
+		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
+		int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
+		List<ApplicantListVO> list=null;
+    	if(mvo.getMemberType().equals("company")){
+    		list=voluntaryServiceApplicateService.getApplicantList(recruitNo);
+    		System.out.println("getApplicantList list: "+list);
+    	}
+    	return new ModelAndView("voluntary_getApplicantList","list",list);
+    }
 
+    
+    
 	@RequestMapping("voluntary_board_update_view.ymv")
 	public ModelAndView updateView(int recruitNo) {
 		RecruitBoardVO recruitbvo = (RecruitBoardVO) recruitBoardService
@@ -107,10 +136,33 @@ public class RecruitBoardController {
 		return new ModelAndView("voluntary_board_company","lvo",lvo);
 	}
 	@RequestMapping("voluntary_board_normal.ymv")
+	@NoLoginCheck
 	public ModelAndView voluntaryBoardNormal(HttpServletRequest request, CompanyVO cpvo){
 		MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
 		cpvo.setMemberNo(mvo.getMemberNo());
 		ListVO lvo = recruitBoardService.getNormalBoardList(cpvo);
 		return new ModelAndView("voluntary_board_normal","lvo",lvo);
 	}
+	@RequestMapping("voluntary_applicantOK.ymv")
+	@NoLoginCheck
+	@Transactional
+	public ModelAndView applicantOK(HttpServletRequest request,ApplicantListVO alvo){
+		String memberList=request.getParameter("memberList");
+		System.out.println("OK: "+ memberList);
+		String member[]=memberList.split(",");
+		
+		System.out.println("OK: "+ member[0]);
+		// recruitNo, memberNo 
+		for(int i=0;i<member.length;i++){
+			System.out.println("ok: " +member[i]);
+			alvo.setMemberNo(Integer.parseInt(member[i]));
+			System.out.println("alvo: "+alvo);
+			recruitBoardService.registerApplicantOK(alvo);
+			System.out.println("for문 끝");
+			voluntaryServiceApplicateService.deleteApplicant(alvo);
+		}
+			List<ApplicantListVO> list=recruitBoardService.getApplicantOkList(alvo.getRecruitNo());
+		return new ModelAndView("voluntary_applicantOK","list",list);
+	}
+	
 }

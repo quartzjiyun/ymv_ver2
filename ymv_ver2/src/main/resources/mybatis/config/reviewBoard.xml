@@ -30,6 +30,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="timePosted" column="time_posted"/>
 		<result property="boardNo" column="board_no"/>
 	</resultMap>
+	<select id="getReviewBoardCommentByBoardNo" parameterType="int" resultMap="commentRM">   
+		select comment_no, writer, content, time_posted, board_no from YMV_COMMENT where board_no=#{value}
+	</select>
 	<select id="findByCommentNo" resultMap="commentRM">
 		select * from ymv_comment where board_no=#{boardNo} order by comment_no desc
 	</select>

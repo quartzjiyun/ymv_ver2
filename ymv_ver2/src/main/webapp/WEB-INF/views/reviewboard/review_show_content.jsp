@@ -46,6 +46,13 @@
 				</a> <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
 				
 				</c:when>
+				<c:when test="${sessionScope.mvo.memberType=='admin' }">
+						<a	href="${initParam.root}review_board_update_view.ymv?boardNo=${requestScope.rvo.boardNo }">
+						<img class="action" onclick="openForm('update')"
+						src="${initParam.root}img/modify_btn.jpg">
+				</a> <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
+				
+				</c:when>
 				</c:choose>
 				</td>
 			</tr>
@@ -58,15 +65,30 @@
 				<tr>
 					<td colspan="2">
 					${comment.content}</td>
-					<td><a
-						href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}">댓글삭제</a></td>
+					<td>
+					<c:choose>
+					<c:when test="${sessionScope.mvo.memberType=='admin' }">
+					<a
+						href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}">댓글삭제</a>
+					</c:when>
+					<c:when test="${comment.writer==sessionScope.mvo.id }">
+					<a
+						href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}">댓글삭제</a>
+										
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+						</c:choose>
+					
+						
+						</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="3">
 					<form name="commentForm" action="register_review_comment.ymv"
 						method="post">
-						작성자<input type="text" name="writer"> 내용<input type="text"
+						작성자:<input type="text" name="writer" value = "${sessionScope.mvo.id }" readonly="readonly"> 내용<input type="text"
 							name="content"> <input type="hidden" name="boardNo"
 							value="${requestScope.rvo.boardNo}"> <input type="submit"
 							value="댓글달기">

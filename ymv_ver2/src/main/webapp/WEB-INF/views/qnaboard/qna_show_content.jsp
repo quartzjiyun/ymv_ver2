@@ -31,11 +31,17 @@
       <tr>
       <td valign="middle" align="center" colspan="3">
       <a href = "${initParam.root}qna_board.ymv"> <img class="action" src="${initParam.root}img/list_btn.jpg" ></a>
+      <c:choose>
+      <c:when test="${sessionScope.mvo.memberType=='admin' }">
       <a href="qna_reply_view.ymv?qnaNo=${requestScope.qvo.qnaNo}">
 		<img src="${initParam.root}/img/answer_btn.jpg" ></a>
+		<a href = "${initParam.root}qna_board_update_view.ymv?qnaNo=${requestScope.qvo.qnaNo}"> 
+ <img class="action"  onclick="openForm('update')"  src="${initParam.root}img/modify_btn.jpg" ></a>
+ <img class="action"  onclick="checkDelete()"    src="${initParam.root}img/delete_btn.jpg" > 
+		</c:when>
+		</c:choose>
       <c:choose>
       <c:when test="${sessionScope.mvo.memberNo==requestScope.qvo.memberNo}">
-         
 <a href = "${initParam.root}qna_board_update_view.ymv?qnaNo=${requestScope.qvo.qnaNo}"> 
  <img class="action"  onclick="openForm('update')"  src="${initParam.root}img/modify_btn.jpg" ></a>
  <img class="action"  onclick="checkDelete()"    src="${initParam.root}img/delete_btn.jpg" > 

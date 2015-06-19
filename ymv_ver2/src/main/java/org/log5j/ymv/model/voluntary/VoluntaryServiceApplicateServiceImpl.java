@@ -1,6 +1,7 @@
 package org.log5j.ymv.model.voluntary;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -30,6 +31,18 @@ public class VoluntaryServiceApplicateServiceImpl implements VoluntaryServiceApp
 		if(count>0)
 			flag=true;
 		return flag;
+	}
+
+	@Override
+	public List<ApplicantListVO> getApplicantList(int recruitNo) {
+		// TODO Auto-generated method stub
+		return voluntaryServiceApplicateDAO.getApplicantList(recruitNo);
+	}
+
+	@Override
+	public void deleteApplicant(ApplicantListVO alvo) {
+		// TODO Auto-generated method stub
+		voluntaryServiceApplicateDAO.deleteApplicant(alvo);
 	}
 
 }

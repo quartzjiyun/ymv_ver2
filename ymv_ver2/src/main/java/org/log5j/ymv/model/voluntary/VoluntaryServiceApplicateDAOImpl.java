@@ -1,5 +1,6 @@
 package org.log5j.ymv.model.voluntary;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -27,6 +28,18 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 		System.out.println(vsvo);*/
 		System.out.println("map   "+map);
 		return sqlSessionTemplate.selectOne("member.checkVolunteerApplicant",map);
+	}
+
+	@Override
+	public List<ApplicantListVO> getApplicantList(int recruitNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("applicant.getApplicantList",recruitNo);
+	}
+
+	@Override
+	public void deleteApplicant(ApplicantListVO alvo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.delete("applicant.deleteApplicant",alvo);
 	}
 
 }

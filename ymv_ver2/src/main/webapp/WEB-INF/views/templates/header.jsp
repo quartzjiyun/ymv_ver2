@@ -1,89 +1,175 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <h2><a href="${initParam.root}home.do">로고</a>     메뉴 메뉴 메뉴 메뉴 </h2> --%>
+<title>YMV Main</title>
+<c:choose>
+<c:when test="${sessionScope.mvo.memberType=='admin' }">
 
-   <meta charset='utf-8'>
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-(function($) {
+<div>
+<a href="${initParam.root }testTiles.ymv"><img src="${initParam.root }/img/logo.jpg" style="position: relative;left: 40%;"></a>
+<nav class="navbar navbar-default" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="${initParam.root }testTiles.ymv">Home</a>
+    </div>
 
-	  $.fn.menumaker = function(options) {
-	      
-	      var cssmenu = $(this), settings = $.extend({
-	        title: "Menu",
-	        format: "dropdown",
-	        sticky: false
-	      }, options);
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">너나봉이란 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }introduce_ymv.ymv">너나봉 소개</a></li>
+            <li><a href="${initParam.root }introduce_how_ymv.ymv">about 너나봉</a></li>
+            <li><a href="${initParam.root }introduce_administrator.ymv">직원 소개</a></li>
+            <li class="divider"></li>
+            <li><a href="${initParam.root }introduce_map.ymv">찾아오는 길</a></li>
+          </ul>
+        </li>
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">봉사<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }search_view.ymv">통합검색</a></li>
+            <li><a href="${initParam.root }voluntary_board.ymv">봉사전체목록</a></li>
+            <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }review_board.ymv">봉사후기</a></li>
+            <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
+            <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
+          </ul>
+        </li>
+        <%--기업 --%>
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">기업 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }voluntary_register_view.ymv">봉사등록</a></li>
+            <li><a href="${initParam.root }voluntary_board_company.ymv">봉사 등록 확인</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">통계<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }voluntary_statistics.ymv">전체통계</a></li>
+            <li><a href="${initParam.root }voluntary_statisticsByAge.ymv">나이별 선호 봉사</a></li>
+          </ul>
+        </li>
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+       <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="검색해주세요">
+        </div>
+        <button type="submit" class="btn btn-default">검색</button>
+      </form>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
 
-	      return this.each(function() {
-	        cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
-	        $(this).find("#menu-button").on('click', function(){
-	          $(this).toggleClass('menu-opened');
-	          var mainmenu = $(this).next('ul');
-	          if (mainmenu.hasClass('open')) { 
-	            mainmenu.hide().removeClass('open');
-	          }
-	          else {
-	            mainmenu.show().addClass('open');
-	            if (settings.format === "dropdown") {
-	              mainmenu.find('ul').show();
-	            }
-	          }
-	        });
+</c:when>
+<c:otherwise>
 
-	        cssmenu.find('li ul').parent().addClass('has-sub');
+<div>
+<a href="${initParam.root }testTiles.ymv"><img src="${initParam.root }/img/logo.jpg" style="position: relative;left: 40%;"></a>
+<nav class="navbar navbar-default" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="${initParam.root }testTiles.ymv">Home</a>
+    </div>
 
-	        multiTg = function() {
-	          cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
-	          cssmenu.find('.submenu-button').on('click', function() {
-	            $(this).toggleClass('submenu-opened');
-	            if ($(this).siblings('ul').hasClass('open')) {
-	              $(this).siblings('ul').removeClass('open').hide();
-	            }
-	            else {
-	              $(this).siblings('ul').addClass('open').show();
-	            }
-	          });
-	        };
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">너나봉이란 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }introduce_ymv.ymv">너나봉 소개</a></li>
+            <li><a href="${initParam.root }introduce_how_ymv.ymv">about 너나봉</a></li>
+            <li><a href="${initParam.root }introduce_administrator.ymv">직원 소개</a></li>
+            <li class="divider"></li>
+            <li><a href="${initParam.root }introduce_map.ymv">찾아오는 길</a></li>
+          </ul>
+        </li>
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">봉사<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }search_view.ymv">통합검색</a></li>
+            <li><a href="${initParam.root }voluntary_board.ymv">봉사전체목록</a></li>
+            <c:choose>
+            <c:when test="${sessionScope.mvo.memberType=='normal' }">
+            <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
+            </c:when>
+            <c:when test="${sessionScope.mvo.memberType=='admin' }">
+            <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
+            </c:when>
+            <c:otherwise>
+            <li class="disabled"><a>봉사 신청 내역 확인</a></li>
+            </c:otherwise>
+            </c:choose>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }review_board.ymv">봉사후기</a></li>
+            <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
+            <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
+          </ul>
+        </li>
+        <%--기업 --%>
+        <c:choose>
+        <c:when test="${sessionScope.mvo.memberType=='company' }">
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">기업 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }voluntary_register_view.ymv">봉사등록</a></li>
+            <li><a href="${initParam.root }voluntary_board_company.ymv">봉사 등록 확인</a></li>
+          </ul>
+        </li>
+        </c:when>
+        </c:choose>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">통계<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${initParam.root }voluntary_statistics.ymv">전체통계</a></li>
+            <li><a href="${initParam.root }voluntary_statisticsByAge.ymv">나이별 선호 봉사</a></li>
+          </ul>
+        </li>
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+       <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="검색해주세요">
+        </div>
+        <button type="submit" class="btn btn-default">검색</button>
+      </form>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
 
-	        if (settings.format === 'multitoggle') multiTg();
-	        else cssmenu.addClass('dropdown');
+</c:otherwise>
+</c:choose>
 
-	        if (settings.sticky === true) cssmenu.css('position', 'fixed');
-
-	        resizeFix = function() {
-	          if ($( window ).width() > 768) {
-	            cssmenu.find('ul').show();
-	          }
-
-	          if ($(window).width() <= 768) {
-	            cssmenu.find('ul').hide().removeClass('open');
-	          }
-	        };
-	        resizeFix();
-	        return $(window).on('resize', resizeFix);
-
-	      });
-	  };
-	})(jQuery);
-
-	(function($){
-	$(document).ready(function(){
-
-	$("#cssmenu").menumaker({
-	   title: "Menu",
-	   format: "multitoggle"
-	});
-
-
-	});
-	})(jQuery);
-
-</script>
-   <title>CSS MenuMaker</title>
+<%--    
 <a href="testTiles.ymv"><img src="${initParam.root }/img/logo.jpg"></a>
 <div id='cssmenu' align="center">
 <ul>
@@ -136,5 +222,5 @@
       </ul>
    </li>
 </ul>
-</div>
+</div> --%>
 

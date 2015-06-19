@@ -39,11 +39,15 @@
 				<td valign="middle" align="center" colspan="3"><a
 					href="${initParam.root}notice_board.ymv"> <img class="action"
 						src="${initParam.root}img/list_btn.jpg" onclick="sendList()"></a>
+						<c:choose>
+						<c:when test="${sessionScope.mvo.memberType=='admin' }">
 					<a
 					href="${initParam.root}notice_board_update_view.ymv?boardNo=${requestScope.rvo.boardNo }">
 						<img class="action" onclick="openForm('update')"
 						src="${initParam.root}img/modify_btn.jpg">
 				</a> <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
+				</c:when>
+				</c:choose>
 				</td>
 		</table>
 	</div>

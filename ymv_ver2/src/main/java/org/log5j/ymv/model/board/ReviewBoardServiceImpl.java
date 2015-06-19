@@ -86,4 +86,10 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 		reviewBoardDAO.deletePicture(pictureNo);
 	}
 
+	@Override
+	public CommentVO getReviewBoardCommentByBoardNo(int boardNo) {
+		System.out.println("service getReviewBoardCommentByBoardNo boardNo: "+boardNo);
+		return reviewBoardDAO.getReviewBoardCommentByBoardNo(boardNo);
+	}
+
 }

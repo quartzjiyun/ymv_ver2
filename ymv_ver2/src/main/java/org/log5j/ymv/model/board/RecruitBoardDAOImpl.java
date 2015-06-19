@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.log5j.ymv.model.voluntary.ApplicantListVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 @Repository
@@ -108,6 +109,18 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	public int totalNormalContent(int memberNo) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("board.totalNormalContent",memberNo);
+	}
+
+	@Override
+	public void registerApplicantOK(ApplicantListVO alvo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.insert("applicant.registerApplicantOK",alvo);
+	}
+
+	@Override
+	public List<ApplicantListVO> getApplicantOkList(int recruitNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("applicant.getApplicantOkList",recruitNo);
 	}
 
 }
