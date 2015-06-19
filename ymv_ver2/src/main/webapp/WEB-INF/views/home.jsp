@@ -32,8 +32,7 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<img src="${initParam.root}img/main_1.jpg"
-								style="width: 300px; height: 400px;">
+							<img src="${initParam.root}img/main_1.jpg" >
 						</div>
 
 						<div class="item">
