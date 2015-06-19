@@ -1,7 +1,9 @@
 package org.log5j.ymv.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.log5j.ymv.model.board.ListVO;
@@ -38,13 +40,47 @@ public class QnABoardController {
 		qnABoardService.registerQnABoard(qvo);
 		return "redirect:qna_showContent.ymv?qnaNo=" + qvo.getQnaNo();
 	}
-	@RequestMapping("qna_showContent.ymv")
+	/*@RequestMapping("qna_showContent.ymv")
 	@NoLoginCheck
 	   public ModelAndView showContentQnAVol(HttpServletRequest request){
 	      int qnaNo=Integer.parseInt(request.getParameter("qnaNo"));
 	      QnABoardVO qvo=qnABoardService.getQnABoardByQnANo(qnaNo);
 	      return new ModelAndView("qna_show_content","qvo",qvo);
-	   }
+	   }*/
+	
+	@RequestMapping("qna_showContent.ymv")
+	@NoLoginCheck
+	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int qnaNo=Integer.parseInt(request.getParameter("qnaNo"));
+		QnABoardVO qvo = null;
+		Cookie cookies[] = request.getCookies();
+		Cookie cookie = null;
+		String cookieValue = null;
+		String cookieName =null;
+				if (cookies == null || cookies.length == 0) {
+			//그냥 쿠키 자체 없음
+			cookieName = "hitcookie";
+	        cookieValue = "|"+qnaNo+"|";
+			cookie = new Cookie(cookieName, cookieValue);
+			response.addCookie(cookie);
+		}else{
+			//쿠키는 있음
+			for(int i=0; i<cookies.length; i++){
+				cookieName = "hitcookie";
+				if(cookies[i].getName().equals(cookieName)){//쿠키있고 hitcookie있고
+					qnABoardService.getPostingByQnaNoNotHit(qnaNo);
+				}
+			}
+				String value = cookieValue;
+		        value += "|"+qnaNo+"|";
+				cookie = new Cookie(cookieName, value);
+				response.addCookie(cookie);
+		}
+		qvo = qnABoardService.getPostingByQnaNoUpdateHit(qnaNo);
+		//조회수 올라가게
+		return new ModelAndView("qna_show_content", "qvo", qvo);
+	}
+	
 	@RequestMapping("qna_board_update_view.ymv")
 	   public ModelAndView updateQnAView(int qnaNo) {
 	  QnABoardVO qvo = (QnABoardVO) qnABoardService.getQnABoardByQnANo(qnaNo);
