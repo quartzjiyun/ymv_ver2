@@ -1,7 +1,8 @@
 -- member
+drop table member cascade constraints
 create table member(
 	member_no number primary key,
-	id varchar2(50) not null,
+	id varchar2(50) unique,
 	password varchar2(50) not null,
 	name varchar2(50) not null,
 	address varchar2(50) not null,
