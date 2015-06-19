@@ -3,6 +3,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 	$(document).ready(function(){
+		$("#loginForm").submit(function(){
+			if($(":input[name=id]").val()==""){
+				alert("아이디를 입력하세요!");
+				return false;
+			}
+			if($(":input[name=password]").val()==""){
+				alert("패스워드를 입력하세요!");
+				return false;
+			}
+		});
 $("#profile").click(function(){
 			$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><input type='file' class = 'btn btn-default btn-xs' name='fileName' accept='.gif, .jpg, .png'><input type='submit' class = 'btn btn-default btn-xs' value='프로필사진등록' style='position: relative;margin-left: 5%;'>");
 		});
@@ -11,6 +21,13 @@ $("#profile").click(function(){
 
 <c:choose>
 <c:when test="${sessionScope.mvo==null}">
+<c:choose>
+<c:when test="${requestScope.loginSession=='X'}">
+					<script type="text/javascript">
+						alert("아이디와 비밀번호가 일치하지 않습니다!");
+					</script>
+</c:when>
+</c:choose>
 <form id = "loginForm" class="form-horizontal" style="position: relative;left: 5%; " action="login.ymv">
   <fieldset>
     <div class="form-group">
