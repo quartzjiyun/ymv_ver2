@@ -48,4 +48,15 @@ public class QnABoardServiceImpl implements QnABoardService {
 		qvo.setRelevel(relevel+1);
 		qnABoardDAO.replyQnABoard(qvo);//답변 글 입력								
 	}
+	
+	@Override
+	public void getPostingByQnaNoNotHit(int qnaNo) {
+		// TODO Auto-generated method stub
+		qnABoardDAO.getPostingByQnaNoNotHit(qnaNo);
+	}
+	@Override
+	public QnABoardVO getPostingByQnaNoUpdateHit(int qnaNo) {
+		qnABoardDAO.updateHit(qnaNo);
+		return qnABoardDAO.getQnABoardByQnANo(qnaNo);
+	}
 }

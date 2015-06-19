@@ -55,4 +55,7 @@ select qna_no, title, writer, content, ref, restep, relevel,member_no,time_poste
 	  	(qna_no,title,writer,content,ref,restep,relevel,member_no,time_posted,hit)
 	 	values(#{qnaNo},#{title},#{writer},#{content},#{ref},#{restep},#{relevel},#{memberNo},sysdate,0)
 	 </insert>	 	
+	  <update id="updateHit" parameterType="int">
+	 	update QnA_board set hit = hit+1 where qna_no=#{value}
+	 </update>
  </mapper> 

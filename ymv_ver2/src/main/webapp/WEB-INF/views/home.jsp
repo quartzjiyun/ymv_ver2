@@ -1,47 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+				
 <div class="section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
+	
 				<a href="voluntary_board.ymv">
-					<div class="well well-sm" style="position: relative; height: 200px;">
-
-					<div align="center">
-						<h5>봉사게시판</h5>
-						<table class="table">
-							<thead>
-								<tr>
-									<th class="danger">#</th>
-									<th class="warning">First Name</th>
-									<th class="warning">Last Name</th>
-									<th class="warning">Username</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+				<div class="col-md-10">
+						<img src="${initParam.root}img/main1.jpg" style="height: 180px;">
 				</div>
 				</a>
+				<div class="col-md-10"><br><br></div>
 				<!-- 왼쪽 2번째 칸 -->
+			<a href="introduce_ymv.ymv">
 				<div class="col-md-10">
-					<img src="${initParam.root}img/test1.jpg" style="height: 180px;">
+					<img src="${initParam.root}img/main3.jpg" style="height: 180px;">
 				</div>
-
+				</a>
 			</div>
 			<div class="col-md-6">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -56,7 +32,7 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<img src="${initParam.root}img/test1.jpg"
+							<img src="${initParam.root}img/main_1.jpg"
 								style="width: 300px; height: 400px;">
 						</div>
 
@@ -87,84 +63,22 @@
 						<span class="sr-only">Next</span>
 					</a>
 				</div>
-
 			</div>
-			<div class="col-md-3">
-				<div class="well well-sm" style="position: relative; height: 200px;">
-
-					<div align="center">
-						<h5>게시판</h5>
-						<table class="table">
-							<thead>
-								<tr>
-									<th class="danger">#</th>
-									<th class="warning">First Name</th>
-									<th class="warning">Last Name</th>
-									<th class="warning">Username</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<!-- 왼쪽 2번째 칸 -->
+		<div class="col-md-3">
+					<a href="review_board.ymv">
 				<div class="col-md-10">
-					<img src="${initParam.root}img/location.jpg" style="height: 180px;">
+					<img src="${initParam.root}img/main2.jpg" style="height: 180px;">
+			
+						</div>
+						</a>
+			<div class="col-md-10"><br><br></div>
+				<!-- 왼쪽 2번째 칸 -->
+			<a href="introduce_map.ymv">
+				<div class="col-md-10">
+					<img src="${initParam.root}img/main4.jpg" style="height: 180px;">
 				</div>
-				<!-- <div class="col-md-10">
-              <div align="center" ><h4>후기게시판</h4></div>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="success">#</th>
-                      <th class="info">First Name</th>
-                      <th class="info">Last Name</th>
-                      <th class="info">Username</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div> -->
-
-				<!-- 오른쪽 2번째 칸 -->
-				<%-- <div class="col-md-10">
-            	<img src="${initParam.root}img/test2.jpg" style="height: 180px;">
-           	    </div>
-            </div> --%>
-
+				</a>
+		</div>
 			</div>
 		</div>
 	</div>
-</div>

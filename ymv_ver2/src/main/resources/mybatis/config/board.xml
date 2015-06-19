@@ -79,4 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="totalNormalContent" parameterType="int" resultType="int">
 		select count(*) from recruit r , voluntary_service_applicate vsa where r.recruit_no=vsa.recruit_no and vsa.member_no=#{value}
 	</select>	
+	<update id="updateHit" parameterType="int">
+		update recruit set hit = hit+1 where recruit_no=#{value}
+	</update>
  </mapper> 

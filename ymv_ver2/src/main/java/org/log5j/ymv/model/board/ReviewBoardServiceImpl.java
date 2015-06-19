@@ -91,5 +91,11 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 		System.out.println("service getReviewBoardCommentByBoardNo boardNo: "+boardNo);
 		return reviewBoardDAO.getReviewBoardCommentByBoardNo(boardNo);
 	}
+	
+	@Override
+	public ReviewBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo) {
+		reviewBoardDAO.updateHit(boardNo);
+		return (ReviewBoardVO) reviewBoardDAO.getReviewBoardByBoardNo(boardNo);
+	}
 
 }

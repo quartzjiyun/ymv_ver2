@@ -67,6 +67,7 @@ $("#profile").click(function(){
 		</c:choose>
 		<a href="${initParam.root }member_update_form.ymv" class="btn btn-default btn-xs glyphicon glyphicon-edit " > 정보수정</a><br>
 		<a href="${initParam.root }logout.ymv" class="btn btn-default btn-xs glyphicon glyphicon-log-out"> 로그아웃</a>
+		<br><a href="#modal" data-toggle="modal"><img src="${initParam.root}img/scheduler.jpg" class="img-responsive"></a>
   </div>
   </div>
 </div>
@@ -79,7 +80,7 @@ $("#profile").click(function(){
 </c:when>
 </c:choose>
 
- <br><a href="#modal" data-toggle="modal"><img src="${initParam.root}img/scheduler.jpg" class="img-responsive"></a>
+ <br>
  
  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-content">

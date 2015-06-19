@@ -42,9 +42,8 @@
          </c:forEach>
    </table><br>
 
-   <a href="${initParam.root }qna_register_view.ymv">
-       <img class="action"  src="${initParam.root}img/write_btn.jpg" align="right"> 
-   </a>
+
+   <a href="${initParam.root }qna_register_view.ymv">글쓰기	</a>
    <br></br>   
    <!-- 페이징 처리 -->      
    <br></br>   

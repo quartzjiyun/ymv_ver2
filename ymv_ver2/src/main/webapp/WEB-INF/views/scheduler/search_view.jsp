@@ -28,15 +28,17 @@
 				});
 	});
 </script>
-
+<div class="col-md-12">
+	<div class="col-md-3">
+	<h2>통합 검색</h2>
 <form action="search_board.ymv">
-	<table border="1">
+	<table class="table" border="1">
 		<tr>
-			<td>제목</td>
+			<th class="info">제목</th>
 			<td><input type="text" name="title" id="title"></td>
 		</tr>
 		<tr>
-			<td>분야</td>
+			<th class="info">분야</th>
 			<td><select id="field" name="field">
 					<!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
 					<option value="">-분야-</option>
@@ -46,7 +48,7 @@
 			</select></td>
 		</tr>
 		<tr>
-			<td>지역</td>
+			<th class="info">지역</th>
 			<td><select id="location" name="location">
 					<!-- 지역(*도 별로) DB에서 받아오기 -->
 					<option value="">-지역-</option>
@@ -56,12 +58,12 @@
 			</select></td>
 		</tr>
 		<tr>
-			<td>시작시간</td>
+			<th class="info">시작시간</th>
 			<td><input type="text" id="datepicker1" name="startDate"
 				placeholder="시작날짜">
 		</tr>
 		<tr>
-			<td>끝시간</td>
+			<th class="info">끝시간</th>
 			<td><input type="text" id="datepicker2" name="endDate"
 				placeholder="종료날짜"></td>
 		</tr>
@@ -79,3 +81,5 @@
 	</select> <input type="text" name="startDate"> <input type="text"
 		name="endDate"> <input type="submit" value="스케쥴러">
 </form>
+</div>
+</div>

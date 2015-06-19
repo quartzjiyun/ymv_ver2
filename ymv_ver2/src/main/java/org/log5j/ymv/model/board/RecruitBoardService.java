@@ -34,4 +34,8 @@ public interface RecruitBoardService {
 	public void registerApplicantOK(ApplicantListVO alvo);
 
 	public List<ApplicantListVO> getApplicantOkList(int recruitNo);
+	
+	public void getPostingByRecruitNoNotHit(int recruitNo);
+
+	public RecruitBoardVO getPostingByRecruitNoUpdateHit(int recruitNo);
 }

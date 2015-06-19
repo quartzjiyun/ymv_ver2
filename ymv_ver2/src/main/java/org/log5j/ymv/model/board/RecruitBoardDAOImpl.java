@@ -122,5 +122,16 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("applicant.getApplicantOkList",recruitNo);
 	}
+	
+	@Override
+	public void getPostingByRecruitNoNotHit(int recruitNo) {
+		sqlSessionTemplate.selectOne("board.findRecruitBoardByrecruitNo",recruitNo);
+	}
+
+	@Override
+	public void updateHit(int recruitNo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.update("board.updateHit", recruitNo);
+	}
 
 }

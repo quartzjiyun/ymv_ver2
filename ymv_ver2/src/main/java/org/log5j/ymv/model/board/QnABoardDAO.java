@@ -20,4 +20,7 @@ public interface QnABoardDAO {
 
 	public void replyQnABoard(QnABoardVO qvo);
 	
+	public void getPostingByQnaNoNotHit(int qnaNo);
+
+	public void updateHit(int qnaNo);
 }

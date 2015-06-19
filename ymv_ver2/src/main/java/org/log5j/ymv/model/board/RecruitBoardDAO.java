@@ -23,4 +23,6 @@ public interface RecruitBoardDAO {
 	public int totalNormalContent(int memberNo);
 	public void registerApplicantOK(ApplicantListVO alvo);
 	public List<ApplicantListVO> getApplicantOkList(int recruitNo);
+	public void getPostingByRecruitNoNotHit(int recruitNo);
+	public void updateHit(int recruitNo);
 }
