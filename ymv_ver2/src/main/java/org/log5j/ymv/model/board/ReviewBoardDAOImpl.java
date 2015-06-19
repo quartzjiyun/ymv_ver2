@@ -98,5 +98,11 @@ public CommentVO getReviewBoardCommentByBoardNo(int boardNo) {
 	return comment;
 }
 
+@Override
+public void updateHit(int boardNo) {
+	sqlSessionTemplate.update("reviewBoard.updateHit",boardNo);
+	
+}
+
 
 }

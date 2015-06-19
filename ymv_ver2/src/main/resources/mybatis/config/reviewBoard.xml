@@ -19,8 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="totalContent" resultType="int">
     	select count(*) from board where board_type='review'
     </select>
-    <select id="getReviewBoardByBoardNo" resultMap="boardRM" resultType="rbvo">   
-		select board_no, title, writer, content, member_no, time_posted from board where board_no=#{value}
+   <select id="getReviewBoardByBoardNo" resultMap="boardRM" resultType="rbvo">   
+		select board_no, title, writer, content, member_no, time_posted, hit from board where board_no=#{value}
 	</select>
 	<insert id="registerReviewComment" parameterType="cmvo">
 		insert into YMV_COMMENT(comment_no, writer, content, time_posted, board_no) values(ymv_seq.nextval,#{writer},#{content},sysdate,#{boardNo})
@@ -63,6 +63,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deletePicture" parameterType="int">
 		delete from picture where picture_no=#{value}
 	</delete>
+	<update id="updateHit" parameterType="int">
+	 	update board set hit = hit+1 where board_no=#{value}
+	 </update>
  </mapper>
  
  

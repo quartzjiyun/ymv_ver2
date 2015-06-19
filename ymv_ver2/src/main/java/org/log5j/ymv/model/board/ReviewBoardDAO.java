@@ -18,4 +18,5 @@ public interface ReviewBoardDAO {
 	PictureVO getPicture(int pictureNo);
 	void deletePicture(int pictureNo);
 	CommentVO getReviewBoardCommentByBoardNo(int boardNo);
+	void updateHit(int boardNo);
 }

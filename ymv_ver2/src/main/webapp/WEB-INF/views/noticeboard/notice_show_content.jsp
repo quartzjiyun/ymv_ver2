@@ -45,7 +45,8 @@
 					href="${initParam.root}notice_board_update_view.ymv?boardNo=${requestScope.rvo.boardNo }">
 						<img class="action" onclick="openForm('update')"
 						src="${initParam.root}img/modify_btn.jpg">
-				</a> <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
+				</a> <a
+					href="#"><img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg"></a>
 				</c:when>
 				</c:choose>
 				</td>
