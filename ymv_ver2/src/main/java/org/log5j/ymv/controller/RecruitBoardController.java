@@ -3,7 +3,9 @@ package org.log5j.ymv.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.log5j.ymv.model.board.CompanyVO;
@@ -36,13 +38,47 @@ public class RecruitBoardController {
 		ListVO lvo = recruitBoardService.getBoardList(pageNo);
 		return new ModelAndView("voluntary_board","lvo",lvo);
 	}
-	@RequestMapping("voluntary_showContentRecruitVol.ymv")
+	/*@RequestMapping("voluntary_showContentRecruitVol.ymv")
 	@NoLoginCheck
 	   public ModelAndView showContentRecruitVol(HttpServletRequest request){
 	      int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
 	      return new ModelAndView("voluntary_show_content","rvo",rvo);
-	   }
+	   }*/
+	
+	@RequestMapping("voluntary_showContentRecruitVol.ymv")
+	@NoLoginCheck
+	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String noComp = request.getParameter("recruitNo");
+		int recruitNo = Integer.parseInt(noComp);
+		RecruitBoardVO rvo = null;
+		Cookie cookies[] = request.getCookies();
+		Cookie cookie = null;
+		String cookieValue = null;
+		String cookieName =null;
+				if (cookies == null || cookies.length == 0) {
+			//그냥 쿠키 자체 없음
+			cookieName = "hitcookie";
+	        cookieValue = "|"+recruitNo+"|";
+			cookie = new Cookie(cookieName, cookieValue);
+			response.addCookie(cookie);
+		}else{
+			//쿠키는 있음
+			for(int i=0; i<cookies.length; i++){
+				cookieName = "hitcookie";
+				if(cookies[i].getName().equals(cookieName)){//쿠키있고 hitcookie있고
+					recruitBoardService.getPostingByRecruitNoNotHit(recruitNo);
+				}
+			}
+				String value = cookieValue;
+		        value += "|"+recruitNo+"|";
+				cookie = new Cookie(cookieName, value);
+				response.addCookie(cookie);
+		}
+		rvo = recruitBoardService.getPostingByRecruitNoUpdateHit(recruitNo);
+		//조회수 올라가게
+		return new ModelAndView("voluntary_show_content", "rvo", rvo);
+	}
     
     @RequestMapping("voluntary_showContentRecruitVolType.ymv")
 	   public ModelAndView showContentRecruitVolType(HttpServletRequest request){
