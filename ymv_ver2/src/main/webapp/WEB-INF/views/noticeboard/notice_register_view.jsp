@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="col-md-12">
 	<div class="col-md-12">
-		<h2>봉사 등록</h2>
+		<h2>공지사항 등록</h2>
 		<form action="notice_register.ymv" enctype="multipart/form-data" method="post">
 			<table border="1">
 				<tr>

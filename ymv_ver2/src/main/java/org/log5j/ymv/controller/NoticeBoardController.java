@@ -88,6 +88,7 @@ public class NoticeBoardController {
    @RequestMapping("notice_showContent.ymv")
    @NoLoginCheck
    public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	   ModelAndView mv = new ModelAndView();
 	   int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 	   int pictureNo=boardNo;
 	   ModelAndView model = new ModelAndView();
@@ -110,7 +111,7 @@ public class NoticeBoardController {
 					noticeBoardService.getPostingByNoticeBoardNoNotHit(boardNo);
 					PictureVO pvo=noticeBoardService.getPicture(pictureNo);
 					 if(pvo!=null){
-				    	  model.addObject("pvo", pvo);
+				    	  mv.addObject("pvo", pvo);
 				      }
 				}
 			}
@@ -122,10 +123,12 @@ public class NoticeBoardController {
 				rvo = noticeBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);
 		PictureVO pvo=noticeBoardService.getPicture(pictureNo);
 		 if(pvo!=null){
-	    	  model.addObject("pvo", pvo);
+	    	  mv.addObject("pvo", pvo);
 	      }
 		//조회수 올라가게
-		return new ModelAndView("notice_show_content", "rvo", rvo);
+		 mv.addObject("rvo",rvo);
+		 mv.setViewName("notice_show_content");
+		return mv;
 	}
    
    @RequestMapping("notice_board_update_view.ymv")
