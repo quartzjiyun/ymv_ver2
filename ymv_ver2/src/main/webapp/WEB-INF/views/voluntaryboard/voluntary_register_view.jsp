@@ -56,19 +56,18 @@
 				});
 	});
 </script>
-<div class="col-md-12">
-	<div class="col-md-5">
+	<div class="col-md-6 col-sm-offset-3">
 		<h2>봉사 등록</h2>
 		<form id="recruitForm"
 			action="Volunteer_register.ymv?memberNo=${sessionScope.mvo.memberNo }"
 			method="post">
-			<table class="table" border="1">
+			<table class="table table-striped table-hover">
 				<tr>
-					<th class="info">제목</th>
+					<th class="info"><h4 class="text-center">제목</h4></th>
 					<td><input type="text" name="title" id="title"></td>
 				</tr>
 				<tr>
-					<th class="info">분야</th>
+					<th class="info"><h4 class="text-center">분야</h4></th>
 					<td><select id="field" name="field">
 							<!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
 							<option value="">-분야-</option>
@@ -78,7 +77,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<th class="info">지역</th>
+					<th class="info"><h4 class="text-center">지역</h4></th>
 					<td><select id="location" name="location">
 							<!-- 지역(*도 별로) DB에서 받아오기 -->
 							<option value="">-지역-</option>
@@ -88,7 +87,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<th class="info">나이제한</th>
+					<th class="info"><h4 class="text-center">나이제한</h4></th>
 					<td>
 						<!-- <input type="text" name="age" id="age"> --> <!-- 숫자로 입력 안하면 submit 못하게
 			나이를 select or input text로 둘중에 뭐할지 정하기 --> <input type="radio"
@@ -98,7 +97,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="info">시작시간</th>
+					<th class="info"><h4 class="text-center">시작시간</h4></th>
 					<td><input type="text" id="datepicker1" name="startDate"
 						placeholder="시작날짜"> <select id="startTime"
 						name="startTime">
@@ -126,7 +125,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<th class="info">끝시간</th>
+					<th class="info"><h4 class="text-center">끝시간</h4></th>
 					<td><input type="text" id="datepicker2" name="endDate" placeholder="종료날짜">
 						<select id="endTime" name="endTime">
 							<!-- 한시간 단위로 하기 -->
@@ -153,11 +152,11 @@
 					</select></td>
 				</tr>
 				<tr>
-					<th class="info">상세정보</th>
+					<th class="info"><h4 class="text-center">상세정보</h4></th>
 					<td><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="글 등록">
+			<br> <div class = "col-sm-2 col-sm-offset-10">
+			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>
 		</form>
 	</div>
-</div>
