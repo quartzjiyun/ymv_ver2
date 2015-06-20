@@ -15,4 +15,6 @@ public interface SchedulerDAO {
 
 	List<HashMap> getDateList(SchedulerVO sdvo);
 
+	SchedulerVO schedulerCheck(String memberNo);
+
 }

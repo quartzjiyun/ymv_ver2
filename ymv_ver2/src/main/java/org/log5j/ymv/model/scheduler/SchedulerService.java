@@ -14,4 +14,6 @@ public interface SchedulerService {
 
 	public abstract List<HashMap> getDateList(SchedulerVO sdvo);
 
+	public abstract SchedulerVO schedulerCheck(String parameter);
+
 }

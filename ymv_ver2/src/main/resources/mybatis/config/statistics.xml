@@ -18,14 +18,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  	<select id="selectStatistics" resultType="map"> <!-- 전체 통계 -->
 	<![CDATA[
-		select age, field, ranking, applicate_count from(
-		select age, field, row_number() over(order by applicate_count desc) as ranking, applicate_count from statistics
-		)where ranking<=3
+		select ranking, field, count from(
+		select field, row_number() over(order by count desc)as ranking, count from(
+		select field, sum(applicate_count)as count	from STATISTICS group by field
+		))where ranking<=3
 	]]>
 	<!-- 3위까지 뽑음 -->
 	</select>
 	
-	<select id="selectStatisticsByAge" resultType="map">
+	<select id="selectStatisticsByAge" resultType="map"><!-- 나이대별 통계 -->
 	<![CDATA[
 		select age, field, ranking, applicate_count from(
 		select age, field, row_number() over(order by applicate_count desc) as ranking, applicate_count from statistics where age =#{value}
