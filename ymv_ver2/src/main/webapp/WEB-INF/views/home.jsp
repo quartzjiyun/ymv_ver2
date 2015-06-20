@@ -32,21 +32,21 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<img src="${initParam.root}img/main_1.jpg" >
+							<img src="${initParam.root}img/봉사1.jpg" >
 						</div>
 
 						<div class="item">
-							<img src="${initParam.root}img/test2.jpg"
+							<img src="${initParam.root}img/봉사2.jpg"
 								style="width: 300px; height: 400px;">
 						</div>
 
 						<div class="item">
-							<img src="${initParam.root}img/test3.jpg"
+							<img src="${initParam.root}img/봉사3.jpg"
 								style="width: 300px; height: 400px;">
 						</div>
 
 						<div class="item">
-							<img src="${initParam.root}img/test4.jpg"
+							<img src="${initParam.root}img/봉사4.jpg"
 								style="width: 300px; height: 400px;">
 						</div>
 					</div>
