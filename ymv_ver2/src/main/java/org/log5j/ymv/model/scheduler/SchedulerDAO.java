@@ -17,4 +17,6 @@ public interface SchedulerDAO {
 
 	SchedulerVO schedulerCheck(String memberNo);
 
+	void registerScheduler(SchedulerVO sdvo);
+
 }

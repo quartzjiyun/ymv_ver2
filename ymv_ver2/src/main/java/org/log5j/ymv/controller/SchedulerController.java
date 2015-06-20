@@ -29,7 +29,7 @@ public class SchedulerController {
 	@RequestMapping("scheduler_board.ymv")
 	@ResponseBody
 	public HashMap getSchedulerList(SchedulerVO sdvo){
-		System.out.println("Contoller:"+sdvo);
+		System.out.println("ContollergetSchedulerList:"+sdvo);
 		List<BoardVO> list= schedulerService.getSchedulerList(sdvo);
 		List<HashMap> dateList=schedulerService.getDateList(sdvo);
 		System.out.println(list);
@@ -56,10 +56,22 @@ public class SchedulerController {
 	@ResponseBody
 	public Object schedulerCheck(HttpServletRequest request){
 		SchedulerVO sdvo=schedulerService.schedulerCheck(request.getParameter("memberNo"));
-		System.out.println("Controller"+sdvo);
+		System.out.println("Controller scheduler_check"+sdvo);
 		if(sdvo==null){
 			return sdvo=new SchedulerVO();
 		}
 		return sdvo;
+	}
+	@RequestMapping("scheduler_register_view")
+	public ModelAndView schedulerRegisterView(){
+		 List<FieldVO> Flist = recruitBoardService.getFieldList(); 
+	      List<LocationVO> Llist = recruitBoardService.getLocationList();
+		return new ModelAndView("scheduler_register_view","fieldlist",Flist).addObject("locationlist", Llist);
+	}
+	@RequestMapping("scheduler_register")
+	public String schedulerRegister(SchedulerVO sdvo){
+		System.out.println("scheduler_register sdvo:"+sdvo);
+		schedulerService.registerScheduler(sdvo);
+		return "redirect:testTiles.ymv";
 	}
 }
