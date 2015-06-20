@@ -60,101 +60,134 @@ $("#modalBtn").click(function(){
 </script>
 
 <c:choose>
-<c:when test="${sessionScope.mvo==null}">
-<form id = "loginForm" class="form-horizontal" style="position: relative;left: 5%; " action="login.ymv">
-  <fieldset>
-    <div class="form-group">
-      <label for="inputId" class="col-lg-2 control-label">ID</label><br><br>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name = "id" id="id" placeholder="ID입력">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label><br><br>
-      <div class="col-lg-10">
-        <input type="password" class="form-control" name = "password" id="password" placeholder="Password입력">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default btn-xs">Cancel</button>
-        <button type="submit" class="btn btn-primary btn-xs">Submit</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
-</c:when>
-<c:otherwise>	
-			<br><br>
-			<c:choose>
+	<c:when test="${sessionScope.mvo==null}">
+		<form id="loginForm" class="form-horizontal"
+			style="position: relative; left: 5%;" action="login.ymv">
+			<fieldset>
+				<div class="form-group">
+					<label for="inputId" class="col-lg-2 control-label">ID</label><br>
+					<br>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" name="id" id="id"
+							placeholder="ID입력">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword" class="col-lg-2 control-label">Password</label><br>
+					<br>
+					<div class="col-lg-10">
+						<input type="password" class="form-control" name="password"
+							id="password" placeholder="Password입력">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+						<button type="reset" class="btn btn-default btn-xs">Cancel</button>
+						<button type="submit" class="btn btn-primary btn-xs">Submit</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</c:when>
+	<c:otherwise>
+		<br>
+		<br>
+		<c:choose>
 			<c:when test="${sessionScope.mvo.filePath!=null }">
-				<img src="${initParam.root }${sessionScope.mvo.filePath}" id="profile" style="width:80%; height:50%;">
+				<img src="${initParam.root }${sessionScope.mvo.filePath}"
+					id="profile" style="width: 80%; height: 50%; position: relative; margin-left: 15%;">
 			</c:when>
 			<c:otherwise>
-			 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-            class="center-block img-circle img-responsive" id="profile"><br><br>
+				
+					<img
+						src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+						class="center-block img-circle img-responsive" id="profile">
+			
+				<br>
+				<br>
 			</c:otherwise>
 		</c:choose>
 		<div id="profileView"></div>
-		<div class="panel panel-default" style="position: relative;margin-left: 5%;">
-  <div class="panel-body">
- 
-<div class="col-xs-12 text-center">
-<h5 class="glyphicon glyphicon-ok"> ${sessionScope.mvo.name}님</h5><br>
-                </div>
-  
-  
-  <div class="btn-group-vertical btn-block">
-		<c:choose>
-		<c:when test="${sessionScope.mvo.memberType=='company' }">
-		<a href="#" class="btn btn-default btn-xs glyphicon glyphicon-briefcase" > 기업회원</a><br>
-		</c:when>
-		<c:when test="${sessionScope.mvo.memberType=='normal' }">
-		<a href="#" class="btn btn-default btn-xs glyphicon glyphicon-heart " > 일반회원</a><br>
-		</c:when>
-		<c:when test="${sessionScope.mvo.memberType=='admin' }">
-		<a href="#" class="btn btn-default btn-xs glyphicon glyphicon-lock" > 관리자</a><br>
-		</c:when>
-		</c:choose>
-		<a href="${initParam.root }member_update_form.ymv" class="btn btn-default btn-xs glyphicon glyphicon-edit " > 정보수정</a><br>
-		<a href="${initParam.root }logout.ymv" class="btn btn-default btn-xs glyphicon glyphicon-log-out"> 로그아웃</a>
-		<br><a href="#modal" data-toggle="modal"><img src="${initParam.root}img/scheduler.jpg" class="img-responsive" id="modalBtn"></a>
-  </div>
-  </div>
-</div>
+		<div class="panel panel-default"
+			style="position: relative; margin-left: 5%;">
+			<div class="panel-body">
+				<div class="col-xs-12 text-center">
+					<h5 class="glyphicon glyphicon-ok">${sessionScope.mvo.name}님</h5>
+					<br>
+				</div>
+
+
+				<div class="btn-group-vertical btn-block">
+					<c:choose>
+						<c:when test="${sessionScope.mvo.memberType=='company' }">
+							<a href="#"
+								class="btn btn-default btn-xs glyphicon glyphicon-briefcase">
+								기업회원</a>
+							<br>
+						</c:when>
+						<c:when test="${sessionScope.mvo.memberType=='normal' }">
+							<a href="#"
+								class="btn btn-default btn-xs glyphicon glyphicon-heart ">
+								일반회원</a>
+							<br>
+						</c:when>
+						<c:when test="${sessionScope.mvo.memberType=='admin' }">
+							<a href="#"
+								class="btn btn-default btn-xs glyphicon glyphicon-lock">
+								관리자</a>
+							<br>
+						</c:when>
+					</c:choose>
+					<a href="${initParam.root }member_update_form.ymv"
+						class="btn btn-default btn-xs glyphicon glyphicon-edit ">
+						정보수정</a><br> <a href="${initParam.root }logout.ymv"
+						class="btn btn-default btn-xs glyphicon glyphicon-log-out">
+						로그아웃</a> <br>
+					<a href="#modal" data-toggle="modal"><img
+						src="${initParam.root}img/scheduler.jpg" class="img-responsive"
+						id="modalBtn"></a>
+				</div>
+			</div>
+		</div>
 	</c:otherwise>
 
 </c:choose>
 <c:choose>
-<c:when test="${sessionScope.mvo==null }">
-<c:choose>
-<c:when test="${requestScope.loginSession=='X'}">
-					<script type="text/javascript">
-						alert("아이디와 비밀번호가 일치하지 않습니다!");
-					</script>
-					</c:when></c:choose>
-<a href="${initParam.root}member_register_form.ymv" class="btn btn-primary btn-xs" style="position: relative;margin-left: 75%;">회원가입</a><br>
-</c:when>
+	<c:when test="${sessionScope.mvo==null }">
+		<c:choose>
+			<c:when test="${requestScope.loginSession=='X'}">
+				<script type="text/javascript">
+					alert("아이디와 비밀번호가 일치하지 않습니다!");
+				</script>
+			</c:when>
+		</c:choose>
+		<a href="${initParam.root}member_register_form.ymv"
+			class="btn btn-primary btn-xs"
+			style="position: relative; margin-left: 75%;">회원가입</a>
+		<br>
+	</c:when>
 </c:choose>
 
- <br>
- 
- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <p id="scheduletModal">테이블 넣을곳</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+<br>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog"
+	aria-hidden="true">
+	<div class="modal-content">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">×</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<p id="scheduletModal">테이블 넣을곳</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">

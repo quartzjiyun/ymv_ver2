@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
     <insert id="registerVolunteer" parameterType="recruitbvo">
        <selectKey keyProperty="recruitNo" resultType="int" order="BEFORE">
-          select recruit_no_seq.nextval from dual
+          select ymv_seq.nextval from dual
        </selectKey>
        insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) values(#{recruitNo},#{title},#{field},#{location},#{age},to_date(#{startDate},'YYYY-MM-DD HH24:MI'),to_date(#{endDate},'YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0)
     </insert>
