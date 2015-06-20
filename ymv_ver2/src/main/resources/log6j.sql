@@ -83,7 +83,7 @@ drop table scheduler
 
 create table scheduler(
 member_no number primary key constraint fk_member_no_5 references member(member_no),
-field varchar(50) not,
+field varchar(50),
 location varchar(50),
 start_date date,
 end_date date
