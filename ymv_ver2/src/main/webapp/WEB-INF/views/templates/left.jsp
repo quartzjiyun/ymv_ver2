@@ -28,7 +28,7 @@ $("#modalBtn").click(function(){
             dataType : "json",
             success : function(m) {
                if(m.memberNo<=0){
-            	   alert("null임 수정페이지 이동 confirm");
+            	   location.href="scheduler_register_view.ymv";
                }else{
             	   $.ajax({
                        type : "post",
