@@ -69,17 +69,6 @@ $(document).ready(function(){
 		alert(memberNoList);
 		$("#checkForm").submit();
 	});
-	
-	/* $("#memberBtn").click(function(){
-		$(".tr_check:checked").each(function (index,e){
-			alert(e.memberNo);
-			var record = $(e).parents("tr");
-			memberNoList+=e+ ",";
-		});
-		$("#memberList").val(memberNoList);
-		alert(memberNoList);
-		$("#checkForm").submit();
-	}); */
 });
 </script>
 <div class="col-md-12">
