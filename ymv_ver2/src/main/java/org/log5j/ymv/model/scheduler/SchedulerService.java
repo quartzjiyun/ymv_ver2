@@ -16,4 +16,6 @@ public interface SchedulerService {
 
 	public abstract SchedulerVO schedulerCheck(String parameter);
 
+	public abstract void registerScheduler(SchedulerVO sdvo);
+
 }

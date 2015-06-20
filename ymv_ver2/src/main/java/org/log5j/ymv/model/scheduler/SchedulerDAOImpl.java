@@ -39,6 +39,10 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 		
 		return sqlSessionTemplate.selectOne("scheduler.schedulerCheck",memberNo);
 	}
+	@Override
+	public void registerScheduler(SchedulerVO sdvo) {
+		sqlSessionTemplate.insert("scheduler.registerScheduler",sdvo);
+	}
 
 
 }

@@ -39,4 +39,8 @@ public class SchedulerServiceImpl implements SchedulerService {
 	public SchedulerVO schedulerCheck(String memberNo) {
 		return schedulerDAO.schedulerCheck(memberNo);
 	}
+	@Override
+	public void registerScheduler(SchedulerVO sdvo) {
+		schedulerDAO.registerScheduler(sdvo);
+	}
 }
