@@ -90,7 +90,7 @@ public class RecruitBoardController {
     		//List<VoluntaryServiceApplicateVO> list=null;
     		int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
     		if(mvo.getMemberType().equals("normal")){
-    			//url="voluntary_show_content_normal";
+    			url="voluntary_show_content_normal";
     			//list=voluntaryServiceApplicateService.getApplicantList(recruitNo);
                 //System.out.println("list:"+list);
 
