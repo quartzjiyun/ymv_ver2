@@ -22,7 +22,7 @@ select qna_no, title, writer, content, ref, restep, relevel,member_no,time_poste
    
    <insert id="registerQnABoard" parameterType="qnabvo">
  		<selectKey keyProperty="qnaNo" resultType="int" order="BEFORE">
- 			select qna_no_seq.nextval from dual
+ 			select ymv_seq.nextval from dual
  		</selectKey>
  		insert into QnA_board
  		(qna_no ,title,writer ,content ,ref ,restep ,relevel ,member_no,time_posted,hit)
@@ -49,7 +49,7 @@ select qna_no, title, writer, content, ref, restep, relevel,member_no,time_poste
 	 </update>
    	 <insert id="replyQnABoard" parameterType="qnabvo">
 	 	<selectKey keyProperty="qnaNo" resultType="int" order="BEFORE">
-	 		select qna_no_seq.nextval from dual
+	 		select ymv_seq.nextval from dual
 	 	</selectKey>
 	 	insert into QnA_board
 	  	(qna_no,title,writer,content,ref,restep,relevel,member_no,time_posted,hit)

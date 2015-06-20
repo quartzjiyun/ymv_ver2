@@ -67,8 +67,6 @@ public class NoticeBoardController {
 					e.printStackTrace();
 				}
 			}
-
-	   
 	   return new ModelAndView("redirect:notice_board.ymv");
    }
    /*@RequestMapping("notice_showContent.ymv")

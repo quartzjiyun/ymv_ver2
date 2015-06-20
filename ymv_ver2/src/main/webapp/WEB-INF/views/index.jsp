@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-test <a href="testTiles.ymv">tiles test</a>
+<script type="text/javascript">
+location.href="testTiles.ymv";
+	</script>
 </body>
 </html>
