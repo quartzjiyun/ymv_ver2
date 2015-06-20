@@ -124,6 +124,31 @@
 					}
 				});//ajax 		
 		});
+		$("#0Btn").click(function(){
+			//alert($(this).val());
+			 $.ajax({
+					type:"post",
+					url:"voluntary_selectStatisticsByAge.ymv",				
+					data:"age=0",
+					dataType:"json",   
+					success:function(data){ 						
+						var table ="<hr><br><h2>기타</h2>";
+						table+="<div class='row'><div class = 'col-md-3''></div><div class='col-md-6 col-sm-6'>";
+						table+="<table class='table table-striped table-hover'>";
+						table+="<tr><th>순위</th><th>분야</th><th>신청수</th></tr>";
+						$.each(data,function(index,e){
+							table+="<tr>";
+							table+="<th>"+e.RANKING+"</th><td>"+e.FIELD+"</td><td>"+e.APPLICATE_COUNT+"</td>";
+							table+="</tr>";
+						});
+						table+="</table></div></div></div>";
+						
+						$("#statistics").html(table);
+						
+					}
+				});//ajax 		
+		});
+		
 		
 		
 	});//document
@@ -137,7 +162,8 @@
 			type="button" value="20대" id="20Btn" class="btn btn-primary btn-lg"> <input
 			type="button" value="30대" id="30Btn" class="btn btn-primary btn-lg"> <input
 			type="button" value="40대" id="40Btn" class="btn btn-primary btn-lg"> <input
-			type="button" value="50대" id="50Btn" class="btn btn-primary btn-lg">
+			type="button" value="50대" id="50Btn" class="btn btn-primary btn-lg"> <input
+			type="button" value="기타" id="0Btn" class="btn btn-primary btn-lg">
 	</div>
 	</div>
 </center>

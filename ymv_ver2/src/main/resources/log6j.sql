@@ -1,4 +1,5 @@
 -- member
+delete from member
 create table member(
 	member_no number primary key,
 	id varchar2(50) unique,
@@ -10,7 +11,7 @@ create table member(
 	member_type varchar2(10) not null
 )
 alter ta
-alter table member add(id varchar(50));
+alter table recruit add(title varchar2(100));
 alter table member add(password varchar(50));
 alter table member add(name varchar(50));
 alter table member add(address varchar(50));
@@ -20,7 +21,7 @@ alter table member add(member_type varchar(10))
 alter table member add(file_path varchar(200))
 
 
-alter table member drop(file_path);
+alter table recruit drop(title);
 alter table member drop(name);
 alter table member drop(address);
 alter table member drop(identity_no);
@@ -38,7 +39,7 @@ delete from member
 create table board(
 	board_no number primary key,
 	board_type varchar2(50) not null,
-	title varchar2(50) not null,
+	title varchar2(100) not null,
 	writer varchar2(50) not null,
 	content clob not null,
 	member_no number not null
@@ -61,7 +62,7 @@ drop table statistics
 --JJH-recruit ver2 name(fk),time_posted,hit 추가
 create table recruit(
 	recruit_no number primary key,
-	title varchar2(50) not null,
+	title varchar2(100) not null,
 	field varchar2(100) not null,
 	location varchar2(100) not null,
 	age varchar2(100) not null,
@@ -104,7 +105,7 @@ select * from voluntary_service_applicate;
 --JJH-time_posted,hit 추가
 create table QnA_board(
 qna_no number primary key,
-title varchar2(50) not null,
+title varchar2(100) not null,
 writer varchar2(50) not null,
 content clob not null,
 ref varchar2(50) not null,
@@ -117,7 +118,7 @@ hit number default 0
 )
 delete from QNA_BOARD
 --comment
-drop table ymv_comment
+drop table QNA_BOARD
 create table ymv_comment(
 	comment_no number primary key,
 	writer varchar2(50) not null,
@@ -148,13 +149,7 @@ insert into voluntary_applicant_ok(recruit_no,member_no) values(126,124)
 
 drop table voluntary_applicant_ok
 select * from voluntary_applicant_ok
--- voluntary_applicant 
-create table voluntary_applicant(
-	recruit_no number not null,
-	member_no number not null constraint fk_recruit_no_2 references recruit(recruit_no)	constraint fk_member_no_2 references member(member_no),
-	motivate varchar(3000),
-	primary key(recruit_no,member_no)
-)
+
 drop table voluntary_applicant_ok
 select * from voluntary_applicant
 --JJH table 수정하고 insert중 해당 부분 재수정
@@ -230,7 +225,6 @@ insert into location values('부산');
 select * from board where board_no=1
 
 select * from PICTURE
-
 select boardNo, title, writer, content, memberNo, timePosted, hit from(select boardNo, title, writer, content, memberNo, timePosted, hit, CEIL(rownum/5) AS page from(select board_no as boardNo, title, writer, content, member_no as memberNo, time_posted as timePosted, hit from board where board_type='review' order by boardNo desc)) where page=1
 select boardNo, title, writer, content, memberNo, timePosted, hit from(select board_no as boardNo, title, writer, content, member_no as memberNo, time_posted as timePosted, hit, CEIL(rownum/5) AS page from board where board_type='notice' order by board_no desc) where page=#{value}
 
@@ -241,4 +235,17 @@ select vsa.recruit_no, vsa.member_no, vsa.motivate, m.id, m.name, m.mail_address
 
 select vok.member_no from voluntary_applicant_ok vok, recruit r where vok.recruit_no=r.recruit_no and r.recruit_no=126
 
-insert into voluntary_applicant_ok(recruit_no,member_no) values(126,123)
+insert into voluntary_applicant_ok(recruit_no,member_no) values(126,123);
+
+delete from voluntary_applicant_ok
+delete from picture
+delete from ymv_comment
+delete from qna_board
+delete from voluntary_service_applicate
+delete from scheduler
+delete from recruit
+delete from statistics
+delete from board
+delete from member
+insert into member values(ymv_seq.nextval,'admin','1234','관리자','KOSTA','890716','admin@ymv.com','admin');
+
