@@ -36,18 +36,15 @@
 						</div>
 
 						<div class="item">
-							<img src="${initParam.root}img/봉사2.jpg"
-								style="width: 300px; height: 400px;">
+							<img src="${initParam.root}img/봉사2.jpg">
 						</div>
 
 						<div class="item">
-							<img src="${initParam.root}img/봉사3.jpg"
-								style="width: 300px; height: 400px;">
+							<img src="${initParam.root}img/봉사3.jpg">
 						</div>
 
 						<div class="item">
-							<img src="${initParam.root}img/봉사4.jpg"
-								style="width: 300px; height: 400px;">
+							<img src="${initParam.root}img/봉사4.jpg">
 						</div>
 					</div>
 
