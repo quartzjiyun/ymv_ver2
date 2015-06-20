@@ -25,5 +25,5 @@
 		<td>이메일주소</td><td>${requestScope.mvo.mailAddress}</td>
 	</tr>
 </table><br>
-<a href="testTiles.ymv" class ="btn btn-default">홈으로</a>
+<p class = "text-center"><a href="testTiles.ymv" class ="btn btn-default">홈으로</a></p>
 </div>
