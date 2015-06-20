@@ -8,14 +8,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.PictureVO;
 import org.log5j.ymv.model.board.ReviewBoardService;
 import org.log5j.ymv.model.board.ReviewBoardVO;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
