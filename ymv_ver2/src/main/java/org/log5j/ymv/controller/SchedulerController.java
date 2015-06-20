@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.FieldVO;
@@ -15,6 +16,7 @@ import org.log5j.ymv.model.scheduler.SchedulerVO;
 import org.log5j.ymv.model.scheduler.SearchVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -25,12 +27,17 @@ public class SchedulerController {
 	private RecruitBoardService recruitBoardService;
 	
 	@RequestMapping("scheduler_board.ymv")
-	public ModelAndView getSchedulerList(SchedulerVO sdvo){
+	@ResponseBody
+	public HashMap getSchedulerList(SchedulerVO sdvo){
 		System.out.println("Contoller:"+sdvo);
 		List<BoardVO> list= schedulerService.getSchedulerList(sdvo);
 		List<HashMap> dateList=schedulerService.getDateList(sdvo);
+		System.out.println(list);
 		System.out.println(dateList);
-		return new ModelAndView("scheduler_test","list",list).addObject("dateList", dateList);
+		HashMap schedulerMap=new HashMap();
+		schedulerMap.put("list", list);
+		schedulerMap.put("dateList", dateList);
+		return schedulerMap;
 	}
 	@RequestMapping("search_board.ymv")
 	@NoLoginCheck
@@ -44,5 +51,15 @@ public class SchedulerController {
 	     List<FieldVO> Flist = recruitBoardService.getFieldList(); 
 	      List<LocationVO> Llist = recruitBoardService.getLocationList();
 		return new ModelAndView("search_view").addObject("fieldlist", Flist).addObject("locationlist", Llist);
+	}
+	@RequestMapping("scheduler_Check")
+	@ResponseBody
+	public Object schedulerCheck(HttpServletRequest request){
+		SchedulerVO sdvo=schedulerService.schedulerCheck(request.getParameter("memberNo"));
+		System.out.println("Controller"+sdvo);
+		if(sdvo==null){
+			return sdvo=new SchedulerVO();
+		}
+		return sdvo;
 	}
 }

@@ -92,4 +92,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 		order by date_list asc
 	</select>
+	<resultMap type="sdvo" id="schedulerRM">
+		<result property="memberNo" column="member_no"/>
+		<result property="startDate" column="start_date"/>
+		<result property="endDate" column="end_date"/>
+	</resultMap>
+	<select id="schedulerCheck" resultMap="schedulerRM" parameterType="String">
+		select * from scheduler where member_no=#{value}
+	</select>
 </mapper> 

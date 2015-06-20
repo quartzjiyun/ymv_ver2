@@ -19,9 +19,7 @@
 						<tr>
 							<th>${i.RANKING }</th>
 							<td>${i.FIELD }</td>
-							<td>${i.APPLICATE_COUNT }</td>
-							<%-- <td>${i.AGE }</td> --%>
-							<!-- {RANKING=1, FIELD=아동, AGE=20, APPLICATE_COUNT=18} -->
+							<td>${i.COUNT }</td>
 						</tr>
 					</c:forEach>
 				</table>
