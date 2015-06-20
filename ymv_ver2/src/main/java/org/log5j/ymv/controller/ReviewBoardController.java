@@ -69,6 +69,7 @@ public class ReviewBoardController {
 	@NoLoginCheck
 	 public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
+		 System.out.println("review_showContent boardNo: " + boardNo);
 	      int pictureNo=boardNo;
 		   ModelAndView model = new ModelAndView();
 			ReviewBoardVO rvo = null;
@@ -102,21 +103,24 @@ public class ReviewBoardController {
 					response.addCookie(cookie);
 			}
 			rvo = reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);
+			System.out.println("review_showContent rvo"+ rvo);
 			List<CommentVO> commentList=reviewBoardService.findByCommentNo(request.getParameter("boardNo"));
+			System.out.println("review_showContent commentList : "+ commentList);
 			PictureVO pvo=reviewBoardService.getPicture(pictureNo);
 			 if(pvo!=null){
 		    	  model.addObject("pvo", pvo);
 		      }
 			 model.addObject("rvo", rvo).addObject("commentList", commentList);
+			 model.setViewName("review_show_content");
 			//조회수 올라가게
-			return new ModelAndView("review_show_content", "rvo", rvo);
+			return model;
 		}
 	
 	
 	@RequestMapping("register_review_comment.ymv")
 	public String registerReviewComment(HttpServletRequest request,CommentVO cmvo){
 		reviewBoardService.registerReviewComment(cmvo);
-		System.out.println(cmvo);
+		System.out.println(cmvo+" register_review_comment.ymv");
 		return "redirect:review_showContent.ymv?boardNo="+cmvo.getBoardNo();
 	}
 	@RequestMapping("delete_review_comment.ymv")
