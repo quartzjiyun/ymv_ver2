@@ -17,7 +17,46 @@
 $("#profile").click(function(){
 			$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><input type='file' class = 'btn btn-default btn-xs' name='fileName' accept='.gif, .jpg, .png'><input type='submit' class = 'btn btn-default btn-xs' value='프로필사진등록' style='position: relative;margin-left: 5%;'>");
 		});
-	});
+$("#profile").click(function(){
+	$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><input type='file' class = 'btn btn-default btn-xs' name='fileName' accept='.gif, .jpg, .png'><input type='submit' class = 'btn btn-default btn-xs' value='프로필사진등록' style='position: relative;margin-left: 5%;'>");
+});
+$("#modalBtn").click(function(){
+       $.ajax({
+            type : "post",
+            url : "scheduler_Check.ymv",
+            data : "memberNo=${sessionScope.mvo.memberNo}",
+            dataType : "json",
+            success : function(m) {
+               if(m.memberNo<=0){
+            	   alert("null임 수정페이지 이동 confirm");
+               }else{
+            	   $.ajax({
+                       type : "post",
+                       url : "scheduler_board.ymv",
+                       data : "MemberNo="+m.memberNo+"&field="+m.field+"&location="+
+                       m.location+"&startDate="+m.startDate+"&endDate="+m.endDate,
+                       dataType : "json",
+                       success : function(data) {
+                    	   var modalInfo="";
+                          $(data.dateList).each(function(index,date){
+                        	  modalInfo+="<table class='table'><caption>"+date.DATE_LIST+"<hr></caption>";
+                        	  modalInfo += "<thead><tr><th scope='col' >NO</th><th scope='col' >제목</th><th scope='col'>분야</th><th scope='col'>지역</th><th scope='col'>시작일</th><th scope='col'>완료일</th></tr></thead>";
+                        	  modalInfo += "<tbody>"		   
+                        	  $(data.list).each(function(index,list){
+                        		  if(date.DATE_LIST==list.checkDate){
+                        			  modalInfo +="<tr><td>"+list.recruitNo+"</td><td><a href='${initParam.root}voluntary_showContentRecruitVol.ymv?recruitNo="+list.recruitNo+"'>"+list.title+"</a></td><td>"+list.field+"</td><td>"+list.location+"</td><td>"+list.startDate+"</td><td>"+list.endDate+"</td></tr>";
+                        		  }
+                        	  });//each2
+                        	  modalInfo+="</tbody></table>";
+                          });//each1
+                          $("#scheduletModal").html(modalInfo);
+                       }
+                    });//ajax2
+               }
+            }
+         });//ajax
+	});//modal click
+	});//ready 
 </script>
 
 <c:choose>
@@ -79,7 +118,7 @@ $("#profile").click(function(){
 		</c:choose>
 		<a href="${initParam.root }member_update_form.ymv" class="btn btn-default btn-xs glyphicon glyphicon-edit " > 정보수정</a><br>
 		<a href="${initParam.root }logout.ymv" class="btn btn-default btn-xs glyphicon glyphicon-log-out"> 로그아웃</a>
-		<br><a href="#modal" data-toggle="modal"><img src="${initParam.root}img/scheduler.jpg" class="img-responsive"></a>
+		<br><a href="#modal" data-toggle="modal"><img src="${initParam.root}img/scheduler.jpg" class="img-responsive" id="modalBtn"></a>
   </div>
   </div>
 </div>
@@ -108,7 +147,7 @@ $("#profile").click(function(){
         <h4 class="modal-title">Modal title</h4>
       </div>
       <div class="modal-body">
-        <p>테이블 넣을곳</p>
+        <p id="scheduletModal">테이블 넣을곳</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
