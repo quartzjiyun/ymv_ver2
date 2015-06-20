@@ -132,6 +132,7 @@
 <center>
 <div class = "centered">
 	<div class="row">
+	<h2><p class = "text-center">나이별 선호 봉사</p></h2><br><br>
 		<input class="btn btn-primary btn-lg" type="button" value="10대" id="10Btn"> <input
 			type="button" value="20대" id="20Btn" class="btn btn-primary btn-lg"> <input
 			type="button" value="30대" id="30Btn" class="btn btn-primary btn-lg"> <input

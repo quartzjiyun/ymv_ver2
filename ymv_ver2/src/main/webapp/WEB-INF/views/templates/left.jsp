@@ -3,6 +3,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 	$(document).ready(function(){
+		$("#loginForm").submit(function(){
+			if($(":input[name=id]").val()==""){
+				alert("아이디를 입력하세요!");
+				return false;
+			}
+			if($(":input[name=password]").val()==""){
+				alert("패스워드를 입력하세요!");
+				return false;
+			}
+		});
+		
 $("#profile").click(function(){
 			$("#profileView").html("<form action='member_profileUpload.ymv' enctype='multipart/form-data' method='post'><input type='file' class = 'btn btn-default btn-xs' name='fileName' accept='.gif, .jpg, .png'><input type='submit' class = 'btn btn-default btn-xs' value='프로필사진등록' style='position: relative;margin-left: 5%;'>");
 		});
@@ -41,7 +52,8 @@ $("#profile").click(function(){
 				<img src="${initParam.root }${sessionScope.mvo.filePath}" id="profile" style="width:80%; height:50%;">
 			</c:when>
 			<c:otherwise>
-				<img src="${initParam.root }/img/man.jpg" id="profile"><br><br>
+			 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+            class="center-block img-circle img-responsive" id="profile"><br><br>
 			</c:otherwise>
 		</c:choose>
 		<div id="profileView"></div>
@@ -76,6 +88,12 @@ $("#profile").click(function(){
 </c:choose>
 <c:choose>
 <c:when test="${sessionScope.mvo==null }">
+<c:choose>
+<c:when test="${requestScope.loginSession=='X'}">
+					<script type="text/javascript">
+						alert("아이디와 비밀번호가 일치하지 않습니다!");
+					</script>
+					</c:when></c:choose>
 <a href="${initParam.root}member_register_form.ymv" class="btn btn-primary btn-xs" style="position: relative;margin-left: 75%;">회원가입</a><br>
 </c:when>
 </c:choose>

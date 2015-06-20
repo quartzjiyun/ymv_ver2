@@ -18,7 +18,6 @@ $(document).ready(function(){
 		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate' placeholder='봉사신청 동기를 입력해주세요.'></textarea>";
 		motivate += "<input type='button' value='신청하기' id='VolunteerApplicant'>";
 		$("#motivateForm").html(motivate);
-		
 		$("#VolunteerApplicant").click(function(){
 			//alert("버튼 클릭");
 			/* location.href="voluntary_register_applicant.ymv?recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(); */ 
@@ -33,9 +32,11 @@ $(document).ready(function(){
 					if(data==true){
 						alert("이미 신청하셨습니다.");
 						$("#motivate").val("");
+						$("#motivateForm").html("");
 					}else{
 						alert("신청이 완료되었습니다.");
 						$("#motivate").val("");
+						$("#motivateForm").html("");
 					}
 				}
 			});
