@@ -79,7 +79,9 @@ public class RecruitBoardController {
 		}
 		rvo = recruitBoardService.getPostingByRecruitNoUpdateHit(recruitNo);
 		//조회수 올라가게
-		return new ModelAndView("voluntary_show_content", "rvo", rvo);
+		MemberVO vo=memberService.findMemberByMemberNo(rvo.getMemberNo());
+	      System.out.println("rvo:"+rvo);
+		return new ModelAndView("voluntary_show_content", "rvo", rvo).addObject("vo",vo);
 	}
     
     @RequestMapping("voluntary_showContentRecruitVolType.ymv")
@@ -97,8 +99,12 @@ public class RecruitBoardController {
     		}
 	      
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
-	      return new ModelAndView(url,"rvo",rvo);
+	      MemberVO vo=memberService.findMemberByMemberNo(rvo.getMemberNo());
+	      System.out.println("rvo:"+rvo);
+	      System.out.println("vo:"+vo);
+	      return new ModelAndView(url,"rvo",rvo).addObject("vo", vo);
 	   }
+    
     
     //신청자리스트보기
     @RequestMapping("getApplicantList.ymv")

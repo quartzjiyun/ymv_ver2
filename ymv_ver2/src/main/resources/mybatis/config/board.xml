@@ -27,7 +27,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
 
    <select id="getRecruitBoardByRecruitNo" resultMap="boardRM" resultType="recruitbvo">   
-   select recruit_no, title, field, location, age, start_date, end_date,content, member_no from recruit where recruit_no=#{value}
+    select r.recruit_no, r.title, r.field, r.location, r.age, r.start_date, r.end_date,r.content, r.member_no, r.time_posted,m.name
+  	from recruit r, member m
+   where r.recruit_no=#{value} and r.member_no=m.member_no
    </select>
 
    <select id="showContent"  resultMap="boardRM" resultType="recruitbvo">

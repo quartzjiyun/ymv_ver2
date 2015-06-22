@@ -80,8 +80,8 @@ $(document).ready(function(){
 				<td colspan="2">제목 : ${requestScope.rvo.title}</td>
 			</tr>
 			<tr>
-				<td>기업명 : ${sessionScope.result.name }</td>
-				<td width="180">시간:<%-- ${requestScope.rvo.time} --%></td>
+				<td>기업명 :  ${requestScope.vo.name}</td>
+				<td width="180">시간: ${requestScope.rvo.postDate}</td>
 				<td>조회수 : ${requestScope.rvo.hit }</td>
 			</tr>
 			<tr>
