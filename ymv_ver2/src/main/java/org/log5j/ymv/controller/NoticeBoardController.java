@@ -1,6 +1,7 @@
 package org.log5j.ymv.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.log5j.ymv.model.board.BoardVO;
+import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.NoticeBoardService;
 import org.log5j.ymv.model.board.NoticeBoardVO;
@@ -69,67 +71,66 @@ public class NoticeBoardController {
 			}
 	   return new ModelAndView("redirect:notice_board.ymv");
    }
-   /*@RequestMapping("notice_showContent.ymv")
-   @NoLoginCheck
-   public String showContentReview(HttpServletRequest request,Model model){
-      int boardNo=Integer.parseInt(request.getParameter("boardNo"));
-      int pictureNo=boardNo;
-      System.out.println("boardNo:"+boardNo);
-      BoardVO rvo=noticeBoardService.getNoticeBoardByBoardNo(boardNo);
-      System.out.println("pictureNo: "+pictureNo);
-      PictureVO pvo=noticeBoardService.getPicture(pictureNo);
-      if(pvo!=null){
-    	  model.addAttribute("pvo",pvo);
-      }
-      model.addAttribute("rvo", rvo);
-      return "notice_show_content";
-   }*/
-   
+
    @RequestMapping("notice_showContent.ymv")
    @NoLoginCheck
    public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	   ModelAndView mv = new ModelAndView();
-	   int boardNo=Integer.parseInt(request.getParameter("boardNo"));
-	   int pictureNo=boardNo;
-	   ModelAndView model = new ModelAndView();
-		NoticeBoardVO rvo = null;
+		ModelAndView mv=new ModelAndView();
+		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
+		 System.out.println("notice_showContent boardNo: " + boardNo);
+		 int pictureNo=boardNo;
+		BoardVO bvo=null;
+		// 개별 게시물 조회 ( 조회수 증가 )
 		Cookie cookies[] = request.getCookies();
 		Cookie cookie = null;
-		String cookieValue = null;
-		String cookieName =null;
-				if (cookies == null || cookies.length == 0) {
-			//그냥 쿠키 자체 없음
-			cookieName = "hitcookie";
-	        cookieValue = "|"+boardNo+"|";
-			cookie = new Cookie(cookieName, cookieValue);
+
+		if (cookies == null || cookies.length == 0) {
+			cookie = new Cookie("myboard", "|" + boardNo + "|");
 			response.addCookie(cookie);
-		}else{
-			//쿠키는 있음
-			for(int i=0; i<cookies.length; i++){
-				cookieName = "hitcookie";
-				if(cookies[i].getName().equals(cookieName)){//쿠키있고 hitcookie있고
-					noticeBoardService.getPostingByNoticeBoardNoNotHit(boardNo);
-					PictureVO pvo=noticeBoardService.getPicture(pictureNo);
-					 if(pvo!=null){
-				    	  mv.addObject("pvo", pvo);
-				      }
+			System.out.println(" 쿠키가 존재하지 않은 상태");
+
+		} else {
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("myboard")) {
+					cookie = cookies[i];
+					break;
 				}
 			}
-				String value = cookieValue;
-		        value += "|"+boardNo+"|";
-				cookie = new Cookie(cookieName, value);
+			if (cookie == null) {
+				// 쿠키가 존재하는데 myboard가 없을때
+				cookie = new Cookie("myboard", "|" + boardNo + "|");
 				response.addCookie(cookie);
-		}
-				rvo = noticeBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);
+
+				noticeBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);	
+				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
+			} else {// 쿠키가 존재하는데 myboard가 있을때
+				String value = cookie.getValue();
+				System.out.println("쿠키 존재하고 myboard 쿠키가 존재하는 상태");
+				if (value.indexOf("|" + boardNo + "|") != -1) {
+					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하는 상태
+					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재..조회수 증가x");
+				} else {
+					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하지 않은 상태
+					value += "|" + boardNo + "|";
+					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
+
+					noticeBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);
+
+					response.addCookie(new Cookie("myboard", value));
+				}// else1
+			}// else2
+			
+		}// else3
+		bvo=noticeBoardService.getNoticeBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
 		PictureVO pvo=noticeBoardService.getPicture(pictureNo);
-		 if(pvo!=null){
-	    	  mv.addObject("pvo", pvo);
-	      }
-		//조회수 올라가게
-		 mv.addObject("rvo",rvo);
-		 mv.setViewName("notice_show_content");
-		return mv;
-	}
+		if(pvo!=null){
+			mv.addObject("pvo",pvo);
+	    }
+		mv.addObject("rvo", bvo);
+		mv.setViewName("notice_show_content");
+		 return mv;
+}
+	
    
    @RequestMapping("notice_board_update_view.ymv")
 	public ModelAndView noticeBoardUpdateView(int boardNo) {

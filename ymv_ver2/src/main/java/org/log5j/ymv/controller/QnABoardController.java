@@ -53,31 +53,47 @@ public class QnABoardController {
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int qnaNo=Integer.parseInt(request.getParameter("qnaNo"));
 		QnABoardVO qvo = null;
+		// 개별 게시물 조회 ( 조회수 증가 )
 		Cookie cookies[] = request.getCookies();
 		Cookie cookie = null;
-		String cookieValue = null;
-		String cookieName =null;
-				if (cookies == null || cookies.length == 0) {
-			//그냥 쿠키 자체 없음
-			cookieName = "hitcookie";
-	        cookieValue = "|"+qnaNo+"|";
-			cookie = new Cookie(cookieName, cookieValue);
+
+		if (cookies == null || cookies.length == 0) {
+			cookie = new Cookie("myboard", "|" + qnaNo + "|");
 			response.addCookie(cookie);
-		}else{
-			//쿠키는 있음
-			for(int i=0; i<cookies.length; i++){
-				cookieName = "hitcookie";
-				if(cookies[i].getName().equals(cookieName)){//쿠키있고 hitcookie있고
-					qnABoardService.getPostingByQnaNoNotHit(qnaNo);
+			System.out.println(" 쿠키가 존재하지 않은 상태");
+
+		} else {
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("myboard")) {
+					cookie = cookies[i];
+					break;
 				}
 			}
-				String value = cookieValue;
-		        value += "|"+qnaNo+"|";
-				cookie = new Cookie(cookieName, value);
+			if (cookie == null) {
+				// 쿠키가 존재하는데 myboard가 없을때
+				cookie = new Cookie("myboard", "|" + qnaNo + "|");
 				response.addCookie(cookie);
-		}
-		qvo = qnABoardService.getPostingByQnaNoUpdateHit(qnaNo);
-		//조회수 올라가게
+				qvo = qnABoardService.getPostingByQnaNoUpdateHit(qnaNo);
+				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
+			} else {// 쿠키가 존재하는데 myboard가 있을때
+				String value = cookie.getValue();
+				System.out.println("쿠키 존재하고 myboard 쿠키가 존재하는 상태");
+				if (value.indexOf("|" + qnaNo + "|") != -1) {
+					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하는 상태
+					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재..조회수 증가x");
+					qnABoardService.getPostingByQnaNoNotHit(qnaNo);
+
+				} else {
+					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하지 않은 상태
+					value += "|" + qnaNo + "|";
+					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
+					qvo = qnABoardService.getPostingByQnaNoUpdateHit(qnaNo);
+	
+					response.addCookie(new Cookie("myboard", value));
+				}// else1
+			}// else2
+		}// else3
+		qvo = qnABoardService.getQnABoardByQnANo(qnaNo);
 		return new ModelAndView("qna_show_content", "qvo", qvo);
 	}
 	
