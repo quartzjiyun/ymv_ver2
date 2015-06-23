@@ -19,4 +19,6 @@ public interface SchedulerDAO {
 
 	void registerScheduler(SchedulerVO sdvo);
 
+	void updateScheduler(SchedulerVO sdvo);
+
 }

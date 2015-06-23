@@ -43,6 +43,10 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	public void registerScheduler(SchedulerVO sdvo) {
 		sqlSessionTemplate.insert("scheduler.registerScheduler",sdvo);
 	}
+	@Override
+	public void updateScheduler(SchedulerVO sdvo) {
+		sqlSessionTemplate.update("scheduler.updateScheduler",sdvo);
+	}
 
 
 }

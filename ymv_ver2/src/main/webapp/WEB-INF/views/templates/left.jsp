@@ -184,7 +184,7 @@ $("#modalBtn").click(function(){
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<a href="scheduler_update_view.ymv?memberNo=${sessionScope.mvo.memberNo}"><img src="${initParam.root}img/schedulerUpdate.jpg"></a>
 			</div>
 		</div>
 	</div>

@@ -18,4 +18,6 @@ public interface SchedulerService {
 
 	public abstract void registerScheduler(SchedulerVO sdvo);
 
+	public abstract void updateScheduler(SchedulerVO sdvo);
+
 }

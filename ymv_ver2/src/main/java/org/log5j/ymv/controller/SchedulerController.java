@@ -74,4 +74,16 @@ public class SchedulerController {
 		schedulerService.registerScheduler(sdvo);
 		return "redirect:testTiles.ymv";
 	}
+	@RequestMapping("scheduler_update_view")
+	public ModelAndView schedulerUpdateView(HttpServletRequest request){
+		SchedulerVO sdvo=schedulerService.schedulerCheck(request.getParameter("memberNo"));
+		 List<FieldVO> Flist = recruitBoardService.getFieldList(); 
+	     List<LocationVO> Llist = recruitBoardService.getLocationList();
+		return new ModelAndView("scheduler_update_view","sdvo",sdvo).addObject("fieldlist", Flist).addObject("locationlist", Llist);
+	}
+	@RequestMapping("scheduler_update")
+	public String schdulerUpdate(SchedulerVO sdvo){
+		schedulerService.updateScheduler(sdvo);
+		return "redirect:testTiles.ymv";
+	}
 }
