@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.log5j.ymv.model.board.BoardVO;
+import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.CompanyVO;
 import org.log5j.ymv.model.board.FieldVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.LocationVO;
+import org.log5j.ymv.model.board.PictureVO;
 import org.log5j.ymv.model.board.RecruitBoardService;
 import org.log5j.ymv.model.board.RecruitBoardVO;
 import org.log5j.ymv.model.member.MemberService;
@@ -51,38 +54,60 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_showContentRecruitVol.ymv")
 	@NoLoginCheck
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mv=new ModelAndView();
 		String noComp = request.getParameter("recruitNo");
 		int recruitNo = Integer.parseInt(noComp);
-		RecruitBoardVO rvo = null;
+		 System.out.println("recruit_showContent boardNo: " + recruitNo);
+		RecruitBoardVO rvo=null;
+		// 개별 게시물 조회 ( 조회수 증가 )
 		Cookie cookies[] = request.getCookies();
 		Cookie cookie = null;
-		String cookieValue = null;
-		String cookieName =null;
-				if (cookies == null || cookies.length == 0) {
-			//그냥 쿠키 자체 없음
-			cookieName = "hitcookie";
-	        cookieValue = "|"+recruitNo+"|";
-			cookie = new Cookie(cookieName, cookieValue);
+
+		if (cookies == null || cookies.length == 0) {
+			cookie = new Cookie("myboard", "|" + recruitNo + "|");
 			response.addCookie(cookie);
-		}else{
-			//쿠키는 있음
-			for(int i=0; i<cookies.length; i++){
-				cookieName = "hitcookie";
-				if(cookies[i].getName().equals(cookieName)){//쿠키있고 hitcookie있고
-					recruitBoardService.getPostingByRecruitNoNotHit(recruitNo);
+			System.out.println(" 쿠키가 존재하지 않은 상태");
+
+		} else {
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("myboard")) {
+					cookie = cookies[i];
+					break;
 				}
 			}
-				String value = cookieValue;
-		        value += "|"+recruitNo+"|";
-				cookie = new Cookie(cookieName, value);
+			if (cookie == null) {
+				// 쿠키가 존재하는데 myboard가 없을때
+				cookie = new Cookie("myboard", "|" + recruitNo + "|");
 				response.addCookie(cookie);
-		}
-		rvo = recruitBoardService.getPostingByRecruitNoUpdateHit(recruitNo);
-		//조회수 올라가게
+				recruitBoardService.getPostingByRecruitNoUpdateHit(recruitNo);//BoardDAO.getInstance().updateHit(boardNo);
+			/*	BoardVO bvo=reviewBoardService.getReviewBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);*/				
+				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
+			} else {// 쿠키가 존재하는데 myboard가 있을때
+				String value = cookie.getValue();
+				System.out.println("쿠키 존재하고 myboard 쿠키가 존재하는 상태");
+				if (value.indexOf("|" + recruitNo + "|") != -1) {
+					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하는 상태
+					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재..조회수 증가x");
+		/*			recruitBoardService.getPostingByRecruitNoNotHit(recruitNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
+*/				} else {
+					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하지 않은 상태
+					value += "|" + recruitNo + "|";
+					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
+					recruitBoardService.getPostingByRecruitNoUpdateHit(recruitNo);//BoardDAO.getInstance().updateHit(boardNo);
+					//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
+					response.addCookie(new Cookie("myboard", value));
+				}// else1
+			}// else2
+			
+		}// else3
+		rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
+		System.out.println("Rvo:"+rvo);
 		MemberVO vo=memberService.findMemberByMemberNo(rvo.getMemberNo());
-	      System.out.println("rvo:"+rvo);
-		return new ModelAndView("voluntary_show_content", "rvo", rvo).addObject("vo",vo);
-	}
+		mv.addObject("rvo", rvo).addObject("vo",vo);
+		mv.setViewName("voluntary_show_content");
+		 return mv;
+}
+	
     
     @RequestMapping("voluntary_showContentRecruitVolType.ymv")
 	   public ModelAndView showContentRecruitVolType(HttpServletRequest request){
@@ -95,9 +120,7 @@ public class RecruitBoardController {
     			url="voluntary_show_content_normal";
     			//list=voluntaryServiceApplicateService.getApplicantList(recruitNo);
                 //System.out.println("list:"+list);
-
     		}
-	      
 	      RecruitBoardVO rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);
 	      MemberVO vo=memberService.findMemberByMemberNo(rvo.getMemberNo());
 	      System.out.println("rvo:"+rvo);
