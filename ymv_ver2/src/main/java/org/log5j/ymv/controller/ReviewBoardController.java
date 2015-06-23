@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.PictureVO;
@@ -65,56 +66,67 @@ public class ReviewBoardController {
 	      return "review_show_content";
 	   }*/
 	
+
 	@RequestMapping("review_showContent.ymv")
 	@NoLoginCheck
 	 public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mv=new ModelAndView();
 		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 		 System.out.println("review_showContent boardNo: " + boardNo);
-	      int pictureNo=boardNo;
-		   ModelAndView model = new ModelAndView();
-			ReviewBoardVO rvo = null;
-			Cookie cookies[] = request.getCookies();
-			Cookie cookie = null;
-			String cookieValue = null;
-			String cookieName =null;
-					if (cookies == null || cookies.length == 0) {
-				//그냥 쿠키 자체 없음
-				cookieName = "hitcookie";
-		        cookieValue = "|"+boardNo+"|";
-				cookie = new Cookie(cookieName, cookieValue);
-				response.addCookie(cookie);
-			}else{
-				//쿠키는 있음
-				for(int i=0; i<cookies.length; i++){
-					cookieName = "hitcookie";
-					if(cookies[i].getName().equals(cookieName)){//쿠키있고 hitcookie있고
-						reviewBoardService.getReviewBoardByBoardNo(boardNo);
-						List<CommentVO> commentList=reviewBoardService.findByCommentNo(request.getParameter("boardNo"));
-						PictureVO pvo=reviewBoardService.getPicture(pictureNo);
-						if(pvo!=null){
-							model.addObject("pvo",pvo);
-					    }
-						 model.addObject("rvo", rvo).addObject("commentList", commentList);
-					}
+		 int pictureNo=boardNo;
+		BoardVO bvo=null;
+		// 개별 게시물 조회 ( 조회수 증가 )
+		Cookie cookies[] = request.getCookies();
+		Cookie cookie = null;
+
+		if (cookies == null || cookies.length == 0) {
+			cookie = new Cookie("myboard", "|" + boardNo + "|");
+			response.addCookie(cookie);
+			System.out.println(" 쿠키가 존재하지 않은 상태");
+
+		} else {
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("myboard")) {
+					cookie = cookies[i];
+					break;
 				}
-					String value = cookieValue;
-			        value += "|"+boardNo+"|";
-					cookie = new Cookie(cookieName, value);
-					response.addCookie(cookie);
 			}
-			rvo = reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);
-			System.out.println("review_showContent rvo"+ rvo);
-			List<CommentVO> commentList=reviewBoardService.findByCommentNo(request.getParameter("boardNo"));
-			System.out.println("review_showContent commentList : "+ commentList);
-			PictureVO pvo=reviewBoardService.getPicture(pictureNo);
-			 if(pvo!=null){
-		    	  model.addObject("pvo", pvo);
-		      }
-			 model.addObject("rvo", rvo).addObject("commentList", commentList);
-			 model.setViewName("review_show_content");
-			//조회수 올라가게
-			return model;
-		}
+			if (cookie == null) {
+				// 쿠키가 존재하는데 myboard가 없을때
+				cookie = new Cookie("myboard", "|" + boardNo + "|");
+				response.addCookie(cookie);
+				reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);//BoardDAO.getInstance().updateHit(boardNo);
+			/*	BoardVO bvo=reviewBoardService.getReviewBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);*/				
+				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
+			} else {// 쿠키가 존재하는데 myboard가 있을때
+				String value = cookie.getValue();
+				System.out.println("쿠키 존재하고 myboard 쿠키가 존재하는 상태");
+				if (value.indexOf("|" + boardNo + "|") != -1) {
+					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하는 상태
+					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재..조회수 증가x");
+					//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
+				} else {
+					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하지 않은 상태
+					value += "|" + boardNo + "|";
+					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
+					reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);//BoardDAO.getInstance().updateHit(boardNo);
+					//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
+					response.addCookie(new Cookie("myboard", value));
+				}// else1
+			}// else2
+			
+		}// else3
+		bvo=reviewBoardService.getReviewBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
+		List<CommentVO> commentList=reviewBoardService.findByCommentNo(request.getParameter("boardNo"));
+		PictureVO pvo=reviewBoardService.getPicture(pictureNo);
+		System.out.println("review_showContent commentList : "+ commentList);
+		if(pvo!=null){
+			mv.addObject("pvo",pvo);
+	    }
+		mv.addObject("rvo", bvo).addObject("commentList", commentList);
+		mv.setViewName("review_show_content");
+		 return mv;
+}
 	
 	
 	@RequestMapping("register_review_comment.ymv")
