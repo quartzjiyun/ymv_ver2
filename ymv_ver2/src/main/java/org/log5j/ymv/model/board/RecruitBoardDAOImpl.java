@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -132,6 +133,12 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	public void updateHit(int recruitNo) {
 		// TODO Auto-generated method stub
 		sqlSessionTemplate.update("board.updateHit", recruitNo);
+	}
+
+	@Override
+	public MemberVO getMailAddressByMemberNo(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("applicant.getMailAddressByMemberNo", memberNo);
 	}
 
 }

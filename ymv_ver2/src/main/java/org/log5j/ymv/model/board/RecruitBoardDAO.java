@@ -2,6 +2,7 @@ package org.log5j.ymv.model.board;
 
 import java.util.List;
 
+import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
 
 public interface RecruitBoardDAO {
@@ -25,4 +26,5 @@ public interface RecruitBoardDAO {
 	public List<ApplicantListVO> getApplicantOkList(int recruitNo);
 	public void getPostingByRecruitNoNotHit(int recruitNo);
 	public void updateHit(int recruitNo);
+	public MemberVO getMailAddressByMemberNo(int memberNo);
 }

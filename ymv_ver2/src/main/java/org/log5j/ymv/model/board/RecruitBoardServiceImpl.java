@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
 import org.springframework.stereotype.Service;
 @Service
@@ -124,5 +125,10 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		// TODO Auto-generated method stub
 		recruitBoardDAO.updateHit(recruitNo);
 		return recruitBoardDAO.findRecruitBoardByrecruitNo(recruitNo);
+	}
+	@Override
+	public MemberVO getMailAddressByMemberNo(int memberNo) {
+		// TODO Auto-generated method stub
+		return recruitBoardDAO.getMailAddressByMemberNo(memberNo);
 	}
 }

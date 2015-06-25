@@ -8,22 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.log5j.ymv.model.board.BoardVO;
-import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.CompanyVO;
 import org.log5j.ymv.model.board.FieldVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.LocationVO;
-import org.log5j.ymv.model.board.PictureVO;
 import org.log5j.ymv.model.board.RecruitBoardService;
 import org.log5j.ymv.model.board.RecruitBoardVO;
+import org.log5j.ymv.model.member.Email;
+import org.log5j.ymv.model.member.EmailSender;
 import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,6 +35,8 @@ public class RecruitBoardController {
 	private VoluntaryServiceApplicateService voluntaryServiceApplicateService;
 	@Resource
 	private MemberService memberService;
+	@Autowired
+    private EmailSender emailSender;
 	
 	@RequestMapping("voluntary_board.ymv")
 	@NoLoginCheck
@@ -214,7 +215,8 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_applicantOK.ymv")
 	@NoLoginCheck
 	@Transactional
-	public ModelAndView applicantOK(HttpServletRequest request,ApplicantListVO alvo){
+	public ModelAndView applicantOK(HttpServletRequest request,ApplicantListVO alvo) throws Exception{
+		Email email = new Email();
 		String memberList=request.getParameter("memberList");
 		System.out.println("OK: "+ memberList);
 		String member[]=memberList.split(",");
@@ -227,8 +229,21 @@ public class RecruitBoardController {
 			recruitBoardService.registerApplicantOK(alvo);
 			System.out.println("for문 끝");
 			voluntaryServiceApplicateService.deleteApplicant(alvo);
+			//선정된 인원에게 메일 발송 memberNo로 메일 뽑아오기
+			MemberVO mailList=recruitBoardService.getMailAddressByMemberNo(Integer.parseInt(member[i]));
+			System.out.println("mailList:"+mailList);
+			
+			String reciver = mailList.getMailAddress(); //받을사람의 이메일입니다.
+	        String subject = "병준아 제발";
+	        String content = "메일이 도착했다고 말해";
+	        
+	        email.setReciver(reciver);
+	        email.setSubject(subject);
+	        email.setContent(content);
+	        emailSender.SendEmail(email);
 		}
 			List<ApplicantListVO> list=recruitBoardService.getApplicantOkList(alvo.getRecruitNo());
+
 		return new ModelAndView("voluntary_applicantOK","list",list);
 	}
 	
