@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	insert into voluntary_applicant_ok(recruit_no,member_no) values(#{recruitNo},#{memberNo})
  </insert>
  <select id="getApplicantOkList" parameterType="int" resultMap="applicantRM">
- 	select member_no from voluntary_applicant_ok where recruit_no=#{value}
+ 	select vao.recruit_no, m.member_no, m.id, m.name, m.mail_address from voluntary_applicant_ok vao, member m where vao.member_no=m.member_no and recruit_no=#{value}
  </select>
  <delete id="deleteApplicant" parameterType="alvo">
  	delete from voluntary_service_applicate where recruit_no=#{recruitNo} and member_no=#{memberNo}
