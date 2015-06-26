@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <h4>공지사항 검색 결과</h4>
+공지사항 검색 결과는 총 ${requestScope.nvo.pagingBean.totalContent}개 입니다.
 <div class="col-md-12">
 	<div class="col-md-12">
 		<table class="table">

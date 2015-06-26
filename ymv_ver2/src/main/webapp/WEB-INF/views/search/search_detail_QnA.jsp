@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <h4>QnA 검색 목록</h4>
+QnA 검색 결과는 총 ${requestScope.qvo.pagingBean.totalContent}개 입니다.
 
 <div class="col-md-12">
 			<div class="col-md-12">
