@@ -13,6 +13,7 @@ import org.log5j.ymv.model.board.LocationVO;
 import org.log5j.ymv.model.board.RecruitBoardService;
 import org.log5j.ymv.model.scheduler.SchedulerService;
 import org.log5j.ymv.model.scheduler.SchedulerVO;
+import org.log5j.ymv.model.scheduler.SearchBoardVO;
 import org.log5j.ymv.model.scheduler.SearchVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,5 +86,74 @@ public class SchedulerController {
 	public String schdulerUpdate(SchedulerVO sdvo){
 		schedulerService.updateScheduler(sdvo);
 		return "redirect:testTiles.ymv";
+	}
+	
+	
+	@RequestMapping("search_boards.ymv")
+	@NoLoginCheck
+	public ModelAndView search_board(HttpServletRequest request, String search){
+		//String search = request.getParameter("search");
+		ModelAndView mv = new ModelAndView("search_result");
+
+		List rvo = schedulerService.getThRecruitBoardList(search);
+		mv.addObject("rvo", rvo);//recruit
+		
+		List nvo = schedulerService.getThNoticeBoardList(search);
+		mv.addObject("nvo", nvo);//notice
+		
+		List revo = schedulerService.getThReviewBoardList(search);
+		mv.addObject("revo",revo);//review
+		
+		List qvo = schedulerService.getThQnABoardList(search);
+		mv.addObject("qvo", qvo);//QnA
+		
+		mv.addObject("search", search);
+		return mv;
+	}
+	
+	@RequestMapping("search_boards_recruit.ymv")
+	@NoLoginCheck
+	public ModelAndView search_boards_recruit(SearchBoardVO sebvo){
+		ModelAndView mv = new ModelAndView("search_detail_recruit");
+		
+		ListVO rvo = schedulerService.getRecruitBoardList(sebvo);
+		mv.addObject("rvo", rvo).addObject("sebvo", sebvo);
+		
+		return mv;
+	}
+
+	@RequestMapping("search_boards_notice.ymv")
+	@NoLoginCheck
+	public ModelAndView search_boards_notice(SearchBoardVO sebvo){
+		ModelAndView mv = new ModelAndView("search_detail_notice");
+		
+		ListVO nvo = schedulerService.getNoticeBoardList(sebvo);
+		mv.addObject("nvo", nvo).addObject("sebvo", sebvo);
+		System.out.println("notice   "+ sebvo.getSearch());
+		
+		return mv;
+	}
+
+	@RequestMapping("search_boards_review.ymv")
+	@NoLoginCheck
+	public ModelAndView search_boards_review(SearchBoardVO sebvo){
+		ModelAndView mv = new ModelAndView("search_detail_review");
+		
+		ListVO revo = schedulerService.getReviewBoardList(sebvo);
+		mv.addObject("revo", revo).addObject("sebvo", sebvo);
+		System.out.println("review   "+ sebvo.getSearch());
+		
+		return mv;
+	}
+	
+	@RequestMapping("search_boards_QnA.ymv")
+	@NoLoginCheck
+	public ModelAndView search_boards_QnA(SearchBoardVO sebvo){
+		ModelAndView mv = new ModelAndView("search_detail_QnA");
+		
+		ListVO qvo = schedulerService.getQnABoardList(sebvo);
+		mv.addObject("qvo", qvo).addObject("sebvo", sebvo);
+		
+		return mv;
 	}
 }

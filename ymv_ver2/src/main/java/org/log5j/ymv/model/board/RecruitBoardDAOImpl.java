@@ -6,6 +6,9 @@ import javax.annotation.Resource;
 
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
+import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
+import org.log5j.ymv.model.voluntary.ConfirmPageVO;
+import org.log5j.ymv.model.voluntary.ConfirmVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 @Repository
@@ -140,5 +143,53 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("applicant.getMailAddressByMemberNo", memberNo);
 	}
+
+	@Override
+	public void registerConfirm(ConfirmVO confirmvo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.insert("applicant.registerConfirm",confirmvo);
+	}
+
+	@Override
+	public void registerConfirmBoard(ConfirmBoardVO confirmbvo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.insert("applicant.registerConfirmBoard",confirmbvo);
+	}
+
+	@Override
+	public void deleteVoluntaryApplicantOK(int recruitNo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.delete("applicant.deleteVoluntaryApplicantOK",recruitNo);
+	}
+
+	@Override
+	public void deleteVoluntaryServiceApplicateByRecruitNo(int recruitNo) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.delete("applicant.deleteVoluntaryServiceApplicateByRecruitNo",recruitNo);
+	}
+
+	@Override
+	public List<ConfirmVO> getConfirmByMemberNo(int memberNo) {
+		// TODO Auto-generated method stub
+		
+		return sqlSessionTemplate.selectList("applicant.getConfirmByMemberNo",memberNo);
+	}
+
+	@Override
+	public List<BoardVO> getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO) {
+		// TODO Auto-generated method stub
+		List<BoardVO> list=sqlSessionTemplate.selectList("applicant.getConfirmBoardListByMemberNo",confirmPageVO);
+		return list;
+	}
+
+	@Override
+	public int totalContentConfirm(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("applicant.totalContentConfirm",memberNo);
+	}
+
+
+
+
 
 }

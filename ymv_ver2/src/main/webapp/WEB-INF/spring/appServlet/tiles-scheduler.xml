@@ -9,7 +9,7 @@
 		<put-attribute name="main" value="/WEB-INF/views/scheduler/scheduler_{1}.jsp" />
 	</definition>
 	<definition name="search_*" extends="home">
-		<put-attribute name="main" value="/WEB-INF/views/scheduler/search_{1}.jsp" />
+		<put-attribute name="main" value="/WEB-INF/views/search/search_{1}.jsp" />
 	</definition>
 </tiles-definitions>
 

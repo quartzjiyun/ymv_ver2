@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
+import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
+import org.log5j.ymv.model.voluntary.ConfirmPageVO;
+import org.log5j.ymv.model.voluntary.ConfirmVO;
 
 public interface RecruitBoardService {
 	public  ListVO getBoardList(String pageNo);
@@ -41,4 +44,18 @@ public interface RecruitBoardService {
 	public RecruitBoardVO getPostingByRecruitNoUpdateHit(int recruitNo);
 	
 	public MemberVO getMailAddressByMemberNo(int memberNo);
+
+	public void registerConfirm(ConfirmVO confirmvo);
+
+	public void registerConfirmBoard(ConfirmBoardVO confirmbvo);
+
+	public void deleteVoluntaryApplicantOK(int recruitNo);
+
+	public void deleteVoluntaryServiceApplicateByRecruitNo(int recruitNo);
+
+	public List<ConfirmVO> getConfirmByMemberNo(int memberNo);
+
+	public ListVO getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
+
+
 }

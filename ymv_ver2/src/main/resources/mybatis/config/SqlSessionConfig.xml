@@ -23,6 +23,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.statistics.StatisticsVO" alias="stvo"/>
 		<typeAlias type="org.log5j.ymv.model.scheduler.SchedulerVO" alias="sdvo"/>
 		<typeAlias type="org.log5j.ymv.model.voluntary.ApplicantListVO" alias="alvo"/>
+		<typeAlias type="org.log5j.ymv.model.voluntary.ConfirmVO" alias="confirmvo"/>
+		<typeAlias type="org.log5j.ymv.model.voluntary.ConfirmBoardVO" alias="confirmbvo"/>
+		<typeAlias type="org.log5j.ymv.model.voluntary.ConfirmPageVO" alias="confirmpvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/board.xml" />
@@ -33,5 +36,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/scheduler.xml" />
 		<mapper resource="mybatis/config/statistics.xml" />
 		<mapper resource="mybatis/config/applicant.xml" />
+		<mapper resource="mybatis/config/search.xml" />
 	</mappers>
 </configuration>

@@ -2,6 +2,21 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>YMV Main</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#searchBtn").click(function(){
+			if($("#search").val()=="" || $("#search").val()==null){
+				alert("검색어를 입력하세요!");
+				return false;
+			}else{
+				//alert($("#search").val());
+				location.href="search_boards.ymv?search="+$("#search").val();
+			}
+		});
+		
+	});
+
+</script>
 <c:choose>
 <c:when test="${sessionScope.mvo.memberType=='admin' }">
 
@@ -65,11 +80,11 @@
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
-       <form class="navbar-form navbar-right" role="search">
+       <form class="navbar-form navbar-right" role="search" id="searchForm">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="검색해주세요">
+          <input type="text" class="form-control" placeholder="검색해주세요" id="search">
         </div>
-        <button type="submit" class="btn btn-default">검색</button>
+        <button type="button" class="btn btn-default" id="searchBtn">검색</button>
       </form>
       </ul>
     </div>
@@ -114,6 +129,7 @@
             <c:choose>
             <c:when test="${sessionScope.mvo.memberType=='normal' }">
             <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
+            <li><a href="${initParam.root }voluntary_board_normal_confirmList.ymv"> 확인서 발급</a></li>
             </c:when>
             <c:when test="${sessionScope.mvo.memberType=='admin' }">
             <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
@@ -154,11 +170,11 @@
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
-       <form class="navbar-form navbar-right" role="search">
+       <form class="navbar-form navbar-right" role="search" id="searchForm">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="검색해주세요">
+          <input type="text" class="form-control" placeholder="검색해주세요" id="search">
         </div>
-        <button type="submit" class="btn btn-default">검색</button>
+        <button type="button" class="btn btn-default" id="searchBtn">검색</button>
       </form>
       </ul>
     </div>

@@ -9,6 +9,9 @@ public class PagingBean {
 	 * 총 게시물 수 
 	 */
 	private int totalContent;
+	public int getTotalContent() {
+		return totalContent;
+	}
 	public int getNowPage() {
 		return nowPage;
 	}

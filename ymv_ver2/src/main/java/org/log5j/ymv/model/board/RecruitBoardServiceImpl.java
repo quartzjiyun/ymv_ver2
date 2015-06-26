@@ -6,6 +6,9 @@ import javax.annotation.Resource;
 
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
+import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
+import org.log5j.ymv.model.voluntary.ConfirmPageVO;
+import org.log5j.ymv.model.voluntary.ConfirmVO;
 import org.springframework.stereotype.Service;
 @Service
 public class RecruitBoardServiceImpl implements RecruitBoardService {
@@ -131,4 +134,40 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		// TODO Auto-generated method stub
 		return recruitBoardDAO.getMailAddressByMemberNo(memberNo);
 	}
+	@Override
+	public void registerConfirm(ConfirmVO confirmvo) {
+		// TODO Auto-generated method stub
+		recruitBoardDAO.registerConfirm(confirmvo);
+	}
+	@Override
+	public void registerConfirmBoard(ConfirmBoardVO confirmbvo) {
+		// TODO Auto-generated method stub
+		recruitBoardDAO.registerConfirmBoard(confirmbvo);
+	}
+	@Override
+	public void deleteVoluntaryApplicantOK(int recruitNo) {
+		// TODO Auto-generated method stub
+		recruitBoardDAO.deleteVoluntaryApplicantOK(recruitNo);
+	}
+	@Override
+	public void deleteVoluntaryServiceApplicateByRecruitNo(int recruitNo) {
+		// TODO Auto-generated method stub
+		recruitBoardDAO.deleteVoluntaryServiceApplicateByRecruitNo(recruitNo);
+	}
+	@Override
+	public List<ConfirmVO> getConfirmByMemberNo(int memberNo) {
+		return recruitBoardDAO.getConfirmByMemberNo(memberNo);
+	}
+	@Override
+	public ListVO getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO) {
+		// TODO Auto-generated method stub
+		 if (confirmPageVO.getPageNo() == 0)
+	         confirmPageVO.setPageNo(1);
+	      List<BoardVO> list = recruitBoardDAO.getConfirmBoardListByMemberNo(confirmPageVO);
+	      int total = recruitBoardDAO.totalContentConfirm(confirmPageVO.getMemberNo());
+	      PagingBean paging = new PagingBean(total,confirmPageVO.getPageNo());
+	      ListVO lvo = new ListVO(list, paging);
+	      return lvo;
+	}
+
 }

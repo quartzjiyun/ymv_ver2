@@ -48,5 +48,59 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 		sqlSessionTemplate.update("scheduler.updateScheduler",sdvo);
 	}
 
+	@Override
+	public List<BoardVO> getRecruitBoardList(SearchBoardVO sebvo) {
+		List<BoardVO> list =  sqlSessionTemplate.selectList("search.getRecruitBoardList",sebvo);
+		return list;
+	}
+	@Override
+	public int getRecruitTotalContent(String search) {
+		return sqlSessionTemplate.selectOne("search.getRecruitTotalContent",search);
+	}
+	@Override
+	public List<BoardVO> getNoticeBoardList(SearchBoardVO sebvo) {
+		return sqlSessionTemplate.selectList("search.getNoticeBoardList",sebvo);
+	}
+	@Override
+	public int getNoticeBoardTotalContent(String search) {
+		return sqlSessionTemplate.selectOne("search.getNoticeBoardTotalContent",search);
+	}
+	@Override
+	public List<BoardVO> getReviewBoardList(SearchBoardVO sebvo) {
+		return sqlSessionTemplate.selectList("search.getReviewBoardList",sebvo);
+	}
+	@Override
+	public int getReviewBoardTotalContent(String search) {
+		return sqlSessionTemplate.selectOne("search.getReviewBoardTotalContent",search);
+	}
+	@Override
+	public List<BoardVO> getQnABoardList(SearchBoardVO sebvo) {
+		return sqlSessionTemplate.selectList("search.getQnABoardList",sebvo);
+	}
+	@Override
+	public int getQnABoardTotalContent(String search) {
+		return sqlSessionTemplate.selectOne("search.getQnABoardTotalContent",search);
+	}
+	
+	@Override
+	public List<BoardVO> getThRecruitBoardList(String search) {
+		List<BoardVO> list = sqlSessionTemplate.selectList("search.getThRecruitBoardList", search);
+		return list;
+	}
+	@Override
+	public List<BoardVO> getThNoticeBoardList(String search) {
+		List<BoardVO> list = sqlSessionTemplate.selectList("search.getThNoticeBoardList", search);
+		return list;
+	}
+	@Override
+	public List<BoardVO> getThReviewBoardList(String search) {
+		List<BoardVO> list = sqlSessionTemplate.selectList("search.getThReviewBoardList", search);
+		return list;
+	}
+	@Override
+	public List<BoardVO> getThQnABoardList(String search) {
+		List<BoardVO> list = sqlSessionTemplate.selectList("search.getThQnABoardList", search);
+		return list;
+	}
 
 }
