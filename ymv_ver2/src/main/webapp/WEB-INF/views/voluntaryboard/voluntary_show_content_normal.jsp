@@ -45,28 +45,29 @@ $(document).ready(function(){
 	
 });
 </script>
-<div class="col-md-12">
-	<div class="col-md-12">
-		<table class="content">
+<div class="col-sm-6 col-sm-offset-3">
+<div class="panel panel-default">
+  <div class="panel-body">
+		<table class="col-sm-12">
 		<tbody>
 			<tr>
-				<td width="150">NO : ${requestScope.rvo.recruitNo }</td>
-				<td colspan="2">제목 : ${requestScope.rvo.title}</td>
+				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
+				<td colspan="2"><p>제목 : ${requestScope.rvo.title}</p></td>
 			</tr>
 			<tr>
-				<td>기업명 : ${requestScope.vo.name}</td>
-				<td width="180">시간:${requestScope.rvo.postDate}</td>
-				<td>조회수 : ${requestScope.rvo.hit }</td>
+				<td><p>기업명 : ${requestScope.vo.name}</p></td>
+				<td ><p>시간 : ${requestScope.rvo.postDate}</p></td>
+				<td><p>조회수 : ${requestScope.rvo.hit }</p></td>
 			</tr>
 			<tr>
-				<td>분야: ${requestScope.rvo.field}</td>
-				<td>나이제한 : ${requestScope.rvo.age}</td>
-				<td>지역 : ${requestScope.rvo.location}</td>
+				<td><p>분야 : ${requestScope.rvo.field}</p></td>
+				<td><p>나이제한 : ${requestScope.rvo.age}</p></td>
+				<td><p>지역 : ${requestScope.rvo.location}</p></td>
 			</tr>
 			<tr>
-				<td colspan="3" align="center" height="30">시작시간:
-					${requestScope.rvo.startDate} &nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp 종료시간:
-					${requestScope.rvo.endDate}</td>
+				<td colspan="3" align="center" ><p>시작시간 : 
+					${requestScope.rvo.startDate} &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp; 종료시간 : 
+					${requestScope.rvo.endDate}</p></td>
 				<%--      <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp~</td>
          <td>종료시간: ${requestScope.rvo.endDate}</td> --%>
 			</tr>
@@ -76,27 +77,26 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<td valign="middle" align="center" colspan="3"><a
-					href="${initParam.root}voluntary_board_normal.ymv"> <img
-						class="action" src="${initParam.root}img/list_btn.jpg"
-						onclick="sendList()"></a> <c:choose>
+					href="${initParam.root}voluntary_board_normal.ymv">
+					<input type="button" class="btn btn-default btn-xs" value="목록" ></a> 
+					<c:choose>
 						<c:when test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo}">
 							<a
 								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }">
-								<img class="action" src="${initParam.root}img/modify_btn.jpg"
-								id="update">
+								<input type="button" class="btn btn-default btn-xs" value="수정" >
 							</a>
-							<img class="action" src="${initParam.root}img/delete_btn.jpg"
-								id="delete">
+							<input type="button" class="btn btn-default btn-xs" class = "action" id ="delete" value="삭제" >
 						</c:when>
 						
 					</c:choose>
 					<c:if test="${sessionScope.mvo.memberType=='normal'}">
-							<input type="button" value="신청하기" id="applicant">
+							<input type="button" class="btn btn-default btn-xs" value="신청하기" id="applicant">
 					</c:if></td>
 			</tr>
 			</tbody>
 		</table>
+		</div></div>
 		<br>
 		<br> <span id="motivateForm"></span>
 	</div>
-</div>
+

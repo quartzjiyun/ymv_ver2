@@ -1,18 +1,19 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="col-md-12">
-	<div class="col-md-12">
-		<table class="table">
-			<caption>목록</caption>
-			<colgroup>
+<div class="col-md-10 col-sm-offset-1">
+	<h3>
+		<p class="text-center">봉사 검색 결과</p>
+	</h3>
+	<table class="table table-striped table-hover">
+			<%-- <colgroup>
 				<col style="width: 10%;" />
 				<col style="width: 20%;" />
 				<col style="width: 10%;" />
 				<col style="width: 20%;" />
 				<col style="width: 20%;" />
 				<col style="width: 20%;" />
-			</colgroup>
+			</colgroup> --%>
 			<thead>
 				<tr>
 					<th scope="col" >NO</th>
@@ -38,9 +39,53 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<div class="text-center">
+		<ul class="pagination">
+			<c:choose>
+				<c:when test="${requestScope.lvo.pagingBean.previousPageGroup}">
+					<li class="active"><a
+						href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.
+    startPageOfPageGroup-1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">«</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="disabled"><a
+						href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.
+    startPageOfPageGroup-1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">«</a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i"
+				begin="${requestScope.lvo.pagingBean.startPageOfPageGroup}"
+				end="${requestScope.lvo.pagingBean.endPageOfPageGroup}">
+				<c:choose>
+					<c:when test="${requestScope.lvo.pagingBean.nowPage!=i}">
+						<li><a href="search_board.ymv?pageNo=${i}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">${i}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="active"><a href="#">${i}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${requestScope.lvo.pagingBean.nextPageGroup}">
+					<li class="active"><a
+						href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">»</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="disabled"><a
+						href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">»</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</div>
+</div>
 
-<br>
-<br></br>
+
+
+
+<%-- 
+
+
+
 <c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
 	<a
 		href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.
@@ -67,15 +112,7 @@
 	</a>
 </c:if>
 	</div>
-</div>
-
-
-
-
-
-
-
-
+ --%>
 
 
 
