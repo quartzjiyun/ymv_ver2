@@ -19,5 +19,21 @@ public interface SchedulerService {
 	public abstract void registerScheduler(SchedulerVO sdvo);
 
 	public abstract void updateScheduler(SchedulerVO sdvo);
+	
+	public ListVO getRecruitBoardList(SearchBoardVO sebvo);
+
+	public ListVO getNoticeBoardList(SearchBoardVO sebvo);
+
+	public ListVO getReviewBoardList(SearchBoardVO sebvo);
+
+	public ListVO getQnABoardList(SearchBoardVO sebvo);
+
+	public List<BoardVO> getThRecruitBoardList(String search);
+
+	public List<BoardVO> getThNoticeBoardList(String search);
+
+	public List<BoardVO> getThReviewBoardList(String search);
+
+	public List<BoardVO> getThQnABoardList(String search);
 
 }

@@ -47,4 +47,74 @@ public class SchedulerServiceImpl implements SchedulerService {
 	public void updateScheduler(SchedulerVO sdvo) {
 		schedulerDAO.updateScheduler(sdvo);
 	}
+	
+	@Override
+	public ListVO getRecruitBoardList(SearchBoardVO sebvo) {
+		if (sebvo.getPageNo() == null || sebvo.getPageNo() == ""){
+			sebvo.setPageNo("1");
+		}
+		List<BoardVO> list = schedulerDAO.getRecruitBoardList(sebvo);
+		int total=schedulerDAO.getRecruitTotalContent(sebvo.getSearch());
+		PagingBean paging=new PagingBean(total, Integer.parseInt(sebvo.getPageNo()));
+		ListVO rvo = new ListVO(list, paging);
+		System.out.println("rvo: "+rvo);
+		return rvo;
+	}
+	@Override
+	public ListVO getNoticeBoardList(SearchBoardVO sebvo) {
+		if (sebvo.getPageNo() == null || sebvo.getPageNo() == ""){
+			sebvo.setPageNo("1");
+		}
+		List<BoardVO> list = schedulerDAO.getNoticeBoardList(sebvo);
+		int total=schedulerDAO.getNoticeBoardTotalContent(sebvo.getSearch());
+		PagingBean paging=new PagingBean(total, Integer.parseInt(sebvo.getPageNo()));
+		ListVO nvo = new ListVO(list, paging);
+		System.out.println("nvo: "+nvo);
+		return nvo;
+	}
+	@Override
+	public ListVO getReviewBoardList(SearchBoardVO sebvo) {
+		if (sebvo.getPageNo() == null || sebvo.getPageNo() == ""){
+			sebvo.setPageNo("1");
+		}
+		List<BoardVO> list = schedulerDAO.getReviewBoardList(sebvo);
+		int total=schedulerDAO.getReviewBoardTotalContent(sebvo.getSearch());
+		PagingBean paging=new PagingBean(total, Integer.parseInt(sebvo.getPageNo()));
+		ListVO revo = new ListVO(list, paging);
+		System.out.println("revo: "+revo);
+		return revo;
+	}
+	@Override
+	public ListVO getQnABoardList(SearchBoardVO sebvo) {
+		if (sebvo.getPageNo() == null || sebvo.getPageNo() == ""){
+			sebvo.setPageNo("1");
+		}
+		List<BoardVO> list = schedulerDAO.getQnABoardList(sebvo);
+		int total=schedulerDAO.getQnABoardTotalContent(sebvo.getSearch());
+		PagingBean paging=new PagingBean(total, Integer.parseInt(sebvo.getPageNo()));
+		ListVO qvo = new ListVO(list, paging);
+		System.out.println("qvo: "+qvo);
+		return qvo;
+	}
+	
+	@Override
+	public List<BoardVO> getThRecruitBoardList(String search) {
+		List<BoardVO> list = schedulerDAO.getThRecruitBoardList(search);
+		return list;
+	}
+	@Override
+	public List<BoardVO> getThNoticeBoardList(String search) {
+		List<BoardVO> list = schedulerDAO.getThNoticeBoardList(search);
+		return list;
+	}
+	@Override
+	public List<BoardVO> getThReviewBoardList(String search) {
+		List<BoardVO> list = schedulerDAO.getThReviewBoardList(search);
+		return list;
+	}
+	@Override
+	public List<BoardVO> getThQnABoardList(String search) {
+		List<BoardVO> list = schedulerDAO.getThQnABoardList(search);
+		return list;
+	}
 }
