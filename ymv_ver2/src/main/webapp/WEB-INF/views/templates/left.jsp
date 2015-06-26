@@ -161,9 +161,12 @@ $("#modalBtn").click(function(){
 				</script>
 			</c:when>
 		</c:choose>
+		<div class="col-sm-12">
+    <div class="pull-right"> 
 		<a href="${initParam.root}member_register_form.ymv"
-			class="btn btn-primary btn-xs"
-			style="position: relative; margin-left: 75%;">회원가입</a>
+			class="btn btn-primary btn-xs">회원가입</a>
+    </div>
+  </div>
 		<br>
 	</c:when>
 </c:choose>

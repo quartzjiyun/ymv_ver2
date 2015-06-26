@@ -28,58 +28,49 @@
 				});
 	});
 </script>
-<div class="col-md-12">
-	<div class="col-md-3">
-	<h2>통합 검색</h2>
-<form action="search_board.ymv">
-	<table class="table" border="1">
-		<tr>
-			<th class="info">제목</th>
-			<td><input type="text" name="title" id="title"></td>
-		</tr>
-		<tr>
-			<th class="info">분야</th>
-			<td><select id="field" name="field">
-					<!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
-					<option value="">-분야-</option>
-					<c:forEach items="${requestScope.fieldlist }" var="f">
-						<option value="${f.field }">${f.field }</option>
-					</c:forEach>
-			</select></td>
-		</tr>
-		<tr>
-			<th class="info">지역</th>
-			<td><select id="location" name="location">
-					<!-- 지역(*도 별로) DB에서 받아오기 -->
-					<option value="">-지역-</option>
-					<c:forEach items="${requestScope.locationlist }" var="l">
-						<option value="${l.location }">${l.location }</option>
-					</c:forEach>
-			</select></td>
-		</tr>
-		<tr>
-			<th class="info">시작시간</th>
-			<td><input type="text" id="datepicker1" name="startDate"
-				placeholder="시작날짜">
-		</tr>
-		<tr>
-			<th class="info">끝시간</th>
-			<td><input type="text" id="datepicker2" name="endDate"
-				placeholder="종료날짜"></td>
-		</tr>
-	</table>
-	<br> <input type="submit" value="검색">
-</form>
-<hr>
-<form action="scheduler_board.ymv">
-	<select id="field" name="field">
-		<!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
-		<option value="">-분야-</option>
-		<c:forEach items="${requestScope.fieldlist }" var="f">
-			<option value="${f.field }">${f.field }</option>
-		</c:forEach>
-	</select> <input type="text" name="startDate"> <input type="text"
-		name="endDate"> <input type="submit" value="스케쥴러">
-</form>
-</div>
+<div class="col-sm-4 col-sm-offset-4">
+	<h2><p class = "text-center">통합 검색</p></h2><br>
+	<form action="search_board.ymv">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th class="info">제목</th>
+				<td><input type="text" name="title" id="title"></td>
+			</tr>
+			<tr>
+				<th class="info">분야</th>
+				<td><select id="field" name="field">
+						<!-- 분야(노인, 아동, 장애, 동물, 환경) DB에서 받아오기 -->
+						<option value="">-분야-</option>
+						<c:forEach items="${requestScope.fieldlist }" var="f">
+							<option value="${f.field }">${f.field }</option>
+						</c:forEach>
+				</select></td>
+			</tr>
+			<tr>
+				<th class="info">지역</th>
+				<td><select id="location" name="location">
+						<!-- 지역(*도 별로) DB에서 받아오기 -->
+						<option value="">-지역-</option>
+						<c:forEach items="${requestScope.locationlist }" var="l">
+							<option value="${l.location }">${l.location }</option>
+						</c:forEach>
+				</select></td>
+			</tr>
+			<tr>
+				<th class="info">시작시간</th>
+				<td><input type="text" id="datepicker1" name="startDate"
+					placeholder="시작날짜">
+			</tr>
+			<tr>
+				<th class="info">끝시간</th>
+				<td><input type="text" id="datepicker2" name="endDate"
+					placeholder="종료날짜"></td>
+			</tr>
+		</table>
+		<div class="col-sm-12">
+			<div class="pull-right">
+				<input type="submit" class="btn btn-default btn-xs" value="검색">
+			</div>
+		</div>
+	</form>
 </div>

@@ -157,13 +157,15 @@
 <div class = "col-sm-6 col-sm-offset-3">
 <div class = "centered">
 	<div class="row">
-	<h2>나이별 선호 봉사</h2><br><br>
+	<h2><p class = "text-center">나이별 선호 봉사</p></h2><br><br>
+<div class="text-center">
 		<input class="btn btn-primary btn-lg" type="button" value="10대" id="10Btn"> <input
 			type="button" value="20대" id="20Btn" class="btn btn-primary btn-lg"> <input
 			type="button" value="30대" id="30Btn" class="btn btn-primary btn-lg"> <input
 			type="button" value="40대" id="40Btn" class="btn btn-primary btn-lg"> <input
 			type="button" value="50대" id="50Btn" class="btn btn-primary btn-lg"> <input
 			type="button" value="기타" id="0Btn" class="btn btn-primary btn-lg">
+			</div>
 	</div>
 	</div>
 		<span id="statistics">

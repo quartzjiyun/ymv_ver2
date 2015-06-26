@@ -1,59 +1,62 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<h3><p  class = "text-center">봉사 전체 목록</p></h3>
 
-	<div class="col-md-10 col-sm-offset-1">
-		<table class="table table-striped table-hover">
-			<caption>목록</caption>
-			<colgroup>
-				<col style="width: 10%;" />
-				<col style="width: 20%;" />
-				<col style="width: 10%;" />
-				<col style="width: 10%;" />
-				<col style="width: 25%;" />
-				<col style="width: 25%;" />
-			</colgroup>
-			<thead>
+<div class="col-md-10 col-sm-offset-1">
+	<h3>
+		<p class="text-center">봉사 전체 목록</p>
+	</h3>
+	<table class="table table-striped table-hover">
+		<colgroup>
+			<col style="width: 10%;" />
+			<col style="width: 20%;" />
+			<col style="width: 10%;" />
+			<col style="width: 10%;" />
+			<col style="width: 25%;" />
+			<col style="width: 25%;" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col">NO</th>
+				<th scope="col">제목</th>
+				<th scope="col">분야</th>
+				<th scope="col">지역</th>
+				<th scope="col">시작일</th>
+				<th scope="col">완료일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="bvo" items="${requestScope.lvo.list}">
 				<tr>
-					<th scope="col">NO</th>
-					<th scope="col">제목</th>
-					<th scope="col">분야</th>
-					<th scope="col">지역</th>
-					<th scope="col">시작일</th>
-					<th scope="col">완료일</th>
+					<td>${bvo.recruitNo }</td>
+					<td><a
+						href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}">
+							${bvo.title }</a></td>
+					<td>${bvo.field }</td>
+					<td>${bvo.location }</td>
+					<td>${bvo.startDate }</td>
+					<td>${bvo.endDate }</td>
 				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="bvo" items="${requestScope.lvo.list}">
-					<tr>
-						<td>${bvo.recruitNo }</td>
-						<td><a
-							href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}">
-								${bvo.title }</a></td>
-						<td>${bvo.field }</td>
-						<td>${bvo.location }</td>
-						<td>${bvo.startDate }</td>
-						<td>${bvo.endDate }</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<br>
-		<c:if test="${sessionScope.mvo.memberType=='company' }">
-			<div class="col-sm-1 col-md-offset-11">
-				<a href="${initParam.root }voluntary_register_view.ymv"
-					class="btn btn-default btn-xs">글쓰기 </a>
-			</div>
-		</c:if>
-		<c:if test="${sessionScope.mvo.memberType=='admin' }">
-			<div class="col-sm-1 col-md-offset-11">
-				<a href="${initParam.root }voluntary_register_view.ymv"
-					class="btn btn-default btn-xs">글쓰기 </a>
-			</div>
-		</c:if>
-		<br></br>
-<div class = "text-center">
+			</c:forEach>
+		</tbody>
+	</table>
+	<br>
+	<c:if test="${sessionScope.mvo.memberType=='company' }">
+					<div class="col-sm-12">
+    <div class="pull-right"> 
+			<a href="${initParam.root }voluntary_register_view.ymv"
+				class="btn btn-default btn-xs">글쓰기 </a>
+		</div></div>
+	</c:if>
+	<c:if test="${sessionScope.mvo.memberType=='admin' }">
+					<div class="col-sm-12">
+    <div class="pull-right"> 
+			<a href="${initParam.root }voluntary_register_view.ymv"
+				class="btn btn-default btn-xs">글쓰기 </a>
+		</div></div>
+	</c:if>
+	<br></br>
+	<div class="text-center">
 		<ul class="pagination">
 			<c:choose>
 				<c:when test="${requestScope.lvo.pagingBean.previousPageGroup}">
@@ -90,8 +93,8 @@
 				</c:otherwise>
 			</c:choose>
 		</ul>
-		</div>
 	</div>
+</div>
 
 
 

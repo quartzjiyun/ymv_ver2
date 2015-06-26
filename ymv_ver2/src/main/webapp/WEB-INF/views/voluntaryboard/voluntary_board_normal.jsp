@@ -4,7 +4,6 @@
 <h3><p class = "text-center">봉사 신청 내역 확인</p></h3>
 <div class="col-md-10 col-sm-offset-1">
 		<table class="table table-striped table-hover">
-			<caption>목록</caption>
 			<colgroup>
 				<col style="width: 10%;" />
 				<col style="width: 20%;" />
