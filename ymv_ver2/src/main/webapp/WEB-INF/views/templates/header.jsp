@@ -129,6 +129,7 @@
             <c:choose>
             <c:when test="${sessionScope.mvo.memberType=='normal' }">
             <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
+            <li><a href="${initParam.root }voluntary_board_normal_confirmList.ymv"> 확인서 발급</a></li>
             </c:when>
             <c:when test="${sessionScope.mvo.memberType=='admin' }">
             <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>

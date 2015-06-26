@@ -19,6 +19,9 @@ import org.log5j.ymv.model.member.EmailSender;
 import org.log5j.ymv.model.member.MemberService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.log5j.ymv.model.voluntary.ApplicantListVO;
+import org.log5j.ymv.model.voluntary.ConfirmBoardVO;
+import org.log5j.ymv.model.voluntary.ConfirmPageVO;
+import org.log5j.ymv.model.voluntary.ConfirmVO;
 import org.log5j.ymv.model.voluntary.VoluntaryServiceApplicateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -246,5 +249,74 @@ public class RecruitBoardController {
 
 		return new ModelAndView("voluntary_applicantOK","list",list);
 	}
+	
+	@RequestMapping("voluntary_OKList.ymv")
+	public ModelAndView voluntary_OKList(HttpServletRequest request,ApplicantListVO alvo){
+		//String recruitNo=request.getParameter("recruitNo");
+		List<ApplicantListVO> list=recruitBoardService.getApplicantOkList(alvo.getRecruitNo());
+		System.out.println("OKLIST alvo : "+alvo.getRecruitNo());
+		System.out.println("OKLIST : "+list);
+		return new ModelAndView("voluntary_OKList","list",list);
+	}
+	
+	@RequestMapping("voluntary_confirm.ymv")
+	public ModelAndView voluntary_confirm(HttpServletRequest request,ApplicantListVO alvo){
+		//선택된 인원들 새로운 디비에 저장(confirm)
+		String memberList=request.getParameter("memberList");
+		System.out.println("OK: "+ memberList);
+		String member[]=memberList.split(",");
+		System.out.println("OK: "+ member[0]);
+		for(int i=0;i<member.length;i++){
+			alvo.setMemberNo(Integer.parseInt(member[i]));
+			System.out.println("confirm: " +alvo);
+			ConfirmBoardVO confirmbvo=new ConfirmBoardVO();
+			RecruitBoardVO recruitbvo=recruitBoardService.getRecruitBoardByRecruitNo(alvo.getRecruitNo());
+			System.out.println("recruitbvo: "+recruitbvo);
+			confirmbvo.setBoardNo(recruitbvo.getRecruitNo());
+			confirmbvo.setTitle(recruitbvo.getTitle());
+			confirmbvo.setField(recruitbvo.getField());
+			confirmbvo.setLocation(recruitbvo.getLocation());
+			confirmbvo.setAge(recruitbvo.getAge());
+			confirmbvo.setStartDate(recruitbvo.getStartDate());
+			confirmbvo.setEndDate(recruitbvo.getEndDate());
+			confirmbvo.setContent(recruitbvo.getContent());
+			confirmbvo.setMemberNo(recruitbvo.getMemberNo());
+			System.out.println("confirmbvo: "+confirmbvo);
+			recruitBoardService.registerConfirmBoard(confirmbvo);
+			//글등록 먼저하고나서 컨펌등록
+			ConfirmVO confirmvo=new ConfirmVO();
+			confirmvo.setBoardNo(alvo.getRecruitNo());
+			confirmvo.setMemberNo(alvo.getMemberNo());
+			System.out.println("confirmvo: "+confirmvo);
+			recruitBoardService.registerConfirm(confirmvo);
+			recruitBoardService.deleteVoluntaryApplicantOK(recruitbvo.getRecruitNo());
+			recruitBoardService.deleteVoluntaryServiceApplicateByRecruitNo(recruitbvo.getRecruitNo());
+			recruitBoardService.deleteRecruitVolunteer(recruitbvo.getRecruitNo());
+			
+		}
+		
+		
+		//해당 글 삭제.
+		return new ModelAndView("voluntary_confirm");
+	}
+	//장지윤
+	@RequestMapping("voluntary_board_normal_confirmList.ymv")
+	   @NoLoginCheck
+	   public ModelAndView voluntaryBoardNormalConfirmList(HttpServletRequest request, CompanyVO cpvo){
+	      MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
+	      String pageNo=request.getParameter("pageNo");
+	      System.out.println("mvo11111:"+mvo);
+	      cpvo.setMemberNo(mvo.getMemberNo());
+	      //멤버넘버로 컨펌을 찾아와서 컨펌에 있는 보드넘버로 그 보드넘버에 해당하는 컨펌보드글들을 불러와야지
+	      //List<ConfirmVO> confirmList=recruitBoardService.getConfirmByMemberNo(mvo.getMemberNo());
+	      //System.out.println("confirmList:"+confirmList);
+	      ConfirmPageVO confirmPageVO=new ConfirmPageVO();
+	      confirmPageVO.setMemberNo(mvo.getMemberNo());
+	      //confirmPageVO.setPageNo(Integer.parseInt(pageNo));
+	      ListVO lvo=recruitBoardService.getConfirmBoardListByMemberNo(confirmPageVO);
+	      
+	      return new ModelAndView("voluntary_board_normal_confirmList","lvo",lvo);
+	   }
+	
 	
 }
