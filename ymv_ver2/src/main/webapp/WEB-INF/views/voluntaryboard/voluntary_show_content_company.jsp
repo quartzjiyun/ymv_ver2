@@ -114,6 +114,7 @@ $(document).ready(function(){
 							<img class="action" src="${initParam.root}img/delete_btn.jpg"
 								id="delete">
 							<a href="#modal2" data-toggle="modal"><p id="applicantlist">신청자리스트보기</p></a>
+							<a href="voluntary_OKList.ymv?recruitNo=${requestScope.rvo.recruitNo }">선정된 인원 보기</a>
 						</c:when>
 					</c:choose>
 					<c:if test="${sessionScope.mvo.memberType=='normal'}">
