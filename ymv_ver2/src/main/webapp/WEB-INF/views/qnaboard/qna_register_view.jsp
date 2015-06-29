@@ -14,20 +14,27 @@
 		});
 	});
 </script>
-
-<h2>Q & A 등록</h2>
-<form id="qnaForm" action="qna_register.ymv" method="post">
-<table border="1">
-	<tr>
-		<td colspan="1">제목</td><td colspan="1"><input type="text" name="title" id="title"></td>
-		<td>작성자:${sessionScope.mvo.name}</td>
-	</tr>
-	<tr>
-		<td>상세정보</td><td><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
-	</tr>
-</table>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- <input type="submit" value="글 등록" > 
-</form>
+<div class="col-sm-6 col-sm-offset-3">
+	<h2>
+		<p class="text-center">Q & A 등록</p>
+	</h2>
+	<form class="form-horizontal" id="qnaForm" action="qna_register.ymv"
+		method="post">
+		<table class="table table-hover">
+			<tr>
+				<td>제목</td>
+				<td><input type="text" name="title" id="title"></td>
+				<td>작성자:${sessionScope.mvo.name}</td>
+			</tr>
+			<tr>
+				<td>상세정보</td>
+				<td colspan="2"><textarea rows="10" cols="50" id="content"
+						name="content"></textarea></td>
+			</tr>
+		</table>
+		<div class="col-sm-12">
+		<div class="pull-right">
+			<input class="btn btn-default btn-xs" type="submit" value="글 등록">
+		</div></div>
+	</form>
+</div>
