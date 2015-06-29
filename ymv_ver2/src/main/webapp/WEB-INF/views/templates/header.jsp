@@ -60,6 +60,8 @@
             <li><a href="${initParam.root }review_board.ymv">봉사후기</a></li>
             <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
             <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
+            <li><a href="${initParam.root }sponsor_board_admin.ymv">후원</a></li>
+            <li><a href="${initParam.root }sponsor_register_view.ymv">후원등록</a></li>
           </ul>
         </li>
         <%--기업 --%>
@@ -146,6 +148,7 @@
             <li><a href="${initParam.root }review_board.ymv">봉사후기</a></li>
             <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
             <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
+            <li><a href="${initParam.root }sponsor_board.ymv">후원</a></li>
           </ul>
         </li>
         <%--기업 --%>

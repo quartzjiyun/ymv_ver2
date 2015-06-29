@@ -38,6 +38,12 @@ public class PagingBean {
 		this.totalContent = totalContent;
 		this.nowPage = nowPage;
 	}
+	public PagingBean(int totalContent, int nowPage, int numberOfContentPerPage) {
+		super();
+		this.totalContent = totalContent;
+		this.nowPage = nowPage;
+		this.numberOfContentPerPage = numberOfContentPerPage;
+	}
 	/**
 	 * 총 페이지 수 리턴  
 	 * ex) 총게시물 수 - 15 개 , 한화면에서 보여질 게시물 수 - 5개 
