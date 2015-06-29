@@ -29,9 +29,18 @@
 			<c:forEach var="bvo" items="${requestScope.lvo.list}">
 				<tr>
 					<td>${bvo.recruitNo }</td>
-					<td><a
-						href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}">
-							${bvo.title }</a></td>
+					<c:choose>
+						<c:when test="${bvo.mojib=='모집중'}">
+						<td>
+							<a href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"><img src="${initParam.root}img/mojibjung.PNG"> ${bvo.title }</a>
+						</td>
+						</c:when>
+						<c:otherwise>
+							<td>
+								<a href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"><img src="${initParam.root}img/mojibwon.PNG"> ${bvo.title }</a>
+							</td>
+						</c:otherwise>
+						</c:choose>
 					<td>${bvo.field }</td>
 					<td>${bvo.location }</td>
 					<td>${bvo.startDate }</td>

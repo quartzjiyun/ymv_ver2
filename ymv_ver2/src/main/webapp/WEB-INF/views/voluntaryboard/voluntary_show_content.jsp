@@ -96,7 +96,14 @@ $(document).ready(function(){
 						</c:when>
 					</c:choose>
 					<c:if test="${sessionScope.mvo.memberType=='normal'}">
+					<c:choose>
+						<c:when test="${requestScope.rvo.mojib=='모집중' }">
 							<input type="button" class="btn btn-default btn-xs" value="신청하기" id="applicant">
+						</c:when>
+						<c:otherwise>
+							
+						</c:otherwise>
+					 </c:choose>
 					</c:if>
 					<c:if test="${sessionScope.mvo.memberType=='admin'}">
 							<input type="button" class="btn btn-default btn-xs" value="신청하기" id="applicant">
