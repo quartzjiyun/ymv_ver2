@@ -110,15 +110,12 @@ $(document).ready(function(){
 								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }">
 								<input type="button" class="btn btn-default btn-xs" value="수정" >
 							</a>
-<<<<<<< HEAD
+
 							<input type="button" class="btn btn-default btn-xs" class = "action" id ="delete" value="삭제" >
 							<a href="#modal2" data-toggle="modal"><p id="applicantlist" class = "btn btn-default btn-xs">신청자리스트보기</p></a>
-=======
-							<img class="action" src="${initParam.root}img/delete_btn.jpg"
-								id="delete">
-							<a href="#modal2" data-toggle="modal"><p id="applicantlist">신청자리스트보기</p></a>
+
 							<a href="voluntary_OKList.ymv?recruitNo=${requestScope.rvo.recruitNo }">선정된 인원 보기</a>
->>>>>>> branch 'master' of https://github.com/quartzjiyun/ymv_ver2.git
+
 						</c:when>
 					</c:choose>
 					<c:if test="${sessionScope.mvo.memberType=='normal'}">
