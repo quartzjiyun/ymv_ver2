@@ -16,7 +16,7 @@ create table member(
    address varchar2(50) not null,
    identity_no varchar2(50) not null,
    mail_address varchar2(50) not null,
-   member_type varchar2(10) not null
+   member_type varchar2(10) not null,
    file_path varchar(200)
 )
 
@@ -270,23 +270,23 @@ delete from location
 
 -- LYH - insert member
 
-insert into member values(ymv_seq.nextval,'ymv','1234','관리자','판교','0000','qhackp@gmail.com','admin');
-insert into member values(ymv_seq.nextval,'java','1234','임영학','판교','890716','qhackp@gmail.com','normal');
-insert into member values(ymv_seq.nextval,'java1','1234','백지영','판교','960102','ningoop71@gmail.com','normal');
-insert into member values(ymv_seq.nextval,'javac','1234','장지윤','수원','931004','qhackp@gmail.com','company');
-insert into member values(ymv_seq.nextval,'kosta','1234','박병준','서울','900227','qudwns741@gmail.com','company');
+insert into member values(ymv_seq.nextval,'ymv','1234','관리자','판교','0000','qhackp@gmail.com','admin',null);
+insert into member values(ymv_seq.nextval,'java','1234','임영학','판교','890716','qhackp@gmail.com','normal',null);
+insert into member values(ymv_seq.nextval,'java1','1234','백지영','판교','960102','ningoop71@gmail.com','normal',null);
+insert into member values(ymv_seq.nextval,'javac','1234','장지윤','수원','931004','qhackp@gmail.com','company',null);
+insert into member values(ymv_seq.nextval,'kosta','1234','박병준','서울','900227','qudwns741@gmail.com','company',null);
 
 
 -- LYH - insert board
 
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
-	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
+	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate);
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
-	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
+	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate);
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
-	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
+	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate);
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
-	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
+	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate);
 
 	
 -- LYH - insert statistics 
@@ -300,13 +300,13 @@ insert into statistics(age, field, applicate_count) values(20,'행정지원',1);
 -- LYH - insert recruit
 
 insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) 
-	values(ymv_seq.nextval,'제목','환경보호','서울특별시','전체',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0);
+	values(ymv_seq.nextval,'제목','환경보호','서울특별시','전체',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),'내용가나다',4, sysdate ,0);
 insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) 
-	values(ymv_seq.nextval,'제목2','생활편의지원','서울특별시','성인',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0);
+	values(ymv_seq.nextval,'제목2','생활편의지원','서울특별시','성인',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),'내용가나다',4, sysdate ,0);
 insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) 
-	values(ymv_seq.nextval,'제목3','생활편의지원','서울특별시','전체',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0);
+	values(ymv_seq.nextval,'제목3','생활편의지원','서울특별시','전체',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),'내용가나다',4, sysdate ,0);
 insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) 
-	values(ymv_seq.nextval,'제목4','재난/재해/응급','서울특별시','학생',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0);
+	values(ymv_seq.nextval,'제목4','재난/재해/응급','서울특별시','학생',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),'내용가나다',4, sysdate ,0);
 
 	
 -- LYH - insert scheduler
