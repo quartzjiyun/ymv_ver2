@@ -15,7 +15,7 @@
 		</tr>
 		<tr>
 			<th align="center" colspan="1" style="text-align: center;" >주민등록번호</th>
-			<td align="center" colspan="3" >${sessionScope.mvo.identityNo}</td>
+			<td align="center" colspan="3" >${sessionScope.mvo.identityNo} - ******</td>
 		</tr>
 		<tr>
 			<th align="center" colspan="1" style="text-align: center;">주소</th>
