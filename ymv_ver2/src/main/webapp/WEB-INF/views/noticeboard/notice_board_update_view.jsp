@@ -15,41 +15,37 @@
 	});
 </script>
 
-<div class="col-md-12">
-	<div class="col-md-12">
-		<form method=post action="notice_board_update.ymv">
-
-
-			<table class="content">
-				<tr>
-					<td><b> 글번호 <input type=text name=boardNo
-							value=${requestScope.rvo.boardNo } readonly="readonly"></input> |
-							작성자 <input type=text name=writer
-							value=${requestScope.rvo.writer } readonly="readonly"></input>
-					</b></td>
-				</tr>
-
-				<tr>
-					<td>제목 <input type=text name=title
-						value=${requestScope.rvo.title }></input>
-					</td>
-				</tr>
-				<tr>
-					<td><font size="3">등록시간 : ${requestScope.rvo.timePosted }
-							조회수 : ${requestScope.rvo.hit } </font></td>
-				</tr>
-				<tr>
-					<td><textarea rows="15" cols="75" name="content">${requestScope.rvo.content }</textarea>
-					</td>
-				</tr>
-				<tr>
-					<td valign="middle"><input type="submit" value="수정하기"></input>
-						<input type="button" id="updateCancel" value="취소하기"></input></td>
-				</tr>
-			</table>
-		</form>
+<div class="col-sm-6 col-sm-offset-3">
+		<form class="form-horizontal" method="post" action="notice_board_update.ymv">
+		<table class="table table-hover">
+			<tr>
+				<td><b> 글번호 : <input type=text name=boardNo
+						value=${requestScope.rvo.boardNo } readonly="readonly"></b></td>
+				<td><b>작성자 : <input type=text name=writer
+						value=${requestScope.rvo.writer } readonly="readonly"></b></td>
+			</tr>
+			<tr>
+				<td colspan="2">제목 : <input type=text name=title
+					value=${requestScope.rvo.title }></input>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">등록시간 : ${requestScope.rvo.timePosted } 조회수 :
+					${requestScope.rvo.hit }</td>
+			</tr>
+			<tr>
+				<td colspan="2"><textarea rows="15" cols="75" name="content">${requestScope.rvo.content }</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" colspan="2"><input
+					class="btn btn-default btn-xs" type="submit" value="수정하기"></input>
+					<input class="btn btn-default btn-xs" type="button"
+					id="updateCancel" value="취소하기"></input></td>
+			</tr>
+		</table>
+	</form>
 	</div>
-</div>
 
 
 

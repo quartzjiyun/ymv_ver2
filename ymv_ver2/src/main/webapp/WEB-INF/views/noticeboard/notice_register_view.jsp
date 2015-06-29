@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="col-md-12">
-	<div class="col-md-12">
-		<h2>공지사항 등록</h2>
-		<form action="notice_register.ymv" enctype="multipart/form-data" method="post">
-			<table border="1">
+<div class="col-sm-6 col-sm-offset-3">
+		<h2><p class = "text-center">공지사항 등록</p></h2>
+		<form class="form-horizontal" action="notice_register.ymv" enctype="multipart/form-data" method="post">
+			<table class ="table table-hover ">
 				<tr>
 					<td>제목</td>
 					<td colspan="2"><input type="text" name="title"></td>
@@ -21,7 +20,7 @@
 					<td colspan="2"><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="글 등록">
+			<br><div class="col-sm-12">
+    <div class="pull-right"><input type="submit" value="글 등록" class = "btn btn-default btn-xs"></div></div>
 		</form>
 	</div>
-</div>
