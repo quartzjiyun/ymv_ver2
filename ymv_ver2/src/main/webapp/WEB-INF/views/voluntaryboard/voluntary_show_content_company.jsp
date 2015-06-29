@@ -112,14 +112,26 @@ $(document).ready(function(){
 							</a>
 
 							<input type="button" class="btn btn-default btn-xs" class = "action" id ="delete" value="삭제" >
-							<a href="#modal2" data-toggle="modal"><p id="applicantlist" class = "btn btn-default btn-xs">신청자리스트보기</p></a>
-
-							<a href="voluntary_OKList.ymv?recruitNo=${requestScope.rvo.recruitNo }">선정된 인원 보기</a>
-
+							<c:choose>
+								<c:when test="${requestScope.rvo.mojib=='모집중' }">
+									<a href="#modal2" data-toggle="modal"><p id="applicantlist" class = "btn btn-default btn-xs">신청자리스트보기</p></a>
+								</c:when>
+								<c:otherwise>
+									<a href="voluntary_OKList.ymv?recruitNo=${requestScope.rvo.recruitNo }">선정된 인원 보기</a>
+								</c:otherwise>
+							</c:choose>
+							<%-- <a href="voluntary_OKList.ymv?recruitNo=${requestScope.rvo.recruitNo }">선정된 인원 보기</a> --%>
 						</c:when>
-					</c:choose>	
+					</c:choose>
 					<c:if test="${sessionScope.mvo.memberType=='normal'}">
+					<c:choose>
+						<c:when test="${requestScope.rvo.mojib=='모집중' }">
 							<input type="button" value="신청하기" id="applicant">
+						</c:when>
+						<c:otherwise>
+							
+						</c:otherwise>
+					 </c:choose>
 					</c:if></td>
 			</tr>
 			</tbody>

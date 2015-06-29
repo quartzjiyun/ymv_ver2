@@ -222,10 +222,24 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_board_company.ymv")
 	public ModelAndView voluntaryBoardCompany(HttpServletRequest request,CompanyVO cpvo){
 		//세션에 들어있는 멤버넘버로 등록된 글 조회 
+		ModelAndView mv = new ModelAndView("voluntary_board_company");
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
 		cpvo.setMemberNo(mvo.getMemberNo());
 		ListVO lvo = recruitBoardService.getCompanyBoardList(cpvo);
-		return new ModelAndView("voluntary_board_company","lvo",lvo);
+		
+		for(int i = 0; i<lvo.getList().size(); i ++){
+			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getEndDate());
+			if(compare > 0){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
+			}else if(compare < 0){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}else{
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}
+		}
+		mv.addObject("lvo", lvo);
+		return mv;
 	}
 	@RequestMapping("voluntary_board_normal.ymv")
 	@NoLoginCheck
