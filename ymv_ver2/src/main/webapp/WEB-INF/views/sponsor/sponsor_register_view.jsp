@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <h3>
+		<p class="text-center">후원등록</p>
+	</h3>
 <div class="col-md-6 col-sm-offset-3">
 <form action="sponsor_register.ymv" enctype="multipart/form-data" method="post">
 	<table class="table table-striped table-hover">

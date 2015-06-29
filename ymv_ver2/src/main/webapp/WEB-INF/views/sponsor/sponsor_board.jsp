@@ -12,6 +12,9 @@ $(document).ready(function(){
 });
 	
 </script>
+<h3>
+		<p class="text-center">후원게시판</p>
+	</h3>
 <c:forEach items="${requestScope.lvo.list}" var="sponsor" varStatus="i">
 <div class="col-md-4" >
 	<div class="col-md-1">
