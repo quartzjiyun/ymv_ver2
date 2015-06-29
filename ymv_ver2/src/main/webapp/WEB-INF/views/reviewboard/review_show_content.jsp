@@ -9,92 +9,94 @@
 			} else {
 				return;
 			}//if
-		})//click
-		
-	})
+		}); //click
+	});
 </script>
-<div class="col-md-12">
-	<div class="col-md-12">
-		<table class="table">
-			<tr>
-				<td>NO : ${requestScope.rvo.boardNo }</td>
-				<td colspan="2">${requestScope.rvo.title}</td>
-			</tr>
-			<tr>
-				<td>기업명 : ${requestScope.rvo.writer }</td>
-				<td>시간: ${requestScope.rvo.timePosted}</td>
-				<td>조회수 : ${requestScope.rvo.hit }</td>
-			</tr>
-			<tr>
-				<td colspan="15">
-				
-					<c:if test="${requestScope.pvo!=null }">
-						<img src="${initParam.root }${requestScope.pvo.filePath}">
-					</c:if>
-				
-				<pre>${requestScope.rvo.content}</pre></td>
-			</tr>
-			<tr>
-				<td valign="middle" align="center" colspan="3"><a
-					href="${initParam.root}review_board.ymv"> <img class="action"
-						src="${initParam.root}img/list_btn.jpg" onclick="sendList()"></a>
-						<c:choose>
-						<c:when test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo }">
-						<a	href="${initParam.root}review_board_update_view.ymv?boardNo=${requestScope.rvo.boardNo }">
-						<img class="action" onclick="openForm('update')"
-						src="${initParam.root}img/modify_btn.jpg">
-				</a> <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
-				
-				</c:when>
-				<c:when test="${sessionScope.mvo.memberType=='admin' }">
-						<a	href="${initParam.root}review_board_update_view.ymv?boardNo=${requestScope.rvo.boardNo }">
-						<img class="action" onclick="openForm('update')"
-						src="${initParam.root}img/modify_btn.jpg">
-				</a> <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
-				
-				</c:when>
-				</c:choose>
-				</td>
-			</tr>
-			<c:forEach items="${requestScope.commentList}" var="comment">
-				<tr>
-					<td>${comment.commentNo}</td>
-					<td>${comment.writer}</td>
-					<td>${comment.timePosted}</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-					${comment.content}</td>
-					<td>
-					<c:choose>
+<div class="col-md-8 col-sm-offset-2">
+	<table class="table table-striped table-hover">
+		<tr class="info">
+			<td>NO : ${requestScope.rvo.boardNo }</td>
+			<td colspan="2">${requestScope.rvo.title}</td>
+		</tr>
+		<tr class="warning">
+			<td>기업명 : ${requestScope.rvo.writer }</td>
+			<td>시간: ${requestScope.rvo.timePosted}</td>
+			<td>조회수 : ${requestScope.rvo.hit }</td>
+		</tr>
+		<tr></tr>
+		<tr>
+			<td colspan="15"><c:if test="${requestScope.pvo!=null }">
+					<img src="${initParam.root }${requestScope.pvo.filePath}">
+					<br>
+				</c:if> <br> <pre>${requestScope.rvo.content}</pre></td>
+		</tr>
+		<tr class="warning">
+			<td valign="middle" align="center" colspan="3"><a
+				href="${initParam.root}review_board.ymv"> <input type="button"
+					class="btn btn-default btn-xs" value="목록"></a> <c:choose>
+					<c:when
+						test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo }">
+						<a
+							href="${initParam.root}review_board_update_view.ymv?boardNo=${requestScope.rvo.boardNo }">
+							<input type="button" class="btn btn-default btn-xs" value="수정">
+						</a>
+						<input type="button" class="btn btn-default btn-xs" class="action"
+							id="deleteBtn" value="삭제">
+					</c:when>
 					<c:when test="${sessionScope.mvo.memberType=='admin' }">
-					<a
-						href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}">댓글삭제</a>
+						<a
+							href="${initParam.root}review_board_update_view.ymv?boardNo=${requestScope.rvo.boardNo }">
+							<input type="button" class="btn btn-default btn-xs" value="수정">
+						</a>
+						<input type="button" class="btn btn-default btn-xs" class="action"
+							id="deleteBtn" value="삭제">
 					</c:when>
-					<c:when test="${comment.writer==sessionScope.mvo.id }">
-					<a
-						href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}">댓글삭제</a>
-										
-					</c:when>
-					<c:otherwise>
-					</c:otherwise>
-						</c:choose>
-					
-						
-						</td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<td colspan="3">
-					<form name="commentForm" action="register_review_comment.ymv"
-						method="post">
-						작성자:<input type="text" name="writer" value = "${sessionScope.mvo.id }" readonly="readonly"> 내용<input type="text"
-							name="content"> <input type="hidden" name="boardNo"
-							value="${requestScope.rvo.boardNo}"> <input type="submit"
-							value="댓글달기">
-					</form>
+				</c:choose></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+					<table class="table table-hover">
+						<tr class="active">
+							<td colspan="3" align="center">
+								<form name="commentForm" action="register_review_comment.ymv"
+									method="post">
+									작성자:<input type="text" name="writer"
+										value="${sessionScope.mvo.id }" readonly="readonly">
+									내용<input type="text" name="content"> <input
+										type="hidden" name="boardNo"
+										value="${requestScope.rvo.boardNo}"> <input
+										type="submit" value="댓글달기" class = "btn btn-default btn-xs">
+								</form>
+							</td>
+						</tr>
+						<c:forEach items="${requestScope.commentList}" var="comment">
+							<tr class = "info">
+								<td>${comment.commentNo}</td>
+								<td>작성자 : <strong>${comment.writer}</strong></td>
+								<td align="right"><span style="color:#92B3B7">시간 : ${comment.timePosted}</span></td>
+							</tr>
+							<tr>
+							<td></td>
+								<td>${comment.content}</td>
+								<td align="right"><c:choose>
+										<c:when test="${sessionScope.mvo.memberType=='admin' }">
+											<a
+												href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}"
+												class="btn btn-default btn-xs">댓글삭제</a>
+										</c:when>
+										<c:when test="${comment.writer==sessionScope.mvo.id }">
+											<a
+												href="delete_review_comment.ymv?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}"
+												class="btn btn-default btn-xs">댓글삭제</a>
+
+										</c:when>
+										<c:otherwise>
+										</c:otherwise>
+									</c:choose></td>
+							</tr>
+						</c:forEach>
+					</table>
 				</td>
-			</tr>
-		</table>
-	</div>
+		</tr>
+	</table>
 </div>

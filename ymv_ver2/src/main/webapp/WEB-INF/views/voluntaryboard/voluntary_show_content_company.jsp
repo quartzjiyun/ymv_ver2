@@ -74,7 +74,7 @@ $(document).ready(function(){
 <div class="col-sm-6 col-sm-offset-3">
 <div class="panel panel-default">
   <div class="panel-body">
-		<table class="col-sm-12">
+		<table class="table table-striped table-hover" class="col-sm-12">
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
@@ -117,7 +117,7 @@ $(document).ready(function(){
 							<a href="voluntary_OKList.ymv?recruitNo=${requestScope.rvo.recruitNo }">선정된 인원 보기</a>
 
 						</c:when>
-					</c:choose>
+					</c:choose>	
 					<c:if test="${sessionScope.mvo.memberType=='normal'}">
 							<input type="button" value="신청하기" id="applicant">
 					</c:if></td>
