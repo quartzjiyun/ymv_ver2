@@ -14,6 +14,7 @@ public class RecruitBoardVO implements BoardVO{
 	private String postDate;
 	private int hit;
 	private String checkDate;
+	private String mojib;
 	
 	public RecruitBoardVO() {
 		super();
@@ -96,6 +97,26 @@ public class RecruitBoardVO implements BoardVO{
 		this.postDate = postDate;
 		this.hit = hit;
 		this.checkDate = checkDate;
+	}
+	
+	public RecruitBoardVO(int recruitNo, String title, String field,
+			String location, String age, String startDate, String endDate,
+			String content, int memberNo, String postDate, int hit,
+			String checkDate, String mojib) {
+		super();
+		this.recruitNo = recruitNo;
+		this.title = title;
+		this.field = field;
+		this.location = location;
+		this.age = age;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.content = content;
+		this.memberNo = memberNo;
+		this.postDate = postDate;
+		this.hit = hit;
+		this.checkDate = checkDate;
+		this.mojib = mojib;
 	}
 
 	public String getCheckDate() {
@@ -180,6 +201,14 @@ public class RecruitBoardVO implements BoardVO{
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+	
+	public String getMojib() {
+		return mojib;
+	}
+
+	public void setMojib(String mojib) {
+		this.mojib = mojib;
+	}
 
 	@Override
 	public String toString() {
@@ -188,7 +217,7 @@ public class RecruitBoardVO implements BoardVO{
 				+ age + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", content=" + content + ", memberNo=" + memberNo
 				+ ", postDate=" + postDate + ", hit=" + hit + ", checkDate="
-				+ checkDate + "]";
+				+ checkDate + ", mojib=" + mojib + "]";
 	}
 
 	

@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -48,8 +47,21 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_board.ymv")
 	@NoLoginCheck
 	public ModelAndView list(String pageNo) {	
+		ModelAndView mv = new ModelAndView("voluntary_board");
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ListVO lvo = recruitBoardService.getBoardList(pageNo);
-		return new ModelAndView("voluntary_board","lvo",lvo);
+		for(int i = 0; i<lvo.getList().size(); i ++){
+			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getEndDate());
+			if(compare > 0){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
+			}else if(compare < 0){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}else{
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}
+		}
+		mv.addObject("lvo", lvo);
+		return mv;
 	}
 	/*@RequestMapping("voluntary_showContentRecruitVol.ymv")
 	@NoLoginCheck
@@ -63,6 +75,7 @@ public class RecruitBoardController {
 	@NoLoginCheck
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv=new ModelAndView();
+		String mojib = request.getParameter("mojib");
 		String noComp = request.getParameter("recruitNo");
 		int recruitNo = Integer.parseInt(noComp);
 		 System.out.println("recruit_showContent boardNo: " + recruitNo);
@@ -111,6 +124,7 @@ public class RecruitBoardController {
 		rvo=recruitBoardService.getRecruitBoardByRecruitNo(recruitNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
 		System.out.println("Rvo:"+rvo);
 		MemberVO vo=memberService.findMemberByMemberNo(rvo.getMemberNo());
+		rvo.setMojib(mojib);
 		mv.addObject("rvo", rvo).addObject("vo",vo);
 		mv.setViewName("voluntary_show_content");
 		 return mv;
@@ -119,6 +133,7 @@ public class RecruitBoardController {
     
     @RequestMapping("voluntary_showContentRecruitVolType.ymv")
 	   public ModelAndView showContentRecruitVolType(HttpServletRequest request){
+    	String mojib = request.getParameter("mojib");
     		HttpSession session=request.getSession();
     		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
     		String url="voluntary_show_content_company";
@@ -133,6 +148,7 @@ public class RecruitBoardController {
 	      MemberVO vo=memberService.findMemberByMemberNo(rvo.getMemberNo());
 	      System.out.println("rvo:"+rvo);
 	      System.out.println("vo:"+vo);
+	      rvo.setMojib(mojib);
 	      return new ModelAndView(url,"rvo",rvo).addObject("vo", vo);
 	   }
     
@@ -214,10 +230,24 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_board_normal.ymv")
 	@NoLoginCheck
 	public ModelAndView voluntaryBoardNormal(HttpServletRequest request, CompanyVO cpvo){
+		ModelAndView mv = new ModelAndView("voluntary_board_normal");
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		MemberVO mvo=(MemberVO) request.getSession().getAttribute("mvo");
 		cpvo.setMemberNo(mvo.getMemberNo());
 		ListVO lvo = recruitBoardService.getNormalBoardList(cpvo);
-		return new ModelAndView("voluntary_board_normal","lvo",lvo);
+		
+		for(int i = 0; i<lvo.getList().size(); i ++){
+			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getEndDate());
+			if(compare > 0){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
+			}else if(compare < 0){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}else{
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}
+		}
+		mv.addObject("lvo", lvo);
+		return mv;
 	}
 	@RequestMapping("voluntary_applicantOK.ymv")
 	@NoLoginCheck
