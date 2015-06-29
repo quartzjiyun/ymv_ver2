@@ -249,3 +249,11 @@ delete from board
 delete from member
 insert into member values(ymv_seq.nextval,'admin','1234','관리자','KOSTA','890716','admin@ymv.com','admin');
 
+create table sponsor(
+	board_no number primary key,
+	title varchar2(100) not null,
+	content clob not null,
+	target_price number not null,
+	current_price number default 0
+)
+
