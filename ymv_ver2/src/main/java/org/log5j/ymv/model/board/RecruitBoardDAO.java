@@ -34,7 +34,8 @@ public interface RecruitBoardDAO {
 	public void registerConfirmBoard(ConfirmBoardVO confirmbvo);
 	public void deleteVoluntaryApplicantOK(int recruitNo);
 	public void deleteVoluntaryServiceApplicateByRecruitNo(int recruitNo);
-	public List<ConfirmVO> getConfirmByMemberNo(int memberNo);
+	public List<ConfirmVO> getConfirmListByMemberNo(int memberNo);
 	public List<BoardVO> getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
 	public int totalContentConfirm(int memberNo);
+	public ConfirmBoardVO getConfirmBoardByConfirm(ConfirmVO cvo);
 }

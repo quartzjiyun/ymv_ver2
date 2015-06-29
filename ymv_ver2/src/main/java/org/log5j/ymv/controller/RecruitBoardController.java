@@ -1,6 +1,10 @@
 package org.log5j.ymv.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -308,7 +312,7 @@ public class RecruitBoardController {
 	      System.out.println("mvo11111:"+mvo);
 	      cpvo.setMemberNo(mvo.getMemberNo());
 	      //멤버넘버로 컨펌을 찾아와서 컨펌에 있는 보드넘버로 그 보드넘버에 해당하는 컨펌보드글들을 불러와야지
-	      //List<ConfirmVO> confirmList=recruitBoardService.getConfirmByMemberNo(mvo.getMemberNo());
+	      //List<ConfirmVO> confirmList=recruitBoardService.getConfirmListByMemberNo(mvo.getMemberNo());
 	      //System.out.println("confirmList:"+confirmList);
 	      ConfirmPageVO confirmPageVO=new ConfirmPageVO();
 	      confirmPageVO.setMemberNo(mvo.getMemberNo());
@@ -317,6 +321,28 @@ public class RecruitBoardController {
 	      
 	      return new ModelAndView("voluntary_board_normal_confirmList","lvo",lvo);
 	   }
+	
+	@RequestMapping("voluntary_confirm_normal.ymv")
+	   @NoLoginCheck
+	   public ModelAndView voluntaryConfirmNormal(HttpServletRequest request, ConfirmVO cvo){
+		System.out.println("cvo:"+cvo);
+		
+		ConfirmBoardVO cbvo= recruitBoardService.getConfirmBoardByConfirm(cvo);
+		System.out.println("cbvo:"+cbvo);
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
+		String arr[]= today.split("-");
+		HashMap map=new HashMap();
+		map.put("year",arr[0] );
+		map.put("month",arr[1] );
+		map.put("date",arr[2] );
+		return new ModelAndView("voluntary_confirm_showContent","cbvo",cbvo).addObject("today",map);
+	   }
+	
+	
+	
+	
+	
+	
 	
 	
 }

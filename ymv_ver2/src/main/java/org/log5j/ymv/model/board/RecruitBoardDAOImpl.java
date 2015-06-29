@@ -169,7 +169,7 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	}
 
 	@Override
-	public List<ConfirmVO> getConfirmByMemberNo(int memberNo) {
+	public List<ConfirmVO> getConfirmListByMemberNo(int memberNo) {
 		// TODO Auto-generated method stub
 		
 		return sqlSessionTemplate.selectList("applicant.getConfirmByMemberNo",memberNo);
@@ -187,7 +187,11 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("applicant.totalContentConfirm",memberNo);
 	}
-
+	
+	@Override
+	public ConfirmBoardVO getConfirmBoardByConfirm(ConfirmVO cvo){
+		return sqlSessionTemplate.selectOne("applicant.getConfirmBoardByConfirm",cvo);
+	}
 
 
 

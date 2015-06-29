@@ -53,9 +53,11 @@ public interface RecruitBoardService {
 
 	public void deleteVoluntaryServiceApplicateByRecruitNo(int recruitNo);
 
-	public List<ConfirmVO> getConfirmByMemberNo(int memberNo);
+	public List<ConfirmVO> getConfirmListByMemberNo(int memberNo);
 
 	public ListVO getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
+
+	public ConfirmBoardVO getConfirmBoardByConfirm(ConfirmVO cvo);
 
 
 }

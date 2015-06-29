@@ -47,10 +47,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="getMailAddressByMemberNo" parameterType="int" resultMap="memberRM">
  	select member_no, id, name, mail_address from member where member_no=#{value}
  </select>
-<select id="getConfirmByMemberNo" parameterType="int" resultType="confirmvo">
+<select id="getConfirmListByMemberNo" parameterType="int" resultType="confirmvo">
 	select board_no, member_no from confirm where member_no=#{value}
 </select>
-<select id="getConfirmBoardListByMemberNo" parameterType="confirmpvo" resultMap="confirmRM">
+<select id="getConfirmBoardListByMemberNo" parameterType="confirmbvo" resultMap="confirmRM">
 	select board_no, title, field, location, age, start_date, end_date 
    	from(select board_no, title, field, location, age, start_date, end_date, CEIL(rownum/5) AS page from(select board_no, title, field, location, age, start_date, end_date from(select cb.board_no, cb.title, cb.field, cb.location, cb.age, to_char(cb.start_date,'YYYY-MM-DD HH24:MI') as start_date,to_char(cb.end_date,'YYYY-MM-DD HH24:MI') as end_date
    	from confirm c , confirm_board cb 
@@ -60,4 +60,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="totalContentConfirm" parameterType="int" resultType="int">
 	select count(*) from confirm where member_no=#{value}
 </select>
+<select id="getConfirmBoardByConfirm" resultMap="confirmRM" resultType="confirmvo">
+	select board_no,title,field,location,age,start_date,end_date,content,
+	member_no,time_posted,hit from confirm_board 
+	where board_no=#{boardNo}
+</select>
+
  </mapper>

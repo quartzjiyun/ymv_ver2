@@ -155,8 +155,8 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		recruitBoardDAO.deleteVoluntaryServiceApplicateByRecruitNo(recruitNo);
 	}
 	@Override
-	public List<ConfirmVO> getConfirmByMemberNo(int memberNo) {
-		return recruitBoardDAO.getConfirmByMemberNo(memberNo);
+	public List<ConfirmVO> getConfirmListByMemberNo(int memberNo) {
+		return recruitBoardDAO.getConfirmListByMemberNo(memberNo);
 	}
 	@Override
 	public ListVO getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO) {
@@ -169,5 +169,8 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 	      ListVO lvo = new ListVO(list, paging);
 	      return lvo;
 	}
-
+	@Override
+	public ConfirmBoardVO getConfirmBoardByConfirm(ConfirmVO cvo){
+		return recruitBoardDAO.getConfirmBoardByConfirm(cvo);
+	}
 }

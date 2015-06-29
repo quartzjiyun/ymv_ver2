@@ -27,7 +27,7 @@
             <c:forEach var="bvo" items="${requestScope.lvo.list}">
                <tr>
                   <td>${bvo.boardNo }</td>
-                  <td><a href="${initParam.root}voluntary_confirm_normal_confirmList.ymv?memberNo=${sessionScope.mvo.memberNo }&boardNo=${bvo.boardNo}">
+                  <td><a href="${initParam.root}voluntary_confirm_normal.ymv?memberNo=${sessionScope.mvo.memberNo }&boardNo=${bvo.boardNo}">
                         ${bvo.title }</a></td>
                   <td>${bvo.field }</td>
                   <td>${bvo.location }</td>
