@@ -74,7 +74,7 @@ $(document).ready(function(){
 <div class="col-sm-6 col-sm-offset-3">
 <div class="panel panel-default">
   <div class="panel-body">
-		<table class="table table-striped table-hover" class="col-sm-12">
+		<table class="table table-hover" class="col-sm-12">
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
