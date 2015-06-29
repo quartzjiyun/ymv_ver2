@@ -29,8 +29,13 @@
 			<td valign="middle" align="center" colspan="3"><a
 				href="${initParam.root}qna_board.ymv" class="btn btn-default btn-xs">목록</a>
 				<c:choose>
+					<c:when test="${requestScope.qvo.restep >= 1 }">
+						<c:if test="${sessionScope.mvo.memberType=='admin' }">
+						 
+						</c:if>
+					</c:when>
 					<c:when test="${sessionScope.mvo.memberType=='admin' }">
-						<a href="qna_reply_view.ymv?qnaNo=${requestScope.qvo.qnaNo}"
+					<a href="qna_reply_view.ymv?qnaNo=${requestScope.qvo.qnaNo}"
 							class="btn btn-default btn-xs">답글 </a>
 						<a
 							href="${initParam.root}qna_board_update_view.ymv?qnaNo=${requestScope.qvo.qnaNo}"
@@ -38,17 +43,14 @@
 						<input type="button" onclick="checkDelete()" value="삭제"
 							class="btn btn-default btn-xs">
 					</c:when>
-				</c:choose> 
+				</c:choose>
 				<c:choose>
-					<c:if test="${sessionScope.mvo.memberNo==requestScope.qvo.memberNo}">
-						<c:if test="${sessionScope.mvo.memberType=='admin' }"> 비어</c:if>
-						<c:otherwise>
+					<c:when test="${sessionScope.mvo.memberNo==requestScope.qvo.memberNo}">
 							<a	href="${initParam.root}qna_board_update_view.ymv?qnaNo=${requestScope.qvo.qnaNo}"
 								class="btn btn-default btn-xs">수정 </a>
 							<input type="button" onclick="checkDelete()" value="삭제"
 								class="btn btn-default btn-xs">
-								</c:otherwise>
-					</c:if>
+		</c:when>
 				</c:choose></td>
 		</tr>
 	</table>
