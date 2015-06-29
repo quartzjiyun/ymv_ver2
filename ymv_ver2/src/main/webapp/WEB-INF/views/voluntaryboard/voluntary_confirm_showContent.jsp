@@ -61,11 +61,5 @@
 				<img src="${initParam.root}img/stamp1.jpg" >
 			</td><!-- style="height: 180px;" -->		
 		</tr>
-
-
-
-
-
-
 	</table>
 </div>

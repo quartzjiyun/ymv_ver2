@@ -54,8 +54,7 @@
 				</c:when>
 				<c:otherwise>
 					<li class="disabled"><a
-						href="voluntary_board_company.ymv?pageNo=${requestScope.lvo.pagingBean.
-    startPageOfPageGroup-1}">«</a></li>
+						href="#">«</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="i"
@@ -77,7 +76,7 @@
 				</c:when>
 				<c:otherwise>
 					<li class="disabled"><a
-						href="voluntary_board_company.ymv?pageNo=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}">»</a></li>
+						href="#">»</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
