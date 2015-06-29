@@ -16,7 +16,7 @@ create table member(
    address varchar2(50) not null,
    identity_no varchar2(50) not null,
    mail_address varchar2(50) not null,
-   member_type varchar2(10) not null,
+   member_type varchar2(10) not null
    file_path varchar(200)
 )
 
@@ -230,6 +230,21 @@ create table location(
 select * from location
 
 
+-- LYH - sponsor
+
+drop table sponsor
+
+create table sponsor(
+   board_no number primary key,
+   title varchar2(100) not null,
+   content clob not null,
+   target_price number not null,
+   current_price number default 0
+)
+
+select * from sponsor
+
+
 -- LYH - select 
 
 select * from member
@@ -246,6 +261,7 @@ select * from confirm_board
 select * from confirm
 select * from field
 select * from location
+select * from sponsor
 
 -- LYH - delete 
 
@@ -263,6 +279,7 @@ delete from confirm_board
 delete from confirm
 delete from field
 delete from location
+delete from sponsor
 
 -- LYH - insert
 
@@ -270,23 +287,23 @@ delete from location
 
 -- LYH - insert member
 
-insert into member values(ymv_seq.nextval,'ymv','1234','관리자','판교','0000','qhackp@gmail.com','admin',null);
-insert into member values(ymv_seq.nextval,'java','1234','임영학','판교','890716','qhackp@gmail.com','normal',null);
-insert into member values(ymv_seq.nextval,'java1','1234','백지영','판교','960102','ningoop71@gmail.com','normal',null);
-insert into member values(ymv_seq.nextval,'javac','1234','장지윤','수원','931004','qhackp@gmail.com','company',null);
-insert into member values(ymv_seq.nextval,'kosta','1234','박병준','서울','900227','qudwns741@gmail.com','company',null);
+insert into member values(ymv_seq.nextval,'ymv','1234','관리자','판교','0000','qhackp@gmail.com','admin');
+insert into member values(ymv_seq.nextval,'java','1234','임영학','판교','890716','qhackp@gmail.com','normal');
+insert into member values(ymv_seq.nextval,'java1','1234','백지영','판교','960102','ningoop71@gmail.com','normal');
+insert into member values(ymv_seq.nextval,'javac','1234','장지윤','수원','931004','qhackp@gmail.com','company');
+insert into member values(ymv_seq.nextval,'kosta','1234','박병준','서울','900227','qudwns741@gmail.com','company');
 
 
 -- LYH - insert board
 
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
-	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate);
+	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
-	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate);
+	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
-	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate);
+	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
 insert into BOARD(board_no,board_type,title,writer,content,member_no,time_posted) 
-	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate);
+	values(ymv_seq.nextval,'notice','테스트','임영학','가나다라','1',sysdate,0);
 
 	
 -- LYH - insert statistics 
@@ -300,46 +317,46 @@ insert into statistics(age, field, applicate_count) values(20,'행정지원',1);
 -- LYH - insert recruit
 
 insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) 
-	values(ymv_seq.nextval,'제목','환경보호','서울특별시','전체',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),'내용가나다',4, sysdate ,0);
+	values(ymv_seq.nextval,'제목','환경보호','서울특별시','전체',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0);
 insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) 
-	values(ymv_seq.nextval,'제목2','생활편의지원','서울특별시','성인',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),'내용가나다',4, sysdate ,0);
+	values(ymv_seq.nextval,'제목2','생활편의지원','서울특별시','성인',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0);
 insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) 
-	values(ymv_seq.nextval,'제목3','생활편의지원','서울특별시','전체',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),'내용가나다',4, sysdate ,0);
+	values(ymv_seq.nextval,'제목3','생활편의지원','서울특별시','전체',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0);
 insert into recruit(recruit_no,title,field,location,age,start_date,end_date,content,member_no,time_posted,hit) 
-	values(ymv_seq.nextval,'제목4','재난/재해/응급','서울특별시','학생',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),'내용가나다',4, sysdate ,0);
+	values(ymv_seq.nextval,'제목4','재난/재해/응급','서울특별시','학생',to_date('2015-06-29 08:00','YYYY-MM-DD HH24:MI'),to_date('2015-06-29 15:00','YYYY-MM-DD HH24:MI'),#{content},#{memberNo}, sysdate ,0);
 
 	
 -- LYH - insert scheduler
 
--- 웹에서 스케줄러 등록
+	-- 웹에서 스케줄러 등록
 
 -- LYH - insert voluntary_service_applicate
 	
--- 웹에서 봉사활동 신청
+	-- 웹에서 봉사활동 신청
 	
 -- LYH - insert QnA_board
 
--- 웹에서 큐앤에이 글 등록
+	-- 웹에서 큐앤에이 글 등록
 
 -- LYH - insert ymv_comment
 
--- 웹에서 후기게시판에 댓글등록
+	-- 웹에서 후기게시판에 댓글등록
 
 -- LYH - insert picture
 
--- 웹에서 사진등록 프로필, 공지사항, 후기게시판, 후원게시판
+	-- 웹에서 사진등록 프로필, 공지사항, 후기게시판, 후원게시판
 
 -- LYH - insert voluntary_applicate_ok
 
--- 웹에서 선정자등록
+	-- 웹에서 선정자등록
 
 -- LYH - insert confirm_board
 
--- 웹에서 선정자 중에 확인증 게시글 등록
+	-- 웹에서 선정자 중에 확인증 게시글 등록
 
 -- LYH - insert confirm
 
--- 웹에서 선정자 중에서 확인증 발급인원 등록
+	-- 웹에서 선정자 중에서 확인증 발급인원 등록
 
 -- LYH - insert field
 
@@ -367,3 +384,9 @@ insert into location values('충청도');
 insert into location values('경상도');
 insert into location values('전라도');
 insert into location values('제주도');
+
+-- LYH - insert sponsor
+
+-- 웹에서 후원글 등록
+
+	
