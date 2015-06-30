@@ -9,13 +9,14 @@
 		<div class="col-md-1"></div>
 		<form id="sponsorForm" action="sponsor_update_view.ymv">
 			<div class="col-md-11"
-				style="border-style: solid; border-color: activecaption; height: 500px;">
+				style="border-style: solid; border-color: activecaption; height: 600px;">
+				<br>
 				<div style="height: 80%">
 					<c:forEach items="${requestScope.pvo}" varStatus="checkCount"
 						var="picture">
 						<c:if test="${picture.pictureNo==sponsor.boardNo}">
 							<img src="${initParam.root }${picture.filePath}"
-								style="width: 100%;">
+								style="width: 100%; height: 400px">
 						</c:if>
 					</c:forEach>
 					<h3>${sponsor.title}<br>

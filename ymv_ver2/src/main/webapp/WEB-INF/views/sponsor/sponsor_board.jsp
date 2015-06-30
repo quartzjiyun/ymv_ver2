@@ -20,39 +20,43 @@ $(document).ready(function(){
 	<div class="col-md-1">
 		</div>
 	<form id="sponsorForm" action="sponsor_update_currentPrice.ymv">
-	<div class="col-md-11" style="border-style: solid;border-color: activecaption;height: 500px;">
+	<div class="col-md-11" style="border-style: solid;border-color: activecaption;height: 600px;">
+	<br>
 		<div style="height: 80%">
 			<c:forEach items="${requestScope.pvo}" varStatus="checkCount" var="picture">
 			<c:if test="${checkCount.count==i.count}">
-				<img src="${initParam.root }${picture.filePath}" style="width: 100%;">
+				<img src="${initParam.root }${picture.filePath}" style="width: 100%; height: 400px">
 			</c:if>
 			</c:forEach>
 			<h3>${sponsor.title}<br></h3>
 			${sponsor.content}<br>
 		</div>
-		<div>
-		 목표금액 ${sponsor.targetPrice}$ / 현재금액 ${sponsor.currentPrice}$
-		</div>
-		<div class="progress progress-striped active" >
-			<div class="progress-bar " role="progressbar" aria-valuenow="${sponsor.currentPrice}" aria-valuemin="0" 
-			aria-valuemax="${sponsor.targetPrice}" style="width: ${sponsor.percentage}%;text-align:left"> 
-			${sponsor.percentage}%	
+			<div style="height: 20%">
+				<div>
+				 목표금액 ${sponsor.targetPrice}$ / 현재금액 ${sponsor.currentPrice}$
+				</div>
+				
+				<div class="progress progress-striped active" >
+					<div class="progress-bar " role="progressbar" aria-valuenow="${sponsor.currentPrice}" aria-valuemin="0" 
+					aria-valuemax="${sponsor.targetPrice}" style="width: ${sponsor.percentage}%;text-align:left"> 
+					${sponsor.percentage}%	
+					</div>
+				</div>
+				<div>
+				<select id="currentPrice" name="currentPrice">
+									<option value="">-금액-</option>
+									<option value="25">25$</option>
+									<option value="50">50$</option>
+									<option value="75">75$</option>
+									<option value="100">100$</option>
+									<option value="125">125$</option>
+									<option value="150">150$</option>
+									<option value="175">175$</option>
+									<option value="200">200$</option>							
+				</select>
+				<input type="submit" id="sponsorBtn" value="후원하기">
+				</div>
 			</div>
-		</div>
-		<div>
-		<select id="currentPrice" name="currentPrice">
-							<option value="">-금액-</option>
-							<option value="25">25$</option>
-							<option value="50">50$</option>
-							<option value="75">75$</option>
-							<option value="100">100$</option>
-							<option value="125">125$</option>
-							<option value="150">150$</option>
-							<option value="175">175$</option>
-							<option value="200">200$</option>							
-		</select>
-		<input type="submit" id="sponsorBtn" value="후원하기">
-		</div>
 	</div>
 	<input type="hidden" name="boardNo" value="${sponsor.boardNo}">
 	</form>
