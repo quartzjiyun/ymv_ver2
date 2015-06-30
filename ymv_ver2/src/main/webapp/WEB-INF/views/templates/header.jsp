@@ -4,6 +4,13 @@
 <title>YMV Main</title>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#searchForm input[type=text]").keypress(function(e){ 
+			 if (e.keyCode == 13){
+				alert("검색 버튼을 눌러주세요");
+				return false;
+			 }  
+		});
+		
 		$("#searchBtn").click(function(){
 			if($("#search").val()=="" || $("#search").val()==null){
 				alert("검색어를 입력하세요!");
