@@ -13,8 +13,8 @@
 			} else if ($("#location").val() == "") {
 				alert("지역을 선택해 주세요");
 				return false;
-			} else if ($("#age").val() == "") {
-				alert("봉사 가능 나이를 입력해 주세요");
+			} else if ($("# :radio[name=age]:checked").val() == ""||$("# :radio[name=age]:checked").val() == null) {
+				alert("봉사 가능한 나이를 선택해 주세요");
 				return false;
 			} else if ($("#startTime").val() == "") {
 				alert("시작시간을 입력해 주세요");
@@ -103,9 +103,24 @@
 					<th class="info"><h4 class="text-center">나이제한</h4></th>
 					<td>
 						<!-- <input type="text" name="age" id="age"> --> <!-- 숫자로 입력 안하면 submit 못하게
-			나이를 select or input text로 둘중에 뭐할지 정하기 --> <input type="radio"
-						name="age" value="전체">전체 <input type="radio" name="age"
-						value="학생">학생 <input type="radio" name="age" value="성인">성인
+			나이를 select or input text로 둘중에 뭐할지 정하기 -->
+			<c:choose>
+				<c:when test="${requestScope.rvo.age=='전체'}">
+					<input type="radio" name="age" value="전체" checked="checked">전체 
+					<input type="radio" name="age" value="학생">학생 
+					<input type="radio" name="age" value="성인">성인
+				</c:when>
+				<c:when test="${requestScope.rvo.age=='학생'}">
+					<input type="radio" name="age" value="전체">전체 
+					<input type="radio" name="age" value="학생" checked="checked">학생 
+					<input type="radio" name="age" value="성인">성인
+				</c:when>
+				<c:when test="${requestScope.rvo.age=='성인'}">
+					<input type="radio" name="age" value="전체">전체 
+					<input type="radio" name="age" value="학생">학생 
+					<input type="radio" name="age" value="성인" checked="checked">성인
+				</c:when>
+				</c:choose>
 						<!-- 전체, 학생, 성인으로 나눠서 -->
 					</td>
 				</tr>
