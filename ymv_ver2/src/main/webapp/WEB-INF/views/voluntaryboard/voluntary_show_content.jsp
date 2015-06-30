@@ -89,7 +89,7 @@ $(document).ready(function(){
 						</c:when>
 						<c:when test="${sessionScope.mvo.memberType=='admin'}">
 							<a
-								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }">
+								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }&command=admin">
 								<input type="button" class="btn btn-default btn-xs" value="수정" >
 							</a>
 								<input type="button" class="btn btn-default btn-xs" class = "action" id ="delete" value="삭제" >

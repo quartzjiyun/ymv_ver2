@@ -33,6 +33,7 @@
 	<div class="col-md-12">
 		<form id="recruitForm" action="voluntary_board_update.ymv"
 			method="post">
+			<input type="hidden" name="command" value="${requestScope.command }">
 			<table class="content">
 				<tbody>
 					<tr>
