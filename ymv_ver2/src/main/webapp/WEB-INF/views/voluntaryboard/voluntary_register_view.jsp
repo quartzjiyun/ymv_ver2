@@ -13,8 +13,8 @@
 			} else if ($("#location").val() == "") {
 				alert("지역을 선택해 주세요");
 				return false;
-			} else if ($("#age").val() == "") {
-				alert("봉사 가능 나이를 입력해 주세요");
+			} else if ($("# :radio[name=age]:checked").val() == ""||$("# :radio[name=age]:checked").val() == null) {
+				alert("봉사 가능한 나이를 선택해 주세요");
 				return false;
 			} else if ($("#startTime").val() == "") {
 				alert("시작시간을 입력해 주세요");
