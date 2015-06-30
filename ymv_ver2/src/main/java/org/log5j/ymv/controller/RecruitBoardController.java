@@ -171,24 +171,42 @@ public class RecruitBoardController {
     
     
 	@RequestMapping("voluntary_board_update_view.ymv")
-	public ModelAndView updateView(int recruitNo) {
+	public ModelAndView updateView(int recruitNo,HttpServletRequest request) {
 		RecruitBoardVO recruitbvo = (RecruitBoardVO) recruitBoardService
 				.getRecruitBoardByRecruitNo(recruitNo);
+		String StartDate[]=recruitbvo.getStartDate().split(" ");
+		recruitbvo.setStartDate(StartDate[0]);
+		recruitbvo.setStartTime(StartDate[1]);
+		String EndDate[]=recruitbvo.getEndDate().split(" ");
+		recruitbvo.setEndDate(EndDate[0]);
+		recruitbvo.setEndTime(EndDate[1]);
 		List<FieldVO> Flist = recruitBoardService.getFieldList();
 		List<LocationVO> Llist = recruitBoardService.getLocationList();
 		ModelAndView mv = new ModelAndView();
+		String command=request.getParameter("command");
 		mv.setViewName("voluntary_board_update_view");
 		mv.addObject("fieldlist", Flist);
 		mv.addObject("locationlist", Llist);
 		mv.addObject("rvo", recruitbvo);
+		mv.addObject("command",command);
 		return mv;
 	}
 
 	@RequestMapping("voluntary_board_update.ymv")
 	   public ModelAndView voluntary_board_update(HttpServletRequest request, int recruitNo, String title, String field, String location, String age, String startDate, String endDate, String content) {
-	      RecruitBoardVO recruitbvo = new RecruitBoardVO(recruitNo, title, field, location, age, startDate, endDate, content);
+	      ModelAndView mv=new ModelAndView();
+		RecruitBoardVO recruitbvo = new RecruitBoardVO(recruitNo, title, field, location, age, startDate, endDate, content);
 	      recruitBoardService.updateBoard(recruitbvo);
-	      return new ModelAndView("voluntary_show_content","rvo",recruitBoardService.getRecruitBoardByRecruitNo(recruitbvo.getRecruitNo()));
+	      String command=request.getParameter("command");
+	      if(command.equals("company")){
+	    	  mv.setViewName("voluntary_show_content_company");
+	      }else if(command.equals("normal")){
+	    	  mv.setViewName("voluntary_show_content_normal");
+	      }else{
+	    	  mv.setViewName("voluntary_show_content");
+	      }
+	      mv.addObject("rvo",recruitBoardService.getRecruitBoardByRecruitNo(recruitbvo.getRecruitNo()));
+	      return mv;
 	   }
 	
 	@RequestMapping("voluntary_register_view.ymv")

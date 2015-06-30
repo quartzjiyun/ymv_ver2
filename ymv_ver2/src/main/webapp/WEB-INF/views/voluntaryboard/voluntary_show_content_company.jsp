@@ -107,7 +107,7 @@ $(document).ready(function(){
 					<input type="button" class="btn btn-default btn-xs" value="목록" ></a> <c:choose>
 						<c:when test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo}">
 							<a
-								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }">
+								href="${initParam.root}voluntary_board_update_view.ymv?recruitNo=${requestScope.rvo.recruitNo }&command=company">
 								<input type="button" class="btn btn-default btn-xs" value="수정" >
 							</a>
 
