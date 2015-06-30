@@ -16,12 +16,13 @@ $(document).ready(function(){
 		var motivate = "";
 		motivate +="<hr><h2>봉사 신청 이유</h2>";
 		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate' placeholder='봉사신청 동기를 입력해주세요.'></textarea>";
-		motivate += "<input type='button' value='신청하기' id='VolunteerApplicant'>";
+		motivate += "<br><br><input type='button' value='신청하기' id='VolunteerApplicant'class='btn btn-default btn-xs'>";
 		$("#motivateForm").html(motivate);
 		$("#VolunteerApplicant").click(function(){
-			//alert("버튼 클릭");
-			/* location.href="voluntary_register_applicant.ymv?recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(); */ 
-			/* memberNo=${sessinScope.session.memberNo}우선 숫자 하나 넣어놓고 나중에 세션에서 받아온 memberNO로 바꾸기 */
+			if($("#motivate").val()=="" || $("#motivate").val()==null){
+				alert("신청 동기를 입력해주세요");
+				return;
+			}else{
 			$.ajax({
 				type:"get",
 				url:"voluntary_register_applicant.ymv",				
@@ -39,6 +40,7 @@ $(document).ready(function(){
 					}
 				}
 			});
+			}
 		});
 	});//click
 	

@@ -27,6 +27,13 @@
 				return false;
 			}
 		});
+		$("#updateCancel").click(function(){
+			if(confirm("취소하시겠습니까?")==true){
+				location.href="voluntary_board.ymv";
+			}else{
+				return;
+			}
+		});
 	});
 </script>
 <link rel="stylesheet"
@@ -56,14 +63,14 @@
 				});
 	});
 </script>
-	<div class="col-md-6 col-sm-offset-3">
+	<div class="col-md-8 col-md-offset-2">
+		
 		<h2>봉사 수정</h2>
-		<form id="recruitForm"
-			action="voluntary_board_update.ymv"
-			method="post">
+	<form id="recruitForm" action="voluntary_board_update.ymv" method="post" class="form-horizontal">
+			
 
 <input type="hidden" name="command" value="${requestScope.command }">
-			<table class="table table-striped table-hover">
+			<table class="table table-hover">
 				<tr>
 					<th class="info"><h4 class="text-center">제목</h4></th>
 					<td><input type="text" name="title" id="title" value=${requestScope.rvo.title }></td>
