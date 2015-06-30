@@ -19,13 +19,21 @@
           }
          }
       });
+      $("#updateCancel").click(function(){
+			if(confirm("취소하시겠습니까?")==true){
+				location.href="qna_board.ymv";
+			}else{
+				return;
+			}
+		});
       
       
    });
 
 </script>
-<form id="qnaForm" action="qna_board_update.ymv" method="post">
-         <table class="content">
+<div class="col-md-8 col-md-offset-2">
+<form id="qnaForm" action="qna_board_update.ymv" method="post" class="form-horizontal">
+         <table class="table table-hover">
             <tr>
                <td>
                <b>글번호: <input type=text name=qnaNo value=${requestScope.qvo.qnaNo } readonly></input>
@@ -38,10 +46,12 @@
                </td>
             </tr>
             <tr>
-               <td valign="middle">                  
-               <input type="submit" value="수정하기" ></input>   
-               </td>            
+            <td valign="middle" align="right">                  
+               <input type="submit" value="수정하기" class="btn btn-default btn-xs"></input>   
+               <input type="button" id="updateCancel" value="취소하기" class="btn btn-default btn-xs"></input>
+               </td>                       
             </tr>
          </table>
    
 </form>   
+</div>

@@ -15,12 +15,9 @@
 	});
 </script>
 
-<div class="col-md-12">
-	<div class="col-md-12">
-		<form method=post action="review_board_update.ymv">
-
-
-			<table class="content">
+<div class="col-md-6 col-md-offset-3">
+		<form method=post action="review_board_update.ymv" class="form-horizontal">
+			<table class="table table-hover">
 				<tr>
 					<td><b> 글번호 <input type=text name=boardNo
 							value=${requestScope.rvo.boardNo } readonly="readonly"></input> |
@@ -43,14 +40,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td valign="middle"><input type="submit" value="수정하기"></input>
-						<input type="button" id="updateCancel" value="취소하기"></input></td>
+					<td valign="middle" align="right"><input type="submit" value="수정하기" class="btn btn-default btn-xs"></input>
+						<input type="button" id="updateCancel" value="취소하기" class="btn btn-default btn-xs"></input></td>
 				</tr>
 			</table>
 
 		</form>
 	</div>
-</div>
 
 
 
