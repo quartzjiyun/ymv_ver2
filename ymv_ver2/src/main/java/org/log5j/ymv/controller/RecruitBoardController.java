@@ -174,6 +174,12 @@ public class RecruitBoardController {
 	public ModelAndView updateView(int recruitNo,HttpServletRequest request) {
 		RecruitBoardVO recruitbvo = (RecruitBoardVO) recruitBoardService
 				.getRecruitBoardByRecruitNo(recruitNo);
+		String StartDate[]=recruitbvo.getStartDate().split(" ");
+		recruitbvo.setStartDate(StartDate[0]);
+		recruitbvo.setStartTime(StartDate[1]);
+		String EndDate[]=recruitbvo.getEndDate().split(" ");
+		recruitbvo.setEndDate(EndDate[0]);
+		recruitbvo.setEndTime(EndDate[1]);
 		List<FieldVO> Flist = recruitBoardService.getFieldList();
 		List<LocationVO> Llist = recruitBoardService.getLocationList();
 		ModelAndView mv = new ModelAndView();
