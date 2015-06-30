@@ -1,5 +1,7 @@
 package org.log5j.ymv.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import org.log5j.ymv.model.board.FieldVO;
 import org.log5j.ymv.model.board.ListVO;
 import org.log5j.ymv.model.board.LocationVO;
 import org.log5j.ymv.model.board.RecruitBoardService;
+import org.log5j.ymv.model.board.RecruitBoardVO;
 import org.log5j.ymv.model.scheduler.SchedulerService;
 import org.log5j.ymv.model.scheduler.SchedulerVO;
 import org.log5j.ymv.model.scheduler.SearchBoardVO;
@@ -43,8 +46,22 @@ public class SchedulerController {
 	@RequestMapping("search_board.ymv")
 	@NoLoginCheck
 	public ModelAndView getSearchList(SearchVO scvo){
+		ModelAndView mv = new ModelAndView("voluntary_board");
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ListVO lvo = schedulerService.getSearchList(scvo);
-		return new ModelAndView("scheduler_board","lvo",lvo).addObject("scvo", scvo);
+		for(int i = 0; i<lvo.getList().size(); i ++){
+			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getEndDate());
+			if(compare > 0){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
+			}else if(compare < 0){
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}else{
+				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집중");
+			}
+		}
+		mv.addObject("lvo", lvo).addObject("scvo", scvo);
+		return mv;
+		
 	}
 	@RequestMapping("search_view.ymv")
 	@NoLoginCheck
