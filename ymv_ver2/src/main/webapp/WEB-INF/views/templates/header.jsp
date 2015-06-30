@@ -60,7 +60,7 @@
             <li><a href="${initParam.root }review_board.ymv">봉사후기</a></li>
             <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
             <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
-            <li><a href="${initParam.root }sponsor_board_admin.ymv">후원</a></li>
+            <li><a href="${initParam.root }sponsor_board_admin.ymv">후원게시판</a></li>
             <li><a href="${initParam.root }sponsor_register_view.ymv">후원등록</a></li>
           </ul>
         </li>
@@ -148,7 +148,7 @@
             <li><a href="${initParam.root }review_board.ymv">봉사후기</a></li>
             <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
             <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
-            <li><a href="${initParam.root }sponsor_board.ymv">후원</a></li>
+            <li><a href="${initParam.root }sponsor_board.ymv">후원하기</a></li>
           </ul>
         </li>
         <%--기업 --%>
@@ -187,59 +187,3 @@
 
 </c:otherwise>
 </c:choose>
-
-<%--    
-<a href="testTiles.ymv"><img src="${initParam.root }/img/logo.jpg"></a>
-<div id='cssmenu' align="center">
-<ul>
-   <li><a href='testTiles.ymv'>Home</a></li>
-   <li class='active'><a href='#'>너나봉이란?</a>
-      <ul>
-         <li><a href='introduce_ymv.ymv'>너나봉 소개</a>
-                 <ul>
-               <li><a href='introduce_ymv.ymv'>너나봉 소개</a></li>
-               <li><a href='introduce_how_ymv.ymv'>About 너나봉 </a></li>
-            </ul>  </li>
-          <li><a href='introduce_administrator.ymv'>너나봉 직원 소개</a>   
-         <li><a href='introduce_map.ymv'>찾아오시는 길</a>
-
-         </li>
-      </ul>
-   </li>
-   <li class='active'><a href='#'>봉사</a>
-      <ul>
-         <li><a href='search_view.ymv'>통합검색</a></li>
-         <li><a href='voluntary_board.ymv'>전체목록</a></li>
-      	 <li><a href='voluntary_board_normal.ymv'>봉사신청내역확인</a></li>
-      </ul>
-   </li> 
-   <c:choose>
-   <c:when test="${sessionScope.mvo.memberType=='company' }">
-   <li class='active'><a href='#'>기업</a>
-      <ul>
-         <li><a href='voluntary_register_view.ymv'>봉사등록</a></li>
-         <li><a href='voluntary_board_company.ymv'>봉사등록확인</a>
-         </li>
-      </ul>
-   </li>
-   </c:when>
-   <c:otherwise>
-   </c:otherwise>
-   </c:choose>
- <li class='active'><a href='#'>커뮤니티</a>
-      <ul>
-      	<li><a href='review_board.ymv'>봉사후기</a></li>
-         <li><a href='notice_board.ymv'>공지사항</a></li>
-         <li><a href='${initParam.root }qna_board.ymv'>Q & A</a>
-         </li>
-      </ul>
-   </li>
-    <li class='active'><a href='#'>통계</a>
-      <ul>
-      <li><a href='voluntary_statistics.ymv'>전체 통계</a></li>
-         <li><a href='voluntary_statisticsByAge.ymv'>나이별 선호 봉사활동</a></li>
-      </ul>
-   </li>
-</ul>
-</div> --%>
-

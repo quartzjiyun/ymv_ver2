@@ -8,16 +8,18 @@
 	</h3>
 	<table class="table table-striped table-hover">
 		<colgroup>
+			<col style="width: 6%;" />
 			<col style="width: 10%;" />
 			<col style="width: 20%;" />
 			<col style="width: 10%;" />
 			<col style="width: 10%;" />
-			<col style="width: 25%;" />
-			<col style="width: 25%;" />
+			<col style="width: 22%;" />
+			<col style="width: 22%;" />
 		</colgroup>
 		<thead>
 			<tr>
 				<th scope="col">NO</th>
+				<th scope="col">모집상태</th>
 				<th scope="col">제목</th>
 				<th scope="col">분야</th>
 				<th scope="col">지역</th>
@@ -31,13 +33,15 @@
 					<td>${bvo.recruitNo }</td>
 					<c:choose>
 						<c:when test="${bvo.mojib=='모집중'}">
+						<td><img src="${initParam.root}img/recruiting.jpg"></td>
 						<td>
-							<a href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"><img src="${initParam.root}img/mojibjung.PNG"> ${bvo.title }</a>
+							<a href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }">${bvo.title }</a>
 						</td>
 						</c:when>
 						<c:otherwise>
+							<td><img src="${initParam.root}img/recruitfin.jpg"></td>						
 							<td>
-								<a href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"><img src="${initParam.root}img/mojibwon.PNG"> ${bvo.title }</a>
+								<a href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"> ${bvo.title }</a>
 							</td>
 						</c:otherwise>
 						</c:choose>
