@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-schduler register
-<div class="col-md-12">
-	<div class="col-md-5">
-		<h2>봉사 등록</h2>
+    <link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+	type="text/css" media="all" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"
+	type="text/javascript"></script>   
+    
+<div class="col-md-6 col-sm-offset-3">
+		<h2>스케줄러 수정</h2>
 		<form id="recruitForm" action="scheduler_update.ymv?memberNo=${sessionScope.mvo.memberNo}" method="post">
-			<table class="table" border="1">
+			<table class="table table-striped table-hover">
 				<tr>
 					<th class="info">분야</th>
 					<td><select id="field" name="field">
@@ -84,7 +91,8 @@ schduler register
 					</select></td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="스케쥴러 수정">
+			<br> 
+			<div class = "col-sm-2 col-sm-offset-10">
+			<input type="submit" value="스케쥴러 수정" class = "btn btn-primary"></div>
 		</form>
 	</div>
-</div>

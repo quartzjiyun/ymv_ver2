@@ -54,7 +54,7 @@ $(document).ready(function(){
 									<option value="175">175$</option>
 									<option value="200">200$</option>							
 				</select>
-				<input type="submit" id="sponsorBtn" value="후원하기">
+				<input type="submit" id="sponsorBtn" value="후원하기" class="btn btn-default btn-xs">
 				</div>
 			</div>
 	</div>
