@@ -16,6 +16,7 @@
 </script>
 
 <div class="col-md-6 col-md-offset-3">
+<h3>봉사 후기 수정</h3>
 		<form method=post action="review_board_update.ymv" class="form-horizontal">
 			<table class="table table-hover">
 				<tr>

@@ -16,6 +16,7 @@
 </script>
 
 <div class="col-sm-6 col-sm-offset-3">
+<h3>공지사항 수정</h3>
 		<form class="form-horizontal" method="post" action="notice_board_update.ymv">
 		<table class="table table-hover">
 			<tr>

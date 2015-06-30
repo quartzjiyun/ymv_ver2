@@ -32,6 +32,7 @@
 
 </script>
 <div class="col-md-8 col-md-offset-2">
+<h3>QnA 수정</h3>
 <form id="qnaForm" action="qna_board_update.ymv" method="post" class="form-horizontal">
          <table class="table table-hover">
             <tr>
