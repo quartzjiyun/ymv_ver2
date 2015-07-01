@@ -69,6 +69,7 @@
             <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
             <li><a href="${initParam.root }sponsor_board_admin.ymv">후원게시판</a></li>
             <li><a href="${initParam.root }sponsor_register_view.ymv">후원등록</a></li>
+            <li><a href="${initParam.root }auction_board.ymv">나눔활동</a></li>  
           </ul>
         </li>
         <%--기업 --%>
@@ -156,6 +157,7 @@
             <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
             <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
             <li><a href="${initParam.root }sponsor_board.ymv">후원하기</a></li>
+            <li><a href="${initParam.root }auction_board.ymv">나눔활동</a></li>  
           </ul>
         </li>
         <%--기업 --%>
