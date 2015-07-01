@@ -15,10 +15,10 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 	@Resource(name="recruitBoardDAOImpl")
 	private RecruitBoardDAO recruitBoardDAO;
 	@Override
-	public ListVO getBoardList(String pageNo){
+	public ListVO findBoardList(String pageNo){
 		if(pageNo==null||pageNo=="") 
 			pageNo="1";
-		List<BoardVO> list=recruitBoardDAO.getBoardList(pageNo);
+		List<BoardVO> list=recruitBoardDAO.findBoardList(pageNo);
 		System.out.println("pageNo가 1인 상태에서 보드 리스트들을 받아오는 거"+list);
 		System.out.println("RecruitBoardServiceImpl getBoardList 완료");
 		int total=recruitBoardDAO.totalContent();
@@ -39,18 +39,18 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		
 	}
 	@Override
-	public RecruitBoardVO getRecruitBoardByRecruitNo(int recruitNo){
-	      return recruitBoardDAO.getRecruitBoardByRecruitNo(recruitNo);
+	public RecruitBoardVO findRecruitBoardByRecruitNo(int recruitNo){
+	      return recruitBoardDAO.findRecruitBoardByRecruitNo(recruitNo);
 	   }
 	@Override
-	public List<FieldVO> getFieldList() {
+	public List<FieldVO> findFieldList() {
 		
-		return recruitBoardDAO.getFieldList();
+		return recruitBoardDAO.findFieldList();
 	}
 	@Override
-	public List<LocationVO> getLocationList() {
+	public List<LocationVO> findLocationList() {
 		
-		return recruitBoardDAO.getLocationList();
+		return recruitBoardDAO.findLocationList();
 	}
 	
 	@Override
@@ -71,13 +71,13 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		recruitBoardDAO.deleteVoluntaryServiceApplicateNo(recruitNo);
 	}
 	@Override
-	public ListVO getCompanyBoardList(CompanyVO cpvo) {
+	public ListVO findCompanyBoardList(CompanyVO cpvo) {
 		// TODO Auto-generated method stub
 		
 		if(cpvo.getPageNo()==0) {
 			cpvo.setPageNo(1);
 		}
-		List<BoardVO> list=recruitBoardDAO.getCompanyBoardList(cpvo);
+		List<BoardVO> list=recruitBoardDAO.findCompanyBoardList(cpvo);
 		System.out.println("pageNo가 1인 상태에서 보드 리스트들을 받아오는 거"+list);
 		System.out.println("RecruitBoardServiceImpl getBoardList 완료");
 		int total=recruitBoardDAO.totalCompanyContent(cpvo.getMemberNo());
@@ -94,11 +94,11 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		recruitBoardDAO.deletePicture(pictureNo);
 	}
 	@Override
-	public ListVO getNormalBoardList(CompanyVO cpvo) {
+	public ListVO findNormalBoardList(CompanyVO cpvo) {
 		if(cpvo.getPageNo()==0) {
 			cpvo.setPageNo(1);
 		}
-		List<BoardVO> list=recruitBoardDAO.getNormalBoardList(cpvo);
+		List<BoardVO> list=recruitBoardDAO.findNormalBoardList(cpvo);
 		System.out.println("pageNo가 1인 상태에서 보드 리스트들을 받아오는 거"+list);
 		System.out.println("RecruitBoardServiceImpl getBoardList 완료");
 		int total=recruitBoardDAO.totalNormalContent(cpvo.getMemberNo());
@@ -115,24 +115,24 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		recruitBoardDAO.registerApplicantOK(alvo);
 	}
 	@Override
-	public List<ApplicantListVO> getApplicantOkList(int recruitNo) {
+	public List<ApplicantListVO> findApplicantOkList(int recruitNo) {
 		// TODO Auto-generated method stub
-		return recruitBoardDAO.getApplicantOkList(recruitNo);
+		return recruitBoardDAO.findApplicantOkList(recruitNo);
 	}
 	@Override
-	public void getPostingByRecruitNoNotHit(int recruitNo) {
-		recruitBoardDAO.getPostingByRecruitNoNotHit(recruitNo);
+	public void findPostingByRecruitNoNotHit(int recruitNo) {
+		recruitBoardDAO.findPostingByRecruitNoNotHit(recruitNo);
 	}
 	@Override
-	public RecruitBoardVO getPostingByRecruitNoUpdateHit(int recruitNo) {
+	public RecruitBoardVO findPostingByRecruitNoUpdateHit(int recruitNo) {
 		// TODO Auto-generated method stub
 		recruitBoardDAO.updateHit(recruitNo);
 		return recruitBoardDAO.findRecruitBoardByrecruitNo(recruitNo);
 	}
 	@Override
-	public MemberVO getMailAddressByMemberNo(int memberNo) {
+	public MemberVO findMailAddressByMemberNo(int memberNo) {
 		// TODO Auto-generated method stub
-		return recruitBoardDAO.getMailAddressByMemberNo(memberNo);
+		return recruitBoardDAO.findMailAddressByMemberNo(memberNo);
 	}
 	@Override
 	public void registerConfirm(ConfirmVO confirmvo) {
@@ -155,22 +155,18 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		recruitBoardDAO.deleteVoluntaryServiceApplicateByRecruitNo(recruitNo);
 	}
 	@Override
-	public List<ConfirmVO> getConfirmListByMemberNo(int memberNo) {
-		return recruitBoardDAO.getConfirmListByMemberNo(memberNo);
-	}
-	@Override
-	public ListVO getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO) {
+	public ListVO findConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO) {
 		// TODO Auto-generated method stub
 		 if (confirmPageVO.getPageNo() == 0)
 	         confirmPageVO.setPageNo(1);
-	      List<BoardVO> list = recruitBoardDAO.getConfirmBoardListByMemberNo(confirmPageVO);
+	      List<BoardVO> list = recruitBoardDAO.findConfirmBoardListByMemberNo(confirmPageVO);
 	      int total = recruitBoardDAO.totalContentConfirm(confirmPageVO.getMemberNo());
 	      PagingBean paging = new PagingBean(total,confirmPageVO.getPageNo());
 	      ListVO lvo = new ListVO(list, paging);
 	      return lvo;
 	}
 	@Override
-	public ConfirmBoardVO getConfirmBoardByConfirm(ConfirmVO cvo){
-		return recruitBoardDAO.getConfirmBoardByConfirm(cvo);
+	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo){
+		return recruitBoardDAO.findConfirmBoardByConfirm(cvo);
 	}
 }

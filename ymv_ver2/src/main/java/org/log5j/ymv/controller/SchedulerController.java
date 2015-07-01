@@ -66,8 +66,8 @@ public class SchedulerController {
 	@RequestMapping("search_view.ymv")
 	@NoLoginCheck
 	public ModelAndView searchView(){
-	     List<FieldVO> Flist = recruitBoardService.getFieldList(); 
-	      List<LocationVO> Llist = recruitBoardService.getLocationList();
+	     List<FieldVO> Flist = recruitBoardService.findFieldList(); 
+	      List<LocationVO> Llist = recruitBoardService.findLocationList();
 		return new ModelAndView("search_view").addObject("fieldlist", Flist).addObject("locationlist", Llist);
 	}
 	@RequestMapping("scheduler_Check")
@@ -82,8 +82,8 @@ public class SchedulerController {
 	}
 	@RequestMapping("scheduler_register_view")
 	public ModelAndView schedulerRegisterView(){
-		 List<FieldVO> Flist = recruitBoardService.getFieldList(); 
-	      List<LocationVO> Llist = recruitBoardService.getLocationList();
+		 List<FieldVO> Flist = recruitBoardService.findFieldList(); 
+	      List<LocationVO> Llist = recruitBoardService.findLocationList();
 		return new ModelAndView("scheduler_register_view","fieldlist",Flist).addObject("locationlist", Llist);
 	}
 	@RequestMapping("scheduler_register")
@@ -95,8 +95,8 @@ public class SchedulerController {
 	@RequestMapping("scheduler_update_view")
 	public ModelAndView schedulerUpdateView(HttpServletRequest request){
 		SchedulerVO sdvo=schedulerService.schedulerCheck(request.getParameter("memberNo"));
-		 List<FieldVO> Flist = recruitBoardService.getFieldList(); 
-	     List<LocationVO> Llist = recruitBoardService.getLocationList();
+		 List<FieldVO> Flist = recruitBoardService.findFieldList(); 
+	     List<LocationVO> Llist = recruitBoardService.findLocationList();
 		return new ModelAndView("scheduler_update_view","sdvo",sdvo).addObject("fieldlist", Flist).addObject("locationlist", Llist);
 	}
 	@RequestMapping("scheduler_update")

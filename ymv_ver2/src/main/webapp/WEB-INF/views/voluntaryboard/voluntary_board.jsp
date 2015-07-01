@@ -1,7 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <div class="col-md-10 col-sm-offset-1">
 	<h3>
 		<p class="text-center">봉사 전체 목록</p>
@@ -35,13 +34,13 @@
 						<c:when test="${bvo.mojib=='모집중'}">
 						<td><img src="${initParam.root}img/recruiting.jpg"></td>
 						<td>
-							<a href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }">${bvo.title }</a>
+							<a href="${initParam.root}voluntary_show_content_recruit_vol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }">${bvo.title }</a>
 						</td>
 						</c:when>
 						<c:otherwise>
 							<td><img src="${initParam.root}img/recruitfin.jpg"></td>						
 							<td>
-								<a href="${initParam.root}voluntary_showContentRecruitVol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"> ${bvo.title }</a>
+								<a href="${initParam.root}voluntary_show_content_recruit_vol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"> ${bvo.title }</a>
 							</td>
 						</c:otherwise>
 						</c:choose>
@@ -107,13 +106,3 @@
 		</ul>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-

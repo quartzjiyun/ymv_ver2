@@ -17,62 +17,61 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public List<BoardVO> getBoardList(String pageNo){
-		System.out.println(pageNo+"   RecruitBoardDAOImpl  getBoardList pageno");
-		
-		List<BoardVO> list = sqlSessionTemplate.selectList("board.getBoardList", pageNo);
+	public List<BoardVO> findBoardList(String pageNo){
+		System.out.println(pageNo+"   RecruitBoardDAOImpl  findBoardList pageno");
+		List<BoardVO> list = sqlSessionTemplate.selectList("recruitboard.findBoardList", pageNo);
 		System.out.println("RecruitBoardDAOImpl db 들어가서 list 넣은거"+list);
 		return list;
 	}
 
 	@Override
 	public int totalContent(){
-		return sqlSessionTemplate.selectOne("board.totalContent");
+		return sqlSessionTemplate.selectOne("recruitboard.totalContent");
 	}
 
 	@Override
 	public BoardVO showContent(int recruitNo) {
-		return (BoardVO)sqlSessionTemplate.selectOne("board.showContent",recruitNo);
+		return (BoardVO)sqlSessionTemplate.selectOne("recruitboard.showContent",recruitNo);
 	}
 
 	@Override
-	public RecruitBoardVO getRecruitBoardByRecruitNo(int recruitNo){
-	      return sqlSessionTemplate.selectOne("board.getRecruitBoardByRecruitNo",recruitNo);
+	public RecruitBoardVO findRecruitBoardByRecruitNo(int recruitNo){
+	      return sqlSessionTemplate.selectOne("recruitboard.findRecruitBoardByRecruitNo",recruitNo);
 	   }
 
 	@Override
-	public List<FieldVO> getFieldList() {
-		List<FieldVO> list = sqlSessionTemplate.selectList("board.getFieldList");
+	public List<FieldVO> findFieldList() {
+		List<FieldVO> list = sqlSessionTemplate.selectList("recruitboard.findFieldList");
 		return list;
 	}
 
 	@Override
-	public List<LocationVO> getLocationList() {
-		List<LocationVO> list = sqlSessionTemplate.selectList("board.getLocationList");
+	public List<LocationVO> findLocationList() {
+		List<LocationVO> list = sqlSessionTemplate.selectList("recruitboard.findLocationList");
 		return list;
 	}
 
 	@Override
 	public RecruitBoardVO findRecruitBoardByrecruitNo(int recruitNo) {
-		return sqlSessionTemplate.selectOne("board.findRecruitBoardByrecruitNo", recruitNo);
+		return sqlSessionTemplate.selectOne("recruitboard.findRecruitBoardByrecruitNo", recruitNo);
 	}
 	
 	@Override
 	public void registerVolunteer(RecruitBoardVO rbvo) {
 		System.out.println("dao register volunterr"+rbvo);
-		sqlSessionTemplate.insert("board.registerVolunteer",rbvo);
+		sqlSessionTemplate.insert("recruitboard.registerVolunteer",rbvo);
 		
 	}
 
 	@Override
 	public void updateBoard(BoardVO bvo) {
-		sqlSessionTemplate.update("board.updateBoard",bvo);
+		sqlSessionTemplate.update("recruitboard.updateBoard",bvo);
 		
 	}
 
 	@Override
 	public void deleteRecruitVolunteer(int recruitNo) {
-		sqlSessionTemplate.delete("board.deleteRecruitVolunteer",recruitNo);
+		sqlSessionTemplate.delete("recruitboard.deleteRecruitVolunteer",recruitNo);
 	}
 
 	@Override
@@ -81,10 +80,10 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getCompanyBoardList(CompanyVO cpvo) {
+	public List<BoardVO> findCompanyBoardList(CompanyVO cpvo) {
 		// TODO Auto-generated method stub
 		System.out.println("DAOImpl : "+cpvo);
-		List<BoardVO> list = sqlSessionTemplate.selectList("board.getCompanyBoardList",cpvo);
+		List<BoardVO> list = sqlSessionTemplate.selectList("recruitboard.findCompanyBoardList",cpvo);
 		System.out.println("RecruitBoardDAOImpl db 들어가서 list 넣은거"+list);
 		return list;
 	}
@@ -92,19 +91,19 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	@Override
 	public int totalCompanyContent(int memberNo) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("board.totalCompanyContent",memberNo);
+		return sqlSessionTemplate.selectOne("recruitboard.totalCompanyContent",memberNo);
 	}
 
 	@Override
 	public void deletePicture(int pictureNo) {
 		// TODO Auto-generated method stub
-		sqlSessionTemplate.delete("board.deletePicture",pictureNo);
+		sqlSessionTemplate.delete("recruitboard.deletePicture",pictureNo);
 	}
 	
 	@Override
-	public List<BoardVO> getNormalBoardList(CompanyVO cpvo) {
+	public List<BoardVO> findNormalBoardList(CompanyVO cpvo) {
 		System.out.println("DAOImpl : "+cpvo);
-		List<BoardVO> list = sqlSessionTemplate.selectList("board.getNormalBoardList",cpvo);
+		List<BoardVO> list = sqlSessionTemplate.selectList("recruitboard.findNormalBoardList",cpvo);
 		System.out.println("RecruitBoardDAOImpl db 들어가서 list 넣은거"+list);
 		return list;
 	}
@@ -112,7 +111,7 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	@Override
 	public int totalNormalContent(int memberNo) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("board.totalNormalContent",memberNo);
+		return sqlSessionTemplate.selectOne("recruitboard.totalNormalContent",memberNo);
 	}
 
 	@Override
@@ -122,26 +121,26 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	}
 
 	@Override
-	public List<ApplicantListVO> getApplicantOkList(int recruitNo) {
+	public List<ApplicantListVO> findApplicantOkList(int recruitNo) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("applicant.getApplicantOkList",recruitNo);
+		return sqlSessionTemplate.selectList("applicant.findApplicantOkList",recruitNo);
 	}
 	
 	@Override
-	public void getPostingByRecruitNoNotHit(int recruitNo) {
-		sqlSessionTemplate.selectOne("board.findRecruitBoardByrecruitNo",recruitNo);
+	public void findPostingByRecruitNoNotHit(int recruitNo) {
+		sqlSessionTemplate.selectOne("recruitboard.findRecruitBoardByrecruitNo",recruitNo);
 	}
 
 	@Override
 	public void updateHit(int recruitNo) {
 		// TODO Auto-generated method stub
-		sqlSessionTemplate.update("board.updateHit", recruitNo);
+		sqlSessionTemplate.update("recruitboard.updateHit", recruitNo);
 	}
 
 	@Override
-	public MemberVO getMailAddressByMemberNo(int memberNo) {
+	public MemberVO findMailAddressByMemberNo(int memberNo) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("applicant.getMailAddressByMemberNo", memberNo);
+		return sqlSessionTemplate.selectOne("applicant.findMailAddressByMemberNo", memberNo);
 	}
 
 	@Override
@@ -169,16 +168,9 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	}
 
 	@Override
-	public List<ConfirmVO> getConfirmListByMemberNo(int memberNo) {
+	public List<BoardVO> findConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO) {
 		// TODO Auto-generated method stub
-		
-		return sqlSessionTemplate.selectList("applicant.getConfirmByMemberNo",memberNo);
-	}
-
-	@Override
-	public List<BoardVO> getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO) {
-		// TODO Auto-generated method stub
-		List<BoardVO> list=sqlSessionTemplate.selectList("applicant.getConfirmBoardListByMemberNo",confirmPageVO);
+		List<BoardVO> list=sqlSessionTemplate.selectList("applicant.findConfirmBoardListByMemberNo",confirmPageVO);
 		return list;
 	}
 
@@ -189,8 +181,8 @@ public class RecruitBoardDAOImpl implements RecruitBoardDAO {
 	}
 	
 	@Override
-	public ConfirmBoardVO getConfirmBoardByConfirm(ConfirmVO cvo){
-		return sqlSessionTemplate.selectOne("applicant.getConfirmBoardByConfirm",cvo);
+	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo){
+		return sqlSessionTemplate.selectOne("applicant.findConfirmBoardByConfirm",cvo);
 	}
 
 

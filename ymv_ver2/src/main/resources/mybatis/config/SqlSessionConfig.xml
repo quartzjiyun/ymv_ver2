@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.log5j.ymv.model.sponsor.SponsorVO" alias="spvo"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="mybatis/config/board.xml" />
+		<mapper resource="mybatis/config/recruitboard.xml" />
 		<mapper resource="mybatis/config/reviewBoard.xml" />
 		<mapper resource="mybatis/config/member.xml" />
 		<mapper resource="mybatis/config/noticeBoard.xml" />

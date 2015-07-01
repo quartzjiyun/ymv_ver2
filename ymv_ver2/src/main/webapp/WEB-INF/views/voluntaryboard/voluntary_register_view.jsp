@@ -59,7 +59,7 @@
 	<div class="col-md-6 col-sm-offset-3">
 		<h2>봉사 등록</h2>
 		<form id="recruitForm"
-			action="Volunteer_register.ymv?memberNo=${sessionScope.mvo.memberNo }"
+			action="volunteer_register.ymv?memberNo=${sessionScope.mvo.memberNo }"
 			method="post">
 			<table class="table table-striped table-hover">
 				<tr>

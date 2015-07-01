@@ -34,9 +34,9 @@ public class VoluntaryServiceApplicateServiceImpl implements VoluntaryServiceApp
 	}
 
 	@Override
-	public List<ApplicantListVO> getApplicantList(int recruitNo) {
+	public List<ApplicantListVO> findApplicantList(int recruitNo) {
 		// TODO Auto-generated method stub
-		return voluntaryServiceApplicateDAO.getApplicantList(recruitNo);
+		return voluntaryServiceApplicateDAO.findApplicantList(recruitNo);
 	}
 
 	@Override

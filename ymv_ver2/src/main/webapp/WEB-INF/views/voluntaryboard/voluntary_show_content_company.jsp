@@ -13,39 +13,11 @@ $(document).ready(function(){
 	       }
 	});
 	
-	$("#applicant").click(function(){
-		var motivate = "";
-		motivate +="<hr><h2>봉사 신청 이유</h2>";
-		motivate += " <br><textarea rows='10' cols='80' id='motivate' name='motivate' placeholder='봉사신청 동기를 입력해주세요.'></textarea>";
-		motivate += "<input type='button' value='신청하기' id='VolunteerApplicant'>";
-		$("#motivateForm").html(motivate);
-		
-		$("#VolunteerApplicant").click(function(){
-			//alert("버튼 클릭");
-			/* location.href="voluntary_register_applicant.ymv?recruitNo=${requestScope.rvo.recruitNo }&memberNo=1&motivate="+$("#motivate").val(); */ 
-			/* memberNo=${sessinScope.session.memberNo}우선 숫자 하나 넣어놓고 나중에 세션에서 받아온 memberNO로 바꾸기 */
-			$.ajax({
-				type:"get",
-				url:"voluntary_register_applicant.ymv",				
-				data:"recruitNo=${requestScope.rvo.recruitNo }&motivate="+$("#motivate").val()+"&memberNo=${sessionScope.mvo.memberNo}",
-				dataType:"json", 
-				success:function(data){
-					//alert(data);
-					if(data==true){
-						alert("이미 신청하셨습니다.");
-						$("#motivate").val("");
-					}else{
-						alert("신청이 완료되었습니다.");
-						$("#motivate").val("");
-					}
-				}
-			});
-		});
-	});//click
+	
 	$("#applicantlist").click(function(){
 		$.ajax({
 			type:"get",
-			url:"getApplicantList.ymv",				
+			url:"find_applicant_list.ymv",				
 			data:"recruitNo=${requestScope.rvo.recruitNo }",
 			dataType:"json", 
 			success:function(data){

@@ -9,55 +9,28 @@ import org.log5j.ymv.model.voluntary.ConfirmPageVO;
 import org.log5j.ymv.model.voluntary.ConfirmVO;
 
 public interface RecruitBoardService {
-	public  ListVO getBoardList(String pageNo);
-
+	public ListVO findBoardList(String pageNo);
 	public BoardVO showContent(int no);
-
 	public void updateBoard(BoardVO bvo);
-
-	 public RecruitBoardVO getRecruitBoardByRecruitNo(int recruitNo);
-
-	public List<FieldVO> getFieldList();
-
-	public List<LocationVO> getLocationList();
-	
+	 public RecruitBoardVO findRecruitBoardByRecruitNo(int recruitNo);
+	public List<FieldVO> findFieldList();
+	public List<LocationVO> findLocationList();
 	public void registerVolunteer(RecruitBoardVO rbvo);
-	
 	public RecruitBoardVO findRecruitBoardByrecruitNo(int recruitNo);
-
 	public void deleteRecruitVolunteer(int recruitNo);
-
 	public void deleteVoluntaryServiceApplicateNo(int recruitNo);
-
-	public ListVO getCompanyBoardList(CompanyVO cpvo);
-
+	public ListVO findCompanyBoardList(CompanyVO cpvo);
 	public void deletePicture(int pictureNo);
-	
-	public ListVO getNormalBoardList(CompanyVO cpvo);
-
+	public ListVO findNormalBoardList(CompanyVO cpvo);
 	public void registerApplicantOK(ApplicantListVO alvo);
-
-	public List<ApplicantListVO> getApplicantOkList(int recruitNo);
-	
-	public void getPostingByRecruitNoNotHit(int recruitNo);
-
-	public RecruitBoardVO getPostingByRecruitNoUpdateHit(int recruitNo);
-	
-	public MemberVO getMailAddressByMemberNo(int memberNo);
-
+	public List<ApplicantListVO> findApplicantOkList(int recruitNo);
+	public void findPostingByRecruitNoNotHit(int recruitNo);
+	public RecruitBoardVO findPostingByRecruitNoUpdateHit(int recruitNo);
+	public MemberVO findMailAddressByMemberNo(int memberNo);
 	public void registerConfirm(ConfirmVO confirmvo);
-
 	public void registerConfirmBoard(ConfirmBoardVO confirmbvo);
-
 	public void deleteVoluntaryApplicantOK(int recruitNo);
-
 	public void deleteVoluntaryServiceApplicateByRecruitNo(int recruitNo);
-
-	public List<ConfirmVO> getConfirmListByMemberNo(int memberNo);
-
-	public ListVO getConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
-
-	public ConfirmBoardVO getConfirmBoardByConfirm(ConfirmVO cvo);
-
-
+	public ListVO findConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
+	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo);
 }

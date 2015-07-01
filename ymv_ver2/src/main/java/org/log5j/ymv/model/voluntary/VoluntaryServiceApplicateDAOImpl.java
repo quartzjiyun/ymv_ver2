@@ -31,9 +31,9 @@ public class VoluntaryServiceApplicateDAOImpl implements VoluntaryServiceApplica
 	}
 
 	@Override
-	public List<ApplicantListVO> getApplicantList(int recruitNo) {
+	public List<ApplicantListVO> findApplicantList(int recruitNo) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("applicant.getApplicantList",recruitNo);
+		return sqlSessionTemplate.selectList("applicant.findApplicantList",recruitNo);
 	}
 
 	@Override
