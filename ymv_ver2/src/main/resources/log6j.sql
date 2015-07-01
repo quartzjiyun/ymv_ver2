@@ -239,7 +239,9 @@ create table sponsor(
    title varchar2(100) not null,
    content clob not null,
    target_price number not null,
-   current_price number default 0
+   current_price number default 0,
+   start_date date not null,
+   end_date date not null
 )
 
 select * from sponsor

@@ -33,13 +33,15 @@
 						${sponsor.percentage}%</div>
 				</div>
 				<div>
-					<input type="submit" id="sponsorBtn" value="수정하기">
+					<input type="submit" id="sponsorBtn" value="후원글 관리">
+					${sponsor.startDate} ${sponsor.endDate}
 				</div>
 			</div>
 			<input type="hidden" name="boardNo" value="${sponsor.boardNo}">
 		</form>
 	</div>
 </c:forEach>
+<!-- paging -->
 <div class="col-md-12">
 	<div class="text-center">
 		<ul class="pagination">

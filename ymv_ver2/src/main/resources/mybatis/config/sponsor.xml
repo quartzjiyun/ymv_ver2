@@ -7,20 +7,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="boardNo" column="board_no"/>
 		<result property="targetPrice" column="target_price"/>
 		<result property="currentPrice" column="current_price"/>
+		<result property="startDate" column="start_date"/>
+		<result property="endDate" column="end_date"/>
 	</resultMap>
  <select id="getSponsorList" resultMap="sponsorRM">
- 	select board_no,title,content,target_price,current_price,percentage from
-	(select board_no,title,content,target_price,current_price,ceil(rownum/3) as page,ceil(current_price/target_price*100)as percentage from (select * from sponsor order by board_no desc))
+ 	select board_no,title,content,target_price,current_price,percentage,to_char(start_date,'YYYY-MM-DD')as start_date,to_char(end_date,'YYYY-MM-DD')as end_date from
+	(select board_no,title,content,target_price,current_price,ceil(rownum/3) as page,ceil(current_price/target_price*100)as percentage,start_date,end_date from (select * from sponsor order by board_no desc))
 	where page=#{value}
  </select>
  <update id="updateSponsorByBoardNo" parameterType="spvo">
- 	update sponsor set title=#{title},content=#{content},target_price=#{targetPrice} where board_no=#{boardNo}
+ 	update sponsor set title=#{title},content=#{content},target_price=#{targetPrice},start_date=#{startDate},end_date=#{endDate} where board_no=#{boardNo}
  </update>
  <insert id="registerSponsor" parameterType="spvo">
  <selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
 	select ymv_seq.nextval from dual
  </selectKey>  
- 	insert into sponsor(board_no,title,content,target_price) values(#{boardNo},#{title},#{content},#{targetPrice})
+ 	insert into sponsor(board_no,title,content,target_price,start_date,end_date) values(#{boardNo},#{title},#{content},#{targetPrice},#{startDate},#{endDate})
  </insert>
  <delete id="deleteSponsorByBoardNo"  parameterType="int">
  	delete from sponsor where board_no=#{value}

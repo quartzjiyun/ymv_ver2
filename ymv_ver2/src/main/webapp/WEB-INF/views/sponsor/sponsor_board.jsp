@@ -55,6 +55,7 @@ $(document).ready(function(){
 									<option value="200">200$</option>							
 				</select>
 				<input type="submit" id="sponsorBtn" value="후원하기" class="btn btn-default btn-xs">
+				${sponsor.startDate} ${sponsor.endDate}
 				</div>
 			</div>
 	</div>
@@ -62,6 +63,7 @@ $(document).ready(function(){
 	</form>
 </div>
 </c:forEach>
+<!-- paging -->
 <div class="col-md-12">
 <div class = "text-center">
 		<ul class="pagination">
