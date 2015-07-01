@@ -21,17 +21,18 @@ $(document).ready(function(){
 		</div>
 	<form id="sponsorForm" action="sponsor_update_currentPrice.ymv">
 	<div class="col-md-11" style="border-style: solid;border-color: activecaption;height: 600px;">
+		<b>후원 시작 ${sponsor.startDate} / 후원 끝 ${sponsor.endDate}</b><br>
 	<br>
-		<div style="height: 80%">
+		<div style="height: 75%">
 			<c:forEach items="${requestScope.pvo}" varStatus="checkCount" var="picture">
 			<c:if test="${checkCount.count==i.count}">
-				<img src="${initParam.root }${picture.filePath}" style="width: 100%; height: 400px">
+				<img src="${initParam.root }${picture.filePath}" style="width: 100%; height: 300px">
 			</c:if>
 			</c:forEach>
 			<h3>${sponsor.title}<br></h3>
 			${sponsor.content}<br>
 		</div>
-			<div style="height: 20%">
+			<div style="height: 25%">
 				<div>
 				 목표금액 ${sponsor.targetPrice}$ / 현재금액 ${sponsor.currentPrice}$
 				</div>
@@ -43,6 +44,11 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div>
+				<c:choose>
+				<c:when test="${sponsor.hoowon=='후원완료'}">
+				
+				</c:when>
+				<c:otherwise>
 				<select id="currentPrice" name="currentPrice">
 									<option value="">-금액-</option>
 									<option value="25">25$</option>
@@ -55,7 +61,8 @@ $(document).ready(function(){
 									<option value="200">200$</option>							
 				</select>
 				<input type="submit" id="sponsorBtn" value="후원하기" class="btn btn-default btn-xs">
-				${sponsor.startDate} ${sponsor.endDate}
+				</c:otherwise>
+				</c:choose>
 				</div>
 			</div>
 	</div>

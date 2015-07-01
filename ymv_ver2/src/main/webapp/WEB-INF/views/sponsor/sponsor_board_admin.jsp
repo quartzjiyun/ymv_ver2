@@ -10,18 +10,26 @@
 		<form id="sponsorForm" action="sponsor_update_view.ymv">
 			<div class="col-md-11"
 				style="border-style: solid; border-color: activecaption; height: 600px;">
+				<b>후원 시작 ${sponsor.startDate} / 후원 끝 ${sponsor.endDate}</b><br>
 				<br>
-				<div style="height: 80%">
+				<div style="height: 75%">
 					<c:forEach items="${requestScope.pvo}" varStatus="checkCount"
 						var="picture">
 						<c:if test="${picture.pictureNo==sponsor.boardNo}">
-							<img src="${initParam.root }${picture.filePath}"
-								style="width: 100%; height: 400px">
+							<img src="${initParam.root }${picture.filePath}" style="width: 100%; height: 300px">
 						</c:if>
 					</c:forEach>
-					<h3>${sponsor.title}<br>
-					</h3>
+					<c:choose>
+					<c:when test="${sponsor.hoowon=='후원중'}">
+						<h3><img src="${initParam.root}img/hj1.jpg"> ${sponsor.title}<br></h3>
+					</c:when>
+					<c:when test="${sponsor.hoowon=='후원완료'}">
+						<h3><img src="${initParam.root}img/hw1.jpg"> ${sponsor.title}<br></h3>
+					</c:when>
+					
+					</c:choose>
 					${sponsor.content}<br>
+					
 				</div>
 				<div>목표금액 ${sponsor.targetPrice}$ / 현재금액
 					${sponsor.currentPrice}$</div>
@@ -33,7 +41,7 @@
 						${sponsor.percentage}%</div>
 				</div>
 				<div>
-					<input type="submit" id="sponsorBtn" value="후원글 관리">
+					<input type="submit" id="sponsorBtn" value="후원글 관리" class="btn btn-default btn-xs">
 					${sponsor.startDate} ${sponsor.endDate}
 				</div>
 			</div>

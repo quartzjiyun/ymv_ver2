@@ -1,6 +1,8 @@
 package org.log5j.ymv.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,10 +26,22 @@ public class SponsorController {
 	@RequestMapping("sponsor_board.ymv")
 	@NoLoginCheck
 	public ModelAndView getSponsorList(String pageNo) {
+		ModelAndView mv = new ModelAndView("sponsor_board");
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ListVO lvo = sponsorService.getSponsorList(pageNo);
 		List<PictureVO> pvo = sponsorService.getPictureList(pageNo);
-		return new ModelAndView("sponsor_board", "lvo", lvo).addObject("pvo",
-				pvo);
+		for(int i = 0; i<lvo.getList().size(); i ++){
+			int compare = today.compareTo(((SponsorVO) lvo.getList().get(i)).getEndDate());
+			if(compare > 0){
+				((SponsorVO) lvo.getList().get(i)).setHoowon("후원완료");
+			}else if(compare < 0){
+				((SponsorVO) lvo.getList().get(i)).setHoowon("후원중");
+			}else{
+				((SponsorVO) lvo.getList().get(i)).setHoowon("후원중");
+			}
+		}
+		mv.addObject("lvo", lvo).addObject("pvo", pvo);
+		return mv;
 	}
 
 	@RequestMapping("sponsor_register_view.ymv")
@@ -55,15 +69,27 @@ public class SponsorController {
 				e.printStackTrace();
 			}
 		}
-		return new ModelAndView("redirect:testTiles.ymv");
+		return new ModelAndView("redirect:sponsor_board_admin.ymv");
 	}
 
 	@RequestMapping("sponsor_board_admin.ymv")
 	public ModelAndView getSponsorListAdmin(String pageNo) {
+		ModelAndView mv = new ModelAndView("sponsor_board_admin");
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ListVO lvo = sponsorService.getSponsorList(pageNo);
 		List<PictureVO> pvo = sponsorService.getPictureList(pageNo);
-		return new ModelAndView("sponsor_board_admin", "lvo", lvo).addObject(
-				"pvo", pvo);
+		for(int i = 0; i<lvo.getList().size(); i ++){
+			int compare = today.compareTo(((SponsorVO) lvo.getList().get(i)).getEndDate());
+			if(compare > 0){
+				((SponsorVO) lvo.getList().get(i)).setHoowon("후원완료");
+			}else if(compare < 0){
+				((SponsorVO) lvo.getList().get(i)).setHoowon("후원중");
+			}else{
+				((SponsorVO) lvo.getList().get(i)).setHoowon("후원중");
+			}
+		}
+		mv.addObject("lvo", lvo).addObject("pvo", pvo);
+		return mv;
 	}
 
 	@RequestMapping("sponsor_update_view.ymv")

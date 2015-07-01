@@ -11,6 +11,7 @@ public class SponsorVO implements BoardVO{
 	private int percentage;
 	private String startDate;
 	private String endDate;
+	private String hoowon;
 	public SponsorVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,6 +37,21 @@ public class SponsorVO implements BoardVO{
 		this.percentage = percentage;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		
+	}
+	public SponsorVO(int boardNo, String title, String content,
+			int targetPrice, int currentPrice, int percentage,
+			String startDate, String endDate, String hoowon) {
+		super();
+		this.boardNo = boardNo;
+		this.title = title;
+		this.content = content;
+		this.targetPrice = targetPrice;
+		this.currentPrice = currentPrice;
+		this.percentage = percentage;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.hoowon = hoowon;
 	}
 	public int getPercentage() {
 		return percentage;
@@ -85,12 +101,19 @@ public class SponsorVO implements BoardVO{
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+	public String getHoowon() {
+		return hoowon;
+	}
+
+	public void setHoowon(String hoowon) {
+		this.hoowon = hoowon;
+	}
 	@Override
 	public String toString() {
 		return "SponsorVO [boardNo=" + boardNo + ", title=" + title
 				+ ", content=" + content + ", targetPrice=" + targetPrice
 				+ ", currentPrice=" + currentPrice + ", percentage="
 				+ percentage + ", startDate=" + startDate + ", endDate="
-				+ endDate + "]";
+				+ endDate + ", hoowon=" + hoowon + "]";
 	}
 }
