@@ -293,7 +293,7 @@ delete from sponsor
 insert into member values(ymv_seq.nextval,'ymv','1234','관리자','판교','0000','qhackp@gmail.com','admin');
 insert into member values(ymv_seq.nextval,'java','1234','임영학','판교','890716','qhackp@gmail.com','normal');
 insert into member values(ymv_seq.nextval,'java1','1234','백지영','판교','960102','ningoop71@gmail.com','normal');
-insert into member values(ymv_seq.nextval,'javac','1234','장지윤','수원','931004','qhackp@gmail.com','company');
+insert into member values(ymv_seq.nextval,'javac','1234','장지윤','수원','931004','quartzjiyun@gmail.com','company');
 insert into member values(ymv_seq.nextval,'kosta','1234','박병준','서울','900227','qudwns741@gmail.com','company');
 
 
