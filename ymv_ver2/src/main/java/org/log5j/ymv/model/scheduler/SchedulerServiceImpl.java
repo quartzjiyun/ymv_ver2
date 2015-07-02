@@ -14,15 +14,15 @@ public class SchedulerServiceImpl implements SchedulerService {
 	@Resource
 	private SchedulerDAO schedulerDAO;
 	@Override
-	public List<BoardVO> getSchedulerList(SchedulerVO sdvo){
-		List<BoardVO> list=schedulerDAO.getSchedulerList(sdvo);
+	public List<BoardVO> findSchedulerList(SchedulerVO sdvo){
+		List<BoardVO> list=schedulerDAO.findSchedulerList(sdvo);
 		return list;
 	}
 	@Override
-	public ListVO getSearchList(SearchVO scvo){
+	public ListVO findSearchList(SearchVO scvo){
 		if(scvo.getPageNo()==null||scvo.getPageNo()=="") 
 			scvo.setPageNo("1");
-		List<BoardVO> list=schedulerDAO.getSearchList(scvo);
+		List<BoardVO> list=schedulerDAO.findSearchList(scvo);
 		int total=schedulerDAO.totalContent(scvo);
 		System.out.println("RecruitBoardServiceImpl totalContent: "+total);
 		PagingBean paging=new PagingBean(total,Integer.parseInt(scvo.getPageNo()));
@@ -36,8 +36,8 @@ public class SchedulerServiceImpl implements SchedulerService {
 		return schedulerDAO.getDateList(sdvo);
 	}
 	@Override
-	public SchedulerVO schedulerCheck(String memberNo) {
-		return schedulerDAO.schedulerCheck(memberNo);
+	public SchedulerVO checkScheduler(String memberNo) {
+		return schedulerDAO.checkScheduler(memberNo);
 	}
 	@Override
 	public void registerScheduler(SchedulerVO sdvo) {

@@ -14,15 +14,15 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public List<BoardVO> getSchedulerList(SchedulerVO sdvo) {
+	public List<BoardVO> findSchedulerList(SchedulerVO sdvo) {
 		System.out.println("DAO Scheduler"+sdvo);
-		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.getSchedulerList",sdvo);
+		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.findSchedulerList",sdvo);
 		return list;
 	}
 	@Override
-	public List<BoardVO> getSearchList(SearchVO scvo) {
+	public List<BoardVO> findSearchList(SearchVO scvo) {
 		System.out.println("DAO Search"+scvo);
-		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.getSearchList",scvo);
+		List<BoardVO> list = sqlSessionTemplate.selectList("scheduler.findSearchList",scvo);
 		return list;
 	}
 
@@ -35,9 +35,9 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 		return sqlSessionTemplate.selectList("scheduler.getDateList",sdvo);
 	}
 	@Override
-	public SchedulerVO schedulerCheck(String memberNo) {
+	public SchedulerVO checkScheduler(String memberNo) {
 		
-		return sqlSessionTemplate.selectOne("scheduler.schedulerCheck",memberNo);
+		return sqlSessionTemplate.selectOne("scheduler.checkScheduler",memberNo);
 	}
 	@Override
 	public void registerScheduler(SchedulerVO sdvo) {

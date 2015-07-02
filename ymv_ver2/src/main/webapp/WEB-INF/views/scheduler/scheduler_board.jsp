@@ -95,37 +95,3 @@
 
 
 
-<%-- 
-
-
-
-<c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
-	<a
-		href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.
-    startPageOfPageGroup-1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }"><img
-		src="${initParam.root }/img/left_arrow_btn.gif"></a>
-</c:if>
-&nbsp;&nbsp;
-<c:forEach var="i"
-	begin="${requestScope.lvo.pagingBean.startPageOfPageGroup}"
-	end="${requestScope.lvo.pagingBean.endPageOfPageGroup}">
-	<c:choose>
-		<c:when test="${requestScope.lvo.pagingBean.nowPage!=i}">
-			<a href="search_board.ymv?pageNo=${i}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">${i}</a>
-		</c:when>
-		<c:otherwise>
-   ${i}
-   </c:otherwise>
-	</c:choose>
-</c:forEach>
-&nbsp;&nbsp;
-<c:if test="${requestScope.lvo.pagingBean.nextPageGroup}">
-	<a	href="search_board.ymv?pageNo=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}&field=${scvo.field }&location=${scvo.location }&startDate=${scvo.startDate }&endDate=${scvo.endDate }">
-		<img src="${initParam.root }/img/right_arrow_btn.gif">
-	</a>
-</c:if>
-	</div>
- --%>
-
-
-

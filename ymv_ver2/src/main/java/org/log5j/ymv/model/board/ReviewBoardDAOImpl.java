@@ -20,9 +20,9 @@ public class ReviewBoardDAOImpl implements ReviewBoardDAO {
    }
 
 @Override
-public List<BoardVO> getBoardList(String pageNo) {
+public List<BoardVO> findReviewBoardList(String pageNo) {
 	// TODO Auto-generated method stub
-	List<BoardVO> list=sqlSessionTemplate.selectList("reviewBoard.getBoardList",Integer.parseInt(pageNo));
+	List<BoardVO> list=sqlSessionTemplate.selectList("reviewBoard.findReviewBoardList",Integer.parseInt(pageNo));
 	return list;
 }
 
@@ -32,9 +32,9 @@ public int totalContent(){
 }
 
 @Override
-public BoardVO getReviewBoardByBoardNo(int boardNo) {
+public BoardVO findReviewBoardByBoardNo(int boardNo) {
 	// TODO Auto-generated method stub
-	return sqlSessionTemplate.selectOne("reviewBoard.getReviewBoardByBoardNo",boardNo);
+	return sqlSessionTemplate.selectOne("reviewBoard.findReviewBoardByBoardNo",boardNo);
 }
 
 @Override
@@ -43,8 +43,8 @@ public void registerReviewComment(CommentVO cmvo) {
 }
 
 @Override
-public List<CommentVO> findByCommentNo(String boardNo) {
-	return sqlSessionTemplate.selectList("reviewBoard.findByCommentNo",boardNo);
+public List<CommentVO> findCommentListByBoardNo(String boardNo) {
+	return sqlSessionTemplate.selectList("reviewBoard.findCommentListByBoardNo",boardNo);
 }
 
 @Override
@@ -53,13 +53,13 @@ public void deleteReviewComment(CommentVO cmvo) {
 }
 
 @Override
-public void reviewBoardUpdate(ReviewBoardVO vo) {
-	sqlSessionTemplate.update("reviewBoard.reviewBoardUpdate",vo);
+public void updateReviewBoard(ReviewBoardVO vo) {
+	sqlSessionTemplate.update("reviewBoard.updateReviewBoard",vo);
 }
 
 @Override
-public void reviewBoardDelete(String boardNo) {
-	sqlSessionTemplate.delete("reviewBoard.reviewBoardDelete",Integer.parseInt(boardNo));
+public void deleteReviewBoard(String boardNo) {
+	sqlSessionTemplate.delete("reviewBoard.deleteReviewBoard",Integer.parseInt(boardNo));
 }
 
 @Override
@@ -80,22 +80,15 @@ public void registerPicture(PictureVO pvo) {
 }
 
 @Override
-public PictureVO getPicture(int pictureNo) {
+public PictureVO findPicture(int pictureNo) {
 	// TODO Auto-generated method stub
-	return sqlSessionTemplate.selectOne("reviewBoard.getPicture",pictureNo);
+	return sqlSessionTemplate.selectOne("reviewBoard.findPicture",pictureNo);
 }
 
 @Override
 public void deletePicture(int pictureNo) {
 	// TODO Auto-generated method stub
 	sqlSessionTemplate.delete("reviewBoard.deletePicture",pictureNo);
-}
-
-@Override
-public CommentVO getReviewBoardCommentByBoardNo(int boardNo) {
-	CommentVO comment = sqlSessionTemplate.selectOne("reviewBoard.getReviewBoardCommentByBoardNo", boardNo);
-	System.out.println(comment);
-	return comment;
 }
 
 @Override

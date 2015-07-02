@@ -8,7 +8,7 @@ import org.log5j.ymv.model.board.PictureVO;
 
 public interface SponsorService {
 
-	public abstract ListVO getSponsorList(String pageNo);
+	public abstract ListVO findSponsorList(String pageNo);
 
 	public abstract void updateSponsorByBoardNo(SponsorVO spvo);
 
@@ -24,6 +24,6 @@ public interface SponsorService {
 
 	public abstract void deletePicture(int boardNo);
 
-	public abstract List<PictureVO> getPictureList(String pageNo);
+	public abstract List<PictureVO> findPictureList(String pageNo);
 
 }

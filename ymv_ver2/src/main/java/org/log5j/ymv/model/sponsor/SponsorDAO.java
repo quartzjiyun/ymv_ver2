@@ -7,7 +7,7 @@ import org.log5j.ymv.model.board.PictureVO;
 
 public interface SponsorDAO {
 
-	public abstract List<BoardVO> getSponsorList(int pageNo);
+	public abstract List<BoardVO> findSponsorList(int pageNo);
 
 	public abstract void updateSponsorByBoardNo(SponsorVO spvo);
 
@@ -25,7 +25,7 @@ public interface SponsorDAO {
 
 	public abstract void deletePicture(int boardNo);
 
-	public abstract List<PictureVO> getPictureList(int parseInt);
+	public abstract List<PictureVO> findPictureList(int parseInt);
 
 
 

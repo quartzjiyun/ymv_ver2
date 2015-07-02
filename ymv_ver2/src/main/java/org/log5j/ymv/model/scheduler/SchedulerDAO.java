@@ -7,15 +7,15 @@ import org.log5j.ymv.model.board.BoardVO;
 
 public interface SchedulerDAO {
 
-	List<BoardVO> getSchedulerList(SchedulerVO sdvo);
+	List<BoardVO> findSchedulerList(SchedulerVO sdvo);
 
 	int totalContent(SearchVO scvo);
 
-	List<BoardVO> getSearchList(SearchVO scvo);
+	List<BoardVO> findSearchList(SearchVO scvo);
 
 	List<HashMap> getDateList(SchedulerVO sdvo);
 
-	SchedulerVO schedulerCheck(String memberNo);
+	SchedulerVO checkScheduler(String memberNo);
 
 	void registerScheduler(SchedulerVO sdvo);
 

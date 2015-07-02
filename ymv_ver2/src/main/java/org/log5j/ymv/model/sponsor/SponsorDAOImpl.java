@@ -15,8 +15,8 @@ public class SponsorDAOImpl implements SponsorDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public List<BoardVO> getSponsorList(int pageNo){
-		return sqlSessionTemplate.selectList("sponsor.getSponsorList",pageNo);
+	public List<BoardVO> findSponsorList(int pageNo){
+		return sqlSessionTemplate.selectList("sponsor.findSponsorList",pageNo);
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class SponsorDAOImpl implements SponsorDAO {
 	}
 
 	@Override
-	public List<PictureVO> getPictureList(int pageNo) {
-		return sqlSessionTemplate.selectList("sponsor.getPictureList",pageNo);
+	public List<PictureVO> findPictureList(int pageNo) {
+		return sqlSessionTemplate.selectList("sponsor.findPictureList",pageNo);
 	}
 }

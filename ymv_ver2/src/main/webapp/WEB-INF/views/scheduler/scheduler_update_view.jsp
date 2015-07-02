@@ -24,6 +24,7 @@
 									<option value="${f.field }">${f.field }</option>
 								</c:if>
 							</c:forEach>
+							<option value="">전체</option>
 					</select></td>
 				</tr>
 				<tr>
@@ -36,6 +37,7 @@
 									<option value="${l.location }">${l.location }</option>
 								</c:if>	
 							</c:forEach>
+							<option value="">전체</option>
 					</select></td>
 				</tr>
 				<tr>
@@ -62,6 +64,7 @@
 							<option value="21:00">21:00</option>
 							<option value="22:00">22:00</option>
 							<option value="23:00">23:00</option>
+							<option value="">전체</option>
 					</select></td>
 				</tr>
 				<tr>
@@ -88,6 +91,7 @@
 							<option value="21:00">21:00</option>
 							<option value="22:00">22:00</option>
 							<option value="23:00">23:00</option>
+							<option value="">전체</option>
 					</select></td>
 				</tr>
 			</table>
