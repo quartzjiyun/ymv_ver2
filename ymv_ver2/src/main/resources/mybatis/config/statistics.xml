@@ -21,9 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select ranking, field, count from(
 		select field, row_number() over(order by count desc)as ranking, count from(
 		select field, sum(applicate_count)as count	from STATISTICS group by field
-		))where ranking<=3
+		))
 	]]>
-	<!-- 3위까지 뽑음 -->
 	</select>
 	
 	<select id="findStatisticsListByAge" resultType="map"><!-- 나이대별 통계 -->
