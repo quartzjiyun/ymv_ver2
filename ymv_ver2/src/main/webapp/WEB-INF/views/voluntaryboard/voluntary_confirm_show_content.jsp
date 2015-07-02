@@ -15,7 +15,7 @@
 
 
 <div class="col-sm-3 col-sm-offset-3" align="center">
-	<table class="a4" border="1" cellpadding="5" width="700px" height="700px" style="table-layout:fixed">
+	<table class="a4" border="1" cellpadding="5" width="620px" height="630px" style="table-layout:fixed">
 
 		<tr>
 			<th rowspan="3" colspan="1" style="text-align: center;">인적사항</th>
@@ -75,9 +75,9 @@
 
 </div>
 			</div>
-<div align="right" style="width: 500px">
+<div align="right" style="width: 610px">
 <form>
-<input type="button" value="인쇄" onclick="window.open('voluntary_print.ymv','print_win','width=800,height=400,left=200,status=no,toolbar=no,resizable=no,scrollbars=yes')">
+<input type="button" value="인쇄하기" onclick="window.open('voluntary_print.ymv','print_win','width=800,height=400,left=200,status=no,toolbar=no,resizable=no,scrollbars=yes')">
 <!-- 프린트 버튼 -->
 </form>
 <br><br><br><br><br>
