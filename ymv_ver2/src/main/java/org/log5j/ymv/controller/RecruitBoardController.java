@@ -64,7 +64,7 @@ public class RecruitBoardController {
 		return mv;
 	}
 	//
-	@RequestMapping("voluntary_show_content_recruit_vol.ymv")
+	/*@RequestMapping("voluntary_show_content_recruit_vol.ymv")
 	@NoLoginCheck
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv=new ModelAndView();
@@ -92,7 +92,7 @@ public class RecruitBoardController {
 				cookie = new Cookie("myboard", "|" + recruitNo + "|");
 				response.addCookie(cookie);
 				recruitBoardService.findPostingByRecruitNoUpdateHit(recruitNo);//BoardDAO.getInstance().updateHit(boardNo);
-			/*	BoardVO bvo=reviewBoardService.getReviewBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);*/				
+				BoardVO bvo=reviewBoardService.getReviewBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);				
 				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
 			} else {// 쿠키가 존재하는데 myboard가 있을때
 				String value = cookie.getValue();
@@ -100,8 +100,8 @@ public class RecruitBoardController {
 				if (value.indexOf("|" + recruitNo + "|") != -1) {
 					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하는 상태
 					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재..조회수 증가x");
-		/*			recruitBoardService.getPostingByRecruitNoNotHit(recruitNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
-*/				} else {
+					recruitBoardService.getPostingByRecruitNoNotHit(recruitNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
+				} else {
 					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하지 않은 상태
 					value += "|" + recruitNo + "|";
 					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
@@ -118,20 +118,20 @@ public class RecruitBoardController {
 		mv.addObject("rvo", rvo).addObject("vo",vo);
 		mv.setViewName("voluntary_show_content");
 		 return mv;
-}
+}*/
 	//
     @RequestMapping("voluntary_show_content_recruit_vol_type.ymv")
 	   public ModelAndView showContentRecruitVolType(HttpServletRequest request){
     	String mojib = request.getParameter("mojib");
     		HttpSession session=request.getSession();
     		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
-    		String url="voluntary_show_content_company";
+    		String url="voluntary_show_content";
     		//List<VoluntaryServiceApplicateVO> list=null;
     		int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
     		if(mvo.getMemberType().equals("normal")){
     			url="voluntary_show_content_normal";
-    			//list=voluntaryServiceApplicateService.getApplicantList(recruitNo);
-                //System.out.println("list:"+list);
+    		}else if(mvo.getMemberType().equals("company")){
+    			url="voluntary_show_content_company";
     		}
 	      RecruitBoardVO rvo=recruitBoardService.findRecruitBoardByRecruitNo(recruitNo);
 	      MemberVO vo=memberService.findMemberByMemberNo(rvo.getMemberNo());
@@ -175,14 +175,26 @@ public class RecruitBoardController {
 		mv.addObject("locationlist", Llist);
 		mv.addObject("rvo", recruitbvo);
 		mv.addObject("command",command);
+		System.out.println("recruitbVO123:"+recruitbvo);
 		return mv;
 	}
 //
 	@RequestMapping("voluntary_board_update.ymv")
-	   public ModelAndView voluntary_board_update(HttpServletRequest request, int recruitNo, String title, String field, String location, String age, String startDate, String endDate, String content) {
+	   public ModelAndView voluntary_board_update(HttpServletRequest request, RecruitBoardVO rbvo) {
 	      ModelAndView mv=new ModelAndView();
-		RecruitBoardVO recruitbvo = new RecruitBoardVO(recruitNo, title, field, location, age, startDate, endDate, content);
-	      recruitBoardService.updateBoard(recruitbvo);
+		rbvo.setStartDate(rbvo.getStartDate()+" "+rbvo.getStartTime());
+        rbvo.setEndDate(rbvo.getEndDate()+" "+rbvo.getEndTime());
+         recruitBoardService.updateBoard(rbvo);
+         rbvo=recruitBoardService.findRecruitBoardByRecruitNo(rbvo.getRecruitNo());
+         String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
+         int compare = today.compareTo(rbvo.getEndDate());
+         if(compare > 0){
+				rbvo.setMojib("모집완료");
+			}else if(compare < 0){
+				rbvo.setMojib("모집중");
+			}else{
+				rbvo.setMojib("모집중");
+			}
 	      String command=request.getParameter("command");
 	      if(command.equals("company")){
 	    	  mv.setViewName("voluntary_show_content_company");
@@ -191,7 +203,7 @@ public class RecruitBoardController {
 	      }else{
 	    	  mv.setViewName("voluntary_show_content");
 	      }
-	      mv.addObject("rvo",recruitBoardService.findRecruitBoardByRecruitNo(recruitbvo.getRecruitNo()));
+	      mv.addObject("rvo",rbvo);
 	      return mv;
 	   }
 	//
@@ -292,8 +304,9 @@ public class RecruitBoardController {
 			System.out.println("mailList:"+mailList);
 			
 			String reciver = mailList.getMailAddress(); //받을사람의 이메일입니다.
-	        String subject = "병준아 제발";
-	        String content = "메일이 도착했다고 말해";
+	        String subject = "안녕하세요. 너나봉 관리자입니다";
+	        String content = "봉사활동인원으로 선정되었습니다."
+	        		+ "				홈페이지에서 신청하신 봉사활동의 일시와 장소를 확인해주세요.";
 	        
 	        email.setReciver(reciver);
 	        email.setSubject(subject);

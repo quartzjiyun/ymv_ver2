@@ -73,7 +73,7 @@
 			<tr>
 				<th class="info"><h4 class="text-center">제목</h4></th>
 				<td><input type="text" name="title" id="title"
-					value=${requestScope.rvo.title }></td>
+					value="${requestScope.rvo.title }" size="52"></td>
 			</tr>
 			<tr>
 				<th class="info"><h4 class="text-center">분야</h4></th>
@@ -180,7 +180,7 @@
 			</tr>
 			<tr>
 				<th class="info"><h4 class="text-center">상세정보</h4></th>
-				<td><textarea rows="10" cols="50" id="content" name="content">${requestScope.rvo.content }</textarea></td>
+				<td><textarea rows="10" cols="80" id="content" name="content" >${requestScope.rvo.content }</textarea></td>
 			</tr>
 		</table>
 		<br>

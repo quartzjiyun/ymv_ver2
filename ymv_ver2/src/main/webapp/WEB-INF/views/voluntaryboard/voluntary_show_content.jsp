@@ -107,9 +107,9 @@ $(document).ready(function(){
 						</c:otherwise>
 					 </c:choose>
 					</c:if>
-					<c:if test="${sessionScope.mvo.memberType=='admin'}">
+					<%-- <c:if test="${sessionScope.mvo.memberType=='admin'}">
 							<input type="button" class="btn btn-default btn-xs" value="신청하기" id="applicant">
-					</c:if>
+					</c:if> --%>
 					</td>
 			</tr>
 			</tbody>
