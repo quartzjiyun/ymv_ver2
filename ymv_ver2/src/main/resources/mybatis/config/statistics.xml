@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select identity_no from member where member_no=#{value}
  	</select>
  
-  	<insert id="insertStatistics" parameterType="stvo">
+  	<insert id="registerStatistics" parameterType="stvo">
 		insert into statistics(age, field, applicate_count) values(#{age},#{field},1)
 	</insert>
 	
@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update statistics set applicate_count=applicate_count+1 where age=#{age} and field=#{field}
 	</update>
  
- 	<select id="selectStatistics" resultType="map"> <!-- 전체 통계 -->
+ 	<select id="findStatisticsList" resultType="map"> <!-- 전체 통계 -->
 	<![CDATA[
 		select ranking, field, count from(
 		select field, row_number() over(order by count desc)as ranking, count from(
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 3위까지 뽑음 -->
 	</select>
 	
-	<select id="selectStatisticsByAge" resultType="map"><!-- 나이대별 통계 -->
+	<select id="findStatisticsListByAge" resultType="map"><!-- 나이대별 통계 -->
 	<![CDATA[
 		select age, field, ranking, applicate_count from(
 		select age, field, row_number() over(order by applicate_count desc) as ranking, applicate_count from statistics where age =#{value}
