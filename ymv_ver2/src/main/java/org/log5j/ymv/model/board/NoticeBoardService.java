@@ -2,11 +2,11 @@ package org.log5j.ymv.model.board;
 
 public interface NoticeBoardService {
 
-	ListVO getNoticeBoardList(String pageNo);
+	ListVO findNoticeBoardList(String pageNo);
 
 	void registerNoticeBoard(NoticeBoardVO vo);
 
-	BoardVO getNoticeBoardByBoardNo(int boardNo);
+	BoardVO findNoticeBoardByBoardNo(int boardNo);
 
 	void noticeBoardUpdate(NoticeBoardVO vo);
 
@@ -14,11 +14,11 @@ public interface NoticeBoardService {
 
 	void registerPicture(PictureVO pvo);
 
-	PictureVO getPicture(int pictureNo);
+	PictureVO findPicture(int pictureNo);
 
 	void deletePicture(int pictureNo);
 
-	NoticeBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo);
+	NoticeBoardVO findPostingByNoticeBoardNoUpdateHit(int boardNo);
 
-	void getPostingByNoticeBoardNoNotHit(int boardNo);
+	void findPostingByNoticeBoardNoNotHit(int boardNo);
 }

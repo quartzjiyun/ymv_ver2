@@ -11,10 +11,10 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	private NoticeBoardDAO noticeBoardDAO;
 	
 	@Override
-	public ListVO getNoticeBoardList(String pageNo) {
+	public ListVO findNoticeBoardList(String pageNo) {
 		if (pageNo == null || pageNo == "")
 			pageNo = "1";
-		List<BoardVO> list = noticeBoardDAO.getNoticeBoardList(pageNo);
+		List<BoardVO> list = noticeBoardDAO.findNoticeBoardList(pageNo);
 		System.out.println("ServiceImpl list: "+list);
 		int total = noticeBoardDAO.totalContent();
 		System.out.println("ServiceImpl total: "+total);
@@ -33,9 +33,9 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	}
 
 	@Override
-	public BoardVO getNoticeBoardByBoardNo(int boardNo) {
+	public BoardVO findNoticeBoardByBoardNo(int boardNo) {
 		// TODO Auto-generated method stub
-		return noticeBoardDAO.getReviewBoardByBoardNo(boardNo);
+		return noticeBoardDAO.findNoticeBoardByBoardNo(boardNo);
 	}
 
 	@Override
@@ -57,9 +57,9 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	}
 
 	@Override
-	public PictureVO getPicture(int pictureNo) {
+	public PictureVO findPicture(int pictureNo) {
 		// TODO Auto-generated method stub
-		return noticeBoardDAO.getPicture(pictureNo);
+		return noticeBoardDAO.findPicture(pictureNo);
 	}
 
 	@Override
@@ -69,15 +69,15 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	}
 	
 	@Override
-	public void getPostingByNoticeBoardNoNotHit(int boardNo) {
-		noticeBoardDAO.getNoticeBoardByBoardNo(boardNo);
+	public void findPostingByNoticeBoardNoNotHit(int boardNo) {
+		noticeBoardDAO.findNoticeBoardByBoardNo(boardNo);
 		
 	}
 
 	@Override
-	public NoticeBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo) {
+	public NoticeBoardVO findPostingByNoticeBoardNoUpdateHit(int boardNo) {
 		noticeBoardDAO.updateHit(boardNo);
-		NoticeBoardVO nvo = noticeBoardDAO.getNoticeBoardByBoardNo(boardNo);
+		NoticeBoardVO nvo = (NoticeBoardVO) noticeBoardDAO.findNoticeBoardByBoardNo(boardNo);
 		System.out.println(nvo);
 		return nvo;
 	}

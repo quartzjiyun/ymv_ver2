@@ -45,7 +45,7 @@ public class NoticeBoardController {
 	@NoLoginCheck
 	public ModelAndView noticeBoard(String pageNo) {	
 		System.out.println("controller pageNo: "+pageNo);
-		ListVO lvo = noticeBoardService.getNoticeBoardList(pageNo);
+		ListVO lvo = noticeBoardService.findNoticeBoardList(pageNo);
 		System.out.println(lvo+"컨틀롤러");
 		return new ModelAndView("notice_board","lvo",lvo);
 	}
@@ -116,7 +116,7 @@ public class NoticeBoardController {
     */
    @RequestMapping("notice_showContent.ymv")
    @NoLoginCheck
-   public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+   public ModelAndView noticeShowContent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv=new ModelAndView();
 		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 		 System.out.println("notice_showContent boardNo: " + boardNo);
@@ -143,7 +143,7 @@ public class NoticeBoardController {
 				cookie = new Cookie("myboard", "|" + boardNo + "|");
 				response.addCookie(cookie);
 
-				noticeBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);	
+				noticeBoardService.findPostingByNoticeBoardNoUpdateHit(boardNo);	
 				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
 			} else {// 쿠키가 존재하는데 myboard가 있을때
 				String value = cookie.getValue();
@@ -156,15 +156,15 @@ public class NoticeBoardController {
 					value += "|" + boardNo + "|";
 					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
 
-					noticeBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);
+					noticeBoardService.findPostingByNoticeBoardNoUpdateHit(boardNo);
 
 					response.addCookie(new Cookie("myboard", value));
 				}// else1
 			}// else2
 			
 		}// else3
-		bvo=noticeBoardService.getNoticeBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
-		PictureVO pvo=noticeBoardService.getPicture(pictureNo);
+		bvo=noticeBoardService.findNoticeBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
+		PictureVO pvo=noticeBoardService.findPicture(pictureNo);
 		if(pvo!=null){
 			mv.addObject("pvo",pvo);
 	    }
@@ -184,7 +184,7 @@ public class NoticeBoardController {
    @RequestMapping("notice_board_update_view.ymv")
 	public ModelAndView noticeBoardUpdateView(int boardNo) {
 		System.out.println("boardNo 는 "+boardNo);
-		NoticeBoardVO noticebvo = (NoticeBoardVO) noticeBoardService.getNoticeBoardByBoardNo(boardNo);
+		NoticeBoardVO noticebvo = (NoticeBoardVO) noticeBoardService.findNoticeBoardByBoardNo(boardNo);
 		System.out.println("noticebvo 는 " + noticebvo);
 		return new ModelAndView("notice_board_update_view","rvo"
 				,noticebvo);

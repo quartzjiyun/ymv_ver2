@@ -9,7 +9,15 @@ import javax.servlet.http.HttpSession;
 import org.log5j.ymv.model.member.MemberVO;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
-
+/**
+ * 
+ * @작성자 : 임영학
+ * @내용 : 로그인 체크가 필요하지 않는 메서드에는 새로 생성한 
+ * @NoCheckLogin 어노테이션을 선언하고 
+ * @NoCheckLogin 어노테이션이 선언되지 않는 메서드를 구분하여 
+ * 세션체크를 하여 세션이 없으면 alert를 띄워주고 로그인페이지로 이동시킨다. 
+ *
+ */
 public class LoginInterceptor extends WebContentInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
