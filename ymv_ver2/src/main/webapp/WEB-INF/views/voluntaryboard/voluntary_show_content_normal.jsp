@@ -47,10 +47,10 @@ $(document).ready(function(){
 	
 });
 </script>
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-8 col-sm-offset-2" align="center">
 <div class="panel panel-default">
   <div class="panel-body">
-		<table class="col-sm-12">
+		<table class="col-sm-8">
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>

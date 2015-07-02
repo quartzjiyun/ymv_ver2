@@ -43,10 +43,10 @@ $(document).ready(function(){
 	});
 });
 </script>
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-8 col-sm-offset-2" align="center">
 <div class="panel panel-default">
   <div class="panel-body">
-		<table class="table table-hover" class="col-sm-12">
+		<table class="col-sm-8">
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
@@ -107,11 +107,12 @@ $(document).ready(function(){
 					</c:if></td>
 			</tr>
 			</tbody>
+
 		</table>
-		</div></div>
+</div></div></div>
 		<br>
 		<br> <span id="motivateForm"></span>
-	</div>
+
 
 
  <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-hidden="true">
