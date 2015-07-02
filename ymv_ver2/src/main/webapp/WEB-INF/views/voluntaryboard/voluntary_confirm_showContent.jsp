@@ -62,6 +62,10 @@
 			</td><!-- style="height: 180px;" -->		
 		</tr>
 	</table>
-				<br><br><br><br>
+<br>
+<div align="right" style="width: 500px">
+<input type="button" value="인쇄하기" onclick="window.print()">
+<br><br><br><br><br>
 </div>
-			<br><br>
+</div>
+			
