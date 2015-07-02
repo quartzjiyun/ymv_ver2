@@ -20,20 +20,20 @@ public interface SchedulerService {
 
 	public abstract void updateScheduler(SchedulerVO sdvo);
 	
-	public ListVO getRecruitBoardList(SearchBoardVO sebvo);
+	public ListVO findRecruitBoardList(SearchBoardVO sebvo);
 
-	public ListVO getNoticeBoardList(SearchBoardVO sebvo);
+	public ListVO findNoticeBoardList(SearchBoardVO sebvo);
 
-	public ListVO getReviewBoardList(SearchBoardVO sebvo);
+	public ListVO findReviewBoardList(SearchBoardVO sebvo);
 
-	public ListVO getQnABoardList(SearchBoardVO sebvo);
+	public ListVO findQnABoardList(SearchBoardVO sebvo);
 
-	public List<BoardVO> getThRecruitBoardList(String search);
+	public List<BoardVO> findThreeRecruitBoardList(String search);
 
-	public List<BoardVO> getThNoticeBoardList(String search);
+	public List<BoardVO> findThreeNoticeBoardList(String search);
 
-	public List<BoardVO> getThReviewBoardList(String search);
+	public List<BoardVO> findThreeReviewBoardList(String search);
 
-	public List<BoardVO> getThQnABoardList(String search);
+	public List<BoardVO> findThreeQnABoardList(String search);
 
 }

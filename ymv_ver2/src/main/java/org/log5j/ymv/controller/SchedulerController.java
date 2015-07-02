@@ -181,69 +181,105 @@ public class SchedulerController {
 	}
 	
 	
+	/**
+	 * 작성자 : 백지영
+	 * 내용 : 검색어를 받아와서 각 게시판 별로 해당 검색어가 들어가는 글을 게시판 당 3개씩 찾아준다.
+	 * 				글이 3개 이상 있을 경우 더보기 라는 링크가 생겨 그 검색어에 해당하는 결과를 더 볼 수 있다.
+	 * @param search : 검색한 단어
+	 * @return "search_result"
+	 */
 	@RequestMapping("search_boards.ymv")
 	@NoLoginCheck
-	public ModelAndView search_board(HttpServletRequest request, String search){
-		//String search = request.getParameter("search");
+	public ModelAndView searchBoard(String search){
 		ModelAndView mv = new ModelAndView("search_result");
 
-		List rvo = schedulerService.getThRecruitBoardList(search);
+		List rvo = schedulerService.findThreeRecruitBoardList(search);
 		mv.addObject("rvo", rvo);//recruit
 		
-		List nvo = schedulerService.getThNoticeBoardList(search);
+		List nvo = schedulerService.findThreeNoticeBoardList(search);
 		mv.addObject("nvo", nvo);//notice
 		
-		List revo = schedulerService.getThReviewBoardList(search);
+		List revo = schedulerService.findThreeReviewBoardList(search);
 		mv.addObject("revo",revo);//review
 		
-		List qvo = schedulerService.getThQnABoardList(search);
+		List qvo = schedulerService.findThreeQnABoardList(search);
 		mv.addObject("qvo", qvo);//QnA
 		
 		mv.addObject("search", search);
 		return mv;
 	}
 	
+	/**
+	 * 작성자 : 백지영
+	 * 내용 : 봉사 검색 목록에서 더보기를 누를경우 실행된다.
+	 * 				검색 된 단어를 가지고 제목, 상세내용 중 해당하는 단어가 있으면 그 글의 정보를 ListVO에 담아주고
+	 * 				검색 된 단어를 포함하고 있는 목록만 보여지는 페이지("search_detail_recruit.jsp")로 보내준다.
+	 * @param sebvo : 검색된 단어와 페이지 번호를 같이 담기 위해서 사용 
+	 * @return
+	 */
 	@RequestMapping("search_boards_recruit.ymv")
 	@NoLoginCheck
-	public ModelAndView search_boards_recruit(SearchBoardVO sebvo){
+	public ModelAndView searchBoardsRecruit(SearchBoardVO sebvo){
 		ModelAndView mv = new ModelAndView("search_detail_recruit");
 		
-		ListVO rvo = schedulerService.getRecruitBoardList(sebvo);
+		ListVO rvo = schedulerService.findRecruitBoardList(sebvo);
 		mv.addObject("rvo", rvo).addObject("sebvo", sebvo);
 		
 		return mv;
 	}
 
+	/**
+	 * 작성자 : 백지영
+	 * 내용 : 공지사항 검색 목록에서 더보기를 누를 경우 실행된다.
+	 * 				검색 된 단어가 제목, 상세내용 중 해당하는 단어가 있으면 그 글의 정보를 ListVO에 담아주고
+	 * 				검색 된 단어를 포함하고 있는 목록만 보여지는 페이지("search_detail_notice.jsp")로 보내준다.
+	 * @param sebvo : 검색된 단어와 페이지 번호를 같이 담기 위해서 사용
+	 * @return
+	 */
 	@RequestMapping("search_boards_notice.ymv")
 	@NoLoginCheck
-	public ModelAndView search_boards_notice(SearchBoardVO sebvo){
+	public ModelAndView searchBoardsNotice(SearchBoardVO sebvo){
 		ModelAndView mv = new ModelAndView("search_detail_notice");
 		
-		ListVO nvo = schedulerService.getNoticeBoardList(sebvo);
+		ListVO nvo = schedulerService.findNoticeBoardList(sebvo);
 		mv.addObject("nvo", nvo).addObject("sebvo", sebvo);
-		System.out.println("notice   "+ sebvo.getSearch());
 		
 		return mv;
 	}
 
+	/**
+	 * 작성자 : 백지영
+	 * 내용 : 봉사 후기 검색 목록에서 더보기를 누를 경우 실행된다.
+	 * 				검색 된 단어를 가지고 제목, 작성자, 상세내용 중 해당하는 단어가 있으면 그 글의 정보를 ListVO에 담아주고
+	 * 				검색 된 단어를 포함하고 있는 목록만 보여지는 페이지("search_detail_review.jsp")로 보내준다.
+	 * @param sebvo : 검색된 단어와 페이지 번호를 같이 담기 위해서 사용
+	 * @return
+	 */
 	@RequestMapping("search_boards_review.ymv")
 	@NoLoginCheck
-	public ModelAndView search_boards_review(SearchBoardVO sebvo){
+	public ModelAndView searchBoardsReview(SearchBoardVO sebvo){
 		ModelAndView mv = new ModelAndView("search_detail_review");
 		
-		ListVO revo = schedulerService.getReviewBoardList(sebvo);
+		ListVO revo = schedulerService.findReviewBoardList(sebvo);
 		mv.addObject("revo", revo).addObject("sebvo", sebvo);
-		System.out.println("review   "+ sebvo.getSearch());
 		
 		return mv;
 	}
 	
+	/**
+	 * 작성자 : 백지영
+	 * 내용 : QnA 검색 목록에서 더보기를 누를 경우 실행된다.
+	 * 				검색 된 단어를 가지고 제목, 작성자, 상세내용 중 해당하는 단어가 있으면 그 글의 정보를 ListVO에 담아주고
+	 * 				검색 된 단어를 포함하고 있는 목록만 보여지는 페이지("search_detail_QnA.jsp")로 보내준다.
+	 * @param sebvo : 검색된 단어와 페이지 번호를 같이 담기 위해서 사용
+	 * @return
+	 */
 	@RequestMapping("search_boards_QnA.ymv")
 	@NoLoginCheck
-	public ModelAndView search_boards_QnA(SearchBoardVO sebvo){
+	public ModelAndView searchBoardsQnA(SearchBoardVO sebvo){
 		ModelAndView mv = new ModelAndView("search_detail_QnA");
 		
-		ListVO qvo = schedulerService.getQnABoardList(sebvo);
+		ListVO qvo = schedulerService.findQnABoardList(sebvo);
 		mv.addObject("qvo", qvo).addObject("sebvo", sebvo);
 		
 		return mv;

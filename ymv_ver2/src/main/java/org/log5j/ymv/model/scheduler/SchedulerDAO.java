@@ -21,27 +21,27 @@ public interface SchedulerDAO {
 
 	void updateScheduler(SchedulerVO sdvo);
 
-	int getRecruitTotalContent(String search);
+	int findRecruitTotalContent(String search);
 
-	List<BoardVO> getRecruitBoardList(SearchBoardVO sebvo);
+	List<BoardVO> findRecruitBoardList(SearchBoardVO sebvo);
 
-	int getNoticeBoardTotalContent(String search);
+	int findNoticeBoardTotalContent(String search);
 
-	List<BoardVO> getNoticeBoardList(SearchBoardVO sebvo);
+	List<BoardVO> findNoticeBoardList(SearchBoardVO sebvo);
 
-	List<BoardVO> getReviewBoardList(SearchBoardVO sebvo);
+	List<BoardVO> findReviewBoardList(SearchBoardVO sebvo);
 
-	int getReviewBoardTotalContent(String search);
+	int findReviewBoardTotalContent(String search);
 
-	List<BoardVO> getQnABoardList(SearchBoardVO sebvo);
+	List<BoardVO> findQnABoardList(SearchBoardVO sebvo);
 
-	int getQnABoardTotalContent(String search);
+	int findQnABoardTotalContent(String search);
 
-	List<BoardVO> getThRecruitBoardList(String search);
+	List<BoardVO> findThreeRecruitBoardList(String search);
 
-	List<BoardVO> getThNoticeBoardList(String search);
+	List<BoardVO> findThreeNoticeBoardList(String search);
 
-	List<BoardVO> getThReviewBoardList(String search);
+	List<BoardVO> findThreeReviewBoardList(String search);
 
-	List<BoardVO> getThQnABoardList(String search);
+	List<BoardVO> findThreeQnABoardList(String search);
 }
