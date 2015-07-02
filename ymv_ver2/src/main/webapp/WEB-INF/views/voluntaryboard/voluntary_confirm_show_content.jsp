@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<div id='print_table'>
 <h3>
 	<p class="text-center">봉사활동 확인서</p>
 </h3>
 <br>
 <!-- style="width: 100px; height: 500px;" -->
-<div class="col-sm-3 col-sm-offset-3">
-	<table border="1" cellpadding="5" width="500px" height="500px">
+
+<style> 
+@page a4sheet { size: 21.0cm 29.7cm } 
+.a4 { page: a4sheet; page-break-after: always } 
+</style>
+
+
+<div class="col-sm-3 col-sm-offset-3" align="center">
+	<table class="a4" border="1" cellpadding="5" width="500px" height="500px">
 
 		<tr>
 			<th rowspan="3" colspan="1" style="text-align: center;">인적사항</th>
@@ -63,9 +72,13 @@
 		</tr>
 	</table>
 <br>
+
+</div>
+			</div>
 <div align="right" style="width: 500px">
-<input type="button" value="인쇄하기" onclick="window.print()">
+<form>
+<input type="button" value="인쇄" onclick="window.open('voluntary_print.ymv','print_win','width=800,height=400,left=200,status=no,toolbar=no,resizable=no,scrollbars=yes')">
+<!-- 프린트 버튼 -->
+</form>
 <br><br><br><br><br>
 </div>
-</div>
-			

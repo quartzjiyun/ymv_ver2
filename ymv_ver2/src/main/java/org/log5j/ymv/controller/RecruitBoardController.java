@@ -386,4 +386,9 @@ public class RecruitBoardController {
 		map.put("date",arr[2] );
 		return new ModelAndView("voluntary_confirm_show_content","cbvo",cbvo).addObject("today",map);
 	   }
+	@RequestMapping("voluntary_print.ymv")
+	@NoLoginCheck
+	public ModelAndView voluntaryPrint(){
+		return new ModelAndView("voluntaryboard/print");
+	}
 }
