@@ -15,7 +15,7 @@
 
 
 <div class="col-sm-3 col-sm-offset-3" align="center">
-	<table class="a4" border="1" cellpadding="5" width="500px" height="500px">
+	<table class="a4" border="1" cellpadding="5" width="700px" height="700px" style="table-layout:fixed">
 
 		<tr>
 			<th rowspan="3" colspan="1" style="text-align: center;">인적사항</th>
@@ -35,8 +35,8 @@
 			<td align="center" colspan="4">${requestScope.cbvo.location}</td>
 		</tr>
 		<tr>
-			<th colspan="1" style="text-align: center;">활동내용</th>
-			<td align="center" colspan="4">${requestScope.cbvo.title}<br>
+			<th colspan="1" style="text-align: center; word-break:break-all;" height="170px">활동내용</th>
+			<td style="word-break:break-all;" align="center" colspan="4" height="170px">${requestScope.cbvo.title}<br>
 			</td>
 		</tr>
 		<tr>
