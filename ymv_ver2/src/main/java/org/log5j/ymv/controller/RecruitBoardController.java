@@ -223,7 +223,7 @@ public class RecruitBoardController {
 		rbvo.setStartDate(rbvo.getStartDate()+" "+request.getParameter("startTime"));
 		rbvo.setEndDate(rbvo.getEndDate()+" "+request.getParameter("endTime"));
 		recruitBoardService.registerVolunteer(rbvo);
-		return "redirect:voluntary_show_content_recruit_vol.ymv?recruitNo=" + rbvo.getRecruitNo();
+		return "redirect:voluntary_show_content_recruit_vol_type.ymv?recruitNo=" + rbvo.getRecruitNo();
 	}
 	//
 	@RequestMapping("voluntary_delete.ymv")
