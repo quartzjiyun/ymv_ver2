@@ -90,7 +90,7 @@ public class CommonController {
 		List<Map<String, Object>> list = statisticsService.findStatisticsListByAge(age);
 		model.addAttribute("list", list);
 		System.out.println("list   " + list);
-		for (int i = 0; i < list.size(); i++) {
+		/*for (int i = 0; i < list.size(); i++) {
 			model.addAttribute("map" + i, list.get(i));
 			System.out.println(list.get(i));
 			if((list.get(i)).get("FIELD").equals("환경")){
@@ -113,7 +113,7 @@ public class CommonController {
 				model.addAttribute("disabilityValue",(list.get(i)).get("APPLICATE_COUNT"));
 				System.out.println((list.get(i)).get("APPLICATE_COUNT"));
 			}
-		}
+		}*/
 		return list;
 	}
 	
