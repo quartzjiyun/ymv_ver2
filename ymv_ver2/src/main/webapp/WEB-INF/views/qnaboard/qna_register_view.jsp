@@ -23,12 +23,14 @@
 		<table class="table table-hover">
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="title" id="title"></td>
-				<td>작성자:${sessionScope.mvo.name}</td>
+				<td><input type="text" name="title" id="title" size="50"></td>
+			</tr>
+			<tr>
+				<td colspan="3">작성자&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp; ${sessionScope.mvo.name}</td>
 			</tr>
 			<tr>
 				<td>상세정보</td>
-				<td colspan="2"><textarea rows="10" cols="50" id="content"
+				<td colspan="2"><textarea rows="10" cols="60" id="content"
 						name="content"></textarea></td>
 			</tr>
 		</table>

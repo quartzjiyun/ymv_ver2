@@ -149,7 +149,9 @@ public class QnABoardController {
 	      System.out.println("수정받은 qnABoardVO "+qnABoardVO);
 	      qnABoardService.updateQnABoard(qnABoardVO);
 	      int qnaNo=qnABoardVO.getQnaNo();
-	      return new ModelAndView("qna_show_content","qvo",qnABoardService.findQnABoardByQnANo(qnaNo));
+	      QnABoardVO qvo=qnABoardService.findQnABoardByQnANo(qnaNo);
+	      System.out.println("Qvo1234:"+qvo);
+	      return new ModelAndView("qna_show_content","qvo",qvo);
 	   }
 /**
  * 	

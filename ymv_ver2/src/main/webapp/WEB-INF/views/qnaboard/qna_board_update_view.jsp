@@ -31,28 +31,35 @@
    });
 
 </script>
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-6 col-md-offset-3">
 <h3>QnA 수정</h3>
 <form id="qnaForm" action="qna_board_update.ymv" method="post" class="form-horizontal">
          <table class="table table-hover">
             <tr>
                <td>
-               <b>글번호: <input type=text name=qnaNo value=${requestScope.qvo.qnaNo } readonly></input>
-               | 타이틀:<input type=text name=title value=${requestScope.qvo.title }></input></b>
-               </td></tr><tr>
-                <td>
+              글번호&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;${requestScope.qvo.qnaNo }
+               </td>
+           </tr>
+            <tr>
+               <td>
+          타이틀:&nbsp;&nbsp;
+          <input type=text name=title value="${requestScope.qvo.title }" size="60"></input>
+             
+               </td>
+               </tr>
             <tr>
                <td>                  
-   <textarea rows="15" cols="75" name="content">${requestScope.qvo.content }</textarea>
+   <textarea rows="15" cols="70" name="content">${requestScope.qvo.content }</textarea>
                </td>
             </tr>
             <tr>
-            <td valign="middle" align="right">                  
+           
+            <td valign="middle" align="center">                  
                <input type="submit" value="수정하기" class="btn btn-default btn-xs"></input>   
                <input type="button" id="updateCancel" value="취소하기" class="btn btn-default btn-xs"></input>
                </td>                       
             </tr>
          </table>
-   
+     <input type="hidden" value="${requestScope.qvo.qnaNo}" name="qnaNo">
 </form>   
 </div>

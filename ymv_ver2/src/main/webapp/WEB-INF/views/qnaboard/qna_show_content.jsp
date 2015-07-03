@@ -10,15 +10,18 @@
        }
     }
 </script>
+
 <div class="col-sm-6 col-sm-offset-3">
+<h3 align="center">상세 Q & A 보기</h3>
+<br><br><br>
 	<table class="table table-hover">
 		<tr>
 			<td width="150">NO : ${requestScope.qvo.qnaNo }</td>
 			<td width="180">작성일:${requestScope.qvo.timePosted}</td>
-			<td>조회수 : ${requestScope.qvo.hit }</td>
+			<td width="180">조회수 : ${requestScope.qvo.hit }</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center">${requestScope.qvo.title}</td>
+			<td colspan="2" align="center" >제목 : ${requestScope.qvo.title}</td>
 			<td>작성자 : ${sessionScope.mvo.name }</td>
 		</tr>
 		<tr>
