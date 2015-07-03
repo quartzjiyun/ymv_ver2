@@ -18,23 +18,27 @@
 	<div class="col-sm-8 col-sm-offset-2">
 		<table class="table table-hover">
 			<tr>
-				<td>NO : ${requestScope.rvo.boardNo }</td>
-				<td colspan="2">${requestScope.rvo.title}</td>
+				<td colspan="2">NO : ${requestScope.rvo.boardNo }</td>
+				<td colspan="2">조회수 : ${requestScope.rvo.hit }</td>
+				<td colspan="2">시간: ${requestScope.rvo.timePosted}</td>
 			</tr>
 			<tr>
-				<td>작성자 : ${requestScope.rvo.writer }</td>
-				<td>시간: ${requestScope.rvo.timePosted}</td>
-				<td>조회수 : ${requestScope.rvo.hit }</td>
+				<td colspan="5"><font style="font-weight: bold;">${requestScope.rvo.title}</font></td>
+				<td colspan="1">작성자 : ${requestScope.rvo.writer }</td>
 			</tr>
 			<tr>
-				<td colspan="15">
+				<td align="center" colspan="6">
 					<c:if test="${requestScope.pvo!=null }">
-						<img src="${initParam.root }${requestScope.pvo.filePath}"><br>
+						<img src="${initParam.root }${requestScope.pvo.filePath}" ><br>
 					</c:if>
+				</td>
+				</tr>
+			<tr>			
+				<td colspan="6">	
 				<br><pre>${requestScope.rvo.content}</pre></td>
-			</tr>
+		</tr>
 			<tr>
-				<td valign="middle" align="center" colspan="3"><a
+				<td valign="middle" align="center" colspan="6"><a
 					href="${initParam.root}notice_board.ymv" class="btn btn-default btn-xs">목록</a>
 						<c:choose>
 						<c:when test="${sessionScope.mvo.memberType=='admin' }">

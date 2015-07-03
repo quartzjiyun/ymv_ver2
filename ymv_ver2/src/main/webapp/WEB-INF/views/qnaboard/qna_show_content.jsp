@@ -21,7 +21,7 @@
 			<td width="180">조회수 : ${requestScope.qvo.hit }</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center" >제목 : ${requestScope.qvo.title}</td>
+			<td colspan="2" align="center" style="font-weight: bold;">제목 : ${requestScope.qvo.title}</td>
 			<td>작성자 : ${sessionScope.mvo.name }</td>
 		</tr>
 		<tr>

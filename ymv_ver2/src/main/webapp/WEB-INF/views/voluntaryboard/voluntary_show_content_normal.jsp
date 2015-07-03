@@ -54,7 +54,7 @@ $(document).ready(function(){
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
-				<td colspan="2"><p>제목 : ${requestScope.rvo.title}</p></td>
+				<td colspan="2" style="font-weight: bold;"><p>제목 : ${requestScope.rvo.title}</p></td>
 			</tr>
 			<tr>
 				<td><p>기업명 : ${requestScope.vo.name}</p></td>

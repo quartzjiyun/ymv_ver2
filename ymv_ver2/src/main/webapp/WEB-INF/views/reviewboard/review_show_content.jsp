@@ -16,24 +16,23 @@
 	<table class="table table-striped table-hover">
 		<tr class="info">
 			<td>NO : ${requestScope.rvo.boardNo }</td>
-			<td colspan="2">${requestScope.rvo.title}</td>
+			<td colspan="2" style="font-weight: bold;">${requestScope.rvo.title}</td>
 		</tr>
 		<tr class="warning">
-			<td>기업명 : ${requestScope.rvo.writer }</td>
+			<td>작성자 : ${requestScope.rvo.writer }</td>
 			<td>시간: ${requestScope.rvo.timePosted}</td>
 			<td>조회수 : ${requestScope.rvo.hit }</td>
 		</tr>
 		<tr></tr>
 		<tr>
-			<td colspan="15"><c:if test="${requestScope.pvo!=null }">
-					<img src="${initParam.root }${requestScope.pvo.filePath}">
+			<td colspan="15" align="center"><c:if test="${requestScope.pvo!=null }">
+					<img src="${initParam.root }${requestScope.pvo.filePath}" >
 					<br>
 				</c:if> <br> <pre>${requestScope.rvo.content}</pre></td>
 		</tr>
 		<tr class="warning">
-			<td valign="middle" align="center" colspan="3"><a
-				href="${initParam.root}review_board.ymv"> <input type="button"
-					class="btn btn-default btn-xs" value="목록"></a> <c:choose>
+		<td>
+		 <c:choose>
 					<c:when
 						test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo }">
 						<a
@@ -57,12 +56,12 @@
 			<td colspan="3">
 					<table class="table table-hover">
 						<tr class="active">
-							<td colspan="3" align="center">
+							<td colspan="3" align="left">
 								<form name="commentForm" action="register_review_comment.ymv"
 									method="post">
 									작성자:<input type="text" name="writer"
-										value="${sessionScope.mvo.id }" readonly="readonly">
-									내용<input type="text" name="content"> <input
+										value="${sessionScope.mvo.id }" readonly="readonly" size="10">
+									내용<input type="text" name="content" size="70"> <input
 										type="hidden" name="boardNo"
 										value="${requestScope.rvo.boardNo}"> <input
 										type="submit" value="댓글달기" class = "btn btn-default btn-xs">
@@ -95,6 +94,10 @@
 									</c:choose></td>
 							</tr>
 						</c:forEach>
+						<tr align="center">
+							<td valign="middle"  colspan="3"><a
+				href="${initParam.root}review_board.ymv"> <input type="button"
+					class="btn btn-default btn-xs" value="목록" ></a></td></tr>
 					</table>
 				</td>
 		</tr>
