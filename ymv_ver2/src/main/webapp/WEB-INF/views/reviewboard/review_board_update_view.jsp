@@ -28,13 +28,9 @@
 				</tr>
 
 				<tr>
-					<td>제목 <input type=text name=title
-						value="${requestScope.rvo.title }"></input>
+					<td>제목: <input type=text name=title
+						value="${requestScope.rvo.title }" size="50"></input>
 					</td>
-				</tr>
-				<tr>
-					<td><font size="3">등록시간 : ${requestScope.rvo.timePosted }
-							조회수 : ${requestScope.rvo.hit } </font></td>
 				</tr>
 				<tr>
 					<td><textarea rows="15" cols="75" name="content">${requestScope.rvo.content }</textarea>

@@ -31,7 +31,7 @@
 				</c:if> <br> <pre>${requestScope.rvo.content}</pre></td>
 		</tr>
 		<tr class="warning">
-		<td>
+		<td align="center" colspan="3">
 		 <c:choose>
 					<c:when
 						test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo }">
@@ -50,7 +50,11 @@
 						<input type="button" class="btn btn-default btn-xs" class="action"
 							id="deleteBtn" value="삭제">
 					</c:when>
-				</c:choose></td>
+				</c:choose>
+				<a	href="${initParam.root}review_board.ymv"> <input type="button"
+					class="btn btn-default btn-xs" value="목록" ></a>
+				</td>
+
 		</tr>
 		<tr>
 			<td colspan="3">
@@ -94,10 +98,7 @@
 									</c:choose></td>
 							</tr>
 						</c:forEach>
-						<tr align="center">
-							<td valign="middle"  colspan="3"><a
-				href="${initParam.root}review_board.ymv"> <input type="button"
-					class="btn btn-default btn-xs" value="목록" ></a></td></tr>
+
 					</table>
 				</td>
 		</tr>

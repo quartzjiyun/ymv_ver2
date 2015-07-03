@@ -21,6 +21,7 @@
 			</table>
 			<br><div class="col-sm-12">
     <div class="pull-right"><input type="submit" value="글 등록" class = "btn btn-default btn-xs"> </div></div> <br><br>
+				<input type="hidden" value="${sessionScope.mvo.name }" name="writer">
 			</form>
 
 	</div>
