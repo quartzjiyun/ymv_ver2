@@ -100,7 +100,7 @@ public class SponsorController {
 	 */
 	@RequestMapping("sponsor_board_admin.ymv")
 	public ModelAndView findSponsorListAdmin(String pageNo) {
-		String today = (new SimpleDateFormat("YYYY-MM-DD")).format( new Date() );
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ListVO lvo = sponsorService.findSponsorList(pageNo);
 		List<PictureVO> pvo = sponsorService.findPictureList(pageNo);
 		for(int i = 0; i<lvo.getList().size(); i ++){
