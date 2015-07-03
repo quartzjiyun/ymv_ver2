@@ -11,7 +11,8 @@
 	type="text/javascript"></script>   
     
 <div class="col-md-6 col-sm-offset-3">
-		<h2>스케줄러 수정</h2>
+		<h2 align="center">스케줄러 수정</h2>
+		<br><br>
 		<form id="recruitForm" action="scheduler_update.ymv?memberNo=${sessionScope.mvo.memberNo}" method="post">
 			<table class="table table-striped table-hover">
 				<tr>
@@ -96,7 +97,7 @@
 				</tr>
 			</table>
 			<br> 
-			<div class = "col-sm-2 col-sm-offset-10">
+			<div class = "col-sm-3 col-sm-offset-9">
 			<input type="submit" value="스케쥴러 수정" class = "btn btn-primary"></div>
 		</form>
 	</div>
