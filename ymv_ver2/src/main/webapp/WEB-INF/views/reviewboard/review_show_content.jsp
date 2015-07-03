@@ -12,6 +12,8 @@
 		}); //click
 	});
 </script>
+<h3 align="center">후기 상세 글</h3>
+<br>
 <div class="col-md-8 col-sm-offset-2">
 	<table class="table table-striped table-hover">
 		<tr class="info">
