@@ -128,6 +128,7 @@ $(document).ready(function(){
       	<form action="voluntary_applicantOK.ymv" id="checkForm" method="get">
         <p id = "applicant_modal"></p>
         <input type="hidden" id="memberList" name="memberList" value="">
+        <input type="hidden" name="title" value="${requestScope.rvo.title}">
         <button type="button" class="btn btn-primary"  id="memberBtn" >신청자 뽑기</button>
         </form>
       </div>

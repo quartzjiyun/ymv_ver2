@@ -295,6 +295,7 @@ public class RecruitBoardController {
 	public ModelAndView applicantOK(HttpServletRequest request,ApplicantListVO alvo) throws Exception{
 		Email email = new Email();
 		String memberList=request.getParameter("memberList");
+		String title=request.getParameter("title");
 		System.out.println("OK: "+ memberList);
 		String member[]=memberList.split(",");
 		System.out.println("OK: "+ member[0]);
@@ -312,8 +313,8 @@ public class RecruitBoardController {
 			
 			String reciver = mailList.getMailAddress(); //받을사람의 이메일입니다.
 	        String subject = "안녕하세요. 너나봉 관리자입니다";
-	        String content = "봉사활동인원으로 선정되었습니다."
-	        		+ "				홈페이지에서 신청하신 봉사활동의 일시와 장소를 확인해주세요.";
+	        String content = mailList.getName()+"님 봉사활동인원으로 선정되었습니다.\n"
+	        		+ "홈페이지에서 신청하신 ["+title+"] 봉사활동의 일시와 장소를 확인해주세요.";
 	        
 	        email.setReciver(reciver);
 	        email.setSubject(subject);
