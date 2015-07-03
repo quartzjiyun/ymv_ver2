@@ -34,7 +34,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
+/**
+ *  봉사와 관련된 모든 일들이 RecruitBoardController를 통해 control된다.
+ * @author KOSTA_07_012
+ *
+ */
 @Controller
 public class RecruitBoardController {
 	@Resource(name="recruitBoardServiceImpl")
@@ -47,15 +51,28 @@ public class RecruitBoardController {
 	private CookieService cookieService;
 	@Autowired
     private EmailSender emailSender;
-	//
+	/**
+	 * 
+	 * 작성자 : 박병준
+	 * 내용 : recruitboard db에 있는 페이징 처리된 Voluntary Board List를 불러온다. 
+	 * 현재 날짜와 봉사 신청이 마감하는 날을 비교 하여 
+	 * ListVO에 모집중인지 아닌지를 판단하여 준다.
+	 * @param pageNo
+	 * @return voluntary_board.jsp
+	 */
 	@RequestMapping("voluntary_board.ymv")
 	@NoLoginCheck
 	public ModelAndView list(String pageNo) {	
+		//voluntary_board.jsp로 보내줌
 		ModelAndView mv = new ModelAndView("voluntary_board");
-		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
+		//현재 날짜를 YYYY-MM-DD 포맷으로 받아옴
+		String today = (new SimpleDateFormat("YYYY-MM-DD")).format( new Date() );
+		//pageNo로 리스트들과 paging 처리 하는 LISTVO로 가져옴
 		ListVO lvo = recruitBoardService.findBoardList(pageNo);
+		//lvo안에 있는 list들의 모집기한 마지막 날과 현재 날과 비교 함
 		for(int i = 0; i<lvo.getList().size(); i ++){
 			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getEndDate());
+			//비교해서 today가 enddate보다 크면 compare가 0보다 크다.
 			if(compare > 0){
 				((RecruitBoardVO)lvo.getList().get(i)).setMojib("모집완료");
 			}else if(compare < 0){
@@ -67,8 +84,16 @@ public class RecruitBoardController {
 		mv.addObject("lvo", lvo);
 		return mv;
 	}
-	
-	//
+	/**
+	 * 
+	 * 작성자 : 박병준
+	 * 내용 : voluntary_board.jsp에서 상세 내용을 보려 할 때 실행되는 메소드
+	 * 기업과 사용자와 비사용자를 나누어서 .jsp로 보내준다.
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("voluntary_show_content_recruit_vol_type.ymv")
 	public ModelAndView showContentRecruitVolType(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -88,8 +113,9 @@ public class RecruitBoardController {
 		response.addCookie(cookie);
 		RecruitBoardVO rvo = recruitBoardService
 				.findRecruitBoardByRecruitNo(recruitNo);
-		MemberVO vo = memberService.findMemberByMemberNo(rvo.getMemberNo());
 		rvo.setMojib(mojib);
+		// RecruitBoardVO에 있는 memberNo로 MemberVO의 정보를 찾아 model로 보냄
+		MemberVO vo = memberService.findMemberByMemberNo(rvo.getMemberNo());
 		return new ModelAndView(url, "rvo", rvo).addObject("vo", vo);
 	}
 
@@ -107,27 +133,31 @@ public class RecruitBoardController {
     	}
     	return list;
     }
-    //
+    /**
+     * 
+     * 작성자 : 박병준
+     * 내용 : Recruit Board 내 글을 수정하는 view를 제공하는 메소드. 
+     * @param recruitNo
+     * @param request
+     * @return
+     */
 	@RequestMapping("voluntary_board_update_view.ymv")
-	public ModelAndView updateView(int recruitNo,HttpServletRequest request) {
+	public ModelAndView updateView(int recruitNo, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		// recruitNo를 가지고 RecruitBoard 정보를 불러옴
 		RecruitBoardVO recruitbvo = (RecruitBoardVO) recruitBoardService
 				.findRecruitBoardByRecruitNo(recruitNo);
-		String StartDate[]=recruitbvo.getStartDate().split(" ");
-		recruitbvo.setStartDate(StartDate[0]);
-		recruitbvo.setStartTime(StartDate[1]);
-		String EndDate[]=recruitbvo.getEndDate().split(" ");
-		recruitbvo.setEndDate(EndDate[0]);
-		recruitbvo.setEndTime(EndDate[1]);
+		// StartDate랑 EndDate 쪼개서 타입에 맞추어 대입시켜주는 메소드
+		RecruitBoardVO rvo = recruitBoardService.setDate(recruitbvo);
+		// 분야 리스트
 		List<FieldVO> Flist = recruitBoardService.findFieldList();
+		// 지역 리스트
 		List<LocationVO> Llist = recruitBoardService.findLocationList();
-		ModelAndView mv = new ModelAndView();
-		String command=request.getParameter("command");
+		String command = request.getParameter("command");
 		mv.setViewName("voluntary_board_update_view");
-		mv.addObject("fieldlist", Flist);
-		mv.addObject("locationlist", Llist);
-		mv.addObject("rvo", recruitbvo);
-		mv.addObject("command",command);
-		System.out.println("recruitbVO123:"+recruitbvo);
+		//Model에 필요한 데이터들을 추가시킨다.
+		mv.addObject("fieldlist", Flist).addObject("locationlist", Llist)
+				.addObject("rvo", rvo).addObject("command", command);
 		return mv;
 	}
 //
@@ -158,32 +188,57 @@ public class RecruitBoardController {
 	      mv.addObject("rvo",rbvo);
 	      return mv;
 	   }
-	//
+	/**
+	 * 
+	 * 작성자 : 박병준
+	 * 내용 : RecruitBoard의 글쓰기를 눌렀을 때 작동하는 메소드.
+	 * 분야와 지역의 DB에서 리스트를 가져와 voluntary_register_view.jsp로 보내준다.
+	 * @return Model : voluntary_register_view.jsp
+	 */
 	@RequestMapping("voluntary_register_view.ymv")
-	   public ModelAndView RegisterVolunteer_form(){
-	      List<FieldVO> Flist = recruitBoardService.findFieldList(); 
-	      List<LocationVO> Llist = recruitBoardService.findLocationList();
-	      ModelAndView mv = new ModelAndView();
-	      mv.setViewName("voluntary_register_view");
-	      mv.addObject("fieldlist", Flist);
-	      mv.addObject("locationlist", Llist);
-	      return mv;
-	   }
-	//
+	public ModelAndView RegisterVolunteerForm() {
+		// 분야 DB에서 리스트를 받아온다.
+		List<FieldVO> Flist = recruitBoardService.findFieldList();
+		// 지역 DB에서 리스트를 받아온다.
+		List<LocationVO> Llist = recruitBoardService.findLocationList();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("voluntary_register_view");
+		mv.addObject("fieldlist", Flist);
+		mv.addObject("locationlist", Llist);
+		return mv;
+	}
+	/**
+	 * 
+	 * 작성자 : 박병준
+	 * 내용 : RecruitBoard 글 등록해주는 메소드.
+	 * @param request : 시작시간과 끝시간을 RecruitBoardVO에 셋팅해준다.
+	 * @param rbvo : RecruitBoardVO
+	 * @return voluntary_show_content_recruit_vol.ymv : recruitNo도 함께 리다이렉트 시켜준다.
+	 */
 	@RequestMapping("volunteer_register.ymv")
 	public String RegisterVolunteer_result(HttpServletRequest request,RecruitBoardVO rbvo){
 		rbvo.setStartDate(rbvo.getStartDate()+" "+request.getParameter("startTime"));
 		rbvo.setEndDate(rbvo.getEndDate()+" "+request.getParameter("endTime"));
+		//글 등록
 		recruitBoardService.registerVolunteer(rbvo);
-		return "redirect:voluntary_show_content_recruit_vol_type.ymv?recruitNo=" + rbvo.getRecruitNo();
+		return "redirect:voluntary_show_content_recruit_vol.ymv?recruitNo=" + rbvo.getRecruitNo();
 	}
-	//
+	/**
+	 * 
+	 * 작성자 : 박병준
+	 * 내용 : RecruitBoard의 글을 삭제해주는 메소드. 
+	 * @param request :recruitNo를 받는다.
+	 * @return
+	 */
 	@RequestMapping("voluntary_delete.ymv")
 	   public ModelAndView DeleteRecruitVol(HttpServletRequest request){
 	         int recruitNo=Integer.parseInt(request.getParameter("recruitNo"));
 	         int pictureNo=recruitNo;
+	         //recruitNo를 가진 데이터를 voluntary_service_applicate DB에서 삭제
 	         recruitBoardService.deleteVoluntaryServiceApplicateNo(recruitNo);
+	         //recruitNo를 가진 데이터를 recruit DB에서 삭제
 	         recruitBoardService.deleteRecruitVolunteer(recruitNo);
+	         //recruitNo를 가진 데이터를 picture DB에서 삭제
 	         recruitBoardService.deletePicture(pictureNo);
 	      return new ModelAndView("redirect:/voluntary_board.ymv?pageNo=1");
 	   }
