@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+            <link rel="stylesheet" type="text/css" href="css/style_common.css" />
+        <link rel="stylesheet" type="text/css" href="css/style10.css" />
+       <!--  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' /> -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
 	$("#sponsorForm").submit(function() {
@@ -26,11 +30,16 @@ $(document).ready(function(){
 		<div style="height: 75%">
 			<c:forEach items="${requestScope.pvo}" varStatus="checkCount" var="picture">
 			<c:if test="${checkCount.count==i.count}">
-				<img src="${initParam.root }${picture.filePath}" style="width: 100%; height: 300px">
+				<div class="view view-tenth">
+				<img src="${initParam.root }${picture.filePath}" style="width: 100%; height: 300px"><br>
+                    <div class="mask">
+                        <p class = "text-center">${sponsor.content}</p>
+                        <!-- <a href="#" class="info">Read More</a> -->
+                    </div>
+                </div>
 			</c:if>
 			</c:forEach>
 			<h3>${sponsor.title}<br></h3>
-			${sponsor.content}<br>
 		</div>
 			<div style="height: 25%">
 				<div>
