@@ -113,7 +113,15 @@ public class RecruitBoardController {
 		response.addCookie(cookie);
 		RecruitBoardVO rvo = recruitBoardService
 				.findRecruitBoardByRecruitNo(recruitNo);
-		rvo.setMojib(mojib);
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
+        int compare = today.compareTo(rvo.getEndDate());
+        if(compare > 0){
+        	rvo.setMojib("모집완료");
+			}else if(compare < 0){
+				rvo.setMojib("모집중");
+			}else{
+				rvo.setMojib("모집중");
+			}
 		// RecruitBoardVO에 있는 memberNo로 MemberVO의 정보를 찾아 model로 보냄
 		MemberVO vo = memberService.findMemberByMemberNo(rvo.getMemberNo());
 		return new ModelAndView(url, "rvo", rvo).addObject("vo", vo);
@@ -213,15 +221,16 @@ public class RecruitBoardController {
 	 * 내용 : RecruitBoard 글 등록해주는 메소드.
 	 * @param request : 시작시간과 끝시간을 RecruitBoardVO에 셋팅해준다.
 	 * @param rbvo : RecruitBoardVO
-	 * @return voluntary_show_content_recruit_vol.ymv : recruitNo도 함께 리다이렉트 시켜준다.
+	 * @return voluntary_show_content_recruit_vol_type.ymv : recruitNo도 함께 리다이렉트 시켜준다.
 	 */
 	@RequestMapping("volunteer_register.ymv")
 	public String RegisterVolunteer_result(HttpServletRequest request,RecruitBoardVO rbvo){
 		rbvo.setStartDate(rbvo.getStartDate()+" "+request.getParameter("startTime"));
 		rbvo.setEndDate(rbvo.getEndDate()+" "+request.getParameter("endTime"));
 		//글 등록
+		
 		recruitBoardService.registerVolunteer(rbvo);
-		return "redirect:voluntary_show_content_recruit_vol.ymv?recruitNo=" + rbvo.getRecruitNo();
+		return "redirect:voluntary_show_content_recruit_vol_type.ymv?recruitNo=" + rbvo.getRecruitNo();
 	}
 	/**
 	 * 
