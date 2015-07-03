@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.ListVO;
+import org.log5j.ymv.model.board.NoticeBoardVO;
 import org.log5j.ymv.model.board.PictureVO;
 import org.log5j.ymv.model.board.ReviewBoardService;
 import org.log5j.ymv.model.board.ReviewBoardVO;
+import org.log5j.ymv.model.cookie.CookieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +31,8 @@ public class ReviewBoardController {
 	private ReviewBoardService reviewBoardService;
 	@Resource(name="uploadPath")
 	private String path;
+	@Resource
+	private CookieService cookieService;
 	@RequestMapping("home.ymv")
 	@NoLoginCheck
 	public String test(){
@@ -73,43 +77,10 @@ public class ReviewBoardController {
 		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 		 int pictureNo=boardNo;
 		BoardVO bvo=null;
-		// 개별 게시물 조회 ( 조회수 증가 )
-		Cookie cookies[] = request.getCookies();
-		Cookie cookie = null;
-		if (cookies == null || cookies.length == 0) {
-			cookie = new Cookie("myboard", "|" + boardNo + "|");
-			response.addCookie(cookie);
-			System.out.println(" 쿠키가 존재하지 않은 상태");
-
-		} else {
-			for (int i = 0; i < cookies.length; i++) {
-				if (cookies[i].getName().equals("myboard")) {
-					cookie = cookies[i];
-					break;
-				}//if
-			}//for
-			if (cookie == null) {
-				// 쿠키가 존재하는데 myboard가 없을때
-				cookie = new Cookie("myboard", "|" + boardNo + "|");
-				response.addCookie(cookie);
-				reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);		
-				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
-			} else {// 쿠키가 존재하는데 myboard가 있을때
-				String value = cookie.getValue();
-				System.out.println("쿠키 존재하고 myboard 쿠키가 존재하는 상태");
-				if (value.indexOf("|" + boardNo + "|") != -1) {
-					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하는 상태
-					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재..조회수 증가x");
-					//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
-				} else {
-					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하지 않은 상태
-					value += "|" + boardNo + "|";
-					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
-					reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);
-					response.addCookie(new Cookie("myboard", value));
-				}// else1
-			}// else2
-		}// else3
+		Cookie[] cookies = request.getCookies();
+		Cookie cookie = cookieService.cookieSerivce(cookies, boardNo,
+				new NoticeBoardVO());
+		response.addCookie(cookie);
 		bvo=reviewBoardService.findReviewBoardByBoardNo(boardNo);
 		List<CommentVO> commentList=reviewBoardService.findCommentListByBoardNo(request.getParameter("boardNo"));
 		PictureVO pvo=reviewBoardService.findPicture(pictureNo);

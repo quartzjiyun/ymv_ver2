@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.log5j.ymv.model.board.ListVO;
+import org.log5j.ymv.model.board.NoticeBoardVO;
 import org.log5j.ymv.model.board.QnABoardService;
 import org.log5j.ymv.model.board.QnABoardVO;
+import org.log5j.ymv.model.cookie.CookieService;
 import org.log5j.ymv.model.member.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class QnABoardController {
 	@Resource(name="qnABoardServiceImpl")
 	private QnABoardService qnABoardService;
+	@Resource
+	private CookieService cookieService;
 
 /**
  * 
@@ -80,45 +84,10 @@ public class QnABoardController {
 	public ModelAndView qnaShowContent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int qnaNo=Integer.parseInt(request.getParameter("qnaNo"));
 		QnABoardVO qvo = null;
-		// 개별 게시물 조회 ( 조회수 증가 )
-		Cookie cookies[] = request.getCookies();
-		Cookie cookie = null;
-
-		if (cookies == null || cookies.length == 0) {
-			cookie = new Cookie("myboard", "|" + qnaNo + "|");
-			response.addCookie(cookie);
-			System.out.println(" 쿠키가 존재하지 않은 상태");
-
-		} else {
-			for (int i = 0; i < cookies.length; i++) {
-				if (cookies[i].getName().equals("myboard")) {
-					cookie = cookies[i];
-					break;
-				}
-			}
-			if (cookie == null) {
-				// 쿠키가 존재하는데 myboard가 없을때
-				cookie = new Cookie("myboard", "|" + qnaNo + "|");
-				response.addCookie(cookie);
-				qvo = qnABoardService.findQnABoardByQnaNoUpdateHit(qnaNo);
-				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
-			} else {// 쿠키가 존재하는데 myboard가 있을때
-				String value = cookie.getValue();
-				System.out.println("쿠키 존재하고 myboard 쿠키가 존재하는 상태");
-				if (value.indexOf("|" + qnaNo + "|") != -1) {
-					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하는 상태
-					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재..조회수 증가x");
-					qnABoardService.findQnABoardByQnaNoNotHit(qnaNo);
-					
-				} else {
-					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하지 않은 상태
-					value += "|" + qnaNo + "|";
-					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
-					qvo = qnABoardService.findQnABoardByQnaNoUpdateHit(qnaNo);
-					response.addCookie(new Cookie("myboard", value));
-				}// else1
-			}// else2
-		}// else3
+		Cookie[] cookies = request.getCookies();
+		Cookie cookie = cookieService.cookieSerivce(cookies, qnaNo,
+				new QnABoardVO());
+		response.addCookie(cookie);
 		qvo = qnABoardService.findQnABoardByQnANo(qnaNo);
 		return new ModelAndView("qna_show_content", "qvo", qvo);
 	}

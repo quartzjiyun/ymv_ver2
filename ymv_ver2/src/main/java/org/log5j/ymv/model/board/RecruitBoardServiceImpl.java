@@ -120,16 +120,6 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		return recruitBoardDAO.findApplicantOkList(recruitNo);
 	}
 	@Override
-	public void findPostingByRecruitNoNotHit(int recruitNo) {
-		recruitBoardDAO.findPostingByRecruitNoNotHit(recruitNo);
-	}
-	@Override
-	public RecruitBoardVO findPostingByRecruitNoUpdateHit(int recruitNo) {
-		// TODO Auto-generated method stub
-		recruitBoardDAO.updateHit(recruitNo);
-		return recruitBoardDAO.findRecruitBoardByrecruitNo(recruitNo);
-	}
-	@Override
 	public MemberVO findMailAddressByMemberNo(int memberNo) {
 		// TODO Auto-generated method stub
 		return recruitBoardDAO.findMailAddressByMemberNo(memberNo);
