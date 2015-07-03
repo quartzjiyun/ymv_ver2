@@ -25,7 +25,7 @@ public class CommonDAOImpl implements CommonDAO {
 		StatisticsVO stvo = new StatisticsVO();
 		stvo.setAge(age);
 		stvo.setField(field);
-		sqlSessionTemplate.insert("statistics.insertStatistics", stvo);
+		sqlSessionTemplate.insert("statistics.registerStatistics", stvo);
 	}
 
 	/**
