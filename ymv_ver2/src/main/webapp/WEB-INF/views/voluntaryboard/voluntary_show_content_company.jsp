@@ -48,7 +48,7 @@ $(document).ready(function(){
 <div class="col-sm-8 col-sm-offset-2" align="center">
 <div class="panel panel-default">
   <div class="panel-body">
-		<table class="col-sm-8">
+		<table class="col-sm-8" style="width: 700px;">
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
