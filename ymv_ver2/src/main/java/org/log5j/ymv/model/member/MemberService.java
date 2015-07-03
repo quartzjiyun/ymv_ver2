@@ -6,13 +6,13 @@ import org.log5j.ymv.model.board.PictureVO;
 public interface MemberService {
 	public MemberVO login(MemberVO vo);
 
-	public String idCheck(String id);
+	public String checkId(String id);
 
 	public void registerMember(MemberVO memberVO);
 
-	public void registerPicture(PictureVO pvo);
+	/*public void registerPicture(PictureVO pvo);*/
 
-	public void profileUpdate(MemberVO memberVO);
+	public void updateProfile(MemberVO memberVO);
 	
 	public void updateMember(MemberVO memberVO);
 	

@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			select * from member where id=#{id} and password=#{password}
  	</select>
   
- 	<insert id="RegisterVoluntaryApplicant" parameterType="vsavo">
+ 	<insert id="registerVoluntaryApplicant" parameterType="vsavo">
 		insert into voluntary_service_applicate(recruit_no,member_no,motivate) values(#{recruitNo},#{memberNo},#{motivate})
 	</insert>
 	
@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from voluntary_service_applicate where recruit_no=#{recruitNo}
 	</delete>
 	
-	<select id="idcheck" resultType="int">
+	<select id="checkId" resultType="int">
 		select count(*) from member where id=#{value}
 	</select>
 	
