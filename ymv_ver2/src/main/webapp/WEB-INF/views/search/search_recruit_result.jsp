@@ -10,11 +10,11 @@
 		<colgroup>
 			<col style="width: 6%;" />
 			<col style="width: 10%;" />
-			<col style="width: 19%;" />
-			<col style="width: 15%;" />
-			<col style="width: 10%;" />
-			<col style="width: 20%;" />
-			<col style="width: 20%;" />
+			<col style="width: 27%;" />
+			<col style="width: 14%;" />
+			<col style="width: 7%;" />
+			<col style="width: 18%;" />
+			<col style="width: 18%;" />
 		</colgroup>
 		<thead>
 			<tr>

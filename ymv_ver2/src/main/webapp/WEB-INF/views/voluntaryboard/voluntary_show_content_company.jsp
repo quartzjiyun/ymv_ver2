@@ -43,6 +43,8 @@ $(document).ready(function(){
 	});
 });
 </script>
+<h3 align="center">봉사 상세 글보기</h3>
+  	<br><br>
 <div class="col-sm-8 col-sm-offset-2" align="center">
 <div class="panel panel-default">
   <div class="panel-body">

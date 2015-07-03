@@ -5,6 +5,7 @@
 	<h3>
 		<p class="text-center">봉사 등록 확인</p>
 	</h3>
+	<br><br>
 	<table class="table table-striped table-hover">
 			<colgroup>
 			<col style="width: 6%;" />
