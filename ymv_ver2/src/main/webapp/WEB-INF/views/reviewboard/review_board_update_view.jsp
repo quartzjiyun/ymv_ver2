@@ -21,15 +21,15 @@
 			<table class="table table-hover">
 				<tr>
 					<td><b> 글번호 <input type=text name=boardNo
-							value=${requestScope.rvo.boardNo } readonly="readonly"></input> |
+							value="${requestScope.rvo.boardNo }" readonly="readonly"></input> |
 							작성자 <input type=text name=writer
-							value=${requestScope.rvo.writer } readonly="readonly"></input>
+							value="${requestScope.rvo.writer }" readonly="readonly"></input>
 					</b></td>
 				</tr>
 
 				<tr>
 					<td>제목 <input type=text name=title
-						value=${requestScope.rvo.title }></input>
+						value="${requestScope.rvo.title }"></input>
 					</td>
 				</tr>
 				<tr>

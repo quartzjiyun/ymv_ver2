@@ -220,6 +220,7 @@ public class ReviewBoardController {
 				file.transferTo(new File(path + fileName));
 				// 픽쳐 디비에 파일정보 저장
 				reviewBoardService.registerPicture(pvo);
+				System.out.println("pvo123:"+pvo);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
