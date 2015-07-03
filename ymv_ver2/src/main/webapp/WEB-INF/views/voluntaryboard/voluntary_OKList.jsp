@@ -10,7 +10,6 @@ $(document).ready(function(){
            
         });
         $("#memberList").val(memberNoList);
-		alert(memberNoList);
 		$("#checkForm").submit();
 	});
 });

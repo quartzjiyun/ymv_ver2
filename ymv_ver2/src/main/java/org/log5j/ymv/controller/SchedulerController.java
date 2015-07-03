@@ -60,7 +60,7 @@ public class SchedulerController {
 		HashMap schedulerMap=new HashMap();
 		schedulerMap.put("list", list);
 		schedulerMap.put("dateList", dateList);
-		String today = (new SimpleDateFormat("YYYY-MM-DD")).format( new Date() );
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		for(int i = 0; i<list.size(); i ++){
 			int compare = today.compareTo(((RecruitBoardVO) list.get(i)).getEndDate());
 			if(compare > 0){
@@ -84,7 +84,7 @@ public class SchedulerController {
 	@NoLoginCheck
 	public ModelAndView findSearchList(SearchVO scvo){
 		ModelAndView mv = new ModelAndView("search_recruit_result");
-		String today = (new SimpleDateFormat("YYYY-MM-DD")).format( new Date() );
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		ListVO lvo = schedulerService.findSearchList(scvo);
 		for(int i = 0; i<lvo.getList().size(); i ++){
 			int compare = today.compareTo(((RecruitBoardVO) lvo.getList().get(i)).getEndDate());

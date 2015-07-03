@@ -66,7 +66,7 @@ public class RecruitBoardController {
 		//voluntary_board.jsp로 보내줌
 		ModelAndView mv = new ModelAndView("voluntary_board");
 		//현재 날짜를 YYYY-MM-DD 포맷으로 받아옴
-		String today = (new SimpleDateFormat("YYYY-MM-DD")).format( new Date() );
+		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
 		//pageNo로 리스트들과 paging 처리 하는 LISTVO로 가져옴
 		ListVO lvo = recruitBoardService.findBoardList(pageNo);
 		//lvo안에 있는 list들의 모집기한 마지막 날과 현재 날과 비교 함
