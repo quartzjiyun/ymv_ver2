@@ -65,7 +65,7 @@ public class MemberController {
 	
 	@RequestMapping("voluntary_register_applicant.ymv")
 	@ResponseBody
-	public boolean voluntary_register_applicant(VoluntaryServiceApplicateVO vsavo){
+	public boolean voluntaryRegisterApplicant(VoluntaryServiceApplicateVO vsavo){
 		System.out.println(vsavo);
 		boolean flag =  voluntaryServiceApplicateService.checkVolunteerApplicant(vsavo.getRecruitNo(), vsavo.getMemberNo());
 		System.out.println("111111111"+flag);

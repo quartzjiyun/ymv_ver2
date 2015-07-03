@@ -29,7 +29,7 @@ public class CommonController {
 	 */
 	@RequestMapping("voluntary_statistics.ymv")
 	@NoLoginCheck
-	public String voluntary_findStatistics(Model model) throws SQLException{
+	public String voluntaryFindStatistics(Model model) throws SQLException{
 		List<Map<String, Object>> list = statisticsService.findStatisticsList();
 		model.addAttribute("list", list);
 		System.out.println("list   " + list);
@@ -68,7 +68,7 @@ public class CommonController {
 	 */
 	@RequestMapping("voluntary_statisticsByAge.ymv")
 	@NoLoginCheck
-	public String voluntary_findStatisticsByAge(Model model) throws SQLException{
+	public String voluntaryFindStatisticsByAge(Model model) throws SQLException{
 		
 		return "voluntary_statisticsByAge";
 	}
