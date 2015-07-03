@@ -82,6 +82,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    			 AND end_date<=#{endDate}
     		 ]]>
 			</if>
+			<if test="title != ''">
+			AND title like '%${title}%'
+			</if>
 		</where>
 	</select>
 	<select id="getDateList" parameterType="sdvo" resultType="hashMap">
