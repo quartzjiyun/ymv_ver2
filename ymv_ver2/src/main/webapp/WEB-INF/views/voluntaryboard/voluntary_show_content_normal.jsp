@@ -31,11 +31,11 @@ $(document).ready(function(){
 				dataType:"json", 
 				success:function(data){
 					//alert(data);
-					if(data==true){
-						alert("이미 신청하셨습니다.");
+					if(data==false){
+						alert("신청이 완료되었습니다.");
 						$("#motivate").val("");
 					}else{
-						alert("신청이 완료되었습니다.");
+						alert("이미 신청하셨습니다.");
 						$("#motivate").val("");
 					}
 				}
