@@ -38,7 +38,6 @@ $(document).ready(function(){
            memberNoList+=$(this).val() + ",";
         });
         $("#memberList").val(memberNoList);
-		alert(memberNoList);
 		$("#checkForm").submit();
 	});
 });
