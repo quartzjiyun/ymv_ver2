@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{memberNo},#{id},#{password},#{name},#{address},#{identityNo},#{mailAddress},#{memberType})
 	</insert>
 	
-	<update id="profileUpdate" parameterType="membervo">
+	<update id="updateProfile" parameterType="membervo">
 		update member set file_path=#{filePath} where member_no=#{memberNo}
 	</update>
 	
