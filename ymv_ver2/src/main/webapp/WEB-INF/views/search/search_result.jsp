@@ -6,8 +6,8 @@
 
 </script>
 
-<h3>검색 결과</h3>
-<br>
+<h3 align="center">검색 결과</h3>
+<br><br>
 <div class="col-md-12">
 	<div class="col-md-12">
 		<table class="table">
@@ -19,8 +19,8 @@
 				<col style="width: 15%;" />
 				<col style="width: 15%;" />
 			</colgroup>
+			<h5 style="border-width: thick;">봉사 검색 결과</h5><br>
 			<thead>
-				봉사 검색 결과
 				<tr>
 					<th scope="col">NO</th>
 					<th scope="col">제목</th>
