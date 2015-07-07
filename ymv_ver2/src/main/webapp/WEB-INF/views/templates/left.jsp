@@ -187,7 +187,7 @@ $("#modalBtn").click(function(){
 				<h4 class="modal-title">Modal title</h4>
 			</div>
 			<div class="modal-body">
-				<p id="scheduletModal">테이블 넣을곳</p>
+				<p id="scheduletModal" align="center">로그인후 이용하시기 바랍니다.</p>
 			</div>
 			<div class="modal-footer">
 				<a href="" data-dismiss="modal"><img src="${initParam.root}img/close.jpg"></a>
