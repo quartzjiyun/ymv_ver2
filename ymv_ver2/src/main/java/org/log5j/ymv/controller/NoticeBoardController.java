@@ -47,9 +47,7 @@ public class NoticeBoardController {
 	@RequestMapping("notice_board.ymv")
 	@NoLoginCheck
 	public ModelAndView noticeBoard(String pageNo) {	
-		System.out.println("controller pageNo: "+pageNo);
 		ListVO lvo = noticeBoardService.findNoticeBoardList(pageNo);
-		System.out.println(lvo+"컨틀롤러");
 		return new ModelAndView("notice_board","lvo",lvo);
 	}
 	/**
@@ -77,7 +75,6 @@ public class NoticeBoardController {
    @RequestMapping("notice_register.ymv")
    public ModelAndView noticeRegister(NoticeBoardVO vo,PictureVO pvo){
 	   noticeBoardService.registerNoticeBoard(vo);
-	   System.out.println("userInfo:"+vo.getBoardNo());
 	   MultipartFile file=pvo.getFileName();
 		/*
 		 *  파일 얻는 메서드  : list.get(i) 을 호출하면 File이 반환 
@@ -93,10 +90,8 @@ public class NoticeBoardController {
 				try {
 					file.transferTo(new File(path+fileName));
 					// 픽쳐 디비에 파일정보 저장
-					System.out.println("PictureNo: "+pvo.getPictureNo()+" fileName: "+pvo.getFileName());
 					noticeBoardService.registerPicture(pvo);
 					/*nameList.add(fileName);*/
-					System.out.println("fileupload ok:"+fileName);
 				} catch (Exception e) {					
 					e.printStackTrace();
 				}
@@ -122,7 +117,6 @@ public class NoticeBoardController {
    public ModelAndView noticeShowContent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv=new ModelAndView();
 		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
-		 System.out.println("notice_showContent boardNo: " + boardNo);
 		 int pictureNo=boardNo;
 		BoardVO bvo=null;
 		Cookie[] cookies = request.getCookies();
@@ -149,9 +143,7 @@ public class NoticeBoardController {
     */
    @RequestMapping("notice_board_update_view.ymv")
 	public ModelAndView noticeBoardUpdateView(int boardNo) {
-		System.out.println("boardNo 는 "+boardNo);
 		NoticeBoardVO noticebvo = (NoticeBoardVO) noticeBoardService.findNoticeBoardByBoardNo(boardNo);
-		System.out.println("noticebvo 는 " + noticebvo);
 		return new ModelAndView("notice_board_update_view","rvo"
 				,noticebvo);
 	}

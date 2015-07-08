@@ -6,17 +6,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-
+<!-- 전진한 -->
 <!-- 어노테이션컨트롤러관련 설정
 	   RequestMappingHandlerMapping : 어노테이션 컨트롤러의 HandlerMapping
 	   Ajax Json : @ResponseBody 관련 설정 등 
  -->
 <mvc:annotation-driven />
+<!-- 백지영 -->
 <context:component-scan base-package="org.log5j.ymv.controller,org.log5j.ymv.aop.controller" />
 <!-- <context:component-scan base-package="org.log5j.ymv.controller" use-default-filters="false">
 	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 </context:component-scan> -->
-
+<!-- 전진한 -->
 <bean id="viewResolver" 
 class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/views/"  />
@@ -39,11 +40,13 @@ class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	<property name="order" value="1" />
 </bean>
+<!-- 박병준 -->
 <!-- Spring Validation -->
 <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 <property name="basename" value="classpath:messages_ko"/>
 <property name="defaultEncoding" value="utf-8"></property>
 </bean>
+<!-- 임영학 -->
 <!-- 파일 업로드 설정 -->
 <bean id="multipartResolver" 
 class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -78,9 +81,7 @@ class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 class="org.springframework.web.servlet.view.BeanNameViewResolver">
 	<property name="order" value="2"></property>
 </bean>
-<!-- 파일다운로드를 위한 view를 설정 -->
-<bean name="downloadView" class="org.log5j.ymv.controller.DownloadView"></bean>
-
+<!-- 임영학 -->
 <!-- 인터셉터 -->
 <!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 	<property name="order" value="0"/>

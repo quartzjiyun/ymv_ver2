@@ -33,21 +33,7 @@ public class ReviewBoardController {
 	private String path;
 	@Resource
 	private CookieService cookieService;
-	@RequestMapping("home.ymv")
-	@NoLoginCheck
-	public String test(){
-		return "index";
-	}
-	@RequestMapping("loginCheck.ymv")
-	@NoLoginCheck
-	public String loginCheck(){
-		return "loginCheck";
-	}
-	@RequestMapping("testTiles.ymv")
-	@NoLoginCheck
-	public String testTiles(){
-		return "home";
-	}
+	
 	/**
 	 * 
 	 * 작성자 : 전진한
@@ -62,7 +48,7 @@ public class ReviewBoardController {
 		return new ModelAndView("review_board","lvo",lvo);
 	}
 	/**
-	 * ------------다시 수정하겠음.
+	 * 
 	 * 작성자 : 전진한
 	 * 내용 : 쿠키를 사용하여 조회수를 개인당 한번만 허용하고 게시판 상세정보,사진정보,댓글 정보를 반환한다.
 	 * @param request : boardNo를 받아오고 쿠키 정보를 받기 위해 사용
@@ -166,7 +152,7 @@ public class ReviewBoardController {
 	}
 	/**
 	 * 
-	 * 작성자 : 전진한
+	 * 작성자 : 전진한, 임영학
 	 * 내용 : 입력받은 상세정보와 사진정보를 등록하는 메서드
 	 * @param rbvo : 게시판의 상세 정보를 받아온다.
 	 * @param pvo : 게시판의 사진정보를 받아온다.
