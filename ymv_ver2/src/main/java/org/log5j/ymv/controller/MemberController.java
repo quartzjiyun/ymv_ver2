@@ -36,7 +36,7 @@ public class MemberController {
 	 */
 	
 	/**
-	 * 작성자 : 백지영
+	 * 작성자 : 백지영, 장지윤
 	 * 내용 : 로그인 메서드를 수행해 id와 password에 해당하는 회원정보를 가져온다.
 	 * 				가져 온 회원정보가 null이 아니라면 세션이 있는지 없는지 확인 후 
 	 * 				세션이 없다면 세션을 만들어주고 loginSession에 Y를 할당한다.
@@ -63,7 +63,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * 작성자 : 백지영
+	 * 작성자 : 백지영, 장지윤
 	 * 내용 : 만약 세션이 null이 아니라면 세션을 해제 한 후 "home.jsp"로 보내준다.
 	 * @param request : 세션 유무를 확인하기 위해 사용
 	 * @return 
@@ -81,7 +81,7 @@ public class MemberController {
 	//지윤 끝
 	
 	/**
-	 * 작성자 : 백지영 
+	 * 작성자 : 백지영
 	 * 내용 : checkVolunteerApplicant를 수행해 회원번호와 글번호에 해당하는 사람이 있다면 true를 없다면 false를 반환한다.
 	 * 				만약 false를 반환할 경우 registerVolunteerApplicant를 수행해 신청자리스트에 insert한다.
 	 * @param vsavo : 글번호와 회원번호를 같이 담아오기 위해 사용
@@ -90,16 +90,12 @@ public class MemberController {
 	@RequestMapping("voluntary_register_applicant.ymv")
 	@ResponseBody
 	public boolean voluntaryRegisterApplicant(VoluntaryServiceApplicateVO vsavo){
-		System.out.println(vsavo);
 		boolean flag =  voluntaryServiceApplicateService.checkVolunteerApplicant(vsavo.getRecruitNo(), vsavo.getMemberNo());
 		if(flag==false){
-			System.out.println("registerVolunteerApplicant 실행  " + vsavo);
 			voluntaryServiceApplicateService.registerVolunteerApplicant(vsavo);
 		}
 		return flag;
 	}
-	
-	//병준
 	
 	/**
 	 * 작성자 : 백지영
@@ -115,7 +111,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * 작성자 : 백지영
+	 * 작성자 : 백지영, 박병준
 	 * 내용 : 일반회원의 경우에는 생년월일을 입력받아 "member_register_form_detail.jsp"로 보내준다.
 	 * 				기업회원의 경우에는 사업자등록번호를 입력받아 "member_register_form_detail.jsp"로 보내준다.
 	 * @param identityNo : 생년월일이나 사업자등록번호를 입력하기 위해 사용
@@ -180,11 +176,17 @@ public class MemberController {
 		mv.setViewName("member_register_result");
 		return mv;// 문제 없으면 결과 페이지로 이동한다.
 	}
-	
+	/**
+	 * 
+	 * 작성자 : 임영학
+	 * 내용 : 
+	 * @param request
+	 * @param pvo
+	 * @return
+	 */
 	@RequestMapping("member_profileUpload.ymv")
 	public ModelAndView profileUpload(HttpServletRequest request, PictureVO pvo){
 		MemberVO memberVO=(MemberVO)request.getSession().getAttribute("mvo");
-		System.out.println("memberVO.getMemberNo : "+memberVO.getMemberNo());
 		MultipartFile file=pvo.getFileName();
 		/*
 		 *  파일 얻는 메서드  : list.get(i) 을 호출하면 File이 반환 
@@ -227,7 +229,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * 작성자 : 백지영
+	 * 작성자 : 백지영, 박병준
 	 * 내용 : 회원정보 수정 폼에서 수정된 회원 정보들을 받아와서 updateMember를 사용해 회원정보를 수정한다.
 	 * 				현재 회원의 회원번호를 사용해서 회원의 정보를 찾는다.
 	 * 				바뀐 회원의 정보를 세션에 setting해주고 "member_update.jsp"로 보내준다.
@@ -240,10 +242,7 @@ public class MemberController {
 		HttpSession session=request.getSession(false);
 		/*MemberVO smvo=(MemberVO)session.getAttribute("mvo");*/
 		memberService.updateMember(mvo);
-		System.out.println("mvo전:"+mvo);
-		System.out.println("mvo 멤버 memberNo:"+mvo.getMemberNo());
 		mvo=memberService.findMemberByMemberNo(mvo.getMemberNo());
-		System.out.println("mvo후:"+mvo);
 		session.setAttribute("mvo",mvo);
 		return new ModelAndView("member_update","mvo",mvo);
 	}

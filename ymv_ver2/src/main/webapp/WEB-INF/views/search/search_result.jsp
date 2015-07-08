@@ -6,21 +6,21 @@
 
 </script>
 
-<h3>검색 결과</h3>
-<br>
+<h3 align="center">검색 결과</h3>
+<br><br>
 <div class="col-md-12">
 	<div class="col-md-12">
 		<table class="table">
 			<colgroup>
 				<col style="width: 10%;" />
-				<col style="width: 20%;" />
+				<col style="width: 40%;" />
 				<col style="width: 10%;" />
-				<col style="width: 20%;" />
-				<col style="width: 20%;" />
-				<col style="width: 20%;" />
+				<col style="width: 10%;" />
+				<col style="width: 15%;" />
+				<col style="width: 15%;" />
 			</colgroup>
+			<h5 style="border-width: thick;">봉사 검색 결과</h5><br>
 			<thead>
-				봉사 검색 결과
 				<tr>
 					<th scope="col">NO</th>
 					<th scope="col">제목</th>
@@ -69,16 +69,24 @@
 <!-- notice 검색 결과-->
 
 <div class="col-md-12">
+	
 	<div class="col-md-12">
 		<table class="table">
+			<colgroup>
+				<col style="width: 10%;" />
+				<col style="width: 40%;" />
+				<col style="width: 17%;" />
+				<col style="width: 17%;" />
+				<col style="width: 17%;" />
+			</colgroup>
 			<thead>
 				공지사항 검색 결과
 				<tr>
-					<th class="boardNo">NO</th>
-					<th class="title">제목</th>
-					<th class="writer">작성자</th>
-					<th class="timePosted">등록시간</th>
-					<th class="hit">조회수</th>
+					<th class="boardNo col">NO</th>
+					<th class="title col">제목</th>
+					<th class="writer col">작성자</th>
+					<th class="timePosted col">등록시간</th>
+					<th class="hit col">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -180,19 +188,18 @@
 				<table class="table">
 					<colgroup>
 						<col style="width: 10%;" />
-						<col style="width: 20%;" />
-						<col style="width: 10%;" />
-						<col style="width: 20%;" />
-						<col style="width: 20%;" />
-						<col style="width: 20%;" />
+						<col style="width: 40%;" />
+						<col style="width: 17%;" />
+						<col style="width: 17%;" />
+						<col style="width: 17%;" />
 					</colgroup>
 					<thead>
 						QnA 검색 목록
 						<tr>
-							<th class="qnaNo">NO</th>
-							<th class="title">제목</th>
-							<th class="writer">작성자</th>
-							<th class="timePosted">작성일</th>
+							<th class="qnaNo col">NO</th>
+							<th class="title col">제목</th>
+							<th class="writer col">작성자</th>
+							<th class="timePosted col">작성일</th>
 							<th class="hit">조회수</th>
 						</tr>
 						<c:forEach var="qvo" items="${requestScope.qvo}">
