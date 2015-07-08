@@ -47,14 +47,16 @@ $(document).ready(function(){
 	
 });
 </script>
-<div class="col-sm-6 col-sm-offset-3">
+<h3 align="center">봉사 상세 글보기</h3>
+<br><br>
+<div class="col-sm-8 col-sm-offset-2" align="center">
 <div class="panel panel-default">
   <div class="panel-body">
-		<table class="col-sm-12">
+		<table class="col-sm-8" style="width: 700px;">
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
-				<td colspan="2"><p>제목 : ${requestScope.rvo.title}</p></td>
+				<td colspan="2" style="font-weight: bold;"><p>제목 : ${requestScope.rvo.title}</p></td>
 			</tr>
 			<tr>
 				<td><p>기업명 : ${requestScope.vo.name}</p></td>
@@ -107,9 +109,9 @@ $(document).ready(function(){
 						</c:otherwise>
 					 </c:choose>
 					</c:if>
-					<c:if test="${sessionScope.mvo.memberType=='admin'}">
+					<%-- <c:if test="${sessionScope.mvo.memberType=='admin'}">
 							<input type="button" class="btn btn-default btn-xs" value="신청하기" id="applicant">
-					</c:if>
+					</c:if> --%>
 					</td>
 			</tr>
 			</tbody>

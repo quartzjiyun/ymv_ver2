@@ -120,16 +120,6 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 		return recruitBoardDAO.findApplicantOkList(recruitNo);
 	}
 	@Override
-	public void findPostingByRecruitNoNotHit(int recruitNo) {
-		recruitBoardDAO.findPostingByRecruitNoNotHit(recruitNo);
-	}
-	@Override
-	public RecruitBoardVO findPostingByRecruitNoUpdateHit(int recruitNo) {
-		// TODO Auto-generated method stub
-		recruitBoardDAO.updateHit(recruitNo);
-		return recruitBoardDAO.findRecruitBoardByrecruitNo(recruitNo);
-	}
-	@Override
 	public MemberVO findMailAddressByMemberNo(int memberNo) {
 		// TODO Auto-generated method stub
 		return recruitBoardDAO.findMailAddressByMemberNo(memberNo);
@@ -168,5 +158,18 @@ public class RecruitBoardServiceImpl implements RecruitBoardService {
 	@Override
 	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo){
 		return recruitBoardDAO.findConfirmBoardByConfirm(cvo);
+	}
+	/**
+	 * StartDate랑 EndDate 쪼개서 타입에 맞추어 대입시켜주는 메소드
+	 */
+	@Override
+	public RecruitBoardVO setDate(RecruitBoardVO recruitbvo) {
+		String StartDate[] = recruitbvo.getStartDate().split(" ");
+		recruitbvo.setStartDate(StartDate[0]);
+		recruitbvo.setStartTime(StartDate[1]);
+		String EndDate[] = recruitbvo.getEndDate().split(" ");
+		recruitbvo.setEndDate(EndDate[0]);
+		recruitbvo.setEndTime(EndDate[1]);
+		return recruitbvo;
 	}
 }

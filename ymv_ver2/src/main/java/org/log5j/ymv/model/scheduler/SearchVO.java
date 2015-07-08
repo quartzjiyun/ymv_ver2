@@ -8,13 +8,14 @@ public class SearchVO {
 	private String endDate;
 	private String endTime;
 	private String pageNo;
+	private String title;
 	public SearchVO() {
 		super();
 	}
-	
-	
+
 	public SearchVO(String field, String location, String startDate,
-			String startTime, String endDate, String endTime, String pageNo) {
+			String startTime, String endDate, String endTime, String pageNo,
+			String title) {
 		super();
 		this.field = field;
 		this.location = location;
@@ -23,8 +24,8 @@ public class SearchVO {
 		this.endDate = endDate;
 		this.endTime = endTime;
 		this.pageNo = pageNo;
+		this.title = title;
 	}
-
 
 	public String getStartTime() {
 		return startTime;
@@ -68,12 +69,21 @@ public class SearchVO {
 	public void setPageNo(String pageNo) {
 		this.pageNo = pageNo;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	@Override
 	public String toString() {
 		return "SearchVO [field=" + field + ", location=" + location
 				+ ", startDate=" + startDate + ", startTime=" + startTime
 				+ ", endDate=" + endDate + ", endTime=" + endTime + ", pageNo="
-				+ pageNo + "]";
+				+ pageNo + ", title=" + title + "]";
 	}
 	
 	

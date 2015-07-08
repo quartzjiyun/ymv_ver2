@@ -12,9 +12,9 @@ public class NoticeBoardDAOImpl implements NoticeBoardDAO {
 	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
 	@Override
-	public List<BoardVO> getNoticeBoardList(String pageNo) {
+	public List<BoardVO> findNoticeBoardList(String pageNo) {
 		// TODO Auto-generated method stub
-		List<BoardVO> list=sqlSessionTemplate.selectList("noticeBoard.getNoticeBoardList",Integer.parseInt(pageNo));
+		List<BoardVO> list=sqlSessionTemplate.selectList("noticeBoard.findNoticeBoardList",Integer.parseInt(pageNo));
 		System.out.println("DAOImpl list: "+ list);
 		return list;
 	}
@@ -31,9 +31,9 @@ public class NoticeBoardDAOImpl implements NoticeBoardDAO {
 	}
 
 	@Override
-	public BoardVO getReviewBoardByBoardNo(int boardNo) {
+	public BoardVO findNoticeBoardByBoardNo(int boardNo) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("noticeBoard.getNoticeBoardByBoardNo",boardNo);
+		return sqlSessionTemplate.selectOne("noticeBoard.findNoticeBoardByBoardNo",boardNo);
 	}
 
 	@Override
@@ -55,9 +55,9 @@ public class NoticeBoardDAOImpl implements NoticeBoardDAO {
 	}
 
 	@Override
-	public PictureVO getPicture(int pictureNo) {
+	public PictureVO findPicture(int pictureNo) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("noticeBoard.getPicture",pictureNo);
+		return sqlSessionTemplate.selectOne("noticeBoard.findPicture",pictureNo);
 	}
 
 	@Override
@@ -66,15 +66,13 @@ public class NoticeBoardDAOImpl implements NoticeBoardDAO {
 		sqlSessionTemplate.delete("noticeBoard.deletePicture",pictureNo);
 	}
 	
-	@Override
-	public NoticeBoardVO getNoticeBoardByBoardNo(int boardNo) {
-		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("noticeBoard.getNoticeBoardByBoardNo", boardNo);
-	}
+
 
 	@Override
 	public void updateHit(int boardNo) {
 		sqlSessionTemplate.update("noticeBoard.updateHit", boardNo);
 		
 	}
+
+
 }

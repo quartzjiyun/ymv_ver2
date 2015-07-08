@@ -6,31 +6,29 @@ public interface ReviewBoardService {
 
 	ReviewBoardVO findByReviewNo(ReviewBoardVO vo);
 
-	ListVO getBoardList(String pageNo);
+	ListVO findReviewBoardList(String pageNo);
 
-	BoardVO getReviewBoardByBoardNo(int boardNo);
+	BoardVO findReviewBoardByBoardNo(int boardNo);
 
 	void registerReviewComment(CommentVO cmvo);
 
-	List<CommentVO> findByCommentNo(String string);
+	List<CommentVO> findCommentListByBoardNo(String string);
 
 	void deleteReviewComment(CommentVO cmvo);
 
-	void reviewBoardUpdate(ReviewBoardVO vo);
+	void updateReviewBoard(ReviewBoardVO vo);
 
 	void deleteReviewBoardComment(String boardNo);
 
-	void reviewBoardDelete(String boardNo);
+	void deleteReviewBoard(String boardNo);
 
 	void registerReviewBoard(ReviewBoardVO vo);
 
 	void registerPicture(PictureVO pvo);
 
-	PictureVO getPicture(int pictureNo);
+	PictureVO findPicture(int pictureNo);
 
 	void deletePicture(int pictureNo);
-
-	CommentVO getReviewBoardCommentByBoardNo(int boardNo);
 	
 	ReviewBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo);
 

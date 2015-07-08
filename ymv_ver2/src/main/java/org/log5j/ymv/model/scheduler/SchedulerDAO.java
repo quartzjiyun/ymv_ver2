@@ -7,41 +7,41 @@ import org.log5j.ymv.model.board.BoardVO;
 
 public interface SchedulerDAO {
 
-	List<BoardVO> getSchedulerList(SchedulerVO sdvo);
+	List<BoardVO> findSchedulerList(SchedulerVO sdvo);
 
 	int totalContent(SearchVO scvo);
 
-	List<BoardVO> getSearchList(SearchVO scvo);
+	List<BoardVO> findSearchList(SearchVO scvo);
 
 	List<HashMap> getDateList(SchedulerVO sdvo);
 
-	SchedulerVO schedulerCheck(String memberNo);
+	SchedulerVO checkScheduler(String memberNo);
 
 	void registerScheduler(SchedulerVO sdvo);
 
 	void updateScheduler(SchedulerVO sdvo);
 
-	int getRecruitTotalContent(String search);
+	int findRecruitTotalContent(String search);
 
-	List<BoardVO> getRecruitBoardList(SearchBoardVO sebvo);
+	List<BoardVO> findRecruitBoardList(SearchBoardVO sebvo);
 
-	int getNoticeBoardTotalContent(String search);
+	int findNoticeBoardTotalContent(String search);
 
-	List<BoardVO> getNoticeBoardList(SearchBoardVO sebvo);
+	List<BoardVO> findNoticeBoardList(SearchBoardVO sebvo);
 
-	List<BoardVO> getReviewBoardList(SearchBoardVO sebvo);
+	List<BoardVO> findReviewBoardList(SearchBoardVO sebvo);
 
-	int getReviewBoardTotalContent(String search);
+	int findReviewBoardTotalContent(String search);
 
-	List<BoardVO> getQnABoardList(SearchBoardVO sebvo);
+	List<BoardVO> findQnABoardList(SearchBoardVO sebvo);
 
-	int getQnABoardTotalContent(String search);
+	int findQnABoardTotalContent(String search);
 
-	List<BoardVO> getThRecruitBoardList(String search);
+	List<BoardVO> findThreeRecruitBoardList(String search);
 
-	List<BoardVO> getThNoticeBoardList(String search);
+	List<BoardVO> findThreeNoticeBoardList(String search);
 
-	List<BoardVO> getThReviewBoardList(String search);
+	List<BoardVO> findThreeReviewBoardList(String search);
 
-	List<BoardVO> getThQnABoardList(String search);
+	List<BoardVO> findThreeQnABoardList(String search);
 }

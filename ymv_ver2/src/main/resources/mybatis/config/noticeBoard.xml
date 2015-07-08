@@ -13,13 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="findByNoticeBoardNo" parameterType="int" resultType="nbvo">
        select * from board where board_no=#{value}
     </select>
-    <select id="getNoticeBoardList" resultType="nbvo">
+    <select id="findNoticeBoardList" resultType="nbvo">
     	select boardNo, title, writer, content, memberNo, timePosted, hit from(select boardNo, title, writer, content, memberNo, timePosted, hit, CEIL(rownum/5) AS page from(select board_no as boardNo, title, writer, content, member_no as memberNo, time_posted as timePosted, hit from board where board_type='notice' order by boardNo desc)) where page=#{value}
     </select>
     <select id="totalContent" resultType="int">
     	select count(*) from board where board_type='notice'
     </select>
-    <select id="getNoticeBoardByBoardNo" resultMap="boardRM" resultType="nbvo">   
+    <select id="findNoticeBoardByBoardNo" resultMap="boardRM" resultType="nbvo">   
 		select board_no, title, writer, content, member_no, time_posted,hit from board where board_no=#{value}
 	</select>
 	
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="registerPicture" parameterType="pvo">
 		insert into PICTURE(picture_no, file_path) values(#{pictureNo},#{filePath})
 	</insert>
-	<select id="getPicture" parameterType="int" resultType="pvo">
+	<select id="findPicture" parameterType="int" resultType="pvo">
 		select picture_no as pictureNo, file_path as filePath from picture where picture_no=#{value}
 	</select>
 	<delete id="deletePicture" parameterType="int">

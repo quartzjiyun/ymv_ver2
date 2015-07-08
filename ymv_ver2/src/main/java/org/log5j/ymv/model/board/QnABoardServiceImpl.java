@@ -10,10 +10,10 @@ public class QnABoardServiceImpl implements QnABoardService {
 	@Resource(name="qnABoardDAOImpl")
 	private QnABoardDAO qnABoardDAO;
 	@Override
-	public ListVO getQnABoardList(String pageNo) {
+	public ListVO findQnABoardList(String pageNo) {
 		if(pageNo==null||pageNo=="") 
 			pageNo="1";
-		List<BoardVO> list=qnABoardDAO.getQnABoardList(pageNo);
+		List<BoardVO> list=qnABoardDAO.findQnABoardList(pageNo);
 		int total=qnABoardDAO.totalContent();
 		PagingBean paging=new PagingBean(total,Integer.parseInt(pageNo));
 		ListVO lvo=new ListVO(list,paging);
@@ -24,8 +24,8 @@ public class QnABoardServiceImpl implements QnABoardService {
 		qnABoardDAO.registerQnABoard(qvo);
 	}
 	@Override
-	public QnABoardVO getQnABoardByQnANo(int qnaNo){
-		return qnABoardDAO.getQnABoardByQnANo(qnaNo);
+	public QnABoardVO findQnABoardByQnANo(int qnaNo){
+		return qnABoardDAO.findQnABoardByQnANo(qnaNo);
 	}
 	@Override
 	public void updateQnABoard(QnABoardVO qnABoardVO){
@@ -50,13 +50,13 @@ public class QnABoardServiceImpl implements QnABoardService {
 	}
 	
 	@Override
-	public void getPostingByQnaNoNotHit(int qnaNo) {
+	public void findQnABoardByQnaNoNotHit(int qnaNo) {
 		// TODO Auto-generated method stub
-		qnABoardDAO.getPostingByQnaNoNotHit(qnaNo);
+		qnABoardDAO.findQnABoardByQnaNoNotHit(qnaNo);
 	}
 	@Override
-	public QnABoardVO getPostingByQnaNoUpdateHit(int qnaNo) {
+	public QnABoardVO findQnABoardByQnaNoUpdateHit(int qnaNo) {
 		qnABoardDAO.updateHit(qnaNo);
-		return qnABoardDAO.getQnABoardByQnANo(qnaNo);
+		return qnABoardDAO.findQnABoardByQnANo(qnaNo);
 	}
 }

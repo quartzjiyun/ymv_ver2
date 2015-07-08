@@ -38,19 +38,20 @@ $(document).ready(function(){
            memberNoList+=$(this).val() + ",";
         });
         $("#memberList").val(memberNoList);
-		alert(memberNoList);
 		$("#checkForm").submit();
 	});
 });
 </script>
-<div class="col-sm-6 col-sm-offset-3">
+<h3 align="center">봉사 상세 글보기</h3>
+  	<br><br>
+<div class="col-sm-8 col-sm-offset-2" align="center">
 <div class="panel panel-default">
   <div class="panel-body">
-		<table class="table table-hover" class="col-sm-12">
+		<table class="col-sm-8" style="width: 700px;">
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
-				<td colspan="2"><p>제목 : ${requestScope.rvo.title}</p></td>
+				<td colspan="2" style="font-weight: bold;"><p>제목 : ${requestScope.rvo.title}</p></td>
 			</tr>
 			<tr>
 				<td><p>기업명 : ${requestScope.vo.name}</p></td>
@@ -107,11 +108,12 @@ $(document).ready(function(){
 					</c:if></td>
 			</tr>
 			</tbody>
+
 		</table>
-		</div></div>
+</div></div></div>
 		<br>
 		<br> <span id="motivateForm"></span>
-	</div>
+
 
 
  <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-hidden="true">
@@ -125,6 +127,7 @@ $(document).ready(function(){
       	<form action="voluntary_applicantOK.ymv" id="checkForm" method="get">
         <p id = "applicant_modal"></p>
         <input type="hidden" id="memberList" name="memberList" value="">
+        <input type="hidden" name="title" value="${requestScope.rvo.title}">
         <button type="button" class="btn btn-primary"  id="memberBtn" >신청자 뽑기</button>
         </form>
       </div>

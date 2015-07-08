@@ -21,20 +21,17 @@
 			<table class="table table-hover">
 				<tr>
 					<td><b> 글번호 <input type=text name=boardNo
-							value=${requestScope.rvo.boardNo } readonly="readonly"></input> |
+							value="${requestScope.rvo.boardNo }" readonly="readonly"></input> 
+						&nbsp;&nbsp;&nbsp;	| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							작성자 <input type=text name=writer
-							value=${requestScope.rvo.writer } readonly="readonly"></input>
+							value="${requestScope.rvo.writer }" readonly="readonly"></input>
 					</b></td>
 				</tr>
 
 				<tr>
-					<td>제목 <input type=text name=title
-						value=${requestScope.rvo.title }></input>
+					<td>제목: <input type=text name=title
+						value="${requestScope.rvo.title }" size="68"></input>
 					</td>
-				</tr>
-				<tr>
-					<td><font size="3">등록시간 : ${requestScope.rvo.timePosted }
-							조회수 : ${requestScope.rvo.hit } </font></td>
 				</tr>
 				<tr>
 					<td><textarea rows="15" cols="75" name="content">${requestScope.rvo.content }</textarea>

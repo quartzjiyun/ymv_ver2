@@ -23,12 +23,17 @@ public class AroundAspect {
 	
 	private Logger log=LoggerFactory.getLogger(getClass());
 	
-	/*@Before("execution(public * org.log5j..VoluntaryServiceApplicateServiceImpl*.reg*(..))")
-	public void beforeLog(JoinPoint point){
-		System.out.println("aop 실행~~!!!!!!!!!!!!!!!!!!");
-		log.info("aop 실행~~");
-	}*/
-	
+	/**
+	 * 작성자 : 백지영
+	 * 내용 : execution는 접근제어자는 public이며 return type은 상관없고 org.log5j 아래의 
+	 * 				VoluntaryServiceApplicateService클래스의 reg로 시작하는 메서드 실행시 수행된다.
+	 * 				param[0]은 받아온 매개변수를 저장하는데 VoluntaryServiceApplicateVO에 그 정보를 담아준다.
+	 * 				받아온 정보 중 findIdentityNoByMemberNo를 사용해 회원번호로 해당 회원의 생년월일을 가져오고
+	 * 				findFieldByRecruitNo를 사용해 글 번호로 해당 글의 분야를 받아온다.
+	 *				saveStatistics를 이용해 조건에 따라 update, insert를 해준다.
+	 * @param point : JoinPoint는 호출되는 대상 객체, 메서드, 전달되는 파라미터 목록에 접근할 수 있는 메서드를 제공
+	 * @throws SQLException
+	 */
 	@After("execution(public * org.log5j..VoluntaryServiceApplicateService.reg*(..))")
 	public void afterLog(JoinPoint point) throws SQLException{
 		Object param[]=point.getArgs();// 메서드 인자값 - 매개변수

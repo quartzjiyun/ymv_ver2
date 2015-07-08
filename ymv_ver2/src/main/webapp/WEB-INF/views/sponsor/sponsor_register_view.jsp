@@ -21,13 +21,14 @@
 </script>
     <h3>
 		<p class="text-center">후원등록</p>
+		<br>
 	</h3>
 <div class="col-md-6 col-sm-offset-3">
 <form action="sponsor_register.ymv" enctype="multipart/form-data" method="post">
 	<table class="table table-striped table-hover">
 				<tr>
 					<th class="info"><h4 class="text-center">제목</h4></th>
-					<td><input type="text" name="title" id="title"></td>
+					<td><input type="text" name="title" id="title" size="46"></td>
 				</tr>
 				<tr>
 					<th class="info"><h4 class="text-center">파일업로드</h4></th>
@@ -49,9 +50,11 @@
 				</tr>
 				<tr>
 					<th class="info"><h4 class="text-center">목표금액</h4></th>
-					<td><input type="text" name="targetPrice"></td>
+					<td>$<input type="text" name="targetPrice"></td>
 				</tr>
 			</table>
-<input type="submit" class ="btn btn-primary" value="등록">
+<div align="right">
+	<input type="submit" class ="btn btn-primary" value="등록">
+</div>
 </form>
 </div>

@@ -9,11 +9,11 @@
 		<colgroup>
 			<col style="width: 6%;" />
 			<col style="width: 10%;" />
-			<col style="width: 19%;" />
-			<col style="width: 15%;" />
-			<col style="width: 10%;" />
-			<col style="width: 20%;" />
-			<col style="width: 20%;" />
+			<col style="width: 27%;" />
+			<col style="width: 14%;" />
+			<col style="width: 7%;" />
+			<col style="width: 18%;" />
+			<col style="width: 18%;" />
 		</colgroup>
 		<thead>
 			<tr>
@@ -34,13 +34,13 @@
 						<c:when test="${bvo.mojib=='모집중'}">
 						<td><img src="${initParam.root}img/recruiting.jpg"></td>
 						<td>
-							<a href="${initParam.root}voluntary_show_content_recruit_vol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }">${bvo.title }</a>
+							<a href="${initParam.root}voluntary_show_content_recruit_vol_type.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }">${bvo.title }</a>
 						</td>
 						</c:when>
 						<c:otherwise>
 							<td><img src="${initParam.root}img/recruitfin.jpg"></td>						
 							<td>
-								<a href="${initParam.root}voluntary_show_content_recruit_vol.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"> ${bvo.title }</a>
+								<a href="${initParam.root}voluntary_show_content_recruit_vol_type.ymv?memberNo=${sessionScope.mvo.memberNo }&recruitNo=${bvo.recruitNo}&mojib=${bvo.mojib }"> ${bvo.title }</a>
 							</td>
 						</c:otherwise>
 						</c:choose>

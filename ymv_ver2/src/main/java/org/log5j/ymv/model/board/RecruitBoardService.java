@@ -24,8 +24,6 @@ public interface RecruitBoardService {
 	public ListVO findNormalBoardList(CompanyVO cpvo);
 	public void registerApplicantOK(ApplicantListVO alvo);
 	public List<ApplicantListVO> findApplicantOkList(int recruitNo);
-	public void findPostingByRecruitNoNotHit(int recruitNo);
-	public RecruitBoardVO findPostingByRecruitNoUpdateHit(int recruitNo);
 	public MemberVO findMailAddressByMemberNo(int memberNo);
 	public void registerConfirm(ConfirmVO confirmvo);
 	public void registerConfirmBoard(ConfirmBoardVO confirmbvo);
@@ -33,4 +31,5 @@ public interface RecruitBoardService {
 	public void deleteVoluntaryServiceApplicateByRecruitNo(int recruitNo);
 	public ListVO findConfirmBoardListByMemberNo(ConfirmPageVO confirmPageVO);
 	public ConfirmBoardVO findConfirmBoardByConfirm(ConfirmVO cvo);
+	public RecruitBoardVO setDate(RecruitBoardVO recruitbvo);
 }

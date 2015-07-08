@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="startDate" column="start_date"/>
 		<result property="endDate" column="end_date"/>
 	</resultMap>
- <select id="getSponsorList" resultMap="sponsorRM">
+ <select id="findSponsorList" resultMap="sponsorRM">
  	select board_no,title,content,target_price,current_price,percentage,to_char(start_date,'YYYY-MM-DD')as start_date,to_char(end_date,'YYYY-MM-DD')as end_date from
 	(select board_no,title,content,target_price,current_price,ceil(rownum/3) as page,ceil(current_price/target_price*100)as percentage,start_date,end_date from (select * from sponsor order by board_no desc))
 	where page=#{value}
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id="registerPicture" parameterType="pvo">
 	insert into PICTURE(picture_no, file_path) values(#{pictureNo},#{filePath})
 </insert>
-<select id="getPictureList" parameterType="int" resultType="pvo">
+<select id="findPictureList" parameterType="int" resultType="pvo">
 	select picture_no as pictureNo, file_path as filePath 
 	from picture p,(select board_no,ceil(rownum/3) as page from(select * from sponsor order by board_no desc)) s
 	where p.picture_no=s.board_no and page=#{value}

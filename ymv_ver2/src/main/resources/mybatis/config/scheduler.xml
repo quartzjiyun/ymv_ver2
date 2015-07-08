@@ -9,22 +9,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="endDate" column="end_date" />
 		<result property="checkDate" column="check_date"/>
 	</resultMap>
-	<select id="getSchedulerList" resultMap="boardRM" parameterType="sdvo">
-		select recruit_no, title, field, location, age, start_date, end_date,to_char(start_date,'YYYY-MM-DD') as check_date
+	<select id="findSchedulerList" resultMap="boardRM" parameterType="sdvo">
+		select recruit_no, title, field, location, age, to_char(start_date,'YYYY-MM-DD HH24:MI') as start_date,to_char(end_date,'YYYY-MM-DD HH24:MI') as end_date,to_char(start_date,'YYYY-MM-DD') as check_date
 		from(select recruit_no, title, field,location, age,start_date, end_date,to_char(start_date,'HH24:MI') as startDate,to_char(end_date,'HH24:MI') as endDate from recruit order by recruit_no desc)
 		<where>
-			<if test="field!='' or field!=null">
+			<if test="field!='' ">
 				AND field=#{field}
 			</if>
-			<if test="location!='' or location!=null">
+			<if test="location!='' ">
 				AND location=#{location}
 			</if>
-			<if test="startDate!='' or startDate!=null">
+			<if test="startDate!='' ">
   			<![CDATA[
    			 AND startDate>=#{startDate} 
     		 ]]>
 			</if>
-			<if test="endDate!='' or endDate!=null">
+			<if test="endDate!='' ">
   			<![CDATA[
    			 AND endDate<=#{endDate}
     		 ]]>
@@ -32,8 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 		
 	</select>
-	<select id="getSearchList" resultMap="boardRM" parameterType="scvo">
-		select recruit_no, title, field, location, age, start_date, end_date
+	<select id="findSearchList" resultMap="boardRM" parameterType="scvo">
+		select recruit_no, title, field, location, age, to_char(start_date,'YYYY-MM-DD HH24:MI') as start_date,to_char(end_date,'YYYY-MM-DD HH24:MI') as end_date
 		from(select recruit_no, title, field, location, age, start_date,
 		end_date,
 		ceil(rownum/5) as page from(select recruit_no, title, field,
@@ -55,6 +55,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   			<![CDATA[
    			 AND to_char(end_date,'YYYY-MM-DD')<=#{endDate}
     		 ]]>
+			</if>
+			<if test="title != ''">
+			AND title like '%${title}%'
 			</if>
 		</where>
 		order by recruit_no desc) )
@@ -79,24 +82,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    			 AND end_date<=#{endDate}
     		 ]]>
 			</if>
+			<if test="title != ''">
+			AND title like '%${title}%'
+			</if>
 		</where>
 	</select>
 	<select id="getDateList" parameterType="sdvo" resultType="hashMap">
 		select distinct(to_char(start_date,'YYYY-MM-DD')) as date_list from (
 		select start_date,to_char(start_date,'HH24:MI') as startDate,to_char(end_date,'HH24:MI') as endDate,field,location from recruit)
 		<where>
-			<if test="field !='' or field!=null">
+			<if test="field !='' ">
 				AND field=#{field}
 			</if>
-			<if test="location !='' or location!=null">
+			<if test="location !='' ">
 				AND location=#{location}
 			</if>
-			<if test="startDate != '' or startDate!=null">
+			<if test="startDate != '' ">
   			<![CDATA[
    			 AND startDate>=#{startDate} 
     		 ]]>
 			</if>
-			<if test="endDate != '' or endDate!=null">
+			<if test="endDate != '' ">
   			<![CDATA[
    			 AND endDate<=#{endDate}
     		 ]]>
@@ -109,7 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="startDate" column="start_date"/>
 		<result property="endDate" column="end_date"/>
 	</resultMap>
-	<select id="schedulerCheck" resultMap="schedulerRM" parameterType="String">
+	<select id="checkScheduler" resultMap="schedulerRM" parameterType="String">
 		select * from scheduler where member_no=#{value}
 	</select>
 	<insert id="registerScheduler" parameterType="sdvo">

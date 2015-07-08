@@ -6,7 +6,13 @@
 		<p class="text-center">공지사항</p>
 	</h3>
 	<table class="table table-striped table-hover">
-		<%-- 		<caption>목록</caption> --%>
+		<colgroup>
+			<col style="width: 10%;" />
+			<col style="width: 40%;" />
+			<col style="width: 17%;" />
+			<col style="width: 17%;" />
+			<col style="width: 17%;" />
+		</colgroup>
 		<thead>
 			<tr>
 				<th class="boardNo">NO</th>

@@ -4,19 +4,18 @@ import java.util.List;
 
 public interface ReviewBoardDAO {
 	ReviewBoardVO findByReviewNo(ReviewBoardVO vo);
-	List<BoardVO> getBoardList(String pageNo);
+	List<BoardVO> findReviewBoardList(String pageNo);
 	int totalContent();
-	BoardVO getReviewBoardByBoardNo(int boardNo);
+	BoardVO findReviewBoardByBoardNo(int boardNo);
 	void registerReviewComment(CommentVO cmvo);
-	List<CommentVO> findByCommentNo(String boardNo);
+	List<CommentVO> findCommentListByBoardNo(String boardNo);
 	void deleteReviewComment(CommentVO cmvo);
-	void reviewBoardUpdate(ReviewBoardVO vo);
-	void reviewBoardDelete(String boardNo);
+	void updateReviewBoard(ReviewBoardVO vo);
+	void deleteReviewBoard(String boardNo);
 	void deleteReviewBoardComment(String boardNo);
 	void registerReviewBoard(ReviewBoardVO vo);
 	void registerPicture(PictureVO pvo);
-	PictureVO getPicture(int pictureNo);
+	PictureVO findPicture(int pictureNo);
 	void deletePicture(int pictureNo);
-	CommentVO getReviewBoardCommentByBoardNo(int boardNo);
 	void updateHit(int boardNo);
 }

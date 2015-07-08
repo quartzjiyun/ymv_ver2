@@ -11,115 +11,65 @@ import javax.servlet.http.HttpServletResponse;
 import org.log5j.ymv.model.board.BoardVO;
 import org.log5j.ymv.model.board.CommentVO;
 import org.log5j.ymv.model.board.ListVO;
+import org.log5j.ymv.model.board.NoticeBoardVO;
 import org.log5j.ymv.model.board.PictureVO;
 import org.log5j.ymv.model.board.ReviewBoardService;
 import org.log5j.ymv.model.board.ReviewBoardVO;
+import org.log5j.ymv.model.cookie.CookieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
+/**
+ * 후기게시판
+ * @author jjh
+ *
+ */
 @Controller
 public class ReviewBoardController {
 	@Resource
 	private ReviewBoardService reviewBoardService;
 	@Resource(name="uploadPath")
 	private String path;
+	@Resource
+	private CookieService cookieService;
 	
-	@RequestMapping("home.ymv")
-	@NoLoginCheck
-	public String test(){
-		return "index";
-	}
-	@RequestMapping("loginCheck.ymv")
-	@NoLoginCheck
-	public String loginCheck(){
-		return "loginCheck";
-	}
-	@RequestMapping("testTiles.ymv")
-	@NoLoginCheck
-	public String testTiles(){
-		return "home";
-	}
+	/**
+	 * 
+	 * 작성자 : 전진한
+	 * 내용 : pageNo를 이용하여 해당하는 페이지의 후기 게시글과 페이지 정보를 반환한다. 
+	 * @param pageNo : 현재 페이지 번호를 받아온다.
+	 * @return
+	 */
 	@RequestMapping("review_board.ymv")
 	@NoLoginCheck
 	public ModelAndView reviewBoard(String pageNo) {	
-		ListVO lvo = reviewBoardService.getBoardList(pageNo);
-		System.out.println(lvo+"컨틀롤러");
+		ListVO lvo = reviewBoardService.findReviewBoardList(pageNo);
 		return new ModelAndView("review_board","lvo",lvo);
 	}
-	/*@RequestMapping("review_showContent.ymv")
-	@NoLoginCheck
-	   public String showContentReview(HttpServletRequest request,Model model){
-	      int boardNo=Integer.parseInt(request.getParameter("boardNo"));
-	      int pictureNo=boardNo;
-	      System.out.println("boardNo:"+boardNo);
-	      BoardVO rvo=reviewBoardService.getReviewBoardByBoardNo(boardNo);
-	      List<CommentVO> commentList=reviewBoardService.findByCommentNo(request.getParameter("boardNo"));
-	      System.out.println("pictureNo: "+pictureNo);
-	      PictureVO pvo=reviewBoardService.getPicture(pictureNo);
-	      if(pvo!=null){
-	    	  model.addAttribute("pvo",pvo);
-	      }
-	      System.out.println("pvo: " + pvo);
-	      model.addAttribute("rvo", rvo).addAttribute("commentList", commentList);
-	      return "review_show_content";
-	   }*/
-	
-
+	/**
+	 * 
+	 * 작성자 : 전진한
+	 * 내용 : 쿠키를 사용하여 조회수를 개인당 한번만 허용하고 게시판 상세정보,사진정보,댓글 정보를 반환한다.
+	 * @param request : boardNo를 받아오고 쿠키 정보를 받기 위해 사용
+	 * @param response : 쿠키를 사용자에게 생성하기 위해 사용
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("review_showContent.ymv")
 	@NoLoginCheck
-	 public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	 public ModelAndView reviewShowContent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv=new ModelAndView();
 		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
-		 System.out.println("review_showContent boardNo: " + boardNo);
 		 int pictureNo=boardNo;
 		BoardVO bvo=null;
-		// 개별 게시물 조회 ( 조회수 증가 )
-		Cookie cookies[] = request.getCookies();
-		Cookie cookie = null;
-
-		if (cookies == null || cookies.length == 0) {
-			cookie = new Cookie("myboard", "|" + boardNo + "|");
-			response.addCookie(cookie);
-			System.out.println(" 쿠키가 존재하지 않은 상태");
-
-		} else {
-			for (int i = 0; i < cookies.length; i++) {
-				if (cookies[i].getName().equals("myboard")) {
-					cookie = cookies[i];
-					break;
-				}
-			}
-			if (cookie == null) {
-				// 쿠키가 존재하는데 myboard가 없을때
-				cookie = new Cookie("myboard", "|" + boardNo + "|");
-				response.addCookie(cookie);
-				reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);//BoardDAO.getInstance().updateHit(boardNo);
-			/*	BoardVO bvo=reviewBoardService.getReviewBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);*/				
-				System.out.println("쿠키가 존재하지만 myboard 쿠키가 존재하지 않은 상태");
-			} else {// 쿠키가 존재하는데 myboard가 있을때
-				String value = cookie.getValue();
-				System.out.println("쿠키 존재하고 myboard 쿠키가 존재하는 상태");
-				if (value.indexOf("|" + boardNo + "|") != -1) {
-					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하는 상태
-					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재..조회수 증가x");
-					//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
-				} else {
-					// myboard cookie의 value 정보에서 해당 게시글 번호가 존재하지 않은 상태
-					value += "|" + boardNo + "|";
-					System.out.println("myboard 쿠키에 해당 게시글 번호가 존재x..조회수 증가0");
-					reviewBoardService.getPostingByNoticeBoardNoUpdateHit(boardNo);//BoardDAO.getInstance().updateHit(boardNo);
-					//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
-					response.addCookie(new Cookie("myboard", value));
-				}// else1
-			}// else2
-			
-		}// else3
-		bvo=reviewBoardService.getReviewBoardByBoardNo(boardNo);//vo = BoardDAO.getInstance().getPostingByNo(boardNo);
-		List<CommentVO> commentList=reviewBoardService.findByCommentNo(request.getParameter("boardNo"));
-		PictureVO pvo=reviewBoardService.getPicture(pictureNo);
-		System.out.println("review_showContent commentList : "+ commentList);
+		Cookie[] cookies = request.getCookies();
+		Cookie cookie = cookieService.cookieSerivce(cookies, boardNo,
+				new NoticeBoardVO());
+		response.addCookie(cookie);
+		bvo=reviewBoardService.findReviewBoardByBoardNo(boardNo);
+		List<CommentVO> commentList=reviewBoardService.findCommentListByBoardNo(request.getParameter("boardNo"));
+		PictureVO pvo=reviewBoardService.findPicture(pictureNo);
 		if(pvo!=null){
 			mv.addObject("pvo",pvo);
 	    }
@@ -127,56 +77,90 @@ public class ReviewBoardController {
 		mv.setViewName("review_show_content");
 		 return mv;
 }
-	
-	
+	/**
+	 * 
+	 * 작성자 : 전진한
+	 * 내용 : review 게시판에 작성한 댓글을 등록하고 해당 페이지로 다시 이동
+	 * @param cmvo : 댓글의 정보를 받아오기 위해 사용(댓글번호,글번호,작성자,내용)
+	 * @return
+	 */
 	@RequestMapping("register_review_comment.ymv")
-	public String registerReviewComment(HttpServletRequest request,CommentVO cmvo){
+	public String registerReviewComment(CommentVO cmvo){
 		reviewBoardService.registerReviewComment(cmvo);
-		System.out.println(cmvo+" register_review_comment.ymv");
 		return "redirect:review_showContent.ymv?boardNo="+cmvo.getBoardNo();
 	}
+	/**
+	 * 
+	 * 작성자 : 전진한
+	 * 내용 : 
+	 * @param cmvo : 댓글의 정보를 받아오기 위해 사용(댓글 번호,글번호)
+	 * @return
+	 */
 	@RequestMapping("delete_review_comment.ymv")
 	public String deleteReviewComment(CommentVO cmvo){
 		reviewBoardService.deleteReviewComment(cmvo);
 		return "redirect:review_showContent.ymv?boardNo="+cmvo.getBoardNo();
 	}
+	/**
+	 * 
+	 * 작성자 : 전진한
+	 * 내용 : 게시글 번호로 조회하고 게시글의 정보를 수정페이지(review_board_update_view.jsp)으로 반환한다.
+	 * @param boardNo : 해당 게시글 번호를 받아오기위해 사용.
+	 * @return
+	 */
 	@RequestMapping("review_board_update_view.ymv")
 	public ModelAndView reviewBoardUpdateView(int boardNo) {
-		System.out.println("boardNo 는 "+boardNo);
-		ReviewBoardVO reviewbvo = (ReviewBoardVO) reviewBoardService.getReviewBoardByBoardNo(boardNo);
-		System.out.println("reviewbvo 는 " + reviewbvo);
-		return new ModelAndView("review_board_update_view","rvo"
-				,reviewbvo);
+		ReviewBoardVO reviewbvo = (ReviewBoardVO) reviewBoardService.findReviewBoardByBoardNo(boardNo);
+		return new ModelAndView("review_board_update_view","rvo",reviewbvo);
 	}
-
+	/**
+	 * 
+	 * 작성자 : 전진한
+	 * 내용 : 게시물을 수정한 후 글번호를 이용해 redirect 사용하여 상세글보기로 이동
+	 * @param rbvo : 후기게시글의 수정된 상세 정보를 받아옴.
+	 * @return
+	 */
 	@RequestMapping("review_board_update.ymv")
-	public ModelAndView reviewBoardUpdate(ReviewBoardVO vo){
-		ModelAndView mv=new ModelAndView();
-		reviewBoardService.reviewBoardUpdate(vo);
-		mv.setViewName("redirect:review_showContent.ymv?boardNo="+vo.getBoardNo());
-		mv.addObject("rvo", vo);
-		return mv;
+	public ModelAndView reviewBoardUpdate(ReviewBoardVO rbvo){
+		reviewBoardService.updateReviewBoard(rbvo);
+		return new ModelAndView("redirect:review_showContent.ymv?boardNo="+rbvo.getBoardNo(),"rvo",rbvo);
 	}
-	
+	/**
+	 * 
+	 * 작성자 : 전진한
+	 * 내용 : 게시글을 삭제하는 메서드, 해당 글을 참조하고 있는 사진 및 댓글도 삭제한다.
+	 * @param boardNo : 해당 게시판의 번호를 받아온다.
+	 * @return
+	 */
 	@RequestMapping("review_board_delete.ymv")
 	public ModelAndView reviewBoardDelete(String boardNo){
 		reviewBoardService.deleteReviewBoardComment(boardNo);
-		reviewBoardService.reviewBoardDelete(boardNo);
+		reviewBoardService.deleteReviewBoard(boardNo);
 		int pictureNo=Integer.parseInt(boardNo);
 		reviewBoardService.deletePicture(pictureNo);
 		return new ModelAndView("redirect:review_board.ymv");
 	}
-	
+	/**
+	 * 
+	 * 작성자 : 전진한
+	 * 내용 : 게시글 작성 페이지로 이동한다.
+	 * @return
+	 */
 	@RequestMapping("review_register_view.ymv")
 	public ModelAndView reviewRegisterView(){
-		
 		return new ModelAndView("review_register_view");
 	}
+	/**
+	 * 
+	 * 작성자 : 전진한, 임영학
+	 * 내용 : 입력받은 상세정보와 사진정보를 등록하는 메서드
+	 * @param rbvo : 게시판의 상세 정보를 받아온다.
+	 * @param pvo : 게시판의 사진정보를 받아온다.
+	 * @return
+	 */
 	@RequestMapping("review_register.ymv")
-	public ModelAndView reviewRegister(ReviewBoardVO vo,PictureVO pvo){
-		System.out.println("ReviewBoardVO: "+vo);
-		reviewBoardService.registerReviewBoard(vo);
-		System.out.println("userInfo:"+vo.getBoardNo());
+	public ModelAndView reviewRegister(ReviewBoardVO rbvo,PictureVO pvo){
+		reviewBoardService.registerReviewBoard(rbvo);
 		MultipartFile file=pvo.getFileName();
 		/*
 		 *  파일 얻는 메서드  : list.get(i) 을 호출하면 File이 반환 
@@ -184,26 +168,20 @@ public class ReviewBoardController {
 		 *  ModelAndView 에서 결과 페이지로 업로드한 파일 정보를 문자열배열로
 		 *  할당해 jsp에서 사용하도록 한다. 
 		 */
-		/*ArrayList<String> nameList=new ArrayList<String>();
-		for(int i=0;i<list.size();i++){*/
-			//System.out.println(list.get(i).getOriginalFilename().equals(""));
-			String fileName="["+vo.getBoardNo()+"]"+file.getOriginalFilename();			
-			String filePath="upload\\"+fileName;
-			pvo.setFilePath(filePath);
-			pvo.setPictureNo(vo.getBoardNo());
-			if(!fileName.equals("")){
-				try {
-					file.transferTo(new File(path+fileName));
-					// 픽쳐 디비에 파일정보 저장
-					System.out.println("PictureNo: "+pvo.getPictureNo()+" fileName: "+pvo.getFileName());
-					reviewBoardService.registerPicture(pvo);
-					/*nameList.add(fileName);*/
-					System.out.println("fileupload ok:"+fileName);
-				} catch (Exception e) {					
-					e.printStackTrace();
-				}
+		String fileName = "[" + rbvo.getBoardNo() + "]"+ file.getOriginalFilename();
+		String filePath = "upload\\" + fileName;
+		pvo.setFilePath(filePath);
+		pvo.setPictureNo(rbvo.getBoardNo());
+		if (!fileName.equals("")) {
+			try {
+				file.transferTo(new File(path + fileName));
+				// 픽쳐 디비에 파일정보 저장
+				reviewBoardService.registerPicture(pvo);
+				System.out.println("pvo123:"+pvo);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-
+		}
 		return new ModelAndView("redirect:review_board.ymv");
-}
+	}
 }

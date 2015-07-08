@@ -18,10 +18,10 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	}
 
 	@Override
-	public ListVO getBoardList(String pageNo) {
+	public ListVO findReviewBoardList(String pageNo) {
 		if (pageNo == null || pageNo == "")
 			pageNo = "1";
-		List<BoardVO> list = reviewBoardDAO.getBoardList(pageNo);
+		List<BoardVO> list = reviewBoardDAO.findReviewBoardList(pageNo);
 		int total = reviewBoardDAO.totalContent();
 		PagingBean paging = new PagingBean(total, Integer.parseInt(pageNo));
 		ListVO lvo = new ListVO(list, paging);
@@ -29,8 +29,8 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	}
 
 	@Override
-	public BoardVO getReviewBoardByBoardNo(int boardNo) {
-		return reviewBoardDAO.getReviewBoardByBoardNo(boardNo);
+	public BoardVO findReviewBoardByBoardNo(int boardNo) {
+		return reviewBoardDAO.findReviewBoardByBoardNo(boardNo);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	}
 
 	@Override
-	public List<CommentVO> findByCommentNo(String boardNo) {
-		return reviewBoardDAO.findByCommentNo(boardNo);
+	public List<CommentVO> findCommentListByBoardNo(String boardNo) {
+		return reviewBoardDAO.findCommentListByBoardNo(boardNo);
 	}
 
 	@Override
@@ -49,13 +49,13 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	}
 
 	@Override
-	public void reviewBoardUpdate(ReviewBoardVO vo) {
-		reviewBoardDAO.reviewBoardUpdate(vo);
+	public void updateReviewBoard(ReviewBoardVO vo) {
+		reviewBoardDAO.updateReviewBoard(vo);
 	}
 
 	@Override
-	public void reviewBoardDelete(String boardNo) {
-		reviewBoardDAO.reviewBoardDelete(boardNo);
+	public void deleteReviewBoard(String boardNo) {
+		reviewBoardDAO.deleteReviewBoard(boardNo);
 	}
 
 	@Override
@@ -70,32 +70,23 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 
 	@Override
 	public void registerPicture(PictureVO pvo) {
-		// TODO Auto-generated method stub
 		reviewBoardDAO.registerPicture(pvo);
 	}
 
 	@Override
-	public PictureVO getPicture(int pictureNo) {
-		// TODO Auto-generated method stub
-		return reviewBoardDAO.getPicture(pictureNo);
+	public PictureVO findPicture(int pictureNo) {
+		return reviewBoardDAO.findPicture(pictureNo);
 	}
 
 	@Override
 	public void deletePicture(int pictureNo) {
-		// TODO Auto-generated method stub
 		reviewBoardDAO.deletePicture(pictureNo);
 	}
 
 	@Override
-	public CommentVO getReviewBoardCommentByBoardNo(int boardNo) {
-		System.out.println("service getReviewBoardCommentByBoardNo boardNo: "+boardNo);
-		return reviewBoardDAO.getReviewBoardCommentByBoardNo(boardNo);
-	}
-	
-	@Override
 	public ReviewBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo) {
 		reviewBoardDAO.updateHit(boardNo);
-		return (ReviewBoardVO) reviewBoardDAO.getReviewBoardByBoardNo(boardNo);
+		return (ReviewBoardVO) reviewBoardDAO.findReviewBoardByBoardNo(boardNo);
 	}
 
 }

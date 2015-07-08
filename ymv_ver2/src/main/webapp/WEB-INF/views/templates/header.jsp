@@ -47,43 +47,43 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">너나봉이란 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="${initParam.root }introduce_ymv.ymv">너나봉 소개</a></li>
-            <li><a href="${initParam.root }introduce_how_ymv.ymv">about 너나봉</a></li>
+            <li><a href="${initParam.root }introduce_how_ymv.ymv">너나봉 참여 방법</a></li>
             <li><a href="${initParam.root }introduce_administrator.ymv">직원 소개</a></li>
             <li class="divider"></li>
-            <li><a href="${initParam.root }introduce_map.ymv">찾아오는 길</a></li>
+            <li><a href="${initParam.root }introduce_map.ymv">찾아오시는 길</a></li>
           </ul>
         </li>
                 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">봉사<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${initParam.root }search_view.ymv">통합검색</a></li>
-            <li><a href="${initParam.root }voluntary_board.ymv">봉사전체목록</a></li>
+            <li><a href="${initParam.root }search_view.ymv">통합 검색</a></li>
+            <li><a href="${initParam.root }voluntary_board.ymv">봉사 전체 목록</a></li>
             <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${initParam.root }review_board.ymv">봉사후기</a></li>
-            <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
+            <li><a href="${initParam.root }review_board.ymv">봉사 후기</a></li>
+            <li><a href="${initParam.root }notice_board.ymv">공지 사항</a></li>
             <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
-            <li><a href="${initParam.root }sponsor_board_admin.ymv">후원게시판</a></li>
-            <li><a href="${initParam.root }sponsor_register_view.ymv">후원등록</a></li>
-            <li><a href="${initParam.root }auction_board.ymv">나눔활동</a></li>  
+            <li><a href="${initParam.root }sponsor_board_admin.ymv">후원 게시판</a></li>
+            <li><a href="${initParam.root }sponsor_register_view.ymv">후원 등록하기</a></li>
+            <li><a href="${initParam.root }auction_board.ymv">나눔 활동</a></li>  
           </ul>
         </li>
         <%--기업 --%>
                 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">기업 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${initParam.root }voluntary_register_view.ymv">봉사등록</a></li>
+            <li><a href="${initParam.root }voluntary_register_view.ymv">봉사 등록하기</a></li>
             <li><a href="${initParam.root }voluntary_board_company.ymv">봉사 등록 확인</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">통계<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${initParam.root }voluntary_statistics.ymv">전체통계</a></li>
+            <li><a href="${initParam.root }voluntary_statistics.ymv">전체 통계</a></li>
             <li><a href="${initParam.root }voluntary_statisticsByAge.ymv">나이별 선호 봉사</a></li>
           </ul>
         </li>
@@ -125,21 +125,21 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">너나봉이란 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="${initParam.root }introduce_ymv.ymv">너나봉 소개</a></li>
-            <li><a href="${initParam.root }introduce_how_ymv.ymv">about 너나봉</a></li>
+            <li><a href="${initParam.root }introduce_how_ymv.ymv">너나봉 참여 방법</a></li>
             <li><a href="${initParam.root }introduce_administrator.ymv">직원 소개</a></li>
             <li class="divider"></li>
-            <li><a href="${initParam.root }introduce_map.ymv">찾아오는 길</a></li>
+            <li><a href="${initParam.root }introduce_map.ymv">찾아오시는 길</a></li>
           </ul>
         </li>
                 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">봉사<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${initParam.root }search_view.ymv">통합검색</a></li>
-            <li><a href="${initParam.root }voluntary_board.ymv">봉사전체목록</a></li>
+            <li><a href="${initParam.root }search_view.ymv">통합 검색</a></li>
+            <li><a href="${initParam.root }voluntary_board.ymv">봉사 전체 목록</a></li>
             <c:choose>
             <c:when test="${sessionScope.mvo.memberType=='normal' }">
             <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
-            <li><a href="${initParam.root }voluntary_board_normal_confirmList.ymv"> 확인서 발급</a></li>
+            <li><a href="${initParam.root }voluntary_board_normal_confirmList.ymv"> 확인서 발급하기</a></li>
             </c:when>
             <c:when test="${sessionScope.mvo.memberType=='admin' }">
             <li><a href="${initParam.root }voluntary_board_normal.ymv">봉사 신청 내역 확인</a></li>
@@ -153,11 +153,11 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${initParam.root }review_board.ymv">봉사후기</a></li>
-            <li><a href="${initParam.root }notice_board.ymv">공지사항</a></li>
+            <li><a href="${initParam.root }review_board.ymv">봉사 후기</a></li>
+            <li><a href="${initParam.root }notice_board.ymv">공지 사항</a></li>
             <li><a href="${initParam.root }qna_board.ymv">Q & A</a></li>
             <li><a href="${initParam.root }sponsor_board.ymv">후원하기</a></li>
-            <li><a href="${initParam.root }auction_board.ymv">나눔활동</a></li>  
+            <li><a href="${initParam.root }auction_board.ymv">나눔 활동</a></li>  
           </ul>
         </li>
         <%--기업 --%>
@@ -166,7 +166,7 @@
                 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">기업 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${initParam.root }voluntary_register_view.ymv">봉사등록</a></li>
+            <li><a href="${initParam.root }voluntary_register_view.ymv">봉사 등록하기</a></li>
             <li><a href="${initParam.root }voluntary_board_company.ymv">봉사 등록 확인</a></li>
           </ul>
         </li>
@@ -175,7 +175,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">통계<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${initParam.root }voluntary_statistics.ymv">전체통계</a></li>
+            <li><a href="${initParam.root }voluntary_statistics.ymv">전체 통계</a></li>
             <li><a href="${initParam.root }voluntary_statisticsByAge.ymv">나이별 선호 봉사</a></li>
           </ul>
         </li>

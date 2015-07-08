@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from QnA_board
 	</select>	
 	
-	 <select id="getQnABoardList" resultMap="qnaBoardRM" resultType="qnabvo" >   
+	 <select id="findQnABoardList" resultMap="qnaBoardRM" resultType="qnabvo" >   
 select qna_no, title, writer, content, ref, restep, relevel,member_no,time_posted,hit
 	from(select qna_no, title, writer, content, ref,restep,relevel,member_no,time_posted,hit , CEIL(rownum/5) AS page from(select qna_no, title, writer, content, ref,restep,relevel,member_no,time_posted,hit from QNA_BOARD order by ref desc,restep asc)) 
    where page=#{value}
@@ -29,7 +29,7 @@ select qna_no, title, writer, content, ref, restep, relevel,member_no,time_poste
  		 values(#{qnaNo},#{title},#{writer},#{content},#{qnaNo},0,0,#{memberNo},sysdate,0)
 	 </insert>
 	 	
-	 <select id="showQnAContent"  resultMap="qnaBoardRM" resultType="qnabvo">
+	 <select id="findQnABoardByQnANo"  resultMap="qnaBoardRM" resultType="qnabvo">
 		select qna_no, title, writer, content, ref, restep, relevel,member_no,time_posted,hit
 		from QnA_board
 		where qna_no=#{value}

@@ -40,11 +40,15 @@ $("#modalBtn").click(function(){
                     	   var modalInfo="";
                           $(data.dateList).each(function(index,date){
                         	  modalInfo+="<table class='table'><caption>"+date.DATE_LIST+"<hr></caption>";
-                        	  modalInfo += "<thead><tr><th scope='col' >NO</th><th scope='col' >제목</th><th scope='col'>분야</th><th scope='col'>지역</th><th scope='col'>시작일</th><th scope='col'>완료일</th></tr></thead>";
-                        	  modalInfo += "<tbody>"		   
+                        	  modalInfo += "<colgroup><col style='width: 6%;' /><col style='width: 10%;' /><col style='width: 19%;' /><col style='width: 15%;' /><col style='width: 10%;' /><col style='width: 20%;' /><col style='width: 20%;' /></colgroup> <thead><tr><th scope='col' >NO</th><th scope='col'>모집상태</th><th scope='col' >제목</th><th scope='col'>분야</th><th scope='col'>지역</th><th scope='col'>시작일</th><th scope='col'>완료일</th></tr></thead>";
+                        	  modalInfo += "<tbody>";
                         	  $(data.list).each(function(index,list){
                         		  if(date.DATE_LIST==list.checkDate){
-                        			  modalInfo +="<tr><td>"+list.recruitNo+"</td><td><a href='${initParam.root}voluntary_showContentRecruitVol.ymv?recruitNo="+list.recruitNo+"'>"+list.title+"</a></td><td>"+list.field+"</td><td>"+list.location+"</td><td>"+list.startDate+"</td><td>"+list.endDate+"</td></tr>";
+                        			  if(list.mojib=='모집중'){
+                            			  modalInfo +="<tr><td>"+list.recruitNo+"</td><td><img src='${initParam.root}img/recruiting.jpg'></td><td><a href='${initParam.root}voluntary_show_content_recruit_vol_type.ymv?recruitNo="+list.recruitNo+"'>"+list.title+"</a></td><td>"+list.field+"</td><td>"+list.location+"</td><td>"+list.startDate+"</td><td>"+list.endDate+"</td></tr>";
+                        			  }else{
+                            			  modalInfo +="<tr><td>"+list.recruitNo+"</td><td><img src='${initParam.root}img/recruitfin.jpg'></td><td><a href='${initParam.root}voluntary_show_content_recruit_vol_type.ymv?recruitNo="+list.recruitNo+"'>"+list.title+"</a></td><td>"+list.field+"</td><td>"+list.location+"</td><td>"+list.startDate+"</td><td>"+list.endDate+"</td></tr>";
+                        			  }
                         		  }
                         	  });//each2
                         	  modalInfo+="</tbody></table>";
@@ -183,7 +187,7 @@ $("#modalBtn").click(function(){
 				<h4 class="modal-title">Modal title</h4>
 			</div>
 			<div class="modal-body">
-				<p id="scheduletModal">테이블 넣을곳</p>
+				<p id="scheduletModal" align="center">로그인후 이용하시기 바랍니다.</p>
 			</div>
 			<div class="modal-footer">
 				<a href="" data-dismiss="modal"><img src="${initParam.root}img/close.jpg"></a>

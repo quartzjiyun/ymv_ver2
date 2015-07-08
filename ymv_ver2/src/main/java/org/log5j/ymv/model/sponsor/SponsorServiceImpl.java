@@ -16,10 +16,10 @@ public class SponsorServiceImpl implements SponsorService {
 	private SponsorDAO sponsorDAO;
 
 	@Override
-	public ListVO getSponsorList(String pageNo){
+	public ListVO findSponsorList(String pageNo){
 		if (pageNo == null || pageNo == "")
 			pageNo = "1";
-		List<BoardVO> list = sponsorDAO.getSponsorList( Integer.parseInt(pageNo));
+		List<BoardVO> list = sponsorDAO.findSponsorList( Integer.parseInt(pageNo));
 		int total = sponsorDAO.totalSponsorContent();
 		PagingBean paging = new PagingBean(total, Integer.parseInt(pageNo),3);
 		ListVO lvo = new ListVO(list, paging);
@@ -62,10 +62,10 @@ public class SponsorServiceImpl implements SponsorService {
 	}
 
 	@Override
-	public List<PictureVO> getPictureList(String pageNo) {
+	public List<PictureVO> findPictureList(String pageNo) {
 		if (pageNo == null || pageNo == "")
 			pageNo = "1";
-		List<PictureVO> pvo=sponsorDAO.getPictureList(Integer.parseInt(pageNo));
+		List<PictureVO> pvo=sponsorDAO.findPictureList(Integer.parseInt(pageNo));
 		return pvo;
 	}
 }

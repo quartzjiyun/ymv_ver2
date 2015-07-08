@@ -31,11 +31,11 @@ $(document).ready(function(){
 				dataType:"json", 
 				success:function(data){
 					//alert(data);
-					if(data==true){
-						alert("이미 신청하셨습니다.");
+					if(data==false){
+						alert("신청이 완료되었습니다.");
 						$("#motivate").val("");
 					}else{
-						alert("신청이 완료되었습니다.");
+						alert("이미 신청하셨습니다.");
 						$("#motivate").val("");
 					}
 				}
@@ -47,14 +47,16 @@ $(document).ready(function(){
 	
 });
 </script>
-<div class="col-sm-6 col-sm-offset-3">
+<h3 align="center">봉사 상세 글보기</h3>
+  	<br><br>
+<div class="col-sm-8 col-sm-offset-2" align="center">
 <div class="panel panel-default">
   <div class="panel-body">
-		<table class="col-sm-12">
+		<table class="col-sm-8" style="width: 700px;">
 		<tbody>
 			<tr>
 				<td ><p>NO : ${requestScope.rvo.recruitNo }</p></td>
-				<td colspan="2"><p>제목 : ${requestScope.rvo.title}</p></td>
+				<td colspan="2" style="font-weight: bold;"><p>제목 : ${requestScope.rvo.title}</p></td>
 			</tr>
 			<tr>
 				<td><p>기업명 : ${requestScope.vo.name}</p></td>
@@ -70,8 +72,6 @@ $(document).ready(function(){
 				<td colspan="3" align="center" ><p>시작시간 : 
 					${requestScope.rvo.startDate} &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp; 종료시간 : 
 					${requestScope.rvo.endDate}</p></td>
-				<%--      <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp~</td>
-         <td>종료시간: ${requestScope.rvo.endDate}</td> --%>
 			</tr>
 
 			<tr>
@@ -79,7 +79,7 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<td valign="middle" align="center" colspan="3"><a
-					href="${initParam.root}voluntary_board_normal.ymv">
+					href="${initParam.root}voluntary_board.ymv">
 					<input type="button" class="btn btn-default btn-xs" value="목록" ></a> 
 					<c:choose>
 						<c:when test="${sessionScope.mvo.memberNo==requestScope.rvo.memberNo}">

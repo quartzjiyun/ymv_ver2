@@ -16,23 +16,20 @@
 </script>
 
 <div class="col-sm-6 col-sm-offset-3">
-<h3>공지사항 수정</h3>
+<h3 align="center">공지사항 수정</h3>
+<br><br>
 		<form class="form-horizontal" method="post" action="notice_board_update.ymv">
 		<table class="table table-hover">
 			<tr>
 				<td><b> 글번호 : <input type=text name=boardNo
-						value=${requestScope.rvo.boardNo } readonly="readonly"></b></td>
+						value=${requestScope.rvo.boardNo } readonly="readonly" size="20"></b></td>
 				<td><b>작성자 : <input type=text name=writer
-						value=${requestScope.rvo.writer } readonly="readonly"></b></td>
+						value=${requestScope.rvo.writer } readonly="readonly" size="23"></b></td>
 			</tr>
 			<tr>
 				<td colspan="2">제목 : <input type=text name=title
-					value=${requestScope.rvo.title }></input>
+					value=${requestScope.rvo.title } size="67"></input>
 				</td>
-			</tr>
-			<tr>
-				<td colspan="2">등록시간 : ${requestScope.rvo.timePosted } 조회수 :
-					${requestScope.rvo.hit }</td>
 			</tr>
 			<tr>
 				<td colspan="2"><textarea rows="15" cols="75" name="content">${requestScope.rvo.content }</textarea>

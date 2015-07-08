@@ -64,7 +64,7 @@
 			<table class="table table-striped table-hover">
 				<tr>
 					<th class="info"><h4 class="text-center">제목</h4></th>
-					<td><input type="text" name="title" id="title"></td>
+					<td><input type="text" name="title" id="title" size="40"></td>
 				</tr>
 				<tr>
 					<th class="info"><h4 class="text-center">분야</h4></th>
