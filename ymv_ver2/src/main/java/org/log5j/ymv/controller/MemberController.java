@@ -92,7 +92,6 @@ public class MemberController {
 	public boolean voluntaryRegisterApplicant(VoluntaryServiceApplicateVO vsavo){
 		System.out.println(vsavo);
 		boolean flag =  voluntaryServiceApplicateService.checkVolunteerApplicant(vsavo.getRecruitNo(), vsavo.getMemberNo());
-		System.out.println("111111111"+flag);
 		if(flag==false){
 			System.out.println("registerVolunteerApplicant 실행  " + vsavo);
 			voluntaryServiceApplicateService.registerVolunteerApplicant(vsavo);
