@@ -87,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	<select id="getDateList" parameterType="sdvo" resultType="hashMap">
+	<select id="findDateList" parameterType="sdvo" resultType="hashMap">
 		select distinct(to_char(start_date,'YYYY-MM-DD')) as date_list from (
 		select start_date,to_char(start_date,'HH24:MI') as startDate,to_char(end_date,'HH24:MI') as endDate,field,location from recruit)
 		<where>
