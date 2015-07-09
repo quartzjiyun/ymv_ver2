@@ -31,8 +31,8 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 		return sqlSessionTemplate.selectOne("scheduler.totalContent",scvo);
 	}
 	@Override
-	public List<HashMap> getDateList(SchedulerVO sdvo) {
-		return sqlSessionTemplate.selectList("scheduler.getDateList",sdvo);
+	public List<HashMap> findDateList(SchedulerVO sdvo) {
+		return sqlSessionTemplate.selectList("scheduler.findDateList",sdvo);
 	}
 	@Override
 	public SchedulerVO checkScheduler(String memberNo) {
