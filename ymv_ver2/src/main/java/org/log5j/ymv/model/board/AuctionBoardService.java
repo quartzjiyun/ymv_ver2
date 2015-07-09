@@ -14,5 +14,6 @@ public interface AuctionBoardService {
 	void deletePicture(int pictureNo);	
 	AuctionBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo);
 	void updateCurrentPrice(AuctionBoardVO abvo);
+	AuctionBoardVO setDate(AuctionBoardVO abvo);
 	
 }

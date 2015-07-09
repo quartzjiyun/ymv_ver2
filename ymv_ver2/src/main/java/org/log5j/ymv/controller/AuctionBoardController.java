@@ -57,7 +57,7 @@ public class AuctionBoardController {
 	@RequestMapping("auction_board_update_view.ymv")
 	public ModelAndView auctionBoardUpdateView(int boardNo) {		
 		AuctionBoardVO abvo = (AuctionBoardVO) auctionBoardService.findAuctionBoardByBoardNo(boardNo);
-		System.out.println("auction_board_update_view"+abvo);
+		abvo=auctionBoardService.setDate(abvo);		
 		return new ModelAndView("auction_board_update_view","abvo",abvo);
 	}
 
@@ -107,4 +107,5 @@ public class AuctionBoardController {
 			auctionBoardService.updateCurrentPrice(abvo);
 			return new ModelAndView("redirect:auction_showContent.ymv?boardNo="+abvo.getBoardNo());
 		}
+	
 }

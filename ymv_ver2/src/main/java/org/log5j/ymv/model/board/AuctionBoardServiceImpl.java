@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -76,6 +77,14 @@ public AuctionBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo) {
 public void updateCurrentPrice(AuctionBoardVO abvo) {
 	auctionBoardDAO.updateCurrentPrice(abvo);
 }
+@Override
+public AuctionBoardVO setDate(AuctionBoardVO abvo) {      
+      String EndDate[] = abvo.getEndDate().split(" ");
+      abvo.setEndDate(EndDate[0]);
+      abvo.setEndTime(EndDate[1]);
+      return abvo;
+   }
+
 }
 
 
