@@ -19,9 +19,9 @@ public AuctionBoardVO findByAuctionNO(AuctionBoardVO vo){
 }
 
 @Override
-public List<BoardVO> getBoardList(String pageNo){
+public List<BoardVO> findBoardList(String pageNo){
 	// TODO Auto-generated method stub
-	List<BoardVO> list=sqlSessionTemplate.selectList("auctionBoard.getBoardList",Integer.parseInt(pageNo));
+	List<BoardVO> list=sqlSessionTemplate.selectList("auctionBoard.findBoardList",Integer.parseInt(pageNo));
 	return list;
 }
 
@@ -31,25 +31,14 @@ public int totalContent(){
 }
 
 @Override
-public BoardVO getAuctionBoardByBoardNo(int boardNo){
+public BoardVO findAuctionBoardByBoardNo(int boardNo){
 	// TODO Auto-generated method stub
-	return sqlSessionTemplate.selectOne("auctionBoard.getAuctionBoardByBoardNo",boardNo);	
+	return sqlSessionTemplate.selectOne("auctionBoard.findAuctionBoardByBoardNo",boardNo);	
 }
 
-@Override
-public void registerAuctionComment(CommentVO cmvo){
-	sqlSessionTemplate.insert("auctionBoard.registerAuctionComment",cmvo);
-}
 
-@Override
-public List<CommentVO> findByCommentNo(String boardNo) {
-	return sqlSessionTemplate.selectList("auctionBoard.findByCommentNo",boardNo);
-}
 
-@Override
-public void deleteAuctionComment(CommentVO cmvo) {
-	sqlSessionTemplate.delete("auctionBoard.deleteAuctionComment",cmvo);
-}
+
 
 @Override
 public void auctionBoardUpdate(AuctionBoardVO vo) {
@@ -61,10 +50,6 @@ public void auctionBoardDelete(String boardNo) {
 	sqlSessionTemplate.delete("auctionBoard.auctionBoardDelete",Integer.parseInt(boardNo));
 }
 
-@Override
-public void deleteAuctionBoardComment(String boardNo) {
-	sqlSessionTemplate.delete("auctionBoard.deleteAuctionBoardComment",Integer.parseInt(boardNo));
-}
 
 @Override
 public void registerAuctionBoard(AuctionBoardVO vo) {
@@ -79,9 +64,9 @@ public void registerPicture(PictureVO pvo) {
 }
 
 @Override
-public PictureVO getPicture(int pictureNo) {
+public PictureVO findPicture(int pictureNo) {
 	// TODO Auto-generated method stub
-	return sqlSessionTemplate.selectOne("auctionBoard.getPicture",pictureNo);
+	return sqlSessionTemplate.selectOne("auctionBoard.findPicture",pictureNo);
 }
 
 @Override
@@ -91,15 +76,13 @@ public void deletePicture(int pictureNo) {
 }
 
 @Override
-public CommentVO getAuctionBoardCommentByBoardNo(int boardNo) {
-	CommentVO comment = sqlSessionTemplate.selectOne("auctionBoard.getRevieBoardCommentByBoardNo", boardNo);
-	System.out.println(comment);
-	return comment;
+public void updateHit(int boardNo) {
+	sqlSessionTemplate.update("auctionBoard.updateHit",boardNo);	
 }
 
 @Override
-public void updateHit(int boardNo) {
-	sqlSessionTemplate.update("auctionBoard.updateHit",boardNo);	
+public void updateCurrentPrice(AuctionBoardVO abvo) {
+	sqlSessionTemplate.update("auctionBoard.updateCurrentPrice",abvo);
 }
 
 }

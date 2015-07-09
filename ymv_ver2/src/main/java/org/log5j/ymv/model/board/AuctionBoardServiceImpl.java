@@ -17,10 +17,10 @@ public AuctionBoardVO findByAuctionNO(AuctionBoardVO vo){
 }
 
 @Override
-public ListVO getBoardList(String pageNo) {
+public ListVO findBoardList(String pageNo) {
 	if (pageNo == null || pageNo == "")
 		pageNo = "1";
-	List<BoardVO> list =auctionBoardDAO.getBoardList(pageNo);
+	List<BoardVO> list =auctionBoardDAO.findBoardList(pageNo);
 	int total = auctionBoardDAO.totalContent();
 	PagingBean paging = new PagingBean(total, Integer.parseInt(pageNo));
 	ListVO lvo = new ListVO(list, paging);
@@ -28,43 +28,26 @@ public ListVO getBoardList(String pageNo) {
 }
 
 @Override
-public BoardVO getAuctionBoardByBoardNo(int boardNo) {
-	return auctionBoardDAO.getAuctionBoardByBoardNo(boardNo);
+public BoardVO findAuctionBoardByBoardNo(int boardNo) {
+	return auctionBoardDAO.findAuctionBoardByBoardNo(boardNo);
 }
 
-@Override
-public void registerAuctionComment(CommentVO cmvo) {
-	auctionBoardDAO.registerAuctionComment(cmvo);
-}
 
 @Override
-public List<CommentVO> findByCommentNo(String boardNo) {
-	return auctionBoardDAO.findByCommentNo(boardNo);
-}
-
-@Override
-public void deleteAuctionComment(CommentVO cmvo) {
-	auctionBoardDAO.deleteAuctionComment(cmvo);
-}
-
-@Override
-public void auctionBoardUpdate(AuctionBoardVO vo) {
+public void updateAuctionBoard(AuctionBoardVO vo) {
 	auctionBoardDAO.auctionBoardUpdate(vo);
 }
 
 @Override
-public void auctionBoardDelete(String boardNo) {
+public void deleteAuctionBoard(String boardNo) {
 	auctionBoardDAO.auctionBoardDelete(boardNo);
 }
 
-@Override
-public void deleteAuctionBoardComment(String boardNo) {
-	auctionBoardDAO.deleteAuctionBoardComment(boardNo);
-}
+
 
 @Override
-public void registerAuctionBoard(AuctionBoardVO vo) {
-	auctionBoardDAO.registerAuctionBoard(vo);
+public void registerAuctionBoard(AuctionBoardVO abvo) {
+	auctionBoardDAO.registerAuctionBoard(abvo);
 }
 
 @Override
@@ -73,8 +56,8 @@ public void registerPicture(PictureVO pvo) {
 }
 
 @Override
-public PictureVO getPicture(int pictureNo) {
-	return auctionBoardDAO.getPicture(pictureNo);
+public PictureVO findPicture(int pictureNo) {
+	return auctionBoardDAO.findPicture(pictureNo);
 }
 
 @Override
@@ -84,15 +67,14 @@ public void deletePicture(int pictureNo) {
 }
 
 @Override
-public CommentVO getAuctionBoardCommentByBoardNo(int boardNo) {
-	System.out.println("service getAuctionBoardCommentByBoardNo boardNo: "+boardNo);
-	return 	auctionBoardDAO.getAuctionBoardCommentByBoardNo(boardNo);
+public AuctionBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo) {
+	auctionBoardDAO.updateHit(boardNo);
+	return (AuctionBoardVO) auctionBoardDAO.findAuctionBoardByBoardNo(boardNo);
 }
 
 @Override
-public AuctionBoardVO getPostingByNoticeBoardNoUpdateHit(int boardNo) {
-	auctionBoardDAO.updateHit(boardNo);
-	return (AuctionBoardVO) auctionBoardDAO.getAuctionBoardByBoardNo(boardNo);
+public void updateCurrentPrice(AuctionBoardVO abvo) {
+	auctionBoardDAO.updateCurrentPrice(abvo);
 }
 }
 
