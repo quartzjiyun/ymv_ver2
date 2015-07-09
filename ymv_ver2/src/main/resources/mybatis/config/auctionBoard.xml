@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="boardNo" column="board_no"/>
    </resultMap>
    <update id="auctionBoardUpdate" parameterType="abvo">
-      update auction_board set title=#{title}, content=#{content}, article=#{article}, time_posted=#{timePosted},first_price=#{firstPrice},end_date=#{endDate} where board_no=#{boardNo}
+      update auction_board set title=#{title}, content=#{content}, article=#{article},first_price=#{firstPrice},end_date=#{endDate} where board_no=#{boardNo}
    </update>
    <delete id="auctionBoardDelete" parameterType="int">
       delete from auction_board where board_no=#{value}
