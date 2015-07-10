@@ -2,7 +2,7 @@
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="col-md-10 col-sm-offset-1">
-<h3><p class = "text-center">너나봉 경매 목록</p></h3>
+<h3 class="text-center">나눔활동</h3>
 	<table class="table table-striped table-hover">
 		<%--table 시작할때 colgroup으로 사이즈 조절  하단에서는 scope로 col 찍으면됨--%>
 		<colgroup>
@@ -16,20 +16,20 @@
 			<tr>
 				<th scope="col">NO</th>
 				<th scope="col">제목</th>
-				<th scope="col">작성자</th>
 				<th scope="col">등록시간</th>
+				<th scope="col">종료시간</th>
 				<th scope="col">조회수</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bvo" items="${requestScope.lvo.list}">
+			<c:forEach var="AuctionBoard" items="${requestScope.lvo.list}">
 				<tr>
-					<td>${bvo.boardNo}</td>
+					<td>${AuctionBoard.boardNo}</td>
 					<td><a
-						href="${initParam.root}auction_showContent.ymv?boardNo=${bvo.boardNo}">${bvo.title }</a></td>
-					<td>${bvo.writer }</td>
-					<td>${bvo.timePosted }</td>
-					<td>${bvo.hit }</td>
+						href="${initParam.root}auction_showContent.ymv?boardNo=${AuctionBoard.boardNo}">${AuctionBoard.title }</a></td>
+					<td>${AuctionBoard.timePosted }</td>
+					<td>${AuctionBoard.endDate }</td>
+					<td>${AuctionBoard.hit }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

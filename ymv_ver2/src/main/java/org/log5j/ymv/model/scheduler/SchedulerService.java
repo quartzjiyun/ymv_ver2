@@ -12,7 +12,7 @@ public interface SchedulerService {
 
 	ListVO findSearchList(SearchVO scvo);
 
-	public abstract List<HashMap> getDateList(SchedulerVO sdvo);
+	public abstract List<HashMap> findDateList(SchedulerVO sdvo);
 
 	public abstract SchedulerVO checkScheduler(String parameter);
 

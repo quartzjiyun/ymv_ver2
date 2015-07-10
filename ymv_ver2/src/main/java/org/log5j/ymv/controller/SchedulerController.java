@@ -56,7 +56,7 @@ public class SchedulerController {
 			sdvo.setEndDate("");
 		}
 		List<BoardVO> list= schedulerService.findSchedulerList(sdvo);
-		List<HashMap> dateList=schedulerService.getDateList(sdvo);
+		List<HashMap> dateList=schedulerService.findDateList(sdvo);
 		HashMap schedulerMap=new HashMap();
 		schedulerMap.put("list", list);
 		schedulerMap.put("dateList", dateList);
