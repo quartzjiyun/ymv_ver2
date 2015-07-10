@@ -407,4 +407,11 @@ create table Auction_board(
 )
 
 select * from Auction_board
-	
+
+-- 테이블에 컬럼 추가
+ALTER TABLE table_name ADD column_name datatype 
+-- 테이블에 컬럼 수정
+ALTER TABLE table_name MODIFY column_name datatype
+-- 테이블의 컬럼 삭제
+ALTER TABLE Persons DROP COLUMN DateOfBirth
+
