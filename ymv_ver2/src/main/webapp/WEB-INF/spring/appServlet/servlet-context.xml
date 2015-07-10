@@ -72,7 +72,7 @@ class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 </bean>
 <bean id="uploadProfilePath" class="java.lang.String" >
 	<constructor-arg>
-		<value>C:\\Users\\KOSTA\\git\\ymv_ver2\\ymv_ver2\\src\\main\\webapp\\profileupload</value>
+		<value>C:\\Users\\KOSTA\\git\\ymv_ver2\\ymv_ver2\\src\\main\\webapp\\profileupload\\</value>
 	</constructor-arg>
 </bean>
 
