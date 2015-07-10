@@ -8,7 +8,6 @@
 <title>Tiles Layout</title>
 <script type="text/javascript" src="${initParam.root}resources/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root}css/home.css" />
-<%-- <link rel="stylesheet" type="text/css" href="${initParam.root}css/one.css" /> --%>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
