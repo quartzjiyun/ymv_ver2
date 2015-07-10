@@ -392,4 +392,19 @@ insert into location values('제주도');
 
 -- 웹에서 후원글 등록
 
+drop table Auction_board
+delete table Auction_board
+create table Auction_board(
+   board_no number primary key,
+   title varchar2(100) not null,   
+   content clob not null,
+   article varchar2(100) not null,
+   time_posted date not null,
+   first_price number not null,
+   current_price number default 0,
+   end_date varchar(50),
+   hit number default 0
+)
+
+select * from Auction_board
 	

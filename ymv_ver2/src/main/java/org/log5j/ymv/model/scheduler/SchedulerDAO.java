@@ -13,7 +13,7 @@ public interface SchedulerDAO {
 
 	List<BoardVO> findSearchList(SearchVO scvo);
 
-	List<HashMap> getDateList(SchedulerVO sdvo);
+	List<HashMap> findDateList(SchedulerVO sdvo);
 
 	SchedulerVO checkScheduler(String memberNo);
 

@@ -32,8 +32,8 @@ public class SchedulerServiceImpl implements SchedulerService {
 		return lvo;
 	}
 	@Override
-	public List<HashMap> getDateList(SchedulerVO sdvo) {
-		return schedulerDAO.getDateList(sdvo);
+	public List<HashMap> findDateList(SchedulerVO sdvo) {
+		return schedulerDAO.findDateList(sdvo);
 	}
 	@Override
 	public SchedulerVO checkScheduler(String memberNo) {
