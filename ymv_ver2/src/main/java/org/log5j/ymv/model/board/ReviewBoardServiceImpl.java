@@ -56,6 +56,9 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	@Override
 	public void deleteReviewBoard(String boardNo) {
 		reviewBoardDAO.deleteReviewBoard(boardNo);
+		reviewBoardDAO.deleteReviewBoardComment(boardNo);
+		int pictureNo=Integer.parseInt(boardNo);
+		reviewBoardDAO.deletePicture(pictureNo);
 	}
 
 	@Override
