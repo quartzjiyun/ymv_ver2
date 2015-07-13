@@ -63,7 +63,6 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_board.ymv")
 	@NoLoginCheck
 	public ModelAndView list(String pageNo) {	
-		//voluntary_board.jsp로 보내줌
 		ModelAndView mv = new ModelAndView("voluntary_board");
 		//현재 날짜를 YYYY-MM-DD 포맷으로 받아옴
 		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
@@ -176,7 +175,7 @@ public class RecruitBoardController {
 	}
 /**
  * 
- * 작성자 : 백지영
+ * 작성자 : 박병준
  * 내용 : 함께
  * @param request
  * @param rbvo
@@ -211,7 +210,7 @@ public class RecruitBoardController {
 	   }
 	/**
 	 * 
-	 * 작성자 : 박병준
+	 * 작성자 : 박병준, 백지영
 	 * 내용 : RecruitBoard의 글쓰기를 눌렀을 때 작동하는 메소드.
 	 * 분야와 지역의 DB에서 리스트를 가져와 voluntary_register_view.jsp로 보내준다.
 	 * @return Model : voluntary_register_view.jsp
