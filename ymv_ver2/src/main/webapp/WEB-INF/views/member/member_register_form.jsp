@@ -8,18 +8,13 @@
 			.ready(
 					function() {
 						var type = "";
-					
 						$("#company").click(function() {
 							type="company";
 							});//company click
 						$("#normal").click(function() {
 							type="normal";
 									}); // normal click
-						$("#inputType")
-								.on(
-										"click",
-										":button[name=checkBtn]",
-										function() {
+						$("#inputType").on("click",":button[name=checkBtn]",function() {
 											if ($("#identityNo").val() == "") {
 												alert("값을 입력해주세요");
 												return;
@@ -34,19 +29,12 @@
 												}
 												if (type == 'company') {
 													location.href = "${initParam.root}member_register.ymv?identityNo="
-															+ $("#identityNo")
-																	.val()
-															+ "&memberType="
-															+ type;
-
+															+ $("#identityNo").val()+ "&memberType="+ type;
 												}
 												location.href = "${initParam.root}member_register.ymv?identityNo="
-														+ $("#identityNo")
-																.val()
-														+ "&memberType=" + type;
+														+ $("#identityNo").val()+ "&memberType=" + type;
 											}
 										});
-
 					});//documentready
 	$(document)
 			.on(

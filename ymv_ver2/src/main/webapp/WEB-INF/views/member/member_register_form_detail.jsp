@@ -14,7 +14,6 @@
    <div class="section">
       <div class="container">
         <div class="row">
-
 			<div class="col-sm-6 col-sm-offset-3">
    <h3>회원가입</h3>
             <form:form method = "post" action="${initParam.root}member_register_validation.ymv?identityNo=${requestScope.memberVO.identityNo }&memberType=${requestScope.memberVO.memberType }"
@@ -80,30 +79,3 @@
       </div>
     </div>
   </body>
-  
-   
-   
-   
-   
-   
-   
-  <%-- 
-회원가입 <br><br>
-<form:form method = "post" action="${initParam.root}member_register_validation.ymv?identityNo=${requestScope.memberVO.identityNo }&memberType=${requestScope.memberVO.memberType }" commandName="memberVO">
- 아이디 :   <form:input path="id" id="id"/><span id = "idCheck"></span>
- <font color="red"><form:errors path="id"></form:errors></font>
- 	<br>	
- 패스워드 : <form:password path="password" id="password"/>	
- 			 <font color="red"><form:errors path="password"></form:errors></font>
- <br>    
- 이름 : <form:input path="name" id="name"/>
- <font color="red"><form:errors path="name"></form:errors></font>
- 	<br>	
-  주소 : <form:input path="address" id="address"/>
- <font color="red"><form:errors path="address"></form:errors></font>
- 	<br>		
- 이메일 : <form:input path="mailAddress" id="mailAddress"/>
- <font color="red"><form:errors path="mailAddress"></form:errors></font>
- 	<br>	
- <input type="submit" value="회원가입">
- </form:form> --%>
