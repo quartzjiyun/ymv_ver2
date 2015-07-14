@@ -63,6 +63,7 @@ public class AuctionBoardController {
 
 	@RequestMapping("auction_board_update.ymv")
 	public ModelAndView auctionBoardUpdate(AuctionBoardVO abvo){
+		abvo.setEndDate(abvo.getEndDate()+" "+abvo.getEndTime());
 		auctionBoardService.updateAuctionBoard(abvo);
 		return new ModelAndView("redirect:auction_showContent.ymv?boardNo="+abvo.getBoardNo(),"abvo",abvo);
 	}
