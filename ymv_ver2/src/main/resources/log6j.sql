@@ -59,7 +59,7 @@ select * from statistics
 
 -- LYH - recruit
 
-drop table recruit
+drop table recruit cascade constraints;
 
 create table recruit(
    recruit_no number primary key,
@@ -75,6 +75,8 @@ create table recruit(
    hit number default 0
 )
 
+alter table recruit modify start_time varchar2(10)
+alter table recruit modify end_time varchar2(10)
 select * from recruit
 
 
