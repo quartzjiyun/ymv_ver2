@@ -63,7 +63,6 @@ public class RecruitBoardController {
 	@RequestMapping("voluntary_board.ymv")
 	@NoLoginCheck
 	public ModelAndView list(String pageNo) {	
-		//voluntary_board.jsp로 보내줌
 		ModelAndView mv = new ModelAndView("voluntary_board");
 		//현재 날짜를 YYYY-MM-DD 포맷으로 받아옴
 		String today = (new SimpleDateFormat("yyyy-MM-dd")).format( new Date() );
@@ -176,7 +175,7 @@ public class RecruitBoardController {
 	}
 /**
  * 
- * 작성자 : 백지영
+ * 작성자 : 박병준
  * 내용 : 함께
  * @param request
  * @param rbvo
@@ -211,7 +210,7 @@ public class RecruitBoardController {
 	   }
 	/**
 	 * 
-	 * 작성자 : 박병준
+	 * 작성자 : 박병준, 백지영
 	 * 내용 : RecruitBoard의 글쓰기를 눌렀을 때 작동하는 메소드.
 	 * 분야와 지역의 DB에서 리스트를 가져와 voluntary_register_view.jsp로 보내준다.
 	 * @return Model : voluntary_register_view.jsp
@@ -337,20 +336,14 @@ public class RecruitBoardController {
 		Email email = new Email();
 		String memberList=request.getParameter("memberList");
 		String title=request.getParameter("title");
-		System.out.println("OK: "+ memberList);
 		String member[]=memberList.split(",");
-		System.out.println("OK: "+ member[0]);
 		// recruitNo, memberNo 
 		for(int i=0;i<member.length;i++){
-			System.out.println("ok: " +member[i]);
 			alvo.setMemberNo(Integer.parseInt(member[i]));
-			System.out.println("alvo: "+alvo);
 			recruitBoardService.registerApplicantOK(alvo);
-			System.out.println("for문 끝");
 			voluntaryServiceApplicateService.deleteApplicant(alvo);
 			//선정된 인원에게 메일 발송 memberNo로 메일 뽑아오기
 			MemberVO mailList=recruitBoardService.findMailAddressByMemberNo(Integer.parseInt(member[i]));
-			System.out.println("mailList:"+mailList);
 			String reciver = mailList.getMailAddress(); //받을사람의 이메일입니다.
 	        String subject = "안녕하세요. 너나봉 관리자입니다";
 	        String content = mailList.getName()+"님 봉사활동인원으로 선정되었습니다.\n"
@@ -392,15 +385,11 @@ public class RecruitBoardController {
 	public ModelAndView voluntary_confirm(HttpServletRequest request,ApplicantListVO alvo){
 		//선택된 인원들 새로운 디비에 저장(confirm)
 		String memberList=request.getParameter("memberList");
-		System.out.println("OK: "+ memberList);
 		String member[]=memberList.split(",");
-		System.out.println("OK: "+ member[0]);
 		for(int i=0;i<member.length;i++){
 			alvo.setMemberNo(Integer.parseInt(member[i]));
-			System.out.println("confirm: " +alvo);
 			ConfirmBoardVO confirmbvo=new ConfirmBoardVO();
 			RecruitBoardVO recruitbvo=recruitBoardService.findRecruitBoardByRecruitNo(alvo.getRecruitNo());
-			System.out.println("recruitbvo: "+recruitbvo);
 			confirmbvo.setBoardNo(recruitbvo.getRecruitNo());
 			confirmbvo.setTitle(recruitbvo.getTitle());
 			confirmbvo.setField(recruitbvo.getField());
@@ -410,13 +399,11 @@ public class RecruitBoardController {
 			confirmbvo.setEndDate(recruitbvo.getEndDate());
 			confirmbvo.setContent(recruitbvo.getContent());
 			confirmbvo.setMemberNo(recruitbvo.getMemberNo());
-			System.out.println("confirmbvo: "+confirmbvo);
 			recruitBoardService.registerConfirmBoard(confirmbvo);
 			//글등록 먼저하고나서 컨펌등록
 			ConfirmVO confirmvo=new ConfirmVO();
 			confirmvo.setBoardNo(alvo.getRecruitNo());
 			confirmvo.setMemberNo(alvo.getMemberNo());
-			System.out.println("confirmvo: "+confirmvo);
 			recruitBoardService.registerConfirm(confirmvo);
 			recruitBoardService.deleteVoluntaryApplicantOK(recruitbvo.getRecruitNo());
 			recruitBoardService.deleteVoluntaryServiceApplicateByRecruitNo(recruitbvo.getRecruitNo());

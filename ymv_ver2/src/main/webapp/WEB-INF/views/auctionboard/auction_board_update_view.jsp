@@ -2,7 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-	$(document).ready(function() {
+$(document).ready(function(){      
+    $("#updateCancelBtn").click(function() {
+    	if(confirm("취소하시겠습니까?")==true){
+			location.href="auction_board.ymv";
+		}else{
+			return;
+		}
+	});    
 		$("#auctionForm").submit(function() {
 			if ($("#title").val() == "") {
 				alert("제목을 입력해주세요");
@@ -22,13 +29,7 @@
 			}
 		});
 	});
-		$("#updateCancel").click(function(){
-			if(confirm("취소하시겠습니까?")==true){
-				location.href="auction_board.ymv";
-			}else{
-				return;
-			}
-		});
+	
 
 </script>
 
@@ -59,6 +60,7 @@
 				});
 	});
 </script>
+
 <div class="col-md-6 col-sm-offset-3">
 		<h2>글 수정</h2>
 		<form id="auctionForm"
@@ -72,6 +74,10 @@
 					<th class="info"><h4 class="text-center">물품명</h4></th>
 					<td><input type="text" name="article" id="article" value="${requestScope.abvo.article}"></td>
 					</tr>
+				<tr>
+               <th class="info"><h4 class="text-center">파일업로드</h4></th>
+               <td><input type="file" name="fileName"></td>
+            </tr>
 				<tr>
 					<th class="info"><h4 class="text-center">입찰시작가</h4></th>
 					<td><input type="text" name="firstPrice" id="firstPrice" value="${requestScope.abvo.firstPrice}"></td>
@@ -109,7 +115,8 @@
 				</tr>
 			</table>
 			<br> <div class = "col-sm-2 col-sm-offset-10">
-			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>
+			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>			
+			<input type="hidden" name="boardNo" value="${requestScope.abvo.boardNo}">
 		</form>
 	</div>
 

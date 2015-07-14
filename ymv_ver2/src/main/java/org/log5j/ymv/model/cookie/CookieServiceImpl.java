@@ -17,7 +17,7 @@ public class CookieServiceImpl implements CookieService {
 				//사용자의 쿠키가 없을 때 쿠키를 추가한다.
 				if (cookies == null || cookies.length == 0) {
 					cookie = new Cookie("myboard", "|" + No + "|");
-					System.out.println(" 쿠키가 존재하지 않은 상태");
+					cookieDAO.updateHit(No,bvo);
 				}
 				// 쿠키가 존재한다면 그 쿠키들이 myboard라는 것이 있는 지 확인하고 있다면 조회수를 높이지 않기 위해 우리가 생성한
 				// 쿠키에 입력시킨다.

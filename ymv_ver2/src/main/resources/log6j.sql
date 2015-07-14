@@ -297,7 +297,7 @@ insert into member values(ymv_seq.nextval,'java','1234','임영학','판교','89
 insert into member values(ymv_seq.nextval,'java1','1234','백지영','판교','960102','ningoop71@gmail.com','normal');
 insert into member values(ymv_seq.nextval,'javac','1234','장지윤','수원','931004','quartzjiyun@gmail.com','company');
 insert into member values(ymv_seq.nextval,'kosta','1234','박병준','서울','900227','qudwns741@gmail.com','company');
-
+insert into member values(ymv_seq.nextval,'javaa','1234','정혜선','판교','910920','jhsjhs920@gmail.com','normal');
 
 -- LYH - insert board
 
@@ -409,4 +409,11 @@ create table Auction_board(
 )
 
 select * from Auction_board
-	
+
+-- 테이블에 컬럼 추가
+ALTER TABLE table_name ADD column_name datatype 
+-- 테이블에 컬럼 수정
+ALTER TABLE table_name MODIFY column_name datatype
+-- 테이블의 컬럼 삭제
+ALTER TABLE Persons DROP COLUMN DateOfBirth
+

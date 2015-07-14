@@ -34,6 +34,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<c:if test="${sessionScope.mvo.memberType=='admin' }">
 	<c:choose>
 		<c:when test="${sessionScope.mvo==null}">
 
@@ -44,6 +45,7 @@
 			<a href="${initParam.root}auction_register_view.ymv" class="btn btn-default btn-xs">글쓰기</a></div></div>
 		</c:otherwise>
 	</c:choose>
+	</c:if>
 	<br></br>
 	<div class="text-center">
 		<ul class="pagination">
