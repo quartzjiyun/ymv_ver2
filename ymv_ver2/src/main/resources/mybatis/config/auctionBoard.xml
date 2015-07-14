@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
          select ymv_seq.nextval from dual
       </selectKey>  
-        insert into Auction_board(board_no,title,content,article,time_posted,first_price,end_date)  values(#{boardNo}, #{title}, #{content}, #{article},sysdate, #{firstPrice}, #{endDate})
+        insert into Auction_board(board_no,title,content,article,time_posted,first_price,current_price,end_date)  values(#{boardNo}, #{title}, #{content}, #{article},sysdate, #{firstPrice}, #{firstPrice}, #{endDate})
    </insert>
    <insert id="registerPicture" parameterType="pvo">
       insert into PICTURE(picture_no, file_path) values(#{pictureNo},#{filePath})
