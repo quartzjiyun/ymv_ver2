@@ -116,7 +116,7 @@ $(document).ready(function(){
 			</table>
 			<br> <div class = "col-sm-2 col-sm-offset-10">
 			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>			
-			<input type="hidden" name="boardNo" value="${requestScope.abvo.boardNo}">
+			
 		</form>
 	</div>
 
