@@ -68,7 +68,7 @@ $(document).ready(function(){
 			<table class="table table-striped table-hover">
 				 <tr>
                <th class="info"><h4 class="text-center">제목</h4></th>
-               <td><input type="text" name="title" id="title"></td>
+               <td><input type="text" name="title" id="title" value="${requestScope.abvo.title }"></td>
             </tr>
          <tr>
                <th class="info"><h4 class="text-center">파일업로드</h4></th>
@@ -76,7 +76,7 @@ $(document).ready(function(){
             </tr>
                <tr>
                <th class="info"><h4 class="text-center">물품명</h4></th>
-               <td><input type="text" name="article" id="article"></td>
+               <td><input type="text" name="article" id="article" value="${requestScope.abvo.article }"></td>
                </tr>
 				<tr>
 					<th class="info"><h4 class="text-center">입찰시작가</h4></th>
@@ -116,7 +116,7 @@ $(document).ready(function(){
 			</table>
 			<br> <div class = "col-sm-2 col-sm-offset-10">
 			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>		
-			
+			<input type="hidden" name="boardNo" value="${requestScope.abvo.boardNo }">
 		</form>
 	</div>
 
