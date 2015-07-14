@@ -9,7 +9,14 @@ $(document).ready(function(){
          } else {
             return;
          }//if
-      });      //click   
+      });      //click 
+      $("#modifyBtn").click(function() {
+          if (confirm("수정하시겠습니까?")) {
+             location.href = "auction_board_update_view.ymv?boardNo=" + ${requestScope.abvo.boardNo};
+          } else {
+             return;
+          }//if
+       }); 
       $("#auctionForm").submit(function() {
          if ($("#currentPrice").val() == "") {
             alert("금액을 입력해 주세요");
@@ -37,7 +44,7 @@ $(document).ready(function(){
                   <tr>
                      <td>제목 : ${requestScope.AuctionBoard.title}</td>
                      <td>등록시간: ${requestScope.AuctionBoard.timePosted}</td>
-                     <td>조회수 : ${requestScope.AuctionBoard.hit }</td>
+                     <td>조회수 : ${requestScope.abvo.hit }</td>
                   </tr>
                   <tr>
                      <td colspan="15"><c:if test="${requestScope.pvo!=null }">
@@ -69,31 +76,26 @@ $(document).ready(function(){
                      <td valign="middle" align="center" colspan="3"><a
                         href="${initParam.root}auction_board.ymv"> <img
                            class="action" src="${initParam.root}img/list_btn.jpg"
-                           onclick="sendList()"></a> <c:choose>
-                           <c:when
-                              test="${sessionScope.mvo.memberNo==sessionScope.mvo.memberNo }">
-                              <a
-                                 href="${initParam.root}auction_board_update_view.ymv?boardNo=${requestScope.AuctionBoard.boardNo }">
-                                 <img class="action" onclick="openForm('update')"
-                                 src="${initParam.root}img/modify_btn.jpg">
+                           onclick="sendList()"></a><c:choose>
+						<c:when test="${sessionScope.mvo.memberType=='admin' }">
+                             <a
+							href="${initParam.root}auction_board_update_view.ymv?boardNo=${requestScope.AuctionBoard.boardNo }">
+										 <img id="modifyBtn" src="${initParam.root}img/modify_btn.jpg">
                               </a>
+                              <a
+                                 href="${initParam.root}auction_board_delete.ymv?boardNo=${requestScope.AuctionBoard.boardNo }">
                               <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
-
-                           </c:when>
-                           <c:when test="${sessionScope.mvo.memberType=='admin' }">
-                              <a
-                                 href="${initParam.root}auction_board_update_view.ymv?boardNo=${requestScope.AuctionBoard.boardNo }">
-                                 <img class="action" onclick="openForm('update')"
-                                 src="${initParam.root}img/modify_btn.jpg">
                               </a>
-                              <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">                              
                            </c:when>
-                        </c:choose></td>
+				</c:choose>
+                         </td>
                   </tr>
             </table>
+           
          </div>
-      </div>
+      </div>     
       <br>
    </div>
    <input type="hidden" name="boardNo" value="${requestScope.AuctionBoard.boardNo}">
+   
 </form>

@@ -2,7 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-	$(document).ready(function() {
+$(document).ready(function(){      
+    $("#updateCancelBtn").click(function() {
+    	if(confirm("취소하시겠습니까?")==true){
+			location.href="auction_board.ymv";
+		}else{
+			return;
+		}
+	});    
 		$("#auctionForm").submit(function() {
 			if ($("#title").val() == "") {
 				alert("제목을 입력해주세요");
@@ -22,13 +29,7 @@
 			}
 		});
 	});
-		$("#updateCancel").click(function(){
-			if(confirm("취소하시겠습니까?")==true){
-				location.href="auction_board.ymv";
-			}else{
-				return;
-			}
-		});
+	
 
 </script>
 
@@ -59,6 +60,7 @@
 				});
 	});
 </script>
+
 <div class="col-md-6 col-sm-offset-3">
 		<h2>글 수정</h2>
 		<form id="auctionForm"
@@ -78,11 +80,11 @@
             </tr>
 				<tr>
 					<th class="info"><h4 class="text-center">입찰시작가</h4></th>
-					<td><input type="text" name="firstPrice" id="firstPrice" value="${requestScope.AuctionBoard.firstPrice}"></td>
+					<td><input type="text" name="firstPrice" id="firstPrice" value="${requestScope.abvo.firstPrice}"></td>
 					</tr>
 				<tr>
 					<th class="info"><h4 class="text-center" >끝시간</h4></th>
-					<td><input type="text" id="datepicker2" name="endDate" placeholder="종료날짜"  value="${requestScope.AuctnionBoard.endDate}">
+					<td><input type="text" id="datepicker2" name="endDate" placeholder="종료날짜"  value="${requestScope.abvo.endDate}">
 						<select id="endTime" name="endTime">
 							<!-- 한시간 단위로 하기 -->
 							<option value="">-끝시간-</option>
@@ -113,7 +115,8 @@
 				</tr>
 			</table>
 			<br> <div class = "col-sm-2 col-sm-offset-10">
-			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>
+			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>			
+			<input type="hidden" name="boardNo" value="${requestScope.abvo.boardNo}">
 		</form>
 	</div>
 
