@@ -131,7 +131,7 @@ public class NoticeBoardController {
 		mv.addObject("rvo", bvo);
 		mv.setViewName("notice_show_content");
 		 return mv;
-}
+   }
 	
    /**
     * 
