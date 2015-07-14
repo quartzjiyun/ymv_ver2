@@ -10,8 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="checkDate" column="check_date"/>
 	</resultMap>
 	<select id="findSchedulerList" resultMap="boardRM" parameterType="sdvo">
-		select recruit_no, title, field, location, age, to_char(start_date,'YYYY-MM-DD HH24:MI') as start_date,to_char(end_date,'YYYY-MM-DD HH24:MI') as end_date,to_char(start_date,'YYYY-MM-DD') as check_date
-		from(select recruit_no, title, field,location, age,start_date, end_date,to_char(start_date,'HH24:MI') as startDate,to_char(end_date,'HH24:MI') as endDate from recruit order by recruit_no desc)
+		select recruit_no, title, field, location, age, to_char(start_date,'YYYY-MM-DD HH24:MI') as start_date,to_char(end_date,'YYYY-MM-DD HH24:MI') as end_date,to_char(start_date,'YYYY-MM-DD') as check_date,start_time,end_time
+		from(select recruit_no, title, field,location, age,start_date, end_date,to_char(start_date,'HH24:MI') as startDate,to_char(end_date,'HH24:MI') as endDate,start_time,end_time from recruit order by recruit_no desc)
 		<where>
 			<if test="field!='' ">
 				AND field=#{field}
@@ -21,12 +21,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="startDate!='' ">
   			<![CDATA[
-   			 AND startDate>=#{startDate} 
+   			 AND start_time>=#{startDate} 
     		 ]]>
 			</if>
 			<if test="endDate!='' ">
   			<![CDATA[
-   			 AND endDate<=#{endDate}
+   			 AND end_time<=#{endDate}
     		 ]]>
 			</if>
 		</where>

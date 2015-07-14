@@ -5,7 +5,7 @@
 $(document).ready(function(){      
       $("#deleteBtn").click(function() {
          if (confirm("삭제하시겠습니까?")) {
-            location.href = "auction_board_delete.ymv?boardNo=" + ${requestScope.AuctionBoard.boardNo};
+            location.href = "auction_board_delete.ymv?boardNo=" + ${requestScope.abvo.boardNo};
          } else {
             return;
          }//if
@@ -86,8 +86,7 @@ $(document).ready(function(){
                                  <img class="action" onclick="openForm('update')"
                                  src="${initParam.root}img/modify_btn.jpg">
                               </a>
-                              <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">
-                              
+                              <img id="deleteBtn" src="${initParam.root}img/delete_btn.jpg">                              
                            </c:when>
                         </c:choose></td>
                   </tr>

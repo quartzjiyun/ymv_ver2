@@ -111,7 +111,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * 작성자 : 백지영, 박병준
+	 * 작성자 : 백지영
 	 * 내용 : 일반회원의 경우에는 생년월일을 입력받아 "member_register_form_detail.jsp"로 보내준다.
 	 * 				기업회원의 경우에는 사업자등록번호를 입력받아 "member_register_form_detail.jsp"로 보내준다.
 	 * @param identityNo : 생년월일이나 사업자등록번호를 입력하기 위해 사용
@@ -124,34 +124,16 @@ public class MemberController {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setIdentityNo(identityNo);
 		memberVO.setMemberType(memberType);
-
 		return new ModelAndView("member_register_form_detail","memberVO",memberVO);
 	}
 
 	/**
 	 * 작성자 : 박병준
-	 * 내용 : 박병준이 나중에 쓰기로 함
-	 * @param memberVO
-	 * @return
-	 */
-	@RequestMapping("member_register_idcheck.ymv")
-	@NoLoginCheck
-	@ResponseBody
-	public boolean memberRegisterIdcheck(MemberVO memberVO) {
-		boolean flag = true;
-
-		String idcheck = memberService.checkId(memberVO.getId());
-		if(idcheck.equals("ok")){
-			return flag;
-		}else{
-			flag = false;
-		}
-		return flag;
-	}
-
-	/**
-	 * 작성자 : 박병준
-	 * 내용 : 박병준이 나중에 쓰기로 함
+	 * 내용 : validation과 idcheck를 동시에 수행하고 있다. 
+	 *  validation을 통해 에러가 발생하면 정보들을 vo에 담아 다시 보내주고
+	 *  에러가 없다면 글 등록을 하게된다. 이 때 id가 중복되게 되면
+	 *   DuplicateKeyException이 발생하는데 이 때 이 exception을 catch해서
+	 *   ModelAndView에 정보를 담아 보내준다. 문제가 없으면 member_register_result.jsp로 넘어간다.
 	 * @param memberVO
 	 * @param result
 	 * @param pvo
@@ -159,18 +141,19 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "member_register_validation.ymv", method = RequestMethod.POST)
 	@NoLoginCheck
-	public ModelAndView register(@Valid MemberVO memberVO, BindingResult result, PictureVO pvo) {
+	public ModelAndView register(@Valid MemberVO memberVO,
+			BindingResult result, PictureVO pvo) {
 		ModelAndView mv = new ModelAndView();
 		if (result.hasErrors()) {
 			mv.setViewName("member_register_form_detail");
 			mv.addObject("memberVO", memberVO);
 			return mv;
 		}
-		try{
-		memberService.registerMember(memberVO);
-		}catch(DuplicateKeyException de){
+		try {
+			memberService.registerMember(memberVO);
+		} catch (DuplicateKeyException de) {
 			mv.setViewName("member_register_form_detail");
-			mv.addObject("info","아이디 중복됩니다.");
+			mv.addObject("info", "아이디 중복됩니다.");
 			return mv;
 		}
 		mv.setViewName("member_register_result");

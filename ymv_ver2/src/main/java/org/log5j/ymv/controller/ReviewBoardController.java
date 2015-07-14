@@ -59,13 +59,12 @@ public class ReviewBoardController {
 	@RequestMapping("review_showContent.ymv")
 	@NoLoginCheck
 	 public ModelAndView reviewShowContent(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mv=new ModelAndView();
+		ModelAndView mv=new ModelAndView("review_show_content");
 		 int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 		 int pictureNo=boardNo;
 		BoardVO bvo=null;
 		Cookie[] cookies = request.getCookies();
-		Cookie cookie = cookieService.cookieSerivce(cookies, boardNo,
-				new NoticeBoardVO());
+		Cookie cookie = cookieService.cookieSerivce(cookies, boardNo,new NoticeBoardVO());
 		response.addCookie(cookie);
 		bvo=reviewBoardService.findReviewBoardByBoardNo(boardNo);
 		List<CommentVO> commentList=reviewBoardService.findCommentListByBoardNo(request.getParameter("boardNo"));
@@ -74,7 +73,6 @@ public class ReviewBoardController {
 			mv.addObject("pvo",pvo);
 	    }
 		mv.addObject("rvo", bvo).addObject("commentList", commentList);
-		mv.setViewName("review_show_content");
 		 return mv;
 }
 	/**
@@ -134,10 +132,7 @@ public class ReviewBoardController {
 	 */
 	@RequestMapping("review_board_delete.ymv")
 	public ModelAndView reviewBoardDelete(String boardNo){
-		reviewBoardService.deleteReviewBoardComment(boardNo);
 		reviewBoardService.deleteReviewBoard(boardNo);
-		int pictureNo=Integer.parseInt(boardNo);
-		reviewBoardService.deletePicture(pictureNo);
 		return new ModelAndView("redirect:review_board.ymv");
 	}
 	/**

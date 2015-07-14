@@ -73,12 +73,16 @@
 					<td><input type="text" name="article" id="article" value="${requestScope.abvo.article}"></td>
 					</tr>
 				<tr>
+               <th class="info"><h4 class="text-center">파일업로드</h4></th>
+               <td><input type="file" name="fileName"></td>
+            </tr>
+				<tr>
 					<th class="info"><h4 class="text-center">입찰시작가</h4></th>
-					<td><input type="text" name="firstPrice" id="firstPrice" value="${requestScope.abvo.firstPrice}"></td>
+					<td><input type="text" name="firstPrice" id="firstPrice" value="${requestScope.AuctionBoard.firstPrice}"></td>
 					</tr>
 				<tr>
 					<th class="info"><h4 class="text-center" >끝시간</h4></th>
-					<td><input type="text" id="datepicker2" name="endDate" placeholder="종료날짜"  value="${requestScope.abvo.endDate}">
+					<td><input type="text" id="datepicker2" name="endDate" placeholder="종료날짜"  value="${requestScope.AuctnionBoard.endDate}">
 						<select id="endTime" name="endTime">
 							<!-- 한시간 단위로 하기 -->
 							<option value="">-끝시간-</option>
