@@ -66,18 +66,18 @@ $(document).ready(function(){
 		<form id="auctionForm"
 			action="auction_board_update.ymv?memberNo=${sessionScope.mvo.memberNo }" method="post">
 			<table class="table table-striped table-hover">
-				<tr>
-					<th class="info"><h4 class="text-center">제목</h4></th>
-					<td><input type="text" name="title" id="title" value="${requestScope.abvo.title}"></td>
-				</tr>
-					<tr>
-					<th class="info"><h4 class="text-center">물품명</h4></th>
-					<td><input type="text" name="article" id="article" value="${requestScope.abvo.article}"></td>
-					</tr>
-				<tr>
+				 <tr>
+               <th class="info"><h4 class="text-center">제목</h4></th>
+               <td><input type="text" name="title" id="title"></td>
+            </tr>
+         <tr>
                <th class="info"><h4 class="text-center">파일업로드</h4></th>
                <td><input type="file" name="fileName"></td>
             </tr>
+               <tr>
+               <th class="info"><h4 class="text-center">물품명</h4></th>
+               <td><input type="text" name="article" id="article"></td>
+               </tr>
 				<tr>
 					<th class="info"><h4 class="text-center">입찰시작가</h4></th>
 					<td><input type="text" name="firstPrice" id="firstPrice" value="${requestScope.abvo.firstPrice}"></td>
@@ -115,7 +115,7 @@ $(document).ready(function(){
 				</tr>
 			</table>
 			<br> <div class = "col-sm-2 col-sm-offset-10">
-			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>			
+			<input type="submit" class = "btn btn-primary"value="글 등록"><br><br></div>		
 			
 		</form>
 	</div>
