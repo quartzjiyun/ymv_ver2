@@ -369,8 +369,6 @@ public class RecruitBoardController {
 	public ModelAndView voluntary_OKList(HttpServletRequest request,ApplicantListVO alvo){
 		//String recruitNo=request.getParameter("recruitNo");
 		List<ApplicantListVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
-		System.out.println("OKLIST alvo : "+alvo.getRecruitNo());
-		System.out.println("OKLIST : "+list);
 		return new ModelAndView("voluntary_OKList","list",list);
 	}
 	/**
