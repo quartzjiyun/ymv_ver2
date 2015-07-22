@@ -337,7 +337,6 @@ public class RecruitBoardController {
 		String memberList=request.getParameter("memberList");
 		String title=request.getParameter("title");
 		String member[]=memberList.split(",");
-		// recruitNo, memberNo 
 		for(int i=0;i<member.length;i++){
 			alvo.setMemberNo(Integer.parseInt(member[i]));
 			recruitBoardService.registerApplicantOK(alvo);
@@ -354,7 +353,6 @@ public class RecruitBoardController {
 	        emailSender.SendEmail(email);
 		}
 			List<ApplicantListVO> list=recruitBoardService.findApplicantOkList(alvo.getRecruitNo());
-
 		return new ModelAndView("voluntary_applicantOK","list",list);
 	}
 	/**
